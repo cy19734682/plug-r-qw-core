@@ -1,0 +1,98 @@
+{
+  "name": "@zhangqingcq/plug-r-qw",
+  "version": "2.0.0",
+  "description": "A JS lib base on Vue@3.x and view-ui-plus, you can achieve some complex functions with simple code after install this lib.",
+  "main": "/lib/plugRQw.umd.js",
+  "typings": "types/index.d.ts",
+  "files": [
+    "lib",
+    "src",
+    "types"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && gulp",
+    "preview": "vite preview",
+    "node-serve": "node node-serve/index.js",
+    "node-serve-dev": "nodemon node-serve/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RickyHeaven/plug-r-qw-core.git"
+  },
+  "keywords": [
+    "vue",
+    "view-ui-plus",
+    "vue-router",
+    "pinia",
+    "sweetalert",
+    "lodash",
+    "axios",
+    "echarts",
+    "moment",
+    "wangeditor",
+    "xss",
+    "js-cookie",
+    "iview-area",
+    "ar-cascader",
+    "vue-amap",
+    "vue-json-viewer",
+    "qw",
+    "ricky",
+    "zhangqingcq"
+  ],
+  "author": "RickyHeaven",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/RickyHeaven/plug-r-qw-core/issues"
+  },
+  "homepage": "https://github.com/RickyHeaven/plug-r-qw-core#readme",
+  "dependencies": {
+    "@jiaminghi/data-view": "^2.10.0",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12",
+    "ar-cascader": "^1.0.5",
+    "axios": "^0.27.1",
+    "echarts": "^4.9.0",
+    "js-cookie": "2.1.4",
+    "lodash": "^4.17.21",
+    "moment": "^2.22.2",
+    "pinia": "^2.0.32",
+    "sweetalert": "^2.1.2",
+    "view-ui-plus": "^1.3.10",
+    "vue": "^3.2.47",
+    "vue-amap": "^0.5.10",
+    "vue-i18n": "^9.2.2",
+    "vue-json-viewer": "^3.0.4",
+    "vue-router": "^4.1.6",
+    "xss": "^1.0.8"
+  },
+  "devDependencies": {
+    "@types/node": "^18.14.2",
+    "@vitejs/plugin-vue": "^4.1.0",
+    "@vitejs/plugin-vue-jsx": "^3.0.0",
+    "@vue/tsconfig": "^0.1.3",
+    "china-map-data": "^1.0.4",
+    "deepmerge": "^2.2.1",
+    "del": "^6.1.1",
+    "express": "^4.18.2",
+    "github-markdown-css": "^5.2.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-less": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "less": "^4.1.3",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.22",
+    "npm-run-all": "^4.1.5",
+    "typescript": "5.0.2",
+    "vite": "^4.3.0",
+    "vue-markdown-loader": "^2.5.0",
+    "vue-tsc": "^1.2.0"
+  },
+  "engines": {
+    "node": ">=16.20.0",
+    "npm": ">=8.19.4"
+  }
+}

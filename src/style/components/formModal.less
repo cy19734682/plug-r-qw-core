@@ -1,0 +1,38 @@
+/**
+ * created 2020.08.31
+ * @author ricky zhangqingcq@foxmail.com
+ */
+
+@import "../common/color";
+@import "../common/size";
+
+.formModal {
+  .ivu-modal .ivu-modal-content {
+    .ivu-modal-body {
+      max-height: calc(~"100vh - 240px");
+      overflow-y: auto;
+    }
+
+    .ivu-modal-footer {
+      text-align: center;
+    }
+  }
+
+  .ivu-btn {
+    &.modal-save-btn {
+      background-color: @primary;
+      color: #fff;
+      width: @btnW;
+
+      &:hover {
+        background-color: #fff;
+        color: @primary;
+        border-color: @primary;
+      }
+    }
+
+    &.modal-cancel-btn {
+      width: @btnW;
+    }
+  }
+}

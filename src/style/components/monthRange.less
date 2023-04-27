@@ -1,0 +1,21 @@
+@heightMR: 32px;
+.monthRangeBoxR {
+  position: relative;
+
+  .ivu-date-picker {
+    width: 100%;
+
+    .bRoot {
+      height: @heightMR;
+    }
+  }
+
+  .ivu-date-picker:first-child {
+    position: absolute;
+    width: 100%;
+    height: @heightMR;
+    left: 0;
+    top: 0;
+    z-index: -1;
+  }
+}

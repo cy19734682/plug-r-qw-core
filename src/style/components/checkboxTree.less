@@ -1,0 +1,27 @@
+/**
+ * created 2020.07.22
+ * @author ricky zhangqingcq@foxmail.com
+ */
+
+.checkboxTreeGA {
+  .inlineTreeNodeF {
+    min-width: 150px !important;
+    float: left;
+  }
+
+  .ivu-tree-children,
+  .inlineChild + .ivu-tree-children {
+    padding: 0 0 0 10px;
+    margin-left: 15px;
+  }
+
+  .ivu-tree-children > li:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  &.ivu-tree ul li {
+    margin: 8px 0 0 0;
+  }
+}
