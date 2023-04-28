@@ -1,14 +1,14 @@
 /**
- * plug-r-qw 源代码入口文件
- * created at 2023.04.27
+ * @description plug-r-qw 源代码入口文件
  * @author Ricky email:zhangqingcq@foxmail.com
+ * @created 2023.04.27
  */
-const modules = import.meta.glob('./components/**/*.vue', {eager: true})
+const modules:Record<string, any> = import.meta.glob('./components/**/*.vue', {eager: true})
 import localeFile from './locale'
 
 import pkg from '../package.json'
 
-let components = {}
+let components:Record<string, any> = {}
 
 for (const path in modules) {
   if (modules.hasOwnProperty(path)) {
@@ -17,7 +17,7 @@ for (const path in modules) {
   }
 }
 
-const install = function (app, options = {}) {
+const install = function (app:any, options:Record<string, any> = {}) {
   if (options.locale) {
     localeFile.use(options.locale)
   }

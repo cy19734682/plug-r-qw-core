@@ -1,7 +1,7 @@
 /**
- *Type definitions for plug-r-qw 2.0.0
- * created at 2023.03.03
+ * @description Type definitions for plug-r-qw 2.0.0
  * @author Ricky email:zhangqingcq@foxmail.com
+ * @created 2023.03.07
  */
 
 import plugRQw from "./plug-r-qw"

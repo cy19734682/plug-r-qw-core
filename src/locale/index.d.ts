@@ -1,7 +1,7 @@
-declare module './index.js' {
-  export function use(l: string)
+export module './index.js' {
+  function use(l: string)
 
-  export function t(path: string, options: any)
+  function t(path: string, options: any)
 
-  export function i18n(initI18n: any)
+  function i18n(initI18n: any)
 }

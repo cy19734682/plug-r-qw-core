@@ -1,13 +1,13 @@
 import {createApp} from 'vue'
 import {createPinia} from 'pinia'
-import {useStore} from "@/stores/main"
+import {useStore} from "./stores/main"
 
-import App from './App.vue'
+import App from '@/App.vue'
 import router from './router'
 
 import {createI18n} from 'vue-i18n'
-import en from './lang/en-US'
-import zh from './lang/zh-CN'
+import en from '@/lang/en-US'
+import zh from '@/lang/zh-CN'
 import enI from 'view-ui-plus/dist/locale/en-US'
 import zhI from 'view-ui-plus/dist/locale/zh-CN'
 import enR from '../src/locale/lang/en-US'

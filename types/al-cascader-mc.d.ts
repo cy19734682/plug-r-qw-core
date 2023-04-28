@@ -1,12 +1,12 @@
 /**
- *Type definitions for plug-r-qw 2.0.0
- * created at 2023.03.07
+ * @description Type definitions for plug-r-qw 2.0.0
  * @author Ricky email:zhangqingcq@foxmail.com
+ * @created 2023.03.07
  */
 
-import Vue from "vue"
+import type {DefineComponent} from "vue"
 
-export declare class AlCascaderMcD extends Vue {
+export declare const AlCascaderMcD: DefineComponent<{
   value?: string | number | any[]
 
   level?: number | string
@@ -20,4 +20,4 @@ export declare class AlCascaderMcD extends Vue {
   separator: string
 
   placeholder: string
-}
+}>

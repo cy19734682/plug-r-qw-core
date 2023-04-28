@@ -1,7 +1,7 @@
 /**
- * plug-r-qw 国际化
- * created at 2023.04.27
+ * @description 国际化
  * @author Ricky email:zhangqingcq@foxmail.com
+ * @created 2023.04.27
  */
 
 import zhLang from './lang/zh-CN'

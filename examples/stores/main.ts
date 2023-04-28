@@ -2,11 +2,11 @@ import {ref} from 'vue'
 import {defineStore} from "pinia"
 
 export const useStore = defineStore('main', () => {
-  const isLogin = ref(false)
+    const isLogin = ref(false)
 
-  function logout() {
-    //todo
-  }
+    function logout() {
+        //todo
+    }
 
-  return {isLogin}
+    return {isLogin, logout}
 })
