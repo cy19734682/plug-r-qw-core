@@ -8,7 +8,9 @@ import router from './router'
 import {createI18n} from 'vue-i18n'
 import en from '@/lang/en-US'
 import zh from '@/lang/zh-CN'
+// @ts-ignore
 import enI from 'view-ui-plus/dist/locale/en-US'
+// @ts-ignore
 import zhI from 'view-ui-plus/dist/locale/zh-CN'
 import enR from '../src/locale/lang/en-US'
 import zhR from '../src/locale/lang/zh-CN'
@@ -16,7 +18,7 @@ import zhR from '../src/locale/lang/zh-CN'
 import './assets/main.css'
 
 import ViewUIPlus from 'view-ui-plus'
-import 'view-ui-plus/dist/styles/viewuiplus.css'
+import './global/iViewTheme.less'
 
 /*import plugRQw from "../lib/plugRQw.mjs"
  import '../lib/plugRQw.min.css'*/

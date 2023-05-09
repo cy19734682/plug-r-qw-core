@@ -1,13 +1,25 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["env.d.ts","vite.config.ts", "src/**/*", "src/**/*.vue", "examples/**/*", "examples/**/*.vue"],
+  "include": [
+    "env.d.ts",
+    "src/**/*",
+    "src/**/*.vue"
+  ],
+  "exclude": [
+    "./src/components/index.ts",
+    "./src/methods/index.ts"
+  ],
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./examples/*"]
-    }
+      "@/*": [
+        "./examples/*"
+      ]
+    },
+    "declaration": true,
+    "declarationDir": "./types",
+    "emitDeclarationOnly": true
   },
-
   "references": [
     {
       "path": "./tsconfig.node.json"

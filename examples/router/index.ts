@@ -1,13 +1,29 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import {createRouter, createWebHistory} from 'vue-router'
+import MessageBox from '../views/MessageBoxEX.vue'
+import Swal from '../views/SwalEX.vue'
+
+// @ts-ignore
+const bl = import.meta.env.BASE_URL
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(bl),
+  linkActiveClass: 'active',
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: HomeView
+      name: '$swal',
+      component: Swal,
+      meta: {
+        desc: '提示框'
+      }
+    },
+    {
+      path: '/messageBox',
+      name: 'messageBox',
+      component: MessageBox,
+      meta: {
+        desc: '对话框'
+      }
     }
   ]
 })

@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': fileURLToPath(new URL('./examples', import.meta.url))
     }
   },
   server: {
@@ -25,7 +25,8 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       less: {
-        javascriptEnabled: true
+        javascriptEnabled: true,
+        rewriteUrls:'all'
       }
     }
   },

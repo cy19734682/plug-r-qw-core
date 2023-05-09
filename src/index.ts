@@ -3,12 +3,16 @@
  * @author Ricky email:zhangqingcq@foxmail.com
  * @created 2023.04.27
  */
-const modules:Record<string, any> = import.meta.glob('./components/**/*.vue', {eager: true})
+
+import type {App} from "vue";
+
+const modules: Record<string, any> = import.meta.glob('./components/**/*.vue', {eager: true})
 import localeFile from './locale'
+import messageBox from "./methods/messageBox"
+import $swal from './methods/swal'
+import $swalConfirm from './methods/swalConfirm'
 
-import pkg from '../package.json'
-
-let components:Record<string, any> = {}
+let components: Record<string, any> = {}
 
 for (const path in modules) {
   if (modules.hasOwnProperty(path)) {
@@ -17,7 +21,13 @@ for (const path in modules) {
   }
 }
 
-const install = function (app:any, options:Record<string, any> = {}) {
+const methodsR: Record<string, Function> = {
+  messageBox,
+  $swal,
+  $swalConfirm
+}
+
+const install = function (app: App, options: Record<string, any> = {}) {
   if (options.locale) {
     localeFile.use(options.locale)
   }
@@ -29,16 +39,17 @@ const install = function (app:any, options:Record<string, any> = {}) {
   Object.keys(components).forEach(key => {
     app.component(key, components[key])
   })
-}
 
-const version = pkg.version
+  Object.keys(methodsR).forEach(key => {
+    app.config.globalProperties[key] = methodsR[key]
+  })
+}
 
 const locale = localeFile.use
 
 const i18n = localeFile.i18n
 
 export default {
-  version,
   locale,
   i18n,
   install

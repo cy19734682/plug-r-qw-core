@@ -10,7 +10,10 @@ const autoprefixer = require('gulp-autoprefixer')
 const rename = require('gulp-rename')
 const cleanCSS = require('gulp-clean-css')
 const del = require('del')
-const {src, dest} = gulp
+const {
+  src,
+  dest
+} = gulp
 
 //编译 less
 function build(cb) {
@@ -45,13 +48,20 @@ function langs(cb) {
   cb()
 }
 
+function types(cb) {
+  src([
+    './src/public.d.ts'
+  ])
+    .pipe(dest('./types'))
+  cb()
+}
+
 function clean(cb) {
   del([
-    'plugRQw.min.css',
-    './lab/iconfont/'
+    'plugRQw.min.css', './lab/iconfont/', './types/*'
   ])
   cb()
 }
 
 
-exports.default = gulp.series(clean, build, fonts, langs)
+exports.default = gulp.series(clean, build, fonts, langs, types)
