@@ -1,5 +1,4 @@
 import {createRouter, createWebHistory} from 'vue-router'
-import MessageBox from '../views/MessageBoxEX.vue'
 import Swal from '../views/SwalEX.vue'
 
 // @ts-ignore
@@ -18,9 +17,17 @@ const router = createRouter({
       }
     },
     {
+      path: '/FullPop',
+      name: 'FullPop',
+      component: ()=>import('../views/FullPopEX.vue'),
+      meta: {
+        desc: '全屏弹框'
+      }
+    },
+    {
       path: '/messageBox',
       name: 'messageBox',
-      component: MessageBox,
+      component: ()=>import('../views/MessageBoxEX.vue'),
       meta: {
         desc: '对话框'
       }

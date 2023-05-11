@@ -1,7 +1,7 @@
-import { fileURLToPath, URL } from 'node:url'
+import {fileURLToPath, URL} from 'node:url'
 import {resolve} from 'path'
 
-import { defineConfig } from 'vite'
+import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 
@@ -10,7 +10,8 @@ export default defineConfig({
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./examples', import.meta.url))
+      '@': fileURLToPath(new URL('./examples', import.meta.url)),
+      'vue-i18n': 'vue-i18n/dist/vue-i18n.cjs.js'
     }
   },
   server: {
@@ -26,7 +27,7 @@ export default defineConfig({
     preprocessorOptions: {
       less: {
         javascriptEnabled: true,
-        rewriteUrls:'all'
+        rewriteUrls: 'all'
       }
     }
   },

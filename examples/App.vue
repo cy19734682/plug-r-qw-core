@@ -13,24 +13,22 @@
 </script>
 
 <template>
-  <div>
-    <header class="appHead">
-      <svg class="icon brandR" aria-hidden="true">
-        <use xlink:href="#icon-letter-R"></use>
-      </svg>
+  <header class="appHead">
+    <svg class="icon brandR" aria-hidden="true">
+      <use xlink:href="#icon-letter-R"></use>
+    </svg>
 
-      <Hello />
+    <Hello />
 
-      <SetLang class="fr" />
-      <span class="fr">{{ $t("e.testTxt") }}</span>
-    </header>
-    <main class="appMain">
-      <SideMenuE :data="menu"/>
-      <div class="viewR">
-        <RouterView />
-      </div>
-    </main>
-  </div>
+    <SetLang class="fr" />
+    <span class="fr">{{ $t("e.testTxt") }}</span>
+  </header>
+  <main class="appMain">
+    <SideMenuE :data="menu"/>
+    <div class="viewR">
+      <RouterView />
+    </div>
+  </main>
 </template>
 
 <style lang="less" scoped>
@@ -55,10 +53,13 @@
   .appMain {
     height: calc(~"100vh - 45px");
     display: flex;
+    align-items: center;
 
     .viewR {
       flex-grow: 1;
+      height: 100%;
       padding: 12px;
+      background-color: #f5f7f9;
     }
   }
 </style>
