@@ -3,7 +3,7 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script setup lang="ts">
-  import {ref, defineProps, withDefaults, computed, defineEmits} from 'vue'
+  import {ref, withDefaults, computed} from 'vue'
   import t from '../../locale/sfc-i18n'
   import HeaderBt from "../HeaderBt/HeaderBt.vue"
 

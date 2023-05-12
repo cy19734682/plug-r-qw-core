@@ -11,10 +11,11 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "run-p build-only && gulp && vue-tsc",
+    "build": "run-p type-check build-only && gulp",
     "preview": "vite preview",
     "build-only": "vite build",
-    "type-check": "vue-tsc",
+    "type-check": "vue-tsc --noEmit",
+    "declaration": "vue-tsc --declaration --emitDeclarationOnly",
     "node-serve": "node node-serve/index.js",
     "node-serve-dev": "nodemon node-serve/index.js"
   },

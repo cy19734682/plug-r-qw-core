@@ -1,12 +1,12 @@
 <script setup lang="ts">
-  import {defineProps, withDefaults} from 'vue'
+  import {withDefaults} from 'vue'
 
   const props = withDefaults(defineProps<{ data?: any }>(), {data: []})
 </script>
 
 <template>
   <div class="wallM">
-    <router-link class="liM" v-for="e in data" :to="e.path">{{ e.name }}<em>{{ e.desc}}</em></router-link>
+    <router-link class="liM" v-for="e in data" :to="e.path">{{ e.name }}<em>{{ e.desc }}</em></router-link>
   </div>
 </template>
 
@@ -19,18 +19,22 @@
     .liM {
       padding: 5px 15px 5px 35px;
       display: block;
-      em{
+
+      em {
         display: block;
         font-style: normal;
         opacity: .5;
       }
-      &:hover{
+
+      &:hover {
         color: #2d8cf0;
       }
-      &.active{
+
+      &.active {
         color: #2d8cf0;
         background: #f0faff;
-        &:after{
+
+        &:after {
           content: "";
           display: block;
           width: 2px;

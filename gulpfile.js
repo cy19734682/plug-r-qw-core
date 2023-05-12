@@ -58,7 +58,7 @@ function types(cb) {
 
 function clean(cb) {
   del([
-    'plugRQw.min.css', './lab/iconfont/', './types/*'
+    'plugRQw.min.css', './lab/iconfont/'/*, './types/!*'*/
   ])
   cb()
 }

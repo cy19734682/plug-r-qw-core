@@ -2,8 +2,9 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
     "env.d.ts",
+//    "src/**/*.ts",
     "src/**/*",
-    "src/**/*.vue"
+    "examples/**/*"
   ],
   "exclude": [
     "./src/components/index.ts",
@@ -16,9 +17,7 @@
         "./examples/*"
       ]
     },
-    "declaration": true,
-    "declarationDir": "./types",
-    "emitDeclarationOnly": true
+//    "declarationDir": "./types",
   },
   "references": [
     {
