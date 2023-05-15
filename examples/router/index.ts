@@ -10,6 +10,10 @@ const router = createRouter({
   routes: [
     {
       path: '/',
+      redirect:'/swal'
+    },
+    {
+      path: '/swal',
       name: '$swal',
       component: Swal,
       meta: {

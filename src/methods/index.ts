@@ -4,13 +4,16 @@
  * @created 2023.04.27
  */
 
-const modules:Record<string, any> = import.meta.glob('./*.md', {eager: true})
+const modules: Record<string, any> = import.meta.glob('./*.md', {
+  eager: true,
+  as: 'raw'
+})
 
-let mds:Record<string, any> = {}
+let mds: Record<string, any> = {}
 
 for (const path in modules) {
   if (modules.hasOwnProperty(path)) {
-    const _p = path.replace(/^\.\/(\w*)\.md$/, '$1')
+    const _p = path.replace(/^\.\/(\w*)\.md$/, '$1').toLowerCase()
     mds[_p] = modules[path]
   }
 }

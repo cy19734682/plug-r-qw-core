@@ -2,7 +2,7 @@
   "extends": "@vue/tsconfig/tsconfig.web.json",
   "include": [
     "env.d.ts",
-//    "src/**/*.ts",
+    //    "src/**/*.ts"
     "src/**/*",
     "examples/**/*"
   ],
@@ -16,8 +16,8 @@
       "@/*": [
         "./examples/*"
       ]
-    },
-//    "declarationDir": "./types",
+    }
+    //    "declarationDir": "./types"
   },
   "references": [
     {

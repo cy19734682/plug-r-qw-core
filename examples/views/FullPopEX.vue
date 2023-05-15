@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import {ref} from 'vue'
+  import ShowReadMe from "@/components/ShowReadMe.vue"
 
   const fullPop = ref()
 
@@ -9,6 +10,7 @@
 </script>
 
 <template>
+  <ShowReadMe/>
   <Button @click="popF">全屏弹框</Button>
   <FullPop title="全屏弹框" ref="fullPop">
     <div style="padding: 12px">

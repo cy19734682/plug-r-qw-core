@@ -26,6 +26,8 @@ import './global/iViewTheme.less'
 import plugRQw from '../src'
 import '../src/style/index.less'
 
+import 'github-markdown-css/github-markdown-light.css'
+
 // localStorage.setItem('locale','zh')
 const i18n = createI18n({
   allowComposition: true,

@@ -3,8 +3,6 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script setup lang="ts">
-  import {withDefaults} from 'vue'
-
   const props = withDefaults(defineProps<{
     icon?: string,
     withIcon?: boolean,
@@ -22,7 +20,7 @@
 
   const emit = defineEmits(['click'])
 
-  function click(e: any) {
+  function click() {
     if (props.disabled) {
       return
     }

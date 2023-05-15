@@ -60,6 +60,7 @@
       height: 100%;
       padding: 12px;
       background-color: #f5f7f9;
+      position: relative;
     }
   }
 </style>

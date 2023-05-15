@@ -3,13 +3,16 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script setup lang="ts">
-  import {ref, withDefaults, computed} from 'vue'
+  import {ref, computed} from 'vue'
   import t from '../../locale/sfc-i18n'
   import HeaderBt from "../HeaderBt/HeaderBt.vue"
 
-  const props = withDefaults(
-    defineProps<{ title?: string, headerColor?: string, headerBg?: string, headerFontSize?: number | string }>(),
-    {headerFontSize: 12})
+  const props = withDefaults(defineProps<{
+    title?: string, headerColor?: string, headerBg?: string, headerFontSize?: number | string, zIndex: number
+  }>(), {
+    headerFontSize: 12,
+    zIndex: 1000
+  })
 
   const emit = defineEmits(['on-open', 'on-close'])
 
@@ -20,6 +23,10 @@
       return props.headerFontSize + 'px'
     }
     return props.headerFontSize
+  })
+
+  const popStyle = computed(() => {
+    return {zIndex: props.zIndex}
   })
 
   function open() {
@@ -39,7 +46,7 @@
 </script>
 
 <template>
-  <div v-show="showPop" class="fullScreenPopBoxAM">
+  <div v-show="showPop" class="fullScreenPopBoxAM" :style="popStyle">
     <div class="headerAM" :style="{color:headerColor,backgroundColor:headerBg,fontSize:hFontSize}">
       <!--这是标题-->
       <span class="headerTxtAM">{{ title || t('r.title') }}</span>

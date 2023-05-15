@@ -31,6 +31,7 @@ export default defineConfig({
       }
     }
   },
+  assetsInclude:['**/*.md'],
   build: {
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),

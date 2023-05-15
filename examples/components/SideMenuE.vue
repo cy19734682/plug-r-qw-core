@@ -1,6 +1,4 @@
 <script setup lang="ts">
-  import {withDefaults} from 'vue'
-
   const props = withDefaults(defineProps<{ data?: any }>(), {data: []})
 </script>
 
