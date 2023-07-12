@@ -1,6 +1,6 @@
 {
   "name": "@zhangqingcq/plug-r-qw",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A JS lib base on Vue@3.x and view-ui-plus, you can achieve some complex functions with simple code after install this lib.",
   "publishConfig": {
     "access": "public"
