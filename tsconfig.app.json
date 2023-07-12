@@ -1,0 +1,24 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": [
+    "env.d.ts",
+    "./src/**/*",
+    "./examples/**/*"
+  ],
+  "exclude": [
+    "./src/components/index.ts",
+    "./src/methods/index.ts"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "composite": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "paths": {
+      "@/*": [
+        "./examples/*"
+      ]
+    }
+  }
+}

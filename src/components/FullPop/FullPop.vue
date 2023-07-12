@@ -3,58 +3,65 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script setup lang="ts">
-  import {ref, computed} from 'vue'
-  import t from '../../locale/sfc-i18n'
-  import HeaderBt from "../HeaderBt/HeaderBt.vue"
+	import { ref, computed } from 'vue'
+	import t from '../../locale/sfc-i18n'
+	import HeaderBt from '../HeaderBt/HeaderBt.vue'
 
-  const props = withDefaults(defineProps<{
-    title?: string, headerColor?: string, headerBg?: string, headerFontSize?: number | string, zIndex: number
-  }>(), {
-    headerFontSize: 12,
-    zIndex: 1000
-  })
+	const props = withDefaults(
+		defineProps<{
+			title?: string
+			headerColor?: string
+			headerBg?: string
+			headerFontSize?: number | string
+			zIndex: number
+		}>(),
+		{
+			headerFontSize: 12,
+			zIndex: 1000
+		}
+	)
 
-  const emit = defineEmits(['on-open', 'on-close'])
+	const emit = defineEmits(['on-open', 'on-close'])
 
-  let showPop = ref(false)
+	let showPop = ref(false)
 
-  const hFontSize = computed(() => {
-    if (typeof props.headerFontSize === 'number') {
-      return props.headerFontSize + 'px'
-    }
-    return props.headerFontSize
-  })
+	const hFontSize = computed(() => {
+		if (typeof props.headerFontSize === 'number') {
+			return props.headerFontSize + 'px'
+		}
+		return props.headerFontSize
+	})
 
-  const popStyle = computed(() => {
-    return {zIndex: props.zIndex}
-  })
+	const popStyle = computed(() => {
+		return { zIndex: props.zIndex }
+	})
 
-  function open() {
-    showPop.value = true
-    emit('on-open')
-  }
+	function open() {
+		showPop.value = true
+		emit('on-open')
+	}
 
-  function close(getData?: boolean) {
-    showPop.value = false
-    emit('on-close', getData === true)
-  }
+	function close(getData?: boolean) {
+		showPop.value = false
+		emit('on-close', getData === true)
+	}
 
-  defineExpose({
-    open,
-    close
-  })
+	defineExpose({
+		open,
+		close
+	})
 </script>
 
 <template>
-  <div v-show="showPop" class="fullScreenPopBoxAM" :style="popStyle">
-    <div class="headerAM" :style="{color:headerColor,backgroundColor:headerBg,fontSize:hFontSize}">
-      <!--这是标题-->
-      <span class="headerTxtAM">{{ title || t('r.title') }}</span>
-      <!--这是返回按钮-->
-      <HeaderBt icon="md-return-left" @click="close">{{ t('r.back') }}</HeaderBt>
-    </div>
-    <div class="contentAM">
-      <slot></slot>
-    </div>
-  </div>
+	<div v-show="showPop" class="fullScreenPopBoxAM" :style="popStyle">
+		<div class="headerAM" :style="{ color: headerColor, backgroundColor: headerBg, fontSize: hFontSize }">
+			<!--这是标题-->
+			<span class="headerTxtAM">{{ title || t('r.title') }}</span>
+			<!--这是返回按钮-->
+			<HeaderBt icon="md-return-left" @click="close">{{ t('r.back') }}</HeaderBt>
+		</div>
+		<div class="contentAM">
+			<slot></slot>
+		</div>
+	</div>
 </template>

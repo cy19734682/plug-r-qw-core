@@ -3,13 +3,13 @@
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.05.08
  */
-declare type ButtonC = {
+type ButtonC = {
     text?: string;
     className?: string;
     value?: boolean | null;
     visible?: boolean;
 };
-declare type ButtonS = {
+type ButtonS = {
     cancel: ButtonC;
     confirm: ButtonC;
 };

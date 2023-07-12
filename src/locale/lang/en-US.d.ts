@@ -1,3 +1,3 @@
-export module './en-Us'{
-    const {}:{ [k: keyof any]: any }
+export module './en-Us' {
+	const {}: { [k: keyof any]: any }
 }

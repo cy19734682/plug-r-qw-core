@@ -1,4 +1,4 @@
-import type { RichTxt } from "../public";
+import type { RichTxt } from '../public';
 /**
  * config为一个对象，支持：
  * @param {string/html} content:弹框内容，同iView的content,

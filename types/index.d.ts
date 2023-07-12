@@ -3,7 +3,7 @@
  * @author Ricky email:zhangqingcq@foxmail.com
  * @created 2023.04.27
  */
-import type { App } from "vue";
+import type { App } from 'vue';
 import localeFile from './locale';
 declare const _default: {
     locale: typeof localeFile.use;

@@ -3,7 +3,7 @@
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.04.27
  */
-import type { Collection, PlainObject } from "../public";
+import type { Collection, PlainObject } from '../public';
 export declare function myTypeof(v: any): string;
 export declare function toHump(name: string): string;
 export declare function toLine(name: string): string;
@@ -160,4 +160,4 @@ export declare function htmlPrint(data: string): void;
  * 查找dom元素所有兄弟
  * @param elem - 被查找的元素
  */
-export declare function siblingElems(elem: ChildNode): ChildNode[];
+export declare function siblingElems(elem: ChildNode): any[];

@@ -1,5 +1,5 @@
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
-import type { Collection } from "../public";
+import type { Collection } from '../public';
 interface ServiceR extends AxiosInstance {
     store?: any;
 }
@@ -18,8 +18,9 @@ declare const _default: {
      * @description 初始化该请求插件，单独引入的话调用一次后，方可实现spin等功能，默认在该库安装时已自动化初始化了该请求插件
      * @function
      * @param {object} store 项目中vuex的store，或pinia的useStore
+     * @param app 当前vue实例
      */
-    init(store: any): void;
+    init(store: any, app: any): void;
     /**
      * post 请求
      * @function
@@ -91,7 +92,7 @@ declare const _default: {
      *  ]
      * )
      */
-    all: <T>(values: (T | Promise<T>)[]) => Promise<T[]>;
+    all: typeof import("axios").all;
     /**
      * 并发请求结果分离 例如：
      * @example this.$fetch.all(
@@ -106,7 +107,7 @@ declare const _default: {
      *    })
      *   )
      */
-    spread: <T_1, R>(callback: (...args: T_1[]) => R) => (array: T_1[]) => R;
+    spread: typeof import("axios").spread;
     /**
      * 该请求插件暴露给外界的配置对象，为axios.create创建的实例对象，使用方法见axios官方网站
      */

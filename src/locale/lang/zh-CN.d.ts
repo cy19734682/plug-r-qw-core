@@ -1,3 +1,3 @@
 export module './zh-CN.js' {
-    const {}: { [k: keyof any]: any }
+	const {}: { [k: keyof any]: any }
 }

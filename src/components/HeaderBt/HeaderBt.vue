@@ -3,37 +3,41 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script setup lang="ts">
-  const props = withDefaults(defineProps<{
-    icon?: string,
-    withIcon?: boolean,
-    iconSize?: number | string,
-    color?: string,
-    borderColor?: string,
-    disabled?: boolean
-  }>(), {
-    withIcon: false,
-    iconSize: 18,
-    color: 'inherit',
-    borderColor: '#fff',
-    disabled: false
-  })
+	const props = withDefaults(
+		defineProps<{
+			icon?: string
+			withIcon?: boolean
+			iconSize?: number | string
+			color?: string
+			borderColor?: string
+			disabled?: boolean
+		}>(),
+		{
+			withIcon: false,
+			iconSize: 18,
+			color: 'inherit',
+			borderColor: '#fff',
+			disabled: false
+		}
+	)
 
-  const emit = defineEmits(['click'])
+	const emit = defineEmits(['click'])
 
-  function click() {
-    if (props.disabled) {
-      return
-    }
-    emit('click')
-  }
+	function click() {
+		if (props.disabled) {
+			return
+		}
+		emit('click')
+	}
 </script>
 
 <template>
-  <div
-      :class="{headerBtCTM:true,withIconCTM:icon||withIcon,disabled: disabled}"
-      :style="{color: color,borderLeftColor:borderColor}" @click="click"
-  >
-    <Icon v-if="icon" :size="iconSize" :type="icon" />
-    <slot></slot>
-  </div>
+	<div
+		:class="{ headerBtCTM: true, withIconCTM: icon || withIcon, disabled: disabled }"
+		:style="{ color: color, borderLeftColor: borderColor }"
+		@click="click"
+	>
+		<Icon v-if="icon" :size="iconSize" :type="icon" />
+		<slot></slot>
+	</div>
 </template>

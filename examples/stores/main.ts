@@ -1,12 +1,19 @@
-import {ref} from 'vue'
-import {defineStore} from "pinia"
+import { ref } from 'vue'
+import { defineStore } from 'pinia'
+import router from '@/router'
 
 export const useStore = defineStore('main', () => {
-    const isLogin = ref(false)
+	const isLogin = ref(false)
 
-    function logout() {
-        //todo
-    }
+	const fullScreen = ref(false)
 
-    return {isLogin, logout}
+	function logout() {
+		router.push('/login').then()
+	}
+
+	return {
+		isLogin,
+		fullScreen,
+		logout
+	}
 })
