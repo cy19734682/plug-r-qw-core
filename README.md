@@ -12,6 +12,8 @@
 
 ## vue2 version README file is here:
 
+* [@zhangqingcq/plug-r-qw@1.x.x](https://github.com/RickyHeaven/plug-r-qw.git) git repository
+
 * [组件](https://github.com/RickyHeaven/plug-r-qw/tree/master/src/components)和[方法](https://github.com/RickyHeaven/plug-r-qw/tree/master/src/methods)都有各自详细的markdown格式说明文档，可直接在[GitHub](https://github.com/RickyHeaven/plug-r-qw.git)查看，也可将项目拉到本地直接查看，或者将示例项目运行起来在示例页面查看。
 
 ### 推荐环境

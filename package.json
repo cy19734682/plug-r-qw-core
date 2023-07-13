@@ -22,6 +22,14 @@
     "./style": {
       "import": "./lib/plugRQw.min.css",
       "require": "./lib/plugRQw.min.css"
+    },
+    "./en-US": {
+      "import": "./lib/lang/en-Us.js",
+      "require": "./lib/lang/en-Us.js"
+    },
+    "./zh-CN": {
+      "import": "./lib/lang/zh-CN.js",
+      "require": "./lib/lang/zh-CN.js"
     }
   },
   "types": "types/index.d.ts",
