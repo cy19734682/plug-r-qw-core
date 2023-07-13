@@ -24,8 +24,8 @@
       "require": "./lib/plugRQw.min.css"
     },
     "./en-US": {
-      "import": "./lib/lang/en-Us.js",
-      "require": "./lib/lang/en-Us.js"
+      "import": "./lib/lang/en-US.js",
+      "require": "./lib/lang/en-US.js"
     },
     "./zh-CN": {
       "import": "./lib/lang/zh-CN.js",

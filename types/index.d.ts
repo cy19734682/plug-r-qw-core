@@ -5,6 +5,10 @@
  */
 import type { App } from 'vue';
 import localeFile from './locale';
+export { default as messageBox } from './methods/messageBox';
+export { default as fetch } from './methods/fetch';
+export { default as swal } from './methods/swal';
+export { default as swalConfirm } from './methods/swalConfirm';
 declare const _default: {
     locale: typeof localeFile.use;
     i18n: typeof localeFile.i18n;
