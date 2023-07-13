@@ -8,10 +8,11 @@ import type { App } from 'vue'
 
 const modules: Record<string, any> = import.meta.glob('./components/**/*.vue', { eager: true })
 import localeFile from './locale'
-import messageBox from './methods/messageBox'
-export { default as messageBox } from './methods/messageBox'
 import $fetch from './methods/fetch'
 export { default as fetch } from './methods/fetch'
+export * from './methods/functionGroup'
+import messageBox from './methods/messageBox'
+export { default as messageBox } from './methods/messageBox'
 import $swal from './methods/swal'
 export { default as swal } from './methods/swal'
 import $swalConfirm from './methods/swalConfirm'

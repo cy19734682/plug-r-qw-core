@@ -5,8 +5,9 @@
  */
 import type { App } from 'vue';
 import localeFile from './locale';
-export { default as messageBox } from './methods/messageBox';
 export { default as fetch } from './methods/fetch';
+export * from './methods/functionGroup';
+export { default as messageBox } from './methods/messageBox';
 export { default as swal } from './methods/swal';
 export { default as swalConfirm } from './methods/swalConfirm';
 declare const _default: {
