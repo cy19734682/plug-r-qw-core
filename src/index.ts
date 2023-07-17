@@ -5,33 +5,31 @@
  */
 
 import type { App } from 'vue'
-
-const modules: Record<string, any> = import.meta.glob('./components/**/*.vue', { eager: true })
+import * as components from './components'
+export * from './components'
 import localeFile from './locale'
 import $fetch from './methods/fetch'
 export { default as fetch } from './methods/fetch'
-export * from './methods/functionGroup'
+import * as globalFunc from './methods/globalFunc'
+export * from './methods/globalFunc'
+export * from './methods/needImortFunc'
 import messageBox from './methods/messageBox'
 export { default as messageBox } from './methods/messageBox'
 import $swal from './methods/swal'
 export { default as swal } from './methods/swal'
 import $swalConfirm from './methods/swalConfirm'
 export { default as swalConfirm } from './methods/swalConfirm'
-
-let components: Record<string, any> = {}
-
-for (const path in modules) {
-	if (modules.hasOwnProperty(path)) {
-		const _p = path.replace(/^\.\/.*\/(\w*)\/.*\.vue$|^\.\/.*\/(\w*)\.vue$/, '$1$2')
-		components[_p] = modules[path].default
-	}
-}
+import { init, setInterval, setTimeout } from './methods/timer'
+export { setInterval, setTimeout } from './methods/timer'
 
 const methodsR: Record<string, any> = {
 	$fetch,
 	$swal,
 	$swalConfirm,
-	messageBox
+	messageBox,
+	setInterval,
+	setTimeout,
+	...globalFunc
 }
 
 const install = function (app: App, options: Record<string, any> = {}) {
@@ -43,6 +41,10 @@ const install = function (app: App, options: Record<string, any> = {}) {
 
 	if (options.i18n) {
 		localeFile.i18n(options.i18n)
+	}
+
+	if (options.router) {
+		init(options.router)
 	}
 
 	Object.keys(components).forEach((key) => {

@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { useStore } from '@/stores/main'
-import Swal from '../views/SwalEX.vue'
+import Swal from '@/views/SwalEX.vue'
 
 // @ts-ignore
 const bl = import.meta.env.BASE_URL
@@ -16,12 +16,12 @@ const router = createRouter({
 		{
 			path: '/login',
 			name: 'login',
-			component: () => import('../views/Login.vue')
+			component: () => import('@/views/Login.vue')
 		},
 		{
 			path: '/fetch',
 			name: '$fetch',
-			component: () => import('../views/FetchEX.vue'),
+			component: () => import('@/views/FetchEX.vue'),
 			meta: {
 				desc: '网络请求插件'
 			}
@@ -37,7 +37,7 @@ const router = createRouter({
 		{
 			path: '/FullPop',
 			name: 'FullPop',
-			component: () => import('../views/FullPopEX.vue'),
+			component: () => import('@/views/FullPopEX.vue'),
 			meta: {
 				desc: '全屏弹框'
 			}
@@ -45,9 +45,17 @@ const router = createRouter({
 		{
 			path: '/messageBox',
 			name: 'messageBox',
-			component: () => import('../views/MessageBoxEX.vue'),
+			component: () => import('@/views/MessageBoxEX.vue'),
 			meta: {
 				desc: '对话框'
+			}
+		},
+		{
+			path: '/page404',
+			name: 'page404',
+			component: () => import('@/views/page404EX.vue'),
+			meta: {
+				desc: '404页面'
 			}
 		}
 	]

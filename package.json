@@ -85,6 +85,7 @@
     "js-cookie": "3.0.5",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
+    "scada": "link:D:/work/code/npm-ricky/github/1.0.0/scada",
     "sweetalert": "^2.1.2",
     "view-ui-plus": "^1.3.14",
     "vue": "^3.3.4",

@@ -6,7 +6,7 @@
     "./examples/**/*"
   ],
   "exclude": [
-    "./src/components/index.ts",
+    "./src/components/md.ts",
     "./src/methods/index.ts"
   ],
   "compilerOptions": {

@@ -4,7 +4,7 @@
  * @created 2023.05.04
  */
 import { Modal } from 'view-ui-plus'
-import { myTypeof } from './functionGroup'
+import { myTypeof } from './globalFunc'
 import { t } from '../locale'
 import type { RichTxt } from '../public'
 

@@ -35,6 +35,9 @@ dependencies:
   moment:
     specifier: ^2.29.4
     version: 2.29.4
+  scada:
+    specifier: link:D:/work/code/npm-ricky/github/1.0.0/scada
+    version: link:../scada
   sweetalert:
     specifier: ^2.1.2
     version: 2.1.2

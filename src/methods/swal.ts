@@ -5,7 +5,7 @@
  */
 
 import swal from 'sweetalert'
-import { myTypeof } from './functionGroup'
+import { myTypeof } from './globalFunc'
 import { t } from '../locale'
 
 type ButtonC = { text?: string; className?: string; value?: boolean | null; visible?: boolean }
