@@ -26,10 +26,12 @@
 		}
 	})
 
+	console.log(route.path)
+
 	watch(
-		() => route,
+		() => route.path,
 		(after) => {
-			pathName.value = after.path
+			pathName.value = after
 			nextTick(addOpen)
 		},
 		{ immediate: true }
