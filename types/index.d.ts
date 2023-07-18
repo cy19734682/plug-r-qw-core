@@ -5,7 +5,6 @@
  */
 import type { App } from 'vue';
 export * from './components';
-import localeFile from './locale';
 export { default as fetch } from './methods/fetch';
 export * from './methods/globalFunc';
 export * from './methods/needImortFunc';
@@ -14,8 +13,8 @@ export { default as swal } from './methods/swal';
 export { default as swalConfirm } from './methods/swalConfirm';
 export { setInterval, setTimeout } from './methods/timer';
 declare const _default: {
-    locale: typeof localeFile.use;
-    i18n: typeof localeFile.i18n;
+    locale: (l: any) => void;
+    i18n: (initI18n: any) => void;
     install: (app: App<any>, options?: Record<string, any>) => void;
 };
 export default _default;

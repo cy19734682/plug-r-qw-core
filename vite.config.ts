@@ -42,7 +42,7 @@ export default defineConfig({
 		},
 		rollupOptions: {
 			external: [
-				/*'@jiaminghi/data-view',
+				'@jiaminghi/data-view',
 				'@wangeditor/editor',
 				'@wangeditor/editor-for-vue',
 				'ar-cascader',
@@ -61,7 +61,7 @@ export default defineConfig({
 				'vue-json-viewer',
 				'vue-router',
 				'xss',
-				'china-map-data'*/
+				'china-map-data'
 			],
 			output: {
 				dir: './lib',

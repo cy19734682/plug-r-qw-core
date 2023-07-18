@@ -5,7 +5,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     headerColor?: string | undefined;
     headerBg?: string | undefined;
     headerFontSize?: string | number | undefined;
-    zIndex: number;
+    zIndex?: number | undefined;
 }>, {
     headerFontSize: number;
     zIndex: number;
@@ -17,7 +17,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     headerColor?: string | undefined;
     headerBg?: string | undefined;
     headerFontSize?: string | number | undefined;
-    zIndex: number;
+    zIndex?: number | undefined;
 }>, {
     headerFontSize: number;
     zIndex: number;

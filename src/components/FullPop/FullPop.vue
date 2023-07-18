@@ -4,7 +4,7 @@
 
 <script setup lang="ts">
 	import { ref, computed } from 'vue'
-	import t from '../../locale/sfc-i18n'
+	import t from '../../locale/i18nSFC'
 	import HeaderBt from '../HeaderBt/HeaderBt.vue'
 
 	const props = withDefaults(
@@ -13,7 +13,7 @@
 			headerColor?: string
 			headerBg?: string
 			headerFontSize?: number | string
-			zIndex: number
+			zIndex?: number
 		}>(),
 		{
 			headerFontSize: 12,

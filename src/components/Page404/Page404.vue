@@ -1,7 +1,7 @@
 <script setup lang="ts">
-	import t from '../../locale/sfc-i18n'
 	import { getCurrentInstance } from 'vue'
 	import type { Router } from 'vue-router'
+	import t from '../../locale/i18nSFC'
 
 	const instance = getCurrentInstance()!
 	const router = instance.appContext.config.globalProperties.$router as Router

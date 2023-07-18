@@ -13,7 +13,7 @@
 			path: e.path,
 			desc: e.meta.desc
 		}))
-		.filter((e) => e.name !== 'login')
+		.filter((e) => e.name !== 'Login')
 </script>
 
 <template>

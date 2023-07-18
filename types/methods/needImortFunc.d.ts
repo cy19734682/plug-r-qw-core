@@ -32,10 +32,10 @@ export declare function fakeALinkClick(obj: Record<string, any>): void;
 export declare function findPath({ group, condition, pathKey, childKey, path }: {
     group: Collection;
     condition: (item: any) => boolean;
-    pathKey: any;
+    pathKey?: any;
     childKey?: any;
     path?: string[];
-}): Collection;
+}): Array<string | number>;
 export declare function getStringWidth(str: string, fontSize?: number): number;
 /**
  * 如果值为''则将其替换为null

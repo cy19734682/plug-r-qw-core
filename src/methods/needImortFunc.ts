@@ -117,10 +117,10 @@ export function findPath({
 }: {
 	group: Collection
 	condition: (item: any) => boolean
-	pathKey: any
+	pathKey?: any
 	childKey?: any
 	path?: string[]
-}): Collection {
+}): Array<string | number> {
 	if (group && _.isObject(group)) {
 		if (_.isFunction(condition)) {
 			if (_.isPlainObject(group)) {

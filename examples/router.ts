@@ -15,7 +15,7 @@ const router = createRouter({
 		},
 		{
 			path: '/login',
-			name: 'login',
+			name: 'Login',
 			component: () => import('@/views/Login.vue')
 		},
 		{
@@ -35,7 +35,7 @@ const router = createRouter({
 			}
 		},
 		{
-			path: '/FullPop',
+			path: '/fullPop',
 			name: 'FullPop',
 			component: () => import('@/views/FullPopEX.vue'),
 			meta: {
@@ -44,7 +44,7 @@ const router = createRouter({
 		},
 		{
 			path: '/messageBox',
-			name: 'messageBox',
+			name: 'MessageBox',
 			component: () => import('@/views/MessageBoxEX.vue'),
 			meta: {
 				desc: '对话框'
@@ -52,10 +52,18 @@ const router = createRouter({
 		},
 		{
 			path: '/page404',
-			name: 'page404',
-			component: () => import('@/views/page404EX.vue'),
+			name: 'Page404',
+			component: () => import('@/views/Page404EX.vue'),
 			meta: {
 				desc: '404页面'
+			}
+		},
+		{
+			path: '/sideMenu',
+			name: 'SideMenu',
+			component: () => import('@/views/SideMenuEX.vue'),
+			meta: {
+				desc: '左侧菜单'
 			}
 		}
 	]
