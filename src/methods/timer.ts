@@ -10,7 +10,7 @@ let intervalBox: any[] = []
  * 初始化
  * @param {object} r router实例
  */
-export const init = function (r) {
+export const init = function (r: any) {
 	if (r && r.beforeEach) {
 		r.beforeEach(() => {
 			timeoutBox.map((e) => {
@@ -29,13 +29,13 @@ export const init = function (r) {
 	}
 }
 
-export const setTimeout = function (fn, time) {
+export const setTimeout = function (fn: () => void, time: number): number {
 	let handler = window.setTimeout(fn, time)
 	timeoutBox.push(handler)
 	return handler
 }
 
-export const setInterval = function (fn, time) {
+export const setInterval = function (fn: () => void, time: number): number {
 	let handler = window.setInterval(fn, time)
 	intervalBox.push(handler)
 	return handler

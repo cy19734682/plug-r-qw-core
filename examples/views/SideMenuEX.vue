@@ -1,5 +1,5 @@
 <script setup>
-	import d from '../../public/testData/sideMenu.json'
+	import d from '@/testData/sideMenu.json'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 </script>
 <template>

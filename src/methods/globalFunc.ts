@@ -4,9 +4,9 @@
  * @created 2023.07.14
  */
 import type { Collection, PlainObject } from '../public'
-import _ from 'lodash'
+import { isPlainObject } from 'lodash-es'
 import $swal from './swal'
-import { getStringWidth } from './needImortFunc'
+import { getStringWidth } from './needImportFunc'
 
 export function myTypeof(v: any): string {
 	let str = Object.prototype.toString.call(v)
@@ -115,8 +115,8 @@ export function toFormData(data: Record<string, any>): FormData {
 /**
  * 在目标集合中按条件查找或直接查找，返回第一个满足条件的元素或路径
  * 与findPath不同，这里的路径是完整路径（findPath省略了一些标准结构中间路径），找不到返回：false
- * @param {Array/Object} group 被查找的集合
- * @param {Function/String/Number/Boolean} condition 查找的条件或值
+ * @param {Array|Object} group 被查找的集合
+ * @param {Function|String|Number|Boolean} condition 查找的条件或值
  * @param {Boolean} getPath 是否返回路径，默认为：false，返回找到的元素
  * @returns {*}
  */
@@ -233,7 +233,7 @@ export function downloadFileByFormSubmit(url: string, data: PlainObject = {}, me
 	}
 	form.setAttribute('action', _url)
 
-	if (_.isPlainObject(data)) {
+	if (isPlainObject(data)) {
 		for (let key in data) {
 			if (data.hasOwnProperty(key) && (data[key] || data[key] === 0 || data[key] === false || data[key] === '')) {
 				let input = document.createElement('input')
@@ -317,7 +317,7 @@ export function isNumberValue(val: any): boolean {
 
 /**
  * 手动tooltip(table 的 column 的tooltip失效的情况下用)
- * @param {String/Array/Function} contentKey 要设置tooltip的column的key或者key组成的数组（内容按数组中key对应的内容先后拼接），
+ * @param {String|Array|Function} contentKey 要设置tooltip的column的key或者key组成的数组（内容按数组中key对应的内容先后拼接），
  * 或获取值的自定义逻辑（Function回调，会传入params）
  * @param {boolean} dash 在内容为空时是否以'--'代替显示
  * @param {String} jointMark 在内容为多个字段拼接时，各字段间连接符，默认没有
@@ -377,7 +377,7 @@ export function tooltipManual(contentKey: string | string[] | ((params: any) => 
 
 /*判断集合（数组或对象）每个元素或单个变量是否是有效值*/
 export function isEmptyValue(data: Collection): boolean {
-	if (_.isPlainObject(data)) {
+	if (isPlainObject(data)) {
 		for (let key in data) {
 			if (data.hasOwnProperty(key) && isValidValue(data[key])) {
 				return false
@@ -408,11 +408,12 @@ export function stringLength(str: string): number {
 
 /**
  * 按条件设置集合中指定字段的值
- * @param {Array} group 目标集合
- * @param {Function} condition 匹配条件
- * @param {String} key 要设置的字段键名
- * @param val 要设置的字段的值，或处理逻辑
- * @param {String} childKey 子集键名
+ * @param {Object} option
+ * @param {Array} option.group 目标集合
+ * @param {Function} option.condition 匹配条件
+ * @param {String} option.key 要设置的字段键名
+ * @param  option.val 要设置的字段的值，或处理逻辑
+ * @param {String} option.childKey 子集键名
  */
 export function setValByOption({
 	group,
@@ -535,16 +536,16 @@ export function removeEmptyValue(data: Collection): Collection {
 	if (Array.isArray(data)) {
 		temp = []
 		for (let item of data) {
-			if (Array.isArray(item) || _.isPlainObject(item)) {
+			if (Array.isArray(item) || isPlainObject(item)) {
 				temp.push(removeEmptyValue(item))
 			} else if (isValidValue(item)) {
 				temp.push(item)
 			}
 		}
-	} else if (_.isPlainObject(data)) {
+	} else if (isPlainObject(data)) {
 		for (let key in data) {
 			if (data.hasOwnProperty(key)) {
-				if (Array.isArray(data[key]) || _.isPlainObject(data[key])) {
+				if (Array.isArray(data[key]) || isPlainObject(data[key])) {
 					temp[key] = removeEmptyValue(data[key])
 				} else if (isValidValue(data[key])) {
 					temp[key] = data[key]

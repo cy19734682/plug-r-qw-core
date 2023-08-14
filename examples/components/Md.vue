@@ -9,6 +9,6 @@
 
 <template>
 	<div class="markdown-body myCardB">
-		<div v-html="md.render(data)"></div>
+		<div v-html="md.render(props.data)"></div>
 	</div>
 </template>

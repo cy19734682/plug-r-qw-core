@@ -4,7 +4,7 @@
  * @created 2023.07.14
  */
 import type { Collection } from '../public'
-import _ from 'lodash'
+import { isObject, isFunction, isPlainObject, cloneDeep, isEmpty } from 'lodash-es'
 import { myTypeof } from './globalFunc'
 
 // 下划线转换驼峰
@@ -121,17 +121,17 @@ export function findPath({
 	childKey?: any
 	path?: string[]
 }): Array<string | number> {
-	if (group && _.isObject(group)) {
-		if (_.isFunction(condition)) {
-			if (_.isPlainObject(group)) {
+	if (group && isObject(group)) {
+		if (isFunction(condition)) {
+			if (isPlainObject(group)) {
 				let item = group
-				let temp = _.cloneDeep(path)
+				let temp = cloneDeep(path)
 				if (condition(item)) {
 					if (pathKey && item[pathKey]) {
 						temp.push(item[pathKey])
 					}
 					return temp
-				} else if (item[childKey] && !_.isEmpty(item[childKey])) {
+				} else if (item[childKey] && !isEmpty(item[childKey])) {
 					if (pathKey && item[pathKey]) {
 						temp.push(item[pathKey])
 					}
@@ -142,13 +142,13 @@ export function findPath({
 						childKey: childKey,
 						path: temp
 					})
-					if (!_.isEmpty(rr)) {
+					if (!isEmpty(rr)) {
 						return rr
 					}
 				}
 			} else if (Array.isArray(group)) {
 				for (let item of group) {
-					let temp = _.cloneDeep(path)
+					let temp = cloneDeep(path)
 					if (condition(item)) {
 						if (pathKey && item[pathKey]) {
 							temp.push(item[pathKey])
@@ -169,7 +169,7 @@ export function findPath({
 							childKey: childKey,
 							path: temp
 						})
-						if (!_.isEmpty(rr)) {
+						if (!isEmpty(rr)) {
 							return rr
 						}
 					}
@@ -178,7 +178,7 @@ export function findPath({
 		} else if (Array.isArray(group)) {
 			//条件为常量，集合为数组，这种情况只会有一种业务场景：在一维数组中查找某个常量在数组中第一次出现的index
 			for (let item of group) {
-				let temp = _.cloneDeep(path)
+				let temp = cloneDeep(path)
 				if (item === condition) {
 					temp.push(String(group.indexOf(item)))
 					return temp

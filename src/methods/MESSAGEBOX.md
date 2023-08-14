@@ -6,9 +6,9 @@
 
 - title 字符串，对话框的title，可不传
 
-- content 字符串/DOM node，提示框内容，可不传
+- content 字符串|VNode，提示框内容，可不传
 
-- onOk Function，确定按钮被点击时的回调，可不传
+- onOk Function|Promise 确定按钮被点击时的回调，可不传
 
 - onCancel Function，取消按钮被点击时的回调，可不传
 
@@ -30,24 +30,79 @@
 
 - 如果想嵌套使用该方法，从第二层弹框开始都需放在定时器里执行，例如：
 
-```
-  this.messageBox({
-    content: '第一层',
-    onOk: () => {
-      this.setTimeout(() => {
-        this.messageBox({
-          content: '第二层',
-          onOk: () => {
-            this.setTimeout(() => {
-              this.messageBox({
-                content: '第三层'
-              })
-            }, 1000)
-          }
+  ```
+    this.messageBox({
+      content: '第一层',
+      onOk: () => {
+        this.setTimeout(() => {
+          this.messageBox({
+            content: '第二层',
+            onOk: () => {
+              this.setTimeout(() => {
+                this.messageBox({
+                  content: '第三层'
+                })
+              }, 1000)
+            }
+          })
+        }, 1000)
+      }
+    })
+  
+    ps:this.setTimeout也是该库内方法，可以自动销毁，使用方法和window.setTimeout一样
+  ```
+- onOk高级用法：返回Promise,在Promise `resolve` 或 `reject`
+  之前，弹框所有按钮不可点击，弹框不可关闭，‘确定’按钮为loading状态，其他按钮为disabled状态;`resolve`或`reject`后，弹框自动关闭。
+  ```
+    messageBox({
+      content: 'content',
+      onOk() {
+        return new Promise((r: any) => {
+          console.log('ok 按钮被点击，模拟请求开始')
+          setTimeout(() => {
+            console.log('模拟请求完成')
+            r()
+          }, 3000)
         })
-      }, 1000)
-    }
-  })
-
-  ps:this.setTimeout也是该库内方法，可以自动销毁，使用方法和window.setTimeout一样
-```
+      }
+    })
+  ```
+- content高级用法：传VNode虚拟节点
+  ```
+    import { h } from 'vue'
+  
+    messageBox({
+      title: '请注意',
+      content: h(
+        'div',
+        {
+          style: {
+            textAlign: 'center'
+          }
+        },
+        [
+          h('i', {
+            class: 'ivu-icon ivu-icon-md-thumbs-up',
+            style: {
+              fontSize: '50px',
+              color: 'deepskyblue'
+            }
+          }),
+          h(
+            'p',
+            {
+              style: {
+                color: '#997800'
+              }
+            },
+            'This lib is awesome!'
+          )
+        ]
+      ),
+      okText: '是的',
+      cancelText: '我知道',
+      onOk() {
+        console.log('ok 按钮被点击了')
+      }
+    })
+  ```

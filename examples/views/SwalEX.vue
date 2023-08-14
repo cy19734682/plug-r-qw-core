@@ -1,15 +1,13 @@
 <script setup lang="ts">
-	import Proxy from '@/global/proxy'
+	import { $swal, $swalConfirm } from '../../src'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 
-	const proxy = Proxy()
-
 	function swalHandle(type: string) {
-		proxy.$swal('哈喽', '同志，你好！', type)
+		$swal('哈喽', '同志，你好！', type)
 	}
 
 	function swalConfirm() {
-		proxy.$swalConfirm(null, null, 'warning', () => {
+		$swalConfirm('', '', 'warning', () => {
 			console.log('确定被点击')
 		})
 	}
@@ -17,14 +15,14 @@
 	function swalHandleB() {
 		let content = document.createElement('div')
 		content.innerHTML = `<p style="padding: 15px 0;">请验证指纹</p><i class="ivu-icon ivu-icon-ios-finger-print" style="font-size: 50px;color: deepskyblue"></i>`
-		proxy.$swal({
+		$swal({
 			text: content
 		})
 	}
 
 	function swalHandleC() {
 		/*这种用法和swalConfirm效果一样，就是略繁琐*/
-		proxy.$swal({
+		$swal({
 			title: '提示',
 			text: '确定执行该操作？',
 			icon: 'warning',

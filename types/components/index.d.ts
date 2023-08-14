@@ -1,5 +1,10 @@
 export { default as FullPop } from './FullPop/FullPop.vue';
 export { default as HeaderBt } from './HeaderBt/HeaderBt.vue';
 export { default as Hello } from './Hello.vue';
+export { default as IconTxtBtn } from './IconTxtBtn/IconTxtBtn.vue';
 export { default as Page404 } from './Page404/Page404.vue';
 export { default as SideMenu } from './SideMenu/SideMenu.vue';
+export { default as TableIconBtn } from './TableIconBtn/TableIconBtn.vue';
+export { default as ShowHidePanel } from './ShowHidePanel/ShowHidePanel.vue';
+export { default as ShowHidePanelB } from './ShowHidePanelB/ShowHidePanelB.vue';
+export { default as TableSearch } from './TableSearch/TableSearch.vue';

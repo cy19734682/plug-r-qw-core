@@ -1,4 +1,4 @@
-import { VNode } from 'vue'
+import type { VNode } from 'vue'
 
 type RichTxt = string | VNode | HTMLElement
 

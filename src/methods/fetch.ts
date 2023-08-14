@@ -3,9 +3,8 @@
  * @author Ricky email:zhangqingcq@foxmail.com
  * @created 2023.05.10
  */
-import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
-import _ from 'lodash'
+import { isEmpty } from 'lodash-es'
 import { t } from '../locale'
 
 import { counts } from './spin'
@@ -16,11 +15,11 @@ const host = window.location.origin
 let proxy: any = null
 const T = (...arg: Parameters<typeof t>) => t.apply(proxy, arg)
 
-interface ServiceR extends AxiosInstance {
+export interface ServiceR extends AxiosInstance {
 	store?: any
 }
 
-interface RequestConfigR extends AxiosRequestConfig {
+export interface RequestConfigR extends AxiosRequestConfig {
 	spin?: boolean
 	noEmptyStr?: boolean
 }
@@ -90,7 +89,7 @@ service.interceptors.response.use(
 /**
  * 封装请求结果和错误处理
  */
-function checkResult(r: Partial<AxiosResponse>, msg?: string, rPath?: string[], config?: RequestConfigR) {
+function checkResult(r: Partial<AxiosResponse>, msg?: string | null, rPath?: string[], config?: RequestConfigR) {
 	if (config && config.spin) {
 		counts(false)
 	}
@@ -116,7 +115,7 @@ function handleRequest(
 	method: string,
 	url: string,
 	data?: Collection,
-	msg?: string,
+	msg?: string | null,
 	rPath?: string[],
 	config?: RequestConfigR,
 	isUrlData?: boolean
@@ -208,7 +207,7 @@ function checkRequest(
 	method: string,
 	url: string,
 	data: Collection = {},
-	msg?: string,
+	msg?: string | null,
 	rPath?: string[],
 	config?: RequestConfigR,
 	isUrlData?: boolean
@@ -221,10 +220,10 @@ function checkRequest(
 			let url_ = url
 			if (window && window.hasOwnProperty('g')) {
 				/*所有特定缩写字母开头的地址，都会被改变加上config.js（public里的全局配置文件，在index.html引入，在打包后通过更改该文件用于不
-         同环境的部署）里配置的地址变成绝对地址，如:
-         config.js里配置了 window.g={mgrURL:'http://mgr.myweb.com'}
-         请求地址 ‘/mgr/file’ 会被改变为 'http://mgr.myweb.com/file'
-         */
+				 同环境的部署）里配置的地址变成绝对地址，如:
+				 config.js里配置了 window.g={mgrURL:'http://mgr.myweb.com'}
+				 请求地址 ‘/mgr/file’ 会被改变为 'http://mgr.myweb.com/file'
+				 */
 
 				// @ts-ignore
 				const _g = window.g
@@ -244,7 +243,7 @@ function checkRequest(
 			if (config && config.headers && config.headers['Content-Type'] === 'multipart/form-data') {
 				data_ = data
 			} else {
-				if (data && !_.isEmpty(data)) {
+				if (data && !isEmpty(data)) {
 					if (Array.isArray(data)) {
 						data_ = []
 						for (let e of data) {
@@ -299,8 +298,7 @@ export default {
 	init(store: any, app: any) {
 		service.store = store
 		proxy = app.config.globalProperties
-	},
-	/**
+	} /**
 	 * post 请求
 	 * @function
 	 * @param {string} url 请求地址
@@ -325,8 +323,8 @@ export default {
 	 *       spin:true
 	 *   }
 	 *  )
-	 */
-	post(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR) {
+	 */,
+	post(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR) {
 		return new Promise((s, j) => {
 			checkRequest('post', url, data, msg, rPath, config)
 				.then((r) => {
@@ -336,8 +334,7 @@ export default {
 					j(e)
 				})
 		})
-	},
-	/**
+	} /**
 	 * put请求
 	 * @param {string} url 请求地址
 	 * @param {object} data 请求数据
@@ -345,8 +342,8 @@ export default {
 	 * @param {Array.<string>} rPath 请求结果提取路径
 	 * @param {object} config 请求配置  如请求过程需要遮罩层，设置 spin:true即可
 	 * @return {Promise<unknown>}
-	 */
-	put(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR) {
+	 */,
+	put(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR) {
 		return new Promise((s, j) => {
 			checkRequest('put', url, data, msg, rPath, config)
 				.then((r) => {
@@ -356,8 +353,7 @@ export default {
 					j(e)
 				})
 		})
-	},
-	/**
+	} /**
 	 * get请求
 	 * @param {string} url 请求地址
 	 * @param {object} data 请求数据
@@ -369,8 +365,8 @@ export default {
 	 * 以请求'/devices',找到id=2,name=meter举例：
 	 *  只传url时，url = '/devices?id=2&name=meter'
 	 *  url和data都传时,url = '/devices',data={id:2,name:'meter'}
-	 */
-	get(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR) {
+	 */,
+	get(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR) {
 		return new Promise((s, j) => {
 			checkRequest('get', url, data, msg, rPath, config)
 				.then((r) => {
@@ -380,8 +376,7 @@ export default {
 					j(e)
 				})
 		})
-	},
-	/**
+	} /**
 	 * delete 请求
 	 * @param {string} url 请求地址
 	 * @param {object} data 请求数据
@@ -390,11 +385,11 @@ export default {
 	 * @param {object} config 请求配置  如请求过程需要遮罩层，设置 spin:true即可
 	 * @param isUrlData 传参模式 true:params,false:data
 	 * @return {Promise<unknown>}
-	 */
+	 */,
 	delete(
 		url: string,
 		data?: Collection,
-		msg?: string,
+		msg?: string | null,
 		rPath?: string[],
 		config?: RequestConfigR,
 		isUrlData: boolean = true
@@ -408,8 +403,7 @@ export default {
 					j(e)
 				})
 		})
-	},
-	/**
+	} /**
 	 * 并发请求   例如：
 	 * @example this.$fetch.all(
 	 *  [
@@ -417,9 +411,8 @@ export default {
 	 *    this.$fetch.post("/getDataB",{name:'ricky'})
 	 *  ]
 	 * )
-	 */
-	all: axios.all,
-	/**
+	 */,
+	all: axios.all /**
 	 * 并发请求结果分离 例如：
 	 * @example this.$fetch.all(
 	 *  [
@@ -432,10 +425,9 @@ export default {
 	 *        console.log(result1,result2)
 	 *    })
 	 *   )
-	 */
-	spread: axios.spread,
-	/**
+	 */,
+	spread: axios.spread /**
 	 * 该请求插件暴露给外界的配置对象，为axios.create创建的实例对象，使用方法见axios官方网站
-	 */
+	 */,
 	config: service
 }

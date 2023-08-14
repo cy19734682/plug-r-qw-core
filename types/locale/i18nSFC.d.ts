@@ -1,2 +1,1 @@
-import { t } from './index';
-export default function (...args: Parameters<typeof t>): any;
+export default function (path: string, options?: Record<keyof any, any> | Array<string | number>): any;

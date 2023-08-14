@@ -1,5 +1,4 @@
 <script setup lang="ts">
-	import { ref } from 'vue'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 
 	const fullPop = ref()

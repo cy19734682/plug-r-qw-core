@@ -6,20 +6,22 @@
 
 import type { App } from 'vue'
 import * as components from './components'
-export * from './components'
+import * as globalFunc from './methods/globalFunc'
+import * as needImportFunc from './methods/needImportFunc'
 import localeFile from './locale'
 import $fetch from './methods/fetch'
-export { default as fetch } from './methods/fetch'
-import * as globalFunc from './methods/globalFunc'
-export * from './methods/globalFunc'
-export * from './methods/needImortFunc'
 import messageBox from './methods/messageBox'
-export { default as messageBox } from './methods/messageBox'
 import $swal from './methods/swal'
-export { default as swal } from './methods/swal'
 import $swalConfirm from './methods/swalConfirm'
-export { default as swalConfirm } from './methods/swalConfirm'
 import { init, setInterval, setTimeout } from './methods/timer'
+
+export * from './components'
+export * from './methods/globalFunc'
+export * from './methods/needImportFunc'
+export { default as $fetch } from './methods/fetch'
+export { default as messageBox } from './methods/messageBox'
+export { default as $swal } from './methods/swal'
+export { default as $swalConfirm } from './methods/swalConfirm'
 export { setInterval, setTimeout } from './methods/timer'
 
 const methodsR: Record<string, any> = {
@@ -32,7 +34,18 @@ const methodsR: Record<string, any> = {
 	...globalFunc
 }
 
-const install = function (app: App, options: Record<string, any> = {}) {
+export interface plugROption {
+	notRegistryGlobal?: boolean
+	store?: any
+	useStore?: any
+	router?: Record<keyof any, any>
+	locale?: Record<keyof any, any>
+	i18n?: Record<keyof any, any>
+
+	[k: keyof any]: any
+}
+
+const install = function (app: App, options: plugROption = {}) {
 	$fetch.init(options.useStore || options.store, app)
 
 	if (options.locale) {
@@ -47,21 +60,65 @@ const install = function (app: App, options: Record<string, any> = {}) {
 		init(options.router)
 	}
 
-	Object.keys(components).forEach((key) => {
-		app.component(key, components[key])
-	})
+	if (!options.notRegistryGlobal) {
+		Object.keys(components).forEach((key) => {
+			if (!app.component(key)) {
+				app.component(key, (components as Record<string, any>)[key])
+			}
+		})
 
-	Object.keys(methodsR).forEach((key) => {
-		app.config.globalProperties[key] = methodsR[key]
-	})
+		Object.keys(methodsR).forEach((key) => {
+			app.config.globalProperties[key] = methodsR[key]
+		})
+	}
+
+	if (!app.directive('has')) {
+		app.directive('has', (el, binding) => {
+			if (binding.value && !app.config.globalProperties.hasPermission(binding.value)) {
+				el.style.display = 'none'
+			}
+		})
+	}
+	if (!app.directive('loadmore')) {
+		//select下拉滚动监听事件 可通过指令参数传递class来指定容器
+		app.directive('loadmore', (el, binding) => {
+			// 获取定义好的scroll盒子
+			let SELECT_DOM: any
+
+			if (binding.arg) {
+				SELECT_DOM = el.querySelector('.' + binding.arg)
+			} else {
+				SELECT_DOM = el.querySelector('.ivu-select-dropdown') || el
+			}
+			SELECT_DOM.addEventListener('scroll', function () {
+				/*
+				 * scrollHeight 获取元素内容高度(只读)
+				 * scrollTop 获取或者设置元素的偏移值,常用于, 计算滚动条的位置, 当一个元素的容器没有产生垂直方向的滚动条, 那它的scrollTop的值默认为0.
+				 * clientHeight 读取元素的可见高度(只读)
+				 * 如果元素滚动到底, 下面等式返回true, 没有则返回false:
+				 * ele.scrollHeight - ele.scrollTop === ele.clientHeight;
+				 */
+				if (SELECT_DOM.scrollTop > 0 && SELECT_DOM.scrollHeight - SELECT_DOM.scrollTop <= SELECT_DOM.clientHeight) {
+					binding.value()
+				}
+			})
+		})
+	}
 }
 
 const locale = localeFile.use
 
 const i18n = localeFile.i18n
-
 export default {
 	locale,
 	i18n,
-	install
+	install,
+	...globalFunc,
+	...needImportFunc,
+	$fetch,
+	$swal,
+	$swalConfirm,
+	messageBox,
+	setInterval,
+	setTimeout
 }

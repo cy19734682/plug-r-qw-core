@@ -2,19 +2,20 @@
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
     "env.d.ts",
+    "auto-imports.d.ts",
+    "components.d.ts",
     "./src/**/*",
-    "./examples/**/*"
+    "./examples/**/*.json",
+    "./examples/**/*",
   ],
-  "exclude": [
-    "./src/components/md.ts",
-    "./src/methods/index.ts"
-  ],
+  "exclude": [],
   "compilerOptions": {
     "allowJs": true,
     "baseUrl": ".",
     "composite": true,
     "moduleResolution": "node",
-    "noImplicitAny": false,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
     "paths": {
       "@/*": [
         "./examples/*"

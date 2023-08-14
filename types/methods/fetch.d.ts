@@ -1,9 +1,14 @@
+/**
+ * @description 基于axios的网络请求插件
+ * @author Ricky email:zhangqingcq@foxmail.com
+ * @created 2023.05.10
+ */
 import type { AxiosInstance, AxiosRequestConfig } from 'axios';
 import type { Collection } from '../public';
-interface ServiceR extends AxiosInstance {
+export interface ServiceR extends AxiosInstance {
     store?: any;
 }
-interface RequestConfigR extends AxiosRequestConfig {
+export interface RequestConfigR extends AxiosRequestConfig {
     spin?: boolean;
     noEmptyStr?: boolean;
 }
@@ -20,8 +25,7 @@ declare const _default: {
      * @param {object} store 项目中vuex的store，或pinia的useStore
      * @param app 当前vue实例
      */
-    init(store: any, app: any): void;
-    /**
+    init(store: any, app: any): void; /**
      * post 请求
      * @function
      * @param {string} url 请求地址
@@ -47,8 +51,7 @@ declare const _default: {
      *   }
      *  )
      */
-    post(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR): Promise<unknown>;
-    /**
+    post(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR): Promise<unknown>; /**
      * put请求
      * @param {string} url 请求地址
      * @param {object} data 请求数据
@@ -57,8 +60,7 @@ declare const _default: {
      * @param {object} config 请求配置  如请求过程需要遮罩层，设置 spin:true即可
      * @return {Promise<unknown>}
      */
-    put(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR): Promise<unknown>;
-    /**
+    put(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR): Promise<unknown>; /**
      * get请求
      * @param {string} url 请求地址
      * @param {object} data 请求数据
@@ -71,8 +73,7 @@ declare const _default: {
      *  只传url时，url = '/devices?id=2&name=meter'
      *  url和data都传时,url = '/devices',data={id:2,name:'meter'}
      */
-    get(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR): Promise<unknown>;
-    /**
+    get(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR): Promise<unknown>; /**
      * delete 请求
      * @param {string} url 请求地址
      * @param {object} data 请求数据
@@ -82,8 +83,7 @@ declare const _default: {
      * @param isUrlData 传参模式 true:params,false:data
      * @return {Promise<unknown>}
      */
-    delete(url: string, data?: Collection, msg?: string, rPath?: string[], config?: RequestConfigR, isUrlData?: boolean): Promise<unknown>;
-    /**
+    delete(url: string, data?: Collection, msg?: string | null, rPath?: string[], config?: RequestConfigR, isUrlData?: boolean): Promise<unknown>; /**
      * 并发请求   例如：
      * @example this.$fetch.all(
      *  [
@@ -92,8 +92,7 @@ declare const _default: {
      *  ]
      * )
      */
-    all: typeof import("axios").all;
-    /**
+    all: typeof import("axios").all; /**
      * 并发请求结果分离 例如：
      * @example this.$fetch.all(
      *  [
@@ -107,8 +106,7 @@ declare const _default: {
      *    })
      *   )
      */
-    spread: typeof import("axios").spread;
-    /**
+    spread: typeof import("axios").spread; /**
      * 该请求插件暴露给外界的配置对象，为axios.create创建的实例对象，使用方法见axios官方网站
      */
     config: ServiceR;

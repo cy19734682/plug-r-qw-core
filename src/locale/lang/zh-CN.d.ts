@@ -1,3 +1,2 @@
-export module './zh-CN.js' {
-	const {}: { [k: keyof any]: any }
-}
+declare const t: Record<keyof any, any>
+export default t

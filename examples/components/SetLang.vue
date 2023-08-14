@@ -1,10 +1,7 @@
 <script setup lang="ts">
-	import Proxy from '@/global/proxy'
-
-	const proxy = Proxy()
-
+	const { locale } = useI18n()
 	function setLan(l: string) {
-		proxy.$i18n.locale = l
+		locale.value = l
 	}
 </script>
 

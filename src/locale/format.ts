@@ -13,7 +13,7 @@
 const REG_NAME = /(%|){([0-9a-zA-Z_]+)}/g
 
 export default function () {
-	function hasOwn(obj, key) {
+	function hasOwn(obj: any, key: keyof any) {
 		return Object.prototype.hasOwnProperty.call(obj, key)
 	}
 
@@ -25,8 +25,8 @@ export default function () {
 	 * @return {String}
 	 */
 
-	function template(string, ...a) {
-		let args
+	function template(string: string, ...a: any[]) {
+		let args: any
 		if (a.length === 1 && typeof a[0] === 'object') {
 			args = a[0]
 		}

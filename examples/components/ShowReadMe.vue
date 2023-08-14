@@ -1,6 +1,4 @@
 <script setup lang="ts">
-	import { computed, ref } from 'vue'
-	import { useRoute } from 'vue-router'
 	import mds_c from '../../src/components/md'
 	import mds_m from '../../src/methods'
 	import Md from '@/components/Md.vue'
@@ -24,13 +22,17 @@
 
 <template>
 	<div :class="{ conMA: true, fullKA: open }">
-		<span class="btnAR" @click="click" :style="{ color: color }"
+		<span class="btnAR" @click="click" :style="{ color: props.color }"
 			><Icon type="ios-paper" style="position: relative; bottom: 1px" /> 查看说明</span
 		>
 		<FullPop :title="routeName" ref="fullPopRef" @on-close="open = false">
 			<div class="wallK">
 				<Md
-					:data="(routeNow && mds_c[routeNow]) || mds_c[routeName] || mds_m[routeName.replace('$', '').toLowerCase()]"
+					:data="
+						(props.routeNow && mds_c[props.routeNow]) ||
+						mds_c[routeName] ||
+						mds_m[routeName.replace('$', '').toLowerCase()]
+					"
 				/>
 			</div>
 		</FullPop>

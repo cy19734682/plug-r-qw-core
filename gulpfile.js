@@ -37,7 +37,7 @@ function fonts(cb) {
 
 //拷贝国际化文件
 function lang(cb) {
-	src(['./src/locale/lang/*.js']).pipe(dest('./lib/lang'))
+	src(['./src/locale/lang/*.js', './src/locale/lang/*.ts']).pipe(dest('./lib/lang'))
 	cb()
 }
 

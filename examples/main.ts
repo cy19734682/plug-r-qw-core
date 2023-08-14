@@ -41,10 +41,4 @@ const i18n = createI18n({
 
 const app = createApp(App)
 
-app.use(createPinia())
-app.use(router)
-app.use(i18n)
-app.use(ViewUIPlus, { i18n })
-app.use(plugRQw, { useStore, router, i18n })
-
-app.mount('#app')
+app.use(createPinia()).use(router).use(i18n).use(plugRQw, { useStore, router, i18n }).mount('#app')

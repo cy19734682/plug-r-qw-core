@@ -71,9 +71,9 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
 	const store = useStore()
-	if (from.name === 'login') {
+	if (from.name === 'Login') {
 		store.fullScreen = false
-	} else if (to.name === 'login' && !store.fullScreen) {
+	} else if (to.name === 'Login' && !store.fullScreen) {
 		store.fullScreen = true
 	}
 	next()

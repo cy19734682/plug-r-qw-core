@@ -8,11 +8,11 @@
  * @param {object} r router实例
  */
 export declare const init: (r: any) => void;
-export declare const setTimeout: (fn: any, time: any) => number;
-export declare const setInterval: (fn: any, time: any) => number;
+export declare const setTimeout: (fn: () => void, time: number) => number;
+export declare const setInterval: (fn: () => void, time: number) => number;
 declare const _default: {
     init: (r: any) => void;
-    setTimeout: (fn: any, time: any) => number;
-    setInterval: (fn: any, time: any) => number;
+    setTimeout: (fn: () => void, time: number) => number;
+    setInterval: (fn: () => void, time: number) => number;
 };
 export default _default;

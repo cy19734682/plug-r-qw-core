@@ -1,7 +1,8 @@
+<!--SideMenu 侧边菜单，贴在父容器左侧，可向左将整个菜单收起，全局UI组件，直接用
+@created 2023.07.17
+@author Ricky email:zhangqingcq@foxmail.com-->
+
 <script lang="ts" setup>
-	import { computed, onBeforeMount, ref, watch, nextTick } from 'vue'
-	import type { Ref } from 'vue'
-	import { useRoute } from 'vue-router'
 	import t from '../../locale/i18nSFC'
 	import SideMenuGroup from './SideMenuGroup.vue'
 
@@ -9,7 +10,7 @@
 	const emit = defineEmits(['on-change'])
 	const route = useRoute()
 
-	const menuDisplay: Ref<boolean> = ref(true)
+	const menuDisplay = ref<boolean>(true)
 	const pathName = ref()
 	const menuRef = ref()
 	const titleC = computed(() => (menuDisplay.value ? t('r.hideMenu') : t('r.showMenu')))
@@ -25,8 +26,6 @@
 			localStorage.setItem('menuDisplayR', JSON.stringify(true))
 		}
 	})
-
-	console.log(route.path)
 
 	watch(
 		() => route.path,

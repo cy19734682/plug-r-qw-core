@@ -3,6 +3,8 @@
  * @author Ricky email:zhangqingcq@foxmail.com
  * @created 2023.04.27
  */
+/* prettier-ignore */
+// @ts-nocheck
 
 const modules: Record<string, any> = import.meta.glob('./**/*.md', {
 	eager: true,

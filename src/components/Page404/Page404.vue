@@ -1,5 +1,8 @@
+<!--Page404 404页面，全局UI组件，直接用
+@created 2023.06.12
+@author Ricky email:zhangqingcq@foxmail.com-->
+
 <script setup lang="ts">
-	import { getCurrentInstance } from 'vue'
 	import type { Router } from 'vue-router'
 	import t from '../../locale/i18nSFC'
 

@@ -3,29 +3,32 @@
  * @author Ricky email:zhangqingcq@foxmail.com
  * @created 2023.05.04
  */
-import { Modal } from 'view-ui-plus'
+import { h } from 'vue'
+import type { VNode } from 'vue'
+import { Modal, Button } from 'view-ui-plus'
 import { myTypeof } from './globalFunc'
 import { t } from '../locale'
-import type { RichTxt } from '../public'
+
+let loading: boolean = false
 
 /**
  * config为一个对象，支持：
- * @param {string/html} content:弹框内容，同iView的content,
- * @param {number} height:弹框高度,默认值130,最小值130
- * @param {number} width:弹框宽度，默认值416,最小值416
- * @param {string/html} title:弹框标题内容，默认值“提示”
- * @param {function} onOk:确定按钮回调函数
- * @param {function} onCancel:取消按钮回调函数
- * @param {string/html} okText:确定按钮文字，默认值“确定”
- * @param {string/html} cancelText:取消按钮文字，默认值“取消”
- * @param {boolean} noWarnIcon:不展示内容开头的警告图标(非字符串内容默认不展示)，默认值“false”
- * @param {string} footerAlign:底部对齐方式，string，默认值“center”
- * @param {boolean} cancelBt:展示取消按钮，boolean，默认值“true”
+ * @param {Object} options
+ * @param {string|VNode} options.content 弹框内容，同iView的content,
+ * @param {number} options.height 弹框高度,默认值130,最小值130
+ * @param {number} options.width 弹框宽度，默认值416,最小值416
+ * @param {string|html} options.title 弹框标题内容，默认值“提示”
+ * @param {function} options.onOk 确定按钮回调函数
+ * @param {function} options.onCancel 取消按钮回调函数
+ * @param {string|html} options.okText 确定按钮文字，默认值“确定”
+ * @param {string|html} options.cancelText 取消按钮文字，默认值“取消”
+ * @param {boolean} options.noWarnIcon 不展示内容开头的警告图标(非字符串内容默认不展示)，默认值“false”
+ * @param {string} options.footerAlign 底部对齐方式，string，默认值“center”
+ * @param {boolean} options.cancelBt 展示取消按钮，boolean，默认值“true”
  * 组件中调用示例：this.messageBox({
  *                      content:'确定执行操作？'
  *                    })
  */
-
 export default function messageBox(
 	this: any,
 	{
@@ -39,16 +42,16 @@ export default function messageBox(
 		cancelText,
 		noWarnIcon,
 		footerAlign,
-		cancelBt
+		cancelBt = true
 	}: {
 		height?: number
 		width?: number
-		title?: RichTxt
-		content: RichTxt
-		onOk?: () => void
+		title?: string | VNode
+		content: string | VNode
+		onOk?: () => void | Promise<any>
 		onCancel?: () => void
-		okText?: RichTxt
-		cancelText?: RichTxt
+		okText?: string | VNode
+		cancelText?: string | VNode
 		noWarnIcon?: boolean
 		footerAlign?: string
 		cancelBt?: boolean
@@ -58,13 +61,12 @@ export default function messageBox(
 
 	let heightTemp = height && Number(height) - 90 > 100 ? Number(height) - 90 + 'px' : 0
 	let heightT = heightTemp || '100px'
-	content = content || T('r.info.text')
 	let stringContent = myTypeof(content) === 'String'
 
 	Modal.warning({
 		width: width,
 		footerHide: true,
-		render: (h: any) => {
+		render: () => {
 			return h(
 				'div',
 				{
@@ -88,11 +90,14 @@ export default function messageBox(
 								[
 									h('span', title || T('r.info.title')),
 									h(
-										'Button',
+										Button,
 										{
-											class: 'fr closeN ivu-btn ivu-btn-text',
+											class: 'fr closeN',
 											type: 'text',
 											onclick() {
+												if (loading) {
+													return
+												}
 												Modal.remove()
 											}
 										},
@@ -123,7 +128,7 @@ export default function messageBox(
 											color: '#f8bb86'
 										}
 									}),
-									h('div', { class: 'msgBoxConO' }, content)
+									h('div', { class: 'msgBoxConO' }, content || T('r.info.text'))
 								]
 							),
 							h(
@@ -136,13 +141,33 @@ export default function messageBox(
 								},
 								[
 									h(
-										'Button',
+										Button,
 										{
-											class: 'okBtN ivu-btn ivu-btn-default',
-											onclick() {
-												Modal.remove()
-												if (onOk && myTypeof(onOk) === 'Function') {
-													onOk()
+											class: 'okBtN',
+											onclick(e: any) {
+												if (onOk && typeof onOk === 'function') {
+													const p = onOk()
+													if (p && myTypeof(p) === 'Promise') {
+														loading = true
+														const el = e && (e.currentTarget || e.target)
+														if (el) {
+															el.classList.add('ivu-btn-loading')
+															el.nextSibling.setAttribute('disabled', 'disabled')
+															const c = el.parentElement?.parentElement.querySelector('.titleN .closeN')
+															c.classList.add('disabled')
+														}
+														Promise.resolve(p)
+															.then(() => {
+																loading = false
+																Modal.remove()
+															})
+															.catch(() => {
+																loading = false
+																Modal.remove()
+															})
+													} else {
+														Modal.remove()
+													}
 												}
 											}
 										},
@@ -154,10 +179,13 @@ export default function messageBox(
 										]
 									),
 									h(
-										'Button',
+										Button,
 										{
-											class: ['cancelBtN ivu-btn ivu-btn-default', !cancelBt && 'hide'],
+											class: ['cancelBtN', !cancelBt && 'hide'],
 											onclick() {
+												if (loading) {
+													return
+												}
 												Modal.remove()
 												if (myTypeof(onCancel) === 'Function') {
 													onCancel && onCancel()

@@ -1,28 +1,26 @@
 <script setup lang="ts">
-	import Proxy from '@/global/proxy'
+	import { $fetch, $swal } from '../../src'
 	import NodeServeInfo from '@/components/NodeServeInfo.vue'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 
-	const proxy = Proxy()
-
 	function httpA() {
-		proxy.$fetch.get('/testData/fetch.json').then((r: any) => {
+		$fetch.get('/examples/testData/fetch.json').then((r: any) => {
 			if (r && r.code === 0) {
-				proxy.$swal('请求成功', '名称：' + r.data.name + '；邮箱：' + r.data.email, 'success')
+				$swal('请求成功', '名称：' + r.data.name + '；邮箱：' + r.data.email, 'success')
 			}
 		})
 	}
 
 	function httpB() {
-		proxy.$fetch.get('/node-serve/fetch-spin', {}, null, [], { spin: true }).then((r: any) => {
+		$fetch.get('/node-serve/fetch-spin', {}, null, [], { spin: true }).then((r: any) => {
 			if (r) {
-				proxy.$swal('请求成功', r.message || '', 'success')
+				$swal('请求成功', r.message || '', 'success')
 			}
 		})
 	}
 
 	function httpC(d: string) {
-		proxy.$fetch
+		$fetch
 			.get('/node-serve/fetch-403' + d)
 			.then((r: any) => {
 				console.log(r.message)

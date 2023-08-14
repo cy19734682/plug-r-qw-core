@@ -15,7 +15,7 @@ type ButtonS = {
 };
 /**
  * $swal实例
- * @param {object/string/boolean} option object:{title:'标题',content(or text):'内容，可以为空',type(or icon):'success(or error
+ * @param {object|string|boolean} option object:{title:'标题',content(or text):'内容，可以为空',type(or icon):'success(or error
  *   or warning)'}---string:'标题'---boolean:关闭$swal窗体
  * @param {string} text 当option为object时不传此变量，当option为string时该变量为'内容'
  * @param {string} icon 当option为object时不传此变量，当option为string时该变量为弹出框类型'success'/'error'/'warning'

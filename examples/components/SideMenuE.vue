@@ -4,7 +4,7 @@
 
 <template>
 	<div class="wallM">
-		<router-link class="liM" v-for="e in data" :to="e.path"
+		<router-link class="liM" v-for="e in props.data" :to="e.path"
 			>{{ e.name }}<em>{{ e.desc }}</em></router-link
 		>
 	</div>

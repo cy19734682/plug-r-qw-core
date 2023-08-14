@@ -1,14 +1,17 @@
 <script lang="ts" setup>
-	import { useRouter } from 'vue-router'
 	import { siblingElems } from '../../methods/globalFunc'
 
 	const router = useRouter()
-	const props = withDefaults(defineProps<{ data?: any[]; pathName?: string }>(), { data: () => [], pathName: '' })
+	const props = withDefaults(defineProps<{ data?: any[]; pathName?: string }>(), {
+		data: () => [],
+		pathName: ''
+	})
 
-	function getClass(item) {
+	function getClass(item: any) {
 		return item.path === props.pathName ? 'active' : ''
 	}
-	function handleClick(e, item) {
+
+	function handleClick(e: any, item: any) {
 		e.preventDefault()
 		let target = e.target
 
