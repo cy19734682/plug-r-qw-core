@@ -3,22 +3,20 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 <script setup lang="ts">
 	/**
-	 * 高级查询插件
 	 * @desc 联合showHidePanelB、searchForm等插件对table进行查询
-	 * @author ricky email:zhangqingcq@foxmail.com
-	 * @date 2020.03.19
 	 * @param {string} modelValue - 搜索框的值（v-model）必填
 	 * @param {boolean} open - 高级搜索是否开启 必填
-	 * @param {string} [placeholder] - 搜索框的placeholder
-	 * @param {string} [width] - 整个插件宽度
-	 * @param {string} [right] - 整个插件定位-右（最近relative）
-	 * @param {string} [top] - 整个插件定位-上（最近relative）
+	 * @param {string} placeholder - 搜索框的placeholder
+	 * @param {string} width - 整个插件宽度
+	 * @param {string} right - 整个插件定位-右（最近relative）
+	 * @param {string} top - 整个插件定位-上（最近relative）
 	 * @example 调用示例 <table-search v-model="areaName" :open="openSearch" placeholder="片区名称" @on-search="search" @on-toggle="openSearch=!openSearch"/>
 	 */
 
 	import t from '../../locale/i18nSFC'
 	import { setTimeout } from '../../methods/timer'
 
+	const emit = defineEmits(['update:modelValue', 'on-toggle', 'on-search'])
 	const props = withDefaults(
 		defineProps<{
 			modelValue: string
@@ -41,7 +39,6 @@
 			btnColor: 'inherit'
 		}
 	)
-	const emit = defineEmits(['update:modelValue', 'on-toggle', 'on-search'])
 
 	let isDebounce = false
 	const value = computed({

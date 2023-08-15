@@ -1,9 +1,5 @@
-import type { VNode } from 'vue'
-
-type RichTxt = string | VNode | HTMLElement
-
-interface PlainObject extends Object {
+export declare interface PlainObject extends Object {
 	[k: keyof any]: any
 }
 
-type Collection = PlainObject | PlainObject[]
+export declare type Collection = PlainObject | PlainObject[]

@@ -23,7 +23,7 @@ type ButtonS = {
 export default function (this: any, option: string | {
     title?: string;
     content?: string;
-    text?: string;
+    text?: string | HTMLElement;
     type?: string;
     icon?: string;
     onOk?: () => void;

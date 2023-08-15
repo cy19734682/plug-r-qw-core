@@ -5,8 +5,6 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
-import Components from 'unplugin-vue-components/vite'
-import ViewUIPlusResolver from '@zhangqingcq/view-ui-plus-resolver'
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -78,9 +76,6 @@ export default defineConfig({
 
 			// Inject the imports at the end of other imports
 			injectAtEnd: true
-		}),
-		Components({
-			resolvers: [ViewUIPlusResolver()]
 		})
 	],
 	resolve: {
@@ -140,6 +135,7 @@ export default defineConfig({
 			],
 			output: {
 				dir: './lib',
+				exports: 'named',
 				globals: {
 					vue: 'Vue',
 					axios: 'axios',

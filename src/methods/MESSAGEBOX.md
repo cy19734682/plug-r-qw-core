@@ -48,11 +48,11 @@
         }, 1000)
       }
     })
-  
+
     ps:this.setTimeout也是该库内方法，可以自动销毁，使用方法和window.setTimeout一样
   ```
-- onOk高级用法：返回Promise,在Promise `resolve` 或 `reject`
-  之前，弹框所有按钮不可点击，弹框不可关闭，‘确定’按钮为loading状态，其他按钮为disabled状态;`resolve`或`reject`后，弹框自动关闭。
+
+- onOk高级用法：返回Promise,在Promise `resolve` 或 `reject` 之前，弹框所有按钮不可点击，弹框不可关闭，‘确定’按钮为loading状态，其他按钮为disabled状态;`resolve`或`reject`后，弹框自动关闭。
   ```
     messageBox({
       content: 'content',
@@ -68,9 +68,10 @@
     })
   ```
 - content高级用法：传VNode虚拟节点
+
   ```
     import { h } from 'vue'
-  
+
     messageBox({
       title: '请注意',
       content: h(

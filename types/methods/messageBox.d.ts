@@ -1,8 +1,8 @@
-import type { RichTxt } from '../public';
+import type { VNode } from 'vue';
 /**
  * config为一个对象，支持：
  * @param {Object} options
- * @param {string|html} options.content 弹框内容，同iView的content,
+ * @param {string|VNode} options.content 弹框内容，同iView的content,
  * @param {number} options.height 弹框高度,默认值130,最小值130
  * @param {number} options.width 弹框宽度，默认值416,最小值416
  * @param {string|html} options.title 弹框标题内容，默认值“提示”
@@ -20,12 +20,12 @@ import type { RichTxt } from '../public';
 export default function messageBox(this: any, { height, width, title, content, onOk, onCancel, okText, cancelText, noWarnIcon, footerAlign, cancelBt }: {
     height?: number;
     width?: number;
-    title?: RichTxt;
-    content: RichTxt;
+    title?: string | VNode;
+    content: string | VNode;
     onOk?: () => void | Promise<any>;
     onCancel?: () => void;
-    okText?: RichTxt;
-    cancelText?: RichTxt;
+    okText?: string | VNode;
+    cancelText?: string | VNode;
     noWarnIcon?: boolean;
     footerAlign?: string;
     cancelBt?: boolean;
