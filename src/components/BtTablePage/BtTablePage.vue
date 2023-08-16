@@ -451,8 +451,6 @@
 		getTableData,
 		getDataAndClickRow
 	})
-
-	//todo iview 事件参数声明不对
 </script>
 
 <template>

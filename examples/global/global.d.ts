@@ -9,6 +9,7 @@ declare module 'vue' {
 		transfer?: boolean
 		type?: string
 		model?: Record<string, any>
+		clearable?: boolean
 	}
 }
 
