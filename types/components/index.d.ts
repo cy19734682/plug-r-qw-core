@@ -9,3 +9,4 @@ export { default as ShowHidePanel } from './ShowHidePanel/ShowHidePanel.vue';
 export { default as ShowHidePanelB } from './ShowHidePanelB/ShowHidePanelB.vue';
 export { default as TableSearch } from './TableSearch/TableSearch.vue';
 export { default as TableSetting } from './TableSetting/TableSetting.vue';
+export { default as BtTablePage } from './BtTablePage/BtTablePage.vue';
