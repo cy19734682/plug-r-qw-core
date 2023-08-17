@@ -68,6 +68,7 @@
   },
   "homepage": "https://github.com/RickyHeaven/plug-r-qw-core#readme",
   "dependencies": {
+    "@amap/amap-jsapi-loader": "^1.0.1",
     "@types/lodash-es": "^4.17.8",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",

@@ -14,6 +14,7 @@ import messageBox from './methods/messageBox'
 import $swal from './methods/swal'
 import $swalConfirm from './methods/swalConfirm'
 import { init, setInterval, setTimeout } from './methods/timer'
+import { set } from './methods/amap'
 
 export * from './components'
 export * from './methods/globalFunc'
@@ -41,6 +42,7 @@ export interface plugROption {
 	router?: Record<keyof any, any>
 	locale?: Record<keyof any, any>
 	i18n?: Record<keyof any, any>
+	amap?: { securityJsCode: string; key: string }
 
 	[k: keyof any]: any
 }
@@ -58,6 +60,10 @@ const install = function (app: App, options: plugROption = {}) {
 
 	if (options.router) {
 		init(options.router)
+	}
+
+	if (options.amap) {
+		set(options.amap)
 	}
 
 	if (!options.notRegistryGlobal) {

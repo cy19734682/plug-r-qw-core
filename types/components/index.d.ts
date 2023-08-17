@@ -11,3 +11,4 @@ export { default as TableSearch } from './TableSearch/TableSearch.vue';
 export { default as TableSetting } from './TableSetting/TableSetting.vue';
 export { default as BtTablePage } from './BtTablePage/BtTablePage.vue';
 export { default as SelectInput } from './SelectInput/SelectInput.vue';
+export { default as InputMap } from './InputMap/InputMap.vue';

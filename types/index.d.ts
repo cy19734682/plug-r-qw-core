@@ -22,6 +22,10 @@ export interface plugROption {
     router?: Record<keyof any, any>;
     locale?: Record<keyof any, any>;
     i18n?: Record<keyof any, any>;
+    amap?: {
+        securityJsCode: string;
+        key: string;
+    };
     [k: keyof any]: any;
 }
 declare const _default: {
