@@ -27,8 +27,14 @@
 </script>
 
 <template>
-	<div class="tabTopBtnsT" @click="click" v-has="has" :class="{ disabled: disabled }" :style="{ 'font-size': txtSize }">
-		<Icon :type="icon" :size="size" />
-		{{ name || t('r.button') }}
+	<div
+		class="tabTopBtnsT"
+		@click="click"
+		v-has="has"
+		:class="{ disabled: props.disabled }"
+		:style="{ 'font-size': txtSize }"
+	>
+		<Icon :type="props.icon" :size="props.size" />
+		{{ props.name || t('r.button') }}
 	</div>
 </template>

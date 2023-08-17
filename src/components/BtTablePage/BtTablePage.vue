@@ -455,24 +455,24 @@
 
 <template>
 	<div class="btTablePage fullHeight" ref="tableBox">
-		<div class="topBtn" v-show="showTopRow">
+		<div class="topBtn" v-show="props.showTopRow">
 			<slot name="tableSetting" />
 
 			<slot name="topMsg" />
 
 			<slot name="topBtnGroup" />
 		</div>
-		<div class="tableContainer fullHeight" :class="{ noTop: !showTopRow, noPage: noPage }">
+		<div class="tableContainer fullHeight" :class="{ noTop: !props.showTopRow, noPage: props.noPage }">
 			<div class="fullHeight relativeBox">
 				<div ref="tableContainerLOI" class="fullFlowContent">
 					<Table
 						ref="tableRef"
 						v-bind="$attrs"
 						:height="(fixedTable && tableContainerHeight) || null"
-						:class="{ noBorderTable: noBorderTable, fullHeightTable: !fixedTable, lightHeadO: lightHead }"
+						:class="{ noBorderTable: props.noBorderTable, fullHeightTable: !fixedTable, lightHeadO: props.lightHead }"
 						:columns="columnsT"
 						:data="dataS"
-						:highlight-row="radio || highlightRow"
+						:highlight-row="props.radio || props.highlightRow"
 						@on-select="onSelect"
 						@on-selection-change="selectionHandle"
 						@on-sort-change="onSortChange"
@@ -481,7 +481,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="pageContainer" v-show="!noPage">
+		<div class="pageContainer" v-show="!props.noPage">
 			<Page
 				:page-size-opts="pageSizes"
 				:total="total"
@@ -489,8 +489,8 @@
 				:page-size="pageSizeT"
 				show-sizer
 				show-total
-				:showElevator="!noElevator"
-				:size="pageComponentSize"
+				:showElevator="!props.noElevator"
+				:size="props.pageComponentSize"
 				@on-change="changePage"
 				@on-page-size-change="pageSizeChange"
 			/>

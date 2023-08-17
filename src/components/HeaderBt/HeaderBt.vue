@@ -33,11 +33,11 @@
 
 <template>
 	<div
-		:class="{ headerBtCTM: true, withIconCTM: icon || withIcon, disabled: disabled }"
-		:style="{ color: color, borderLeftColor: borderColor }"
+		:class="{ headerBtCTM: true, withIconCTM: props.icon || props.withIcon, disabled: props.disabled }"
+		:style="{ color: props.color, borderLeftColor: props.borderColor }"
 		@click="click"
 	>
-		<Icon v-if="icon" :size="iconSize" :type="icon" />
+		<Icon v-if="props.icon" :size="props.iconSize" :type="props.icon" />
 		<slot></slot>
 	</div>
 </template>

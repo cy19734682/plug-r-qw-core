@@ -150,7 +150,11 @@
 			<Icon type="md-settings" size="17" />
 			<span>{{ t('r.tabSetting') }}</span>
 		</div>
-		<div class="tabSetCard" v-show="show" :style="{ top: top, right: right, width: width, backgroundColor: bg }">
+		<div
+			class="tabSetCard"
+			v-show="show"
+			:style="{ top: props.top, right: props.right, width: props.width, backgroundColor: props.bg }"
+		>
 			<div class="topCheck">
 				<Checkbox :indeterminate="indeterminate" v-model="checkAll" @click.prevent.native="handleCheckAll">{{
 					t('r.all')
@@ -162,7 +166,7 @@
 					v-for="(itemT, index) in groupX"
 					class="setItem"
 					:label="itemT && itemT.label"
-					:key="'tabSet_' + sKey + index"
+					:key="'tabSet_' + props.sKey + index"
 					:disabled="itemT && itemT.disabled"
 				/>
 			</CheckboxGroup>

@@ -1,22 +1,22 @@
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    modelValue: Record<string, any>;
-    width: string | number;
-    height: string | number;
-    placeholder: string;
-    disabled: boolean;
-    showMap: boolean;
+    modelValue?: Record<string, any> | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    placeholder?: string | undefined;
+    disabled?: boolean | undefined;
+    showMap?: boolean | undefined;
 }>, {
     modelValue: () => {};
     width: string;
     disabled: boolean;
     showMap: boolean;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("on-change" | "update:modelValue")[], "on-change" | "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
-    modelValue: Record<string, any>;
-    width: string | number;
-    height: string | number;
-    placeholder: string;
-    disabled: boolean;
-    showMap: boolean;
+    modelValue?: Record<string, any> | undefined;
+    width?: string | number | undefined;
+    height?: string | number | undefined;
+    placeholder?: string | undefined;
+    disabled?: boolean | undefined;
+    showMap?: boolean | undefined;
 }>, {
     modelValue: () => {};
     width: string;

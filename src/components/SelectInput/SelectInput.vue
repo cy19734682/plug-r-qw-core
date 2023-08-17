@@ -84,21 +84,21 @@
 
 <template>
 	<div>
-		<Select v-model="selectVal" :style="labelSelectStyle" :disabled="Boolean(disabled)" transfer>
+		<Select v-model="selectVal" :style="labelSelectStyle" :disabled="Boolean(props.disabled)" transfer>
 			<Option
-				v-for="(item, index) in selectOption"
+				v-for="(item, index) in props.selectOption"
 				:value="item.val"
 				:key="'selectInputOp' + item.value + index"
-				:style="{ textAlign: labelTextAlign }"
+				:style="{ textAlign: props.labelTextAlign }"
 				>{{ item.label }}</Option
 			>
 		</Select>
 		<Input
 			v-model="inputVal"
-			:placeholder="placeholder || t('r.pInput')"
+			:placeholder="props.placeholder || t('r.pInput')"
 			:style="inputStyle"
-			:clearable="clearable"
-			:disabled="Boolean(disabled)"
+			:clearable="props.clearable"
+			:disabled="Boolean(props.disabled)"
 			@on-change="inputChange"
 		/>
 	</div>

@@ -53,7 +53,7 @@
 
 <template>
 	<div v-show="showPop" class="fullScreenPopBoxAM" :style="popStyle">
-		<div class="headerAM" :style="{ color: headerColor, backgroundColor: headerBg, fontSize: hFontSize }">
+		<div class="headerAM" :style="{ color: props.headerColor, backgroundColor: props.headerBg, fontSize: hFontSize }">
 			<!--这是标题-->
 			<span class="headerTxtAM">{{ title || t('r.title') }}</span>
 			<!--这是返回按钮-->

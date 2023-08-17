@@ -13,12 +13,12 @@
 	const emit = defineEmits(['update:modelValue', 'on-change'])
 	const props = withDefaults(
 		defineProps<{
-			modelValue: Record<string, any>
-			width: string | number
-			height: string | number
-			placeholder: string
-			disabled: boolean
-			showMap: boolean
+			modelValue?: Record<string, any>
+			width?: string | number
+			height?: string | number
+			placeholder?: string
+			disabled?: boolean
+			showMap?: boolean
 		}>(),
 		{
 			modelValue: () => ({}),
@@ -247,9 +247,9 @@
 		<Input
 			ref="mapInputRef"
 			v-model="valueT.name"
-			:class="{ mapInputIKJ: showMap }"
-			:placeholder="placeholder || t('r.search')"
-			:disabled="disabled"
+			:class="{ mapInputIKJ: props.showMap }"
+			:placeholder="props.placeholder || t('r.search')"
+			:disabled="props.disabled"
 			icon="ios-search"
 		/>
 		<div :style="mapStyle" ref="mapRef" :id="mapId"></div>
