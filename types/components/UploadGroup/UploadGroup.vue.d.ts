@@ -28,7 +28,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     format: () => never[];
     showImg: boolean;
     disabled: boolean;
-}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+}>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("on-change" | "update:modelValue")[], "on-change" | "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     modelValue?: string | number | any[] | File | undefined;
     url?: string | undefined;
     data?: Record<string, any> | undefined;
@@ -59,6 +59,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     showImg: boolean;
     disabled: boolean;
 }>>> & {
+    "onOn-change"?: ((...args: any[]) => any) | undefined;
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
     length: number;

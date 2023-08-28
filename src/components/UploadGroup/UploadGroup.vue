@@ -17,7 +17,7 @@
 	import fullScreenImgByDom from '../../methods/fullScreenImgByDom'
 	import $swal from '../../methods/swal'
 
-	const emit = defineEmits(['update:modelValue'])
+	const emit = defineEmits(['update:modelValue', 'on-change'])
 	const props = withDefaults(
 		defineProps<{
 			modelValue?: number | string | File | any[]
@@ -141,9 +141,11 @@
 		set(val) {
 			if (props.length === 1) {
 				let temp = first(val)
-				emit('update:modelValue', temp || temp === 0 ? temp : null)
+				emit('update:modelValue', temp ?? null)
+				emit('on-change', temp ?? null)
 			} else {
 				emit('update:modelValue', cloneDeep(val))
+				emit('on-change', cloneDeep(val))
 			}
 		}
 	})

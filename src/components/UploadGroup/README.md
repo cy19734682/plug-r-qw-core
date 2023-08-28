@@ -26,7 +26,7 @@
 
 * disabled 是否禁用组件（禁用后仅展示已有文件，如表单修改时文件不可修改），默认false,不禁用
 ### 事件
-* update:modelValue 文件id改变，返回改变后的id或id的集合
+* on-change 文件id改变，返回改变后的id或id的集合
 ### 方法
 * clear 清空上传列表
 ### 注意
