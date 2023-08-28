@@ -1,4 +1,4 @@
-<!--FullScreenPop header右侧按钮，和header同高，左侧带白色分割线，按钮内容直接写在标签内，全局UI组件，直接用
+<!--HeaderBt header右侧按钮，和header同高，左侧带白色分割线，按钮内容直接写在标签内
 @created 2023.05.11
 @author Ricky email:zhangqingcq@foxmail.com-->
 

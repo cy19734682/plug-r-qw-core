@@ -1,12 +1,14 @@
 /**
- * @description 全局公共方法集合，挂在app.config.globalProperties下
+ * @description 全局公共方法集合，挂在app.config.globalProperties下(按需引入模式下除外)
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.07.14
  */
+import { h } from 'vue'
 import type { Collection, PlainObject } from '../public'
 import { isPlainObject } from 'lodash-es'
 import $swal from './swal'
 import { getStringWidth } from './needImportFunc'
+import { Tooltip } from 'view-ui-plus'
 
 export function myTypeof(v: any): string {
 	let str = Object.prototype.toString.call(v)
@@ -324,8 +326,8 @@ export function isNumberValue(val: any): boolean {
  * @returns {function(...[*]=)}
  */
 export function tooltipManual(contentKey: string | string[] | ((params: any) => string), dash = false, jointMark = '') {
-	return function (h: any, params: any) {
-		let content
+	return function (_h: any, params: any) {
+		let content: string
 		if (Array.isArray(contentKey)) {
 			let temp: any[] = []
 			for (let item of contentKey) {
@@ -343,17 +345,15 @@ export function tooltipManual(contentKey: string | string[] | ((params: any) => 
 		let tdWidth = params.column._width
 		if (content && contentWidth > tdWidth) {
 			return h(
-				'Tooltip',
+				Tooltip,
 				{
 					style: {
 						width: '100%'
 					},
-					props: {
-						content: content,
-						maxWidth: tdWidth * 2
-					}
+					content: content,
+					maxWidth: tdWidth * 2
 				},
-				[
+				() =>
 					h(
 						'span',
 						{
@@ -368,7 +368,6 @@ export function tooltipManual(contentKey: string | string[] | ((params: any) => 
 						},
 						content
 					)
-				]
 			)
 		}
 		return h('span', dash && !isValidValue(content) ? '--' : content)
@@ -523,7 +522,7 @@ export function dataFilterOrToUrl(
 	}
 	if (toUrl) {
 		if (url.length > 0) {
-			return url.substr(0, url.length - 1)
+			return url.substring(0, url.length - 1)
 		}
 		return ''
 	}

@@ -1,4 +1,4 @@
-<!--TableIconBtn 带高级查询按钮的快捷搜索组件，v-model绑定搜索框的值，高级查询按钮控制是否展开高级查询组件（showHidePanelB+searchForm），全局UI组件，直接用
+<!--TableSearch 带高级查询按钮的快捷搜索组件，v-model绑定搜索框的值，高级查询按钮控制是否展开高级查询组件（showHidePanelB+searchForm）
 @created 2023.07.31
 @author Ricky email:zhangqingcq@foxmail.com-->
 <script setup lang="ts">

@@ -1,4 +1,4 @@
-<!--ShowHidePanel 收展面板，用于展示或收起表格页条件查询表单组，全局UI组件，直接用
+<!--ShowHidePanelB 收展面板，用于展示或收起表格页条件查询表单组
 @created 2023.07.31
 @author Ricky email:zhangqingcq@foxmail.com
 @params modelValue(v-model绑定)展开收起

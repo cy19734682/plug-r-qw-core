@@ -10,6 +10,8 @@ import * as globalFunc from './methods/globalFunc'
 import * as needImportFunc from './methods/needImportFunc'
 import localeFile from './locale'
 import $fetch from './methods/fetch'
+import fullScreenImgByDom from './methods/fullScreenImgByDom'
+import fullScreenImgPreview from './methods/fullScreenImgPreview'
 import messageBox from './methods/messageBox'
 import $swal from './methods/swal'
 import $swalConfirm from './methods/swalConfirm'
@@ -20,6 +22,8 @@ export * from './components'
 export * from './methods/globalFunc'
 export * from './methods/needImportFunc'
 export { default as $fetch } from './methods/fetch'
+export { default as fullScreenImgByDom } from './methods/fullScreenImgByDom'
+export { default as fullScreenImgPreview } from './methods/fullScreenImgPreview'
 export { default as messageBox } from './methods/messageBox'
 export { default as $swal } from './methods/swal'
 export { default as $swalConfirm } from './methods/swalConfirm'
@@ -27,6 +31,8 @@ export { setInterval, setTimeout } from './methods/timer'
 
 const methodsR: Record<string, any> = {
 	$fetch,
+	fullScreenImgByDom,
+	fullScreenImgPreview,
 	$swal,
 	$swalConfirm,
 	messageBox,
@@ -80,7 +86,7 @@ const install = function (app: App, options: plugROption = {}) {
 
 	if (!app.directive('has')) {
 		app.directive('has', (el, binding) => {
-			if (binding.value && !app.config.globalProperties.hasPermission(binding.value)) {
+			if (binding.value && !globalFunc.hasPermission(binding.value)) {
 				el.style.display = 'none'
 			}
 		})
@@ -122,6 +128,8 @@ export default {
 	...globalFunc,
 	...needImportFunc,
 	$fetch,
+	fullScreenImgByDom,
+	fullScreenImgPreview,
 	$swal,
 	$swalConfirm,
 	messageBox,

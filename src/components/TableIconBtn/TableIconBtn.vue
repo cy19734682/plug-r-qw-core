@@ -1,4 +1,4 @@
-<!--TableIconBtn 表格用图标按钮，集成了权限v-has(自定义指令)，可指定图标、大小、提示信息，可禁用，全局UI组件，直接用
+<!--TableIconBtn 表格用图标按钮，集成了权限v-has(自定义指令)，可指定图标、大小、提示信息，可禁用
 @created 2023.07.20
 @author Ricky email:zhangqingcq@foxmail.com-->
 <script lang="ts" setup>

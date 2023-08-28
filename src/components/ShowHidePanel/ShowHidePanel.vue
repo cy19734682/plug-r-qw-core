@@ -1,4 +1,4 @@
-<!--ShowHidePanel 收展面板，用于展示或收起表格页条件查询表单组，全局UI组件，直接用
+<!--ShowHidePanel 收展面板，用于展示或收起表格页条件查询表单组
 @created 2023.07.20
 @author Ricky email:zhangqingcq@foxmail.com
 @params bg 例如：bg = '#fff' 或 bg = 'white' 不传为透明背景 (bg为自定义属性，控制该组件背景色) <show-hide-panel bg="#fff">需要包装的代码</show-hide-panel> -->

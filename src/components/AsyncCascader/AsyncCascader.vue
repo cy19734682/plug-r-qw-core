@@ -1,4 +1,4 @@
-<!--AsyncCascader 远程拉取数据的级联下拉选择框，依据url属性从后端拉取数据，失焦时选择，v-model绑定选中的ID，全局UI组件，直接用
+<!--AsyncCascader 远程拉取数据的级联下拉选择框，依据url属性从后端拉取数据，失焦时选择，v-model绑定选中的ID
 @created 2023.08.17
 @author Ricky email:zhangqingcq@foxmail.com-->
 

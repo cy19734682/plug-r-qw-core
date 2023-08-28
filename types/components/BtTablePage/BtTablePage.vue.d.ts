@@ -16,9 +16,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
         width?: number | undefined;
         minWidth?: number | undefined;
         maxWidth?: number | undefined;
-        align?: "right" | "left" | "center" | undefined;
+        align?: "left" | "right" | "center" | undefined;
         className?: string | undefined;
-        fixed?: "right" | "left" | undefined;
+        fixed?: "left" | "right" | undefined;
         ellipsis?: boolean | undefined;
         tooltip?: boolean | undefined;
         tooltipTheme?: string | undefined;
@@ -50,7 +50,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     }) | undefined;
     selection?: boolean | undefined;
     radio?: boolean | undefined;
-    selectionFixed?: false | "right" | "left" | undefined;
+    selectionFixed?: false | "left" | "right" | undefined;
     rowClickSelect?: boolean | undefined;
     data?: any[] | undefined;
     pageSize?: number | undefined;
@@ -114,9 +114,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
         width?: number | undefined;
         minWidth?: number | undefined;
         maxWidth?: number | undefined;
-        align?: "right" | "left" | "center" | undefined;
+        align?: "left" | "right" | "center" | undefined;
         className?: string | undefined;
-        fixed?: "right" | "left" | undefined;
+        fixed?: "left" | "right" | undefined;
         ellipsis?: boolean | undefined;
         tooltip?: boolean | undefined;
         tooltipTheme?: string | undefined;
@@ -148,7 +148,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     }) | undefined;
     selection?: boolean | undefined;
     radio?: boolean | undefined;
-    selectionFixed?: false | "right" | "left" | undefined;
+    selectionFixed?: false | "left" | "right" | undefined;
     rowClickSelect?: boolean | undefined;
     data?: any[] | undefined;
     pageSize?: number | undefined;
@@ -204,9 +204,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
         width?: number | undefined;
         minWidth?: number | undefined;
         maxWidth?: number | undefined;
-        align?: "right" | "left" | "center" | undefined;
+        align?: "left" | "right" | "center" | undefined;
         className?: string | undefined;
-        fixed?: "right" | "left" | undefined;
+        fixed?: "left" | "right" | undefined;
         ellipsis?: boolean | undefined;
         tooltip?: boolean | undefined;
         tooltipTheme?: string | undefined;
@@ -233,7 +233,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     selection: boolean;
     searchData: Record<string, any>;
     radio: boolean;
-    selectionFixed: false | "right" | "left";
+    selectionFixed: false | "left" | "right";
     rowClickSelect: boolean;
     pageSize: number;
     sortable: "" | "custom";

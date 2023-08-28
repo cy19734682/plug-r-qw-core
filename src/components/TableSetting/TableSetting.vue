@@ -1,4 +1,4 @@
-<!--TableSetting 设置表格哪些列展示，支持指定列默认展示、指定列禁止修改展示设置，全局UI组件，直接用
+<!--TableSetting 设置表格哪些列展示，支持指定列默认展示、指定列禁止修改展示设置
 @created 2023.08.14
 @author Ricky email:zhangqingcq@foxmail.com-->
 <script lang="ts" setup>
@@ -16,7 +16,6 @@
 	import { cloneDeep } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
 	import { useI18n } from 'vue-i18n'
-	import { onMounted } from 'vue'
 
 	const emit = defineEmits(['update:modelValue'])
 	const props = withDefaults(

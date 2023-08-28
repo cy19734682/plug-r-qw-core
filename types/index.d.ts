@@ -4,6 +4,8 @@
  * @created 2023.04.27
  */
 import type { App } from 'vue';
+import fullScreenImgByDom from './methods/fullScreenImgByDom';
+import fullScreenImgPreview from './methods/fullScreenImgPreview';
 import messageBox from './methods/messageBox';
 import $swal from './methods/swal';
 import $swalConfirm from './methods/swalConfirm';
@@ -11,6 +13,8 @@ export * from './components';
 export * from './methods/globalFunc';
 export * from './methods/needImportFunc';
 export { default as $fetch } from './methods/fetch';
+export { default as fullScreenImgByDom } from './methods/fullScreenImgByDom';
+export { default as fullScreenImgPreview } from './methods/fullScreenImgPreview';
 export { default as messageBox } from './methods/messageBox';
 export { default as $swal } from './methods/swal';
 export { default as $swalConfirm } from './methods/swalConfirm';
@@ -39,6 +43,8 @@ declare const _default: {
         spread: typeof import("axios").spread;
         config: import("./methods/fetch").ServiceR;
     };
+    fullScreenImgByDom: typeof fullScreenImgByDom;
+    fullScreenImgPreview: typeof fullScreenImgPreview;
     $swal: typeof $swal;
     $swalConfirm: typeof $swalConfirm;
     messageBox: typeof messageBox;
@@ -76,7 +82,9 @@ declare const _default: {
     getColumnsKeys(sKey: string, columns: any[], returnArray?: boolean): string | string[];
     isValidValue(val: any): boolean;
     isNumberValue(val: any): boolean;
-    tooltipManual(contentKey: string | string[] | ((params: any) => string), dash?: boolean, jointMark?: string): (h: any, params: any) => any;
+    tooltipManual(contentKey: string | string[] | ((params: any) => string), dash?: boolean, jointMark?: string): (_h: any, params: any) => globalThis.VNode<import("vue").RendererNode, import("vue").RendererElement, {
+        [key: string]: any;
+    }>;
     isEmptyValue(data: import("./public").Collection): boolean;
     stringLength(str: string): number;
     setValByOption({ group, condition, key, val, childKey }: {

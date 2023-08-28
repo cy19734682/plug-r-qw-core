@@ -1,7 +1,7 @@
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     modelValue?: Record<string, any> | undefined;
     labelWidth?: number | undefined;
-    labelTextAlign?: "right" | "left" | "center" | undefined;
+    labelTextAlign?: "left" | "right" | "center" | undefined;
     itemWidth?: number | undefined;
     selectOption?: any[] | undefined;
     placeholder?: string | undefined;
@@ -21,7 +21,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("on-change" | "update:modelValue")[], "on-change" | "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     modelValue?: Record<string, any> | undefined;
     labelWidth?: number | undefined;
-    labelTextAlign?: "right" | "left" | "center" | undefined;
+    labelTextAlign?: "left" | "right" | "center" | undefined;
     itemWidth?: number | undefined;
     selectOption?: any[] | undefined;
     placeholder?: string | undefined;
@@ -46,7 +46,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     clearable: boolean;
     modelValue: Record<string, any>;
     labelWidth: number;
-    labelTextAlign: "right" | "left" | "center";
+    labelTextAlign: "left" | "right" | "center";
     itemWidth: number;
     selectOption: any[];
 }, {}>;

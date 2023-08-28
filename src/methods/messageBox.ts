@@ -94,21 +94,20 @@ export default function messageBox(
 										{
 											class: 'fr closeN',
 											type: 'text',
-											onclick() {
+											onClick() {
 												if (loading) {
 													return
 												}
 												Modal.remove()
 											}
 										},
-										[
+										() =>
 											h('i', {
 												class: 'ivu-icon ivu-icon-ios-close',
 												style: {
 													fontSize: '30px'
 												}
 											})
-										]
 									)
 								]
 							),
@@ -144,7 +143,7 @@ export default function messageBox(
 										Button,
 										{
 											class: 'okBtN',
-											onclick(e: any) {
+											onClick(e: any) {
 												if (onOk && typeof onOk === 'function') {
 													const p = onOk()
 													if (p && myTypeof(p) === 'Promise') {
@@ -171,7 +170,7 @@ export default function messageBox(
 												}
 											}
 										},
-										[
+										() => [
 											h('i', {
 												class: 'ivu-load-loop ivu-icon ivu-icon-ios-loading'
 											}),
@@ -182,7 +181,7 @@ export default function messageBox(
 										Button,
 										{
 											class: ['cancelBtN', !cancelBt && 'hide'],
-											onclick() {
+											onClick() {
 												if (loading) {
 													return
 												}
@@ -192,7 +191,7 @@ export default function messageBox(
 												}
 											}
 										},
-										cancelText || T('r.cancel')
+										() => cancelText || T('r.cancel')
 									)
 								]
 							)

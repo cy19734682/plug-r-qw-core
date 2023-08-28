@@ -1,30 +1,30 @@
 ## FullPop
 
-“全屏”弹出页（绝对定位，和最近一个relative元素大小一致），自带header，提供方法开关页面，全局UI组件，直接用
+“全屏”弹出页（绝对定位，和最近一个relative元素大小一致），自带header，提供方法开关页面
 
 ### 属性
 
-- title: 字符串，header文字内容，默认：`标题`
+- title 字符串，header文字内容，默认：`标题`
 
-- headerColor: 字符串，header文字颜色，默认继承父元素
+- headerColor 字符串，header文字颜色，默认继承父元素
 
-- headerBg: 字符串，header背景颜色，默认：`@titleBg`
+- headerBg 字符串，header背景颜色，默认：`@titleBg`
 
-- headerFontSize: 数字/字符串，header字体大小，默认：`12`
+- headerFontSize 数字/字符串，header字体大小，默认：`12`
 
-- zIndex: 数字，弹框主体的`z-index`，默认：`1000`
+- zIndex 数字，弹框主体的`z-index`，默认：`1000`
 
 ### 事件
 
-- on-open: 页面打开
+- on-open 页面打开
 
-- on-close: 页面关闭，内部通过v-show实现
+- on-close 页面关闭，内部通过v-show实现
 
 ### 方法
 
-- open: 打开页面
+- open 打开页面
 
-- close: 关闭页面
+- close 关闭页面
 
 ### 注意
 

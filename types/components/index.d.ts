@@ -13,3 +13,5 @@ export { default as BtTablePage } from './BtTablePage/BtTablePage.vue';
 export { default as SelectInput } from './SelectInput/SelectInput.vue';
 export { default as InputMap } from './InputMap/InputMap.vue';
 export { default as AsyncCascader } from './AsyncCascader/AsyncCascader.vue';
+export { default as AlCascaderMC } from './AlCascaderMC/AlCascaderMC.vue';
+export { default as UploadGroup } from './UploadGroup/UploadGroup.vue';

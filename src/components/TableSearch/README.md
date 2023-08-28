@@ -1,26 +1,26 @@
 ## TableSearch
 
-带高级查询按钮的快捷搜索组件，v-model绑定搜索框的值，高级查询按钮控制是否展开高级查询组件（showHidePanelB+searchForm），全局UI组件，直接用
+带高级查询按钮的快捷搜索组件，v-model绑定搜索框的值，高级查询按钮控制是否展开高级查询组件（showHidePanelB+searchForm）
 
 ### 属性
 
-- modelValue: 字符串，搜索框的值，推荐用*v-model* 绑定。
+- modelValue 字符串，搜索框的值，推荐用*v-model* 绑定。
 
-- open: 布尔对象，高级搜索是否开启，必填，默认：`false`
+- open 布尔对象，高级搜索是否开启，必填，默认：`false`
 
-- showBtn: 布尔对象，是否显示高级搜索按钮，默认：`true`
+- showBtn 布尔对象，是否显示高级搜索按钮，默认：`true`
 
-- fixed: 布尔对象，是否为固定定位，默认绝对定位，默认：`false`
+- fixed 布尔对象，是否为固定定位，默认绝对定位，默认：`false`
 
-- top: 字符串，组件定位-上（相对于最近一个relative元素），如：`top='5px'`，默认：'0'
+- top 字符串，组件定位-上（相对于最近一个relative元素），如：`top='5px'`，默认：'0'
 
-- right: 字符串，组件定位-右（相对于最近一个relative元素），默认：'0'
+- right 字符串，组件定位-右（相对于最近一个relative元素），默认：'0'
 
-- width: 字符串，组件输入框宽度，默认：`210px`
+- width 字符串，组件输入框宽度，默认：`210px`
 
-- placeholder: 字符串，占位符，默认：`请输入`
+- placeholder 字符串，占位符，默认：`请输入`
 
-- btnColor: 字符串，高级搜索按钮和箭头的颜色，默认：`inherit`
+- btnColor 字符串，高级搜索按钮和箭头的颜色，默认：`inherit`
 
 ### 事件
 

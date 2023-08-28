@@ -1,4 +1,4 @@
-<!--SelectInput 下拉选择和输入框组合，select选择要输入的key,input输入val，全局UI组件，直接用
+<!--SelectInput 下拉选择和输入框组合，select选择要输入的key,input输入val
 @created 2023.08.16
 @author Ricky email:zhangqingcq@foxmail.com-->
 

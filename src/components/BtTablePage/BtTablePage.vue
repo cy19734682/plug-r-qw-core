@@ -8,9 +8,8 @@
 	import $fetch from '../../methods/fetch.js'
 	import { cloneDeep, isBoolean, isNumber } from 'lodash-es'
 	import { setTimeout } from '../../methods/timer'
-	import { TableColumnConfig } from 'view-ui-plus'
-	import { onMounted } from 'vue'
-	import { getCurrentInstance } from 'vue'
+	import { TableColumnConfig, Radio } from 'view-ui-plus'
+	import { h } from 'vue'
 
 	const { globalProperties } = getCurrentInstance()!.appContext!.config
 
@@ -134,11 +133,9 @@
 				c = {
 					title: ' ',
 					width: 65,
-					render: (h: any, params: Record<string, any>) => {
-						return h('Radio', {
-							props: {
-								value: params.row.btChecked
-							}
+					render: (_h: any, params: Record<string, any>) => {
+						return h(Radio, {
+							value: params.row.btChecked
 						})
 					}
 				}
@@ -287,6 +284,7 @@
 			}
 		}
 		selected = selection
+		emit('on-selection-change', selection)
 	}
 
 	function getSelected() {
@@ -483,9 +481,9 @@
 		</div>
 		<div class="pageContainer" v-show="!props.noPage">
 			<Page
+				v-model="current"
 				:page-size-opts="pageSizes"
 				:total="total"
-				:current.sync="current"
 				:page-size="pageSizeT"
 				show-sizer
 				show-total

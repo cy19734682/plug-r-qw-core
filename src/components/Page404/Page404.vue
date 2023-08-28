@@ -1,4 +1,4 @@
-<!--Page404 404页面，全局UI组件，直接用
+<!--Page404 404页面
 @created 2023.06.12
 @author Ricky email:zhangqingcq@foxmail.com-->
 

@@ -1,4 +1,4 @@
-<!--SideMenu 侧边菜单，贴在父容器左侧，可向左将整个菜单收起，全局UI组件，直接用
+<!--SideMenu 侧边菜单，贴在父容器左侧，可向左将整个菜单收起
 @created 2023.07.17
 @author Ricky email:zhangqingcq@foxmail.com-->
 

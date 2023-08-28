@@ -1,4 +1,4 @@
-<!--InputMap 带搜索框的地图组件，支持搜索地点，经纬度回显地点，缩放，移动地图，拖动标记，点击标记显示地点信息，全局UI组件，直接用
+<!--InputMap 带搜索框的地图组件，支持搜索地点，经纬度回显地点，缩放，移动地图，拖动标记，点击标记显示地点信息
 @created 2023.08.16
 @author Ricky email:zhangqingcq@foxmail.com-->
 
@@ -89,6 +89,9 @@
 		(after) => {
 			//更新地图mark
 			if (after && after.lng && after.lat) {
+				if (!Map || !GeoCoder) {
+					return
+				}
 				createMarker({
 					lng: after.lng,
 					lat: after.lat,
@@ -105,10 +108,10 @@
 
 	function checkHeight() {
 		if ((mapRef.value && mapRef.value.clientHeight < 10) || !mapRef.value) {
-			setTimeout(checkHeight, 100)
+			setTimeout(checkHeight, 300)
 		} else {
 			/*高德地图实例初始化较慢，暂时延时1秒，后面寻找完美解决方案*/
-			setTimeout(initMap, 1000)
+			setTimeout(initMap, 100)
 		}
 	}
 

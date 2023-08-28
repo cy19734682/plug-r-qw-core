@@ -32,10 +32,10 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
     top: string;
+    right: string;
     bg: string;
     modelValue: any[];
     width: string;
-    right: string;
     defaultCheck: boolean;
 }, {}>;
 export default _default;

@@ -1,4 +1,4 @@
-<!--FullPop “全屏”弹出页（绝对定位，和最近一个relative元素大小一致），自带header，提供方法开关页面，全局UI组件，直接用
+<!--FullPop “全屏”弹出页（绝对定位，和最近一个relative元素大小一致），自带header，提供方法开关页面
 @created 2023.05.11
 @author Ricky email:zhangqingcq@foxmail.com-->
 

@@ -19,12 +19,11 @@
 
 .previewBoxM {
 	margin-top: 10px;
-	height: 100px;
 
 	.previewImg {
 		display: inline-block;
 		position: relative;
-		height: 100%;
+		height: 100px;
 		background: #eee;
 		margin-right: 4px;
 
@@ -68,9 +67,10 @@
 	.customFileListItem {
 		padding: 4px;
 		border-radius: 4px;
-		word-break: break-all;
 		line-height: 1.4em;
 		position: relative;
+    display: flex;
+    align-items: center;
 
 		&:hover {
 			background-color: @listHoverBg;
@@ -86,7 +86,15 @@
 
 		.upNameT {
 			cursor: pointer;
-			padding-left: 2px;
+			padding-left: 4px;
+      display: inline-block;
+      width: calc(100% - 30px);
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      &.previewName{
+        width: calc(100% - 60px);
+      }
 		}
 
 		.btBoxJ {

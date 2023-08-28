@@ -1,4 +1,4 @@
-<!--IconTxtBtn 表格顶部带图标的文字按钮（批量操作等），集成了权限v-has(自定义指令)，可指定图标、大小、按钮文字内容，可禁用，全局UI组件，直接用
+<!--IconTxtBtn 表格顶部带图标的文字按钮（批量操作等），集成了权限v-has(自定义指令)，可指定图标、大小、按钮文字内容，可禁用
 @created 2023.07.19
 @author Ricky email:zhangqingcq@foxmail.com-->
 

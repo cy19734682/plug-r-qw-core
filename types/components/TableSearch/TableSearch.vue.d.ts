@@ -42,9 +42,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     fixed: boolean;
     open: boolean;
     top: string | number;
+    right: string | number;
     showBtn: boolean;
     width: string | number;
-    right: string | number;
     btnColor: string;
 }, {}>, {
     default?(_: {}): any;
