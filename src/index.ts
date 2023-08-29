@@ -17,6 +17,7 @@ import $swal from './methods/swal'
 import $swalConfirm from './methods/swalConfirm'
 import { init, setInterval, setTimeout } from './methods/timer'
 import { set } from './methods/amap'
+import './methods/wangeditor5init'
 
 export * from './components'
 export * from './methods/globalFunc'

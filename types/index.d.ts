@@ -9,6 +9,7 @@ import fullScreenImgPreview from './methods/fullScreenImgPreview';
 import messageBox from './methods/messageBox';
 import $swal from './methods/swal';
 import $swalConfirm from './methods/swalConfirm';
+import './methods/wangeditor5init';
 export * from './components';
 export * from './methods/globalFunc';
 export * from './methods/needImportFunc';
