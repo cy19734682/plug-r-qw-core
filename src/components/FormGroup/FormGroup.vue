@@ -81,7 +81,7 @@
 
 	function clearForm() {
 		/*私有，可用resetForm代替*/
-		formRRef.value.clearForm()
+		formRRef.value.clearForm?.()
 	}
 
 	function setItemToValGroup(data: any, notClearOthers: boolean) {

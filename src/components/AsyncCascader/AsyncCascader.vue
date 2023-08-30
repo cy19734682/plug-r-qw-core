@@ -82,9 +82,9 @@
 			.get(props.url)
 			.then((r: any) => {
 				let d: any[] | null = null
-				if (r && r.data && r.data.records) {
+				if (r?.data?.records) {
 					d = r.data.records
-				} else if (r && r.data) {
+				} else if (r?.data) {
 					d = r.data
 				} else if (r) {
 					d = r
@@ -118,7 +118,7 @@
 		return temp
 	}
 
-	function format(labels: any[], selectedData: any) {
+	function format(labels: any[]) {
 		if (props.onlyLastLabel) {
 			return last(labels)
 		}

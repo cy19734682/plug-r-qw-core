@@ -132,6 +132,7 @@
 			@on-change="changeA"
 			@on-clickoutside="close"
 		>
+			<!--suppress HtmlExtraClosingTag -->
 			<div @click="focus">
 				<Input
 					class="aRoot"

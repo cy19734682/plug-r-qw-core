@@ -3,7 +3,7 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
-	import { cloneDeep, remove, isEmpty, findIndex, functions } from 'lodash-es'
+	import { cloneDeep, remove, isEmpty, findIndex } from 'lodash-es'
 	import moment from 'moment'
 	import t from '../../locale/i18nSFC'
 	import { myTypeof, isValidValue, trimObj, findCollection } from '../../methods/globalFunc'
@@ -774,7 +774,7 @@
 				if (!root.options) {
 					return
 				}
-				let tOption = (r && r.data && r.data.records) || (r && r.data) || r || []
+				let tOption = r?.data?.records || r?.data || r || []
 				if (Array.isArray(tOption)) {
 					if (root.optionFilter && myTypeof(root.optionFilter) === 'Function') {
 						tOption = root.optionFilter(tOption)
@@ -784,7 +784,7 @@
 						root.options.length = 0
 						root.options.push(
 							...tOption.map((eP: Record<string, any>) => {
-								let rP: Record<string, any> = {}
+								let rP: Record<string, any>
 								if (Array.isArray(root.optionLabel)) {
 									/*组合成的label*/
 									let rL = ''
@@ -907,7 +907,7 @@
 					}
 				}
 			})
-			.catch((e) => {
+			.catch(() => {
 				console.warn('拉取选项出错')
 			})
 	}
@@ -1509,7 +1509,7 @@
 			root
 		})
 		nextTick(function () {
-			formGroupXRef.value?.validateField(root.key)
+			formGroupXRef.value?.validateField?.(root.key)
 		})
 	}
 
@@ -1556,7 +1556,7 @@
 
 	/*主动验证整个表单（公开）*/
 	function validate() {
-		formGroupXRef.value?.validate()
+		formGroupXRef.value?.validate?.()
 	}
 
 	/**
@@ -1565,7 +1565,7 @@
 	 */
 	function reValidate(prop: any) {
 		setTimeout(() => {
-			formGroupXRef.value?.validateField(prop, () => {})
+			formGroupXRef.value?.validateField?.(prop, () => {})
 		}, 10)
 	}
 
@@ -1577,7 +1577,7 @@
 		setTimeout(() => {
 			if (Array.isArray(props)) {
 				for (let e of props) {
-					formGroupXRef.value?.validateField(e, () => {})
+					formGroupXRef.value?.validateField?.(e, () => {})
 				}
 			}
 		}, 10)
@@ -1596,7 +1596,7 @@
 		if (props.disabled) {
 			return
 		}
-		formGroupXRef.value?.validate((valid: any) => {
+		formGroupXRef.value?.validate?.((valid: any) => {
 			if (!debounceCount) {
 				debounceCount = true
 				if (valid) {
@@ -1700,6 +1700,7 @@
 		</template>
 		<!--长提交按钮-->
 		<FormItem v-if="props.showLongOkBt">
+			<!--suppress HtmlWrongAttributeValue -->
 			<Button
 				@click="submit"
 				:style="itemStyle"
@@ -1711,6 +1712,7 @@
 		</FormItem>
 		<div class="inlineBlock">
 			<!--短提交按钮（查询）-->
+			<!--suppress HtmlWrongAttributeValue -->
 			<Button
 				v-if="props.showInlineOkBt"
 				type="primary"
@@ -1721,6 +1723,7 @@
 				>{{ props.inlineOkBtTxt || t('r.confirm') }}
 			</Button>
 			<!--取消按钮（清除）-->
+			<!--suppress HtmlWrongAttributeValue -->
 			<Button v-if="props.showInlineClearBt" @click="resetForm" :class="{ inlineFormBtXN: props.inline }" type="dashed"
 				>{{ props.inlineClearBtTxt || t('r.clear') }}
 			</Button>

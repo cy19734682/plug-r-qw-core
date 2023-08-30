@@ -220,7 +220,7 @@
 		/*添加行（公开），分页时不推荐使用，详细见说明文档*/
 		dataT.value.unshift(cloneDeep(row))
 		setTimeout(() => {
-			tableRef.value?.clickCurrentRow(0)
+			tableRef.value?.clickCurrentRow?.(0)
 		}, 100)
 	}
 
@@ -241,7 +241,7 @@
 			}
 			if (clickCurrentRow) {
 				setTimeout(() => {
-					tableRef.value?.clickCurrentRow(index)
+					tableRef.value?.clickCurrentRow?.(index)
 				}, 10)
 			}
 		}
@@ -251,7 +251,7 @@
 		/*根据索引数字删除行（公开），分页时不推荐使用，详细见说明文档*/
 		dataT.value.splice(index, 1)
 		setTimeout(() => {
-			tableRef.value?.clickCurrentRow(0)
+			tableRef.value?.clickCurrentRow?.(0)
 		}, 100)
 	}
 
@@ -261,7 +261,7 @@
 			return
 		}
 		if ((props.selection || props.radio) && props.rowClickSelect) {
-			tableRef.value?.toggleSelect(i)
+			tableRef.value?.toggleSelect?.(i)
 		}
 	}
 
@@ -329,7 +329,7 @@
 				dataS.value[i].btChecked = false
 			}
 		} else {
-			tableRef.value?.selectAll(false)
+			tableRef.value?.selectAll?.(false)
 		}
 		if (selected.length > 0) {
 			selected = []
@@ -371,21 +371,20 @@
 						}
 						if (r.data) {
 							/*接口返回数据为空时可能是用null表示，所以有下面逻辑*/
-							if (r.data?.records || r.data?.records === null) {
-								dataT.value = r.data?.records || []
+							if (r.data.records || r.data.records === null) {
+								dataT.value = r.data.records || []
 							} else if (r.data.page) {
-								if (r.data.page?.records || r.data.page?.records === null) {
+								if (r.data.page.records || r.data.page.records === null) {
 									dataT.value = r.data.page.records || []
 								}
 							} else if (r.data.data) {
-								if (r.data.data?.records || r.data.data?.records === null) {
-									dataT.value = r.data.data?.records || []
+								if (r.data.data.records || r.data.data.records === null) {
+									dataT.value = r.data.data.records || []
 								}
 							} else {
 								dataT.value = r.data
 							}
-							total.value =
-								(r.data.page && r.data.page.total) || (r.data.data && r.data.data.total) || r.data.total || r.total || 0
+							total.value = r.data.page?.total || r.data.data?.total || r.data.total || r.total || 0
 							if (total.value === 0 && current.value > 1 && dataT.value && dataT.value.length === 0) {
 								/*如果没有数据，将当前页置为1*/
 								current.value = 1
@@ -424,9 +423,9 @@
 				if (dataT.value.length > 0) {
 					setTimeout(() => {
 						if (clickCurrentRow) {
-							tableRef.value?.clickCurrentRow(currentIndex || 0)
+							tableRef.value?.clickCurrentRow?.(currentIndex || 0)
 						} else {
-							tableRef.value?.clickCurrentRow(props.rowClickNum)
+							tableRef.value?.clickCurrentRow?.(props.rowClickNum)
 						}
 					}, 10)
 				}

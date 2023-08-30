@@ -69,7 +69,7 @@
 	const inputStyle = computed(() => ({ width: props.itemWidth + 'px' }))
 
 	function inputChange(e: Record<string, any>) {
-		if (e && e.target && e.target.value !== undefined) {
+		if (e?.target?.value !== undefined) {
 			handleChange({
 				key: selectVal.value,
 				val: e.target.value

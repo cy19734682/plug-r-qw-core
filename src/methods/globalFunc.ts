@@ -331,7 +331,7 @@ export function tooltipManual(contentKey: string | string[] | ((params: any) => 
 		if (Array.isArray(contentKey)) {
 			let temp: any[] = []
 			for (let item of contentKey) {
-				if (isValidValue(params.row[item])) {
+				if (isValidValue(params.row?.[item])) {
 					temp.push(params.row[item])
 				}
 			}
@@ -339,7 +339,7 @@ export function tooltipManual(contentKey: string | string[] | ((params: any) => 
 		} else if (typeof contentKey === 'function') {
 			content = contentKey(params)
 		} else {
-			content = params.row[contentKey]
+			content = params.row?.[contentKey]
 		}
 		let contentWidth = getStringWidth(content)
 		let tdWidth = params.column._width

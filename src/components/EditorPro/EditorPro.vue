@@ -136,7 +136,7 @@
 		)
 	)
 	const editorTextareaStyle = computed(() => ({
-		height: typeof props.height === 'string' ? props.height : props.height + 'px'
+		height: typeof props.height === 'number' ? props.height + 'px' : props.height
 	}))
 
 	function onCreated(d: any) {

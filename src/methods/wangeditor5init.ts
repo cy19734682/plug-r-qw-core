@@ -124,7 +124,7 @@ import { t } from '../locale'
 				inputH.addEventListener('blur', hHandler)
 				inputH.addEventListener('keyup', hHandler)
 				let closeE = p.children[0].children[0].children[1]
-				closeE.addEventListener('click', (e) => {
+				closeE.addEventListener('click', () => {
 					p.style.display = 'none'
 				})
 

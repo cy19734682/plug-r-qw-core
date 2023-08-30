@@ -130,46 +130,49 @@
 			Map = new AMap.Map(mapId).on('complete', () => {
 				GeoCoder = new AMap.Geocoder()
 
-				if (props.modelValue && props.modelValue.lng && props.modelValue.lat) {
+				if (props.modelValue?.lng && props.modelValue?.lat) {
 					createMarker({
 						lng: props.modelValue.lng,
 						lat: props.modelValue.lat,
 						name: props.modelValue.name
 					})
 				}
-				AutoComplete = new AMap.AutoComplete({
-					input: mapInputRef.value?.$el?.children[1]
-				}).on('select', (val: Record<string, any>) => {
-					if (val && val.poi && val.poi.name) {
-						if (val.poi.location && val.poi.location.lng && val.poi.location.lat) {
-							createMarker({
-								name: val.poi.name,
-								lng: val.poi.location.lng,
-								lat: val.poi.location.lat
-							})
-							valueT.value = {
-								name: val.poi.name,
-								lng: val.poi.location.lng,
-								lat: val.poi.location.lat
-							}
-						} else {
-							Map.setCity(val.poi.name, () => {
-								let center = Map.getCenter()
+				const iEl = mapInputRef.value?.$el?.children
+				if (iEl && Array.isArray(iEl) && iEl.length > 1) {
+					AutoComplete = new AMap.AutoComplete({
+						input: iEl[1]
+					}).on('select', (val: Record<string, any>) => {
+						if (val?.poi?.name) {
+							if (val.poi.location?.lng && val.poi.location?.lat) {
 								createMarker({
 									name: val.poi.name,
-									lng: center.lng,
-									lat: center.lat
+									lng: val.poi.location.lng,
+									lat: val.poi.location.lat
 								})
 								valueT.value = {
 									name: val.poi.name,
-									lng: center.lng,
-									lat: center.lat
+									lng: val.poi.location.lng,
+									lat: val.poi.location.lat
 								}
-							})
+							} else {
+								Map.setCity(val.poi.name, () => {
+									let center = Map.getCenter()
+									createMarker({
+										name: val.poi.name,
+										lng: center.lng,
+										lat: center.lat
+									})
+									valueT.value = {
+										name: val.poi.name,
+										lng: center.lng,
+										lat: center.lat
+									}
+								})
+							}
 						}
-					}
-					emit('on-change', valueT.value)
-				})
+						emit('on-change', valueT.value)
+					})
+				}
 
 				Map.on('hotspotclick', (d: Record<string, any>) => {
 					createMarker({

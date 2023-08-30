@@ -104,7 +104,7 @@
 			} else {
 				let temp: any[] = []
 				for (let item of val) {
-					if (item?.response?.data && item.response.data[0] && item.response.data[0].id) {
+					if (item.response?.data?.[0]?.id) {
 						temp.push(item.response.data[0].id)
 					}
 				}
@@ -174,25 +174,22 @@
 		() => fileList.value,
 		async (after) => {
 			if (previewType.value === 'localImg') {
-				if (after && after.length > 0) {
+				if (after?.length > 0) {
 					fileSrcList.value = await getFileSrcList(after)
 				} else {
 					fileSrcList.value = []
 				}
-			} else if (after && after.length > 0 && previewType.value !== 'localList') {
+			} else if (after?.length > 0 && previewType.value !== 'localList') {
 				let temp: any = []
 				for (let item of after) {
 					if (item.name === undefined) {
-						if (item?.response?.data && item.response.data[0] && item.response.data[0].id) {
+						if (item.response?.data?.[0]?.id) {
 							let r: any = await $fetch.get(props.url + '/' + item.response.data[0].id).catch(() => {
 								temp.push({ name: t('r.file') + indexOf(after, item) })
 							})
 							let itemT = cloneDeep(item)
-							itemT.name =
-								(r?.data?.returnValue && r.data.returnValue[0] && r.data.returnValue[0]?.name) ||
-								t('r.file') + indexOf(after, item)
-							itemT.mimeType =
-								(r?.data?.returnValue && r.data.returnValue[0] && r.data.returnValue[0]?.mimeType) || 'unknown'
+							itemT.name = r?.data?.returnValue?.[0]?.name || t('r.file') + indexOf(after, item)
+							itemT.mimeType = r?.data?.returnValue?.[0]?.mimeType || 'unknown'
 							temp.push(itemT)
 						} else {
 							temp.push({ name: t('r.unknown') })
@@ -239,7 +236,7 @@
 	}
 
 	function downloadDefaultFile(item: Record<string, any>) {
-		if (item && item.response && item.response.data && item.response.data[0] && item.response.data[0].id) {
+		if (item?.response?.data?.[0]?.id) {
 			window.open(props.url + '/' + item.response.data[0].id + '/download')
 		}
 	}
@@ -248,7 +245,7 @@
 		if (props.manualUpload) {
 			return file.type && isImgByFile(file.type)
 		}
-		return file?.response?.data && file.response.data[0]?.id && file.mimeType && isImgByFile(file.mimeType)
+		return file?.response?.data?.[0]?.id && file.mimeType && isImgByFile(file.mimeType)
 	}
 
 	function listExpand(file: any) {
@@ -329,8 +326,8 @@
 	}
 
 	function onPreview(file: any) {
-		let id = file?.response?.data && file.response.data[0]?.id
-		let type = file?.response?.data && file.response.data[0]?.mimeType
+		let id = file?.response?.data?.[0]?.id
+		let type = file?.response?.data?.[0]?.mimeType
 		if (id) {
 			if (myTypeof(type) === 'String' && type.indexOf('image') > -1) {
 				fullScreenImgByDom(props.url + '/' + id + '/download?preview=true')
@@ -341,7 +338,7 @@
 	}
 
 	function onRemove(file: any) {
-		let id = file?.response?.data && file.response.data[0]?.id
+		let id = file?.response?.data?.[0]?.id
 		deleteById(null, id)
 	}
 

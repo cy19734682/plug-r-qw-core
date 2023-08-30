@@ -10,7 +10,7 @@
 	const emit = defineEmits(['update:modelValue', 'on-name-change'])
 	const props = withDefaults(
 		defineProps<{
-			modelValue?: string | number | any[] /*组件绑定的值（v-model）*/
+			modelValue?: string | number | any[] | null /*组件绑定的值（v-model）*/
 			level?: 0 | 1 | 2 | '0' | '1' | '2' /*精确至几级行政区域（0：省级，1：市级，2：县级）*/
 			disabled?: boolean /*禁用组件*/
 			transfer?: boolean /*弹出框元素直接放置于body下*/

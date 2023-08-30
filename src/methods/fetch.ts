@@ -54,7 +54,7 @@ function logoutHandle() {
 				store.logout()
 			}
 		} else {
-			service.store.dispatch('logout')
+			service.store?.dispatch?.('logout')
 		}
 	} else {
 		notInitYet()
@@ -66,7 +66,7 @@ function logoutHandle() {
  */
 service.interceptors.response.use(
 	(r) => {
-		if (proxy && r && r.data && (r.data.code === 403 || r.data.code === 409)) {
+		if (proxy && (r?.data?.code === 403 || r?.data?.code === 409)) {
 			proxy.messageBox({
 				content: T('r.http.' + r.data.code),
 				onOk: logoutHandle
@@ -75,7 +75,7 @@ service.interceptors.response.use(
 		return r
 	},
 	(e) => {
-		if (proxy && e && e.response && (e.response.status === 403 || e.response.status === 409)) {
+		if (proxy && (e?.response?.status === 403 || e?.response?.status === 409)) {
 			proxy.messageBox({
 				content: T('r.http.' + e.response.status),
 				onOk: logoutHandle
@@ -240,7 +240,7 @@ function checkRequest(
 				}
 			}
 			let data_: Collection | undefined
-			if (config && config.headers && config.headers['Content-Type'] === 'multipart/form-data') {
+			if (config?.headers?.['Content-Type'] === 'multipart/form-data') {
 				data_ = data
 			} else {
 				if (data && !isEmpty(data)) {

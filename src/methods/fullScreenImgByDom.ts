@@ -16,11 +16,9 @@ export default function fullScreenImgByDom(this: any, src: string) {
 	let child = document.createElement('div')
 	child.setAttribute('class', 'fullScreenImgByDom')
 	child.innerHTML = `<div class='previewInner'><img src='${src}' alt='${fullImg}' ><i class='ivu-icon ivu-icon-md-close' title='${close}' ></i></div>`
-	child.querySelector('.ivu-icon-md-close')?.addEventListener('click', function () {
+	child.querySelector('.ivu-icon-md-close')?.addEventListener?.('click', function () {
 		let bb = first(document.getElementsByTagName('body'))
-		if (bb) {
-			bb.removeChild(child)
-		}
+		bb?.removeChild?.(child)
 	})
-	bodyEl?.appendChild(child)
+	bodyEl?.appendChild?.(child)
 }

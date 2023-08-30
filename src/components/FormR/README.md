@@ -144,7 +144,7 @@
 * <a name='autosize'>autosize</a> 对象，自适应内容高度，仅在 textarea 类型下有效，可传入对象，如 { minRows: 2, maxRows: 6 }，默认:`{minRows:2}`
 
 * <a name='booleanVal'>booleanVal</a> 布尔对象，是否为布尔值，当需要表单项为布尔值时，给该字段赋值`true`，该表单项可接受布尔值，提交
-时提交布尔值，注意：需要表单项类型支持（目前仅select单选和radioGroup支持），具体见后面的'type'说明，默认：`false`
+时提交布尔值，注意：需要表单项类型支持（目前仅select单选和radioGroup支持），具体见后面的' type说明 '，默认：`false`
 
 * <a name='borrowOption'>borrowOption</a> 字符串，有待选项的表单项，待选项数据来自另一表单项的待选项时（借用），需给该字段赋值另一表
 单项的key对应的值
@@ -162,7 +162,7 @@ updateFormDataT在此处不适用，详细使用方法见该库示例）；如�
  
 * <a name='class'>class</a> 字符串，表单项自定义样式类名，可用于自定义单个formItem独有样式，如果想传多个class，class之间用空格隔开，所有type类型皆支持该属性
 
-* <a name='clearable'>clearable</a> 布尔对象，表单项是否可单独清空，当类型支持时才有效，具体见后面的'type说明'，默认：`true`
+* <a name='clearable'>clearable</a> 布尔对象，表单项是否可单独清空，当类型支持时才有效，具体见后面的' type说明 '，默认：`true`
 
 * <a name='collectLabel'>collectLabel</a> 对象/数组，选项中除val外的其他字段（如label）连同值一并返回，如：
 `collectLabel:{valKey:'label',key:'name'}`，
@@ -804,7 +804,7 @@ radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthR
 * [class](#class) 单个表单项的自定义样式类名
 
 * 注意：远程上传时，值为上传成功后接口返回的文件id，或id组成的数组；本地上传时，值为file对象，或file对象组成的数组；远程上传时有诸多限制，
-具体参考[uploadGroup](../uploadGroup/README.md)组件的README.md文档
+具体参考[UploadGroup](../UploadGroup/README.md)组件的README.md文档
 
 #### date 日期选择器
 * [label](#label) 标签
@@ -813,7 +813,7 @@ radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthR
 
 * [defaultVal](#defaultVal) 默认值
 
-* [defaultVal2](#defaultVal2) 默认值2，为区间时间时，结束时间默认值
+* [defaultVal2](#defaultVal2) 默认值2，为时间区间时，结束时间默认值
 
 * [dateType](#dateType) 日期类型，可选值：`'date'、'daterange'、'datetime'、'datetimerange'、'year'、'month'`
 
@@ -844,7 +844,7 @@ radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthR
 
 * [defaultVal](#defaultVal) 默认值
 
-* [defaultVal2](#defaultVal2) 默认值2，为区间时间时，结束时间默认值
+* [defaultVal2](#defaultVal2) 默认值2，为时间区间时，结束时间默认值
 
 * [dateType](#dateType) 时间类型，可选值：`'time'、'timerange'`
 

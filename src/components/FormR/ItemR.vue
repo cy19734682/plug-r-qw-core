@@ -76,6 +76,7 @@
 </script>
 
 <template>
+	<!--suppress HtmlExtraClosingTag -->
 	<FormItem
 		:label="props.item.type !== 'radio' && props.item.type !== 'checkbox' ? props.item.label : ' '"
 		:prop="props.item.key || ''"
@@ -244,10 +245,11 @@
 				:disabled="Boolean(props.item.disabled) || props.disabled || checkItem.disabled"
 			>
 				<Icon v-if="checkItem.icon" :type="checkItem.icon" />
-				<span>{{ checkItem.label || checkItem?.val }}</span>
+				<span>{{ checkItem.label || checkItem.val }}</span>
 			</Checkbox>
 		</CheckboxGroup>
 		<!--文本框-->
+		<!--suppress HtmlWrongAttributeValue -->
 		<Input
 			v-else-if="props.item.type === 'textarea'"
 			type="textarea"
