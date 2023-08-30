@@ -15,23 +15,23 @@
 	const emit = defineEmits(['on-item-change', 'on-reset', 'on-re-render', 'on-submit'])
 	const props = withDefaults(
 		defineProps<{
-			formData?: FormItem[] | FormItem[][] /*表单结构数据*/
+			formData?: Array<FormItem | FormItem[]> /*表单结构数据*/
 			formRules?: Record<string, any> /*表单结构规则*/
-			showMessage: boolean /*显示校验信息*/
-			labelWidth: number /*表单项标签宽度*/
-			contentWidth: string /*表单项内容宽度，默认70%*/
-			itemWidth: number /*表单项内容宽度,用于行内表单*/
-			inline: boolean /*行内表单*/
-			showLongOkBt: boolean /*是否展示长确定按钮*/
-			longOkBtTxt: string /*长确定按钮内容*/
-			showInlineOkBt: boolean /*是否展示行内短确定按钮*/
-			inlineOkBtTxt: string /*短确定按钮内容*/
-			showInlineClearBt: boolean /*是否展示行内短清空按钮*/
-			inlineClearBtTxt: string /*短清空按钮内容*/
-			disabled: boolean /*全表禁用，仅展示*/
-			btnLoading: boolean /*提交按钮显示loading*/
-			trim: boolean /*是否去除提交数据中的字符串首尾空格*/
-			teamClass: string /*分组表单-组容器class*/
+			showMessage?: boolean /*显示校验信息*/
+			labelWidth?: number /*表单项标签宽度*/
+			contentWidth?: string /*表单项内容宽度，默认70%*/
+			itemWidth?: number /*表单项内容宽度,用于行内表单*/
+			inline?: boolean /*行内表单*/
+			showLongOkBt?: boolean /*是否展示长确定按钮*/
+			longOkBtTxt?: string /*长确定按钮内容*/
+			showInlineOkBt?: boolean /*是否展示行内短确定按钮*/
+			inlineOkBtTxt?: string /*短确定按钮内容*/
+			showInlineClearBt?: boolean /*是否展示行内短清空按钮*/
+			inlineClearBtTxt?: string /*短清空按钮内容*/
+			disabled?: boolean /*全表禁用，仅展示*/
+			btnLoading?: boolean /*提交按钮显示loading*/
+			trim?: boolean /*是否去除提交数据中的字符串首尾空格*/
+			teamClass?: string /*分组表单-组容器class*/
 		}>(),
 		{
 			formData: () => [],
@@ -56,7 +56,7 @@
 	const formDataT = ref<any>([]) /*表单结构数据*/
 	const tempKeys = ref<Record<string, any>>({}) /*不对外暴露表单项值*/
 	let watchGroup: any[] = []
-	const mgrUrl = window?.g?.mgrURL ?? null
+	const mgrUrl = window?.g?.mgrURL ?? ''
 	/*selectInput的key没有写死在formData中（因为是动态的）,为了在showingKeys中能捕捉到这类组件的key,特声明此变量*/
 	let selectInputKeys: string[] = []
 	let hiddenKeys: string[] = []
