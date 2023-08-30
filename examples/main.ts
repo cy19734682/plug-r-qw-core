@@ -20,8 +20,8 @@ import './assets/main.css'
 import ViewUIPlus from 'view-ui-plus'
 import './global/iViewTheme.less'
 
-// import plugRQw from "../lib/plugRQw.mjs"
-// import '../lib/plugRQw.min.css'
+/*import plugRQw from '../lib/plugRQw.js'
+import '../lib/plugRQw.min.css'*/
 
 import plugRQw from '../src'
 import '../src/style/index.less'

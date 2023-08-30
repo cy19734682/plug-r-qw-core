@@ -1,7 +1,6 @@
-<!--
-&lt;!&ndash;FormR 表单组件，支持formData属性定义结构，formRules定义规则，submit方法提交收集到的数据
+<!--FormR 表单组件，支持formData属性定义结构，formRules定义规则，submit方法提交收集到的数据
 @created 2023.08.18
-@author Ricky email:zhangqingcq@foxmail.com&ndash;&gt;
+@author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
 	import { cloneDeep, remove, isEmpty, findIndex, functions } from 'lodash-es'
@@ -1028,7 +1027,7 @@
 							for (let l of root.collectLabel) {
 								if (l.key && l.valKey) {
 									const collectTempKey = findTempKey(l.key)
-									let t = null
+									let t: any = null
 
 									if (Array.isArray(targetOption)) {
 										t = targetOption.map((e) => e[l.valKey])
@@ -1055,7 +1054,7 @@
 						} else if (typeof root.collectLabel === 'object') {
 							if (root.collectLabel.key && root.collectLabel.valKey) {
 								const collectTempKey = findTempKey(root.collectLabel.key)
-								let t = null
+								let t: any = null
 								if (Array.isArray(targetOption)) {
 									t = targetOption.map(
 										(e) => root.collectLabel && !Array.isArray(root.collectLabel) && e[root.collectLabel.valKey]
@@ -1154,7 +1153,7 @@
 		}
 		if (root.multiple || root.type === 'checkboxGroup') {
 			if (after) {
-				let t = []
+				let t: any[] = []
 				for (let e of root.options) {
 					if (after.indexOf(e.val) !== -1) {
 						t.push(e)
@@ -1226,7 +1225,7 @@
 	function getValidateKeys(d: Record<string, any>) {
 		let t = cloneDeep(d)
 		if (formTeam.value) {
-			let r = []
+			let r: any[] = []
 			for (let e of props.formData) {
 				r.push(...getValidateItems(e as FormItem[], t))
 			}
@@ -1269,12 +1268,12 @@
 		updateTempKeys(data, notClearOthers)
 		/*先更新tempKeys再更新valGroup 避免更新同key的tempKeys元素清空valGroup元素*/
 		for (let k in valGroup.value) {
-			if (valGroup.value.hasOwnProperty(k) && data[k] !== undefined && data[k] !== '&#45;&#45;') {
+			if (valGroup.value.hasOwnProperty(k) && data[k] !== undefined && data[k] !== '--') {
 				if (Array.isArray(data[k])) {
-					data[k] = data[k].filter((e: any) => e !== '&#45;&#45;')
+					data[k] = data[k].filter((e: any) => e !== '--')
 				} else if (myTypeof(data[k]) === 'Object') {
 					for (let n in data[k]) {
-						if (data[k].hasOwnProperty(n) && data[k][n] === '&#45;&#45;') {
+						if (data[k].hasOwnProperty(n) && data[k][n] === '--') {
 							data[k][n] = null
 						}
 					}
@@ -1354,7 +1353,7 @@
 					case 'input':
 					case 'inputNumber':
 					case 'textarea':
-						if ((d[root.key] && d[root.key] !== '&#45;&#45;') || d[root.key] === 0) {
+						if ((d[root.key] && d[root.key] !== '--') || d[root.key] === 0) {
 							tempKeys.value[root.tempKey] = d[root.key]
 						} else {
 							tempKeys.value[root.tempKey] = null
@@ -1363,7 +1362,7 @@
 					case 'select':
 					case 'radioGroup':
 					case 'checkboxGroup':
-						if ((d[root.key] && d[root.key] !== '&#45;&#45;') || d[root.key] === 0 || d[root.key] === false) {
+						if ((d[root.key] && d[root.key] !== '--') || d[root.key] === 0 || d[root.key] === false) {
 							if (root.multiple || root.type === 'checkboxGroup') {
 								tempKeys.value[root.tempKey] = [...d[root.key]]
 							} else if (root.booleanVal) {
@@ -1389,7 +1388,7 @@
 							root.dateType === 'month' ||
 							root.dateType === 'time'
 						) {
-							tempKeys.value[root.tempKey] = d[root.key] && d[root.key] !== '&#45;&#45;' ? d[root.key] : null
+							tempKeys.value[root.tempKey] = d[root.key] && d[root.key] !== '--' ? d[root.key] : null
 						} else if (
 							root.dateType === 'daterange' ||
 							root.dateType === 'datetimerange' ||
@@ -1400,9 +1399,9 @@
 							}
 							tempKeys.value[root.tempKey] =
 								(d[root.key] &&
-									d[root.key] !== '&#45;&#45;' &&
+									d[root.key] !== '--' &&
 									d[root.key2] &&
-									d[root.key2] !== '&#45;&#45;' && [d[root.key], d[root.key2]]) ||
+									d[root.key2] !== '--' && [d[root.key], d[root.key2]]) ||
 								[]
 						}
 						break
@@ -1643,7 +1642,7 @@
 		class="formXN"
 		:key="formReRenderKey"
 	>
-		&lt;!&ndash;解决form只有一个input时enter触发页面刷新的问题&ndash;&gt;
+		<!--解决form只有一个input时enter触发页面刷新的问题-->
 		<FormItem style="display: none"><input type="text" /></FormItem>
 		<div v-for="(box, n) of formDataT" v-if="formTeam" :class="[teamClass, 'formTeamBox' + n]" :key="'formTeamBox' + n">
 			<template v-for="(item, i) of box" :key="'formItem' + i">
@@ -1667,8 +1666,8 @@
 					@al-name-change="alNameChange"
 					@async-label-change="asyncLabelChange"
 				>
-					<template :slot="s.slotName" v-for="s in getSlotFormData(box)" slot-scope="{ valGroup }">
-						<slot :name="s.slotName" :val-group="valGroup" />
+					<template #[s.slotName]="slotProps" v-for="s in getSlotFormData(box)">
+						<slot :name="s.slotName" :val-group="slotProps.valGroup" />
 					</template>
 				</item-r>
 			</template>
@@ -1694,12 +1693,12 @@
 				@al-name-change="alNameChange"
 				@async-label-change="asyncLabelChange"
 			>
-				<template :slot="s.slotName" v-for="s in getSlotFormData(formData)" slot-scope="{ valGroup }">
-					<slot :name="s.slotName" :val-group="valGroup" />
+				<template #[s.slotName]="slotProps" v-for="s in getSlotFormData(formData)">
+					<slot :name="s.slotName" :val-group="slotProps.valGroup" />
 				</template>
 			</item-r>
 		</template>
-		&lt;!&ndash;长提交按钮&ndash;&gt;
+		<!--长提交按钮-->
 		<FormItem v-if="props.showLongOkBt">
 			<Button
 				@click="submit"
@@ -1711,7 +1710,7 @@
 			</Button>
 		</FormItem>
 		<div class="inlineBlock">
-			&lt;!&ndash;短提交按钮（查询）&ndash;&gt;
+			<!--短提交按钮（查询）-->
 			<Button
 				v-if="props.showInlineOkBt"
 				type="primary"
@@ -1721,11 +1720,10 @@
 				:disabled="props.disabled"
 				>{{ props.inlineOkBtTxt || t('r.confirm') }}
 			</Button>
-			&lt;!&ndash;取消按钮（清除）&ndash;&gt;
+			<!--取消按钮（清除）-->
 			<Button v-if="props.showInlineClearBt" @click="resetForm" :class="{ inlineFormBtXN: props.inline }" type="dashed"
 				>{{ props.inlineClearBtTxt || t('r.clear') }}
 			</Button>
 		</div>
 	</Form>
 </template>
--->

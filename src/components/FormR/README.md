@@ -319,7 +319,7 @@ name为Ricky或Tom时显示该表单项；如果有多个条件，用数组装�
 * <a name='toolbarConfig'>toolbarConfig</a> 对象，工具栏配置，参考[wangEditor5 工具栏配置](https://www.wangeditor.com/v5/toolbar-config.html)
 
 * <a name='type'>type</a> 字符串，表单项类型，支持：txt、input、inputNumber、select、selectInput、alCascader、asyncCascader、radio、
-radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthRange、editor、editorPro、inputMap、custom
+radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthRange、editorPro、inputMap、custom
 
 * <a name='url'>url</a> 字符串，数据接口地址，表单项特殊配置，如远程数据级联，文件上传时为上传文件的服务器接口地址，具体见后面的'type说明'
 
@@ -335,8 +335,6 @@ radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthR
 * <a name='uploadImgMaxLength'>uploadImgMaxLength</a> 数字，限制一次最多能传几张图片，editor组件独有属性，默认：10
 
 * <a name='uploadImgShowBase64'>uploadImgShowBase64</a> 布尔对象，是否使用base64作为本地图片上传保存方式，editor组件独有属性，默认：true
-
-* <a name='uploadImgServe'>uploadImgServe</a> 对象，具体参考[editor](../editor/README.md)组件的README.md文档，editor组件独有属性
 
 ### formData元素字段详细说明
 
@@ -895,33 +893,6 @@ radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthR
 * [showOr](#showOr) 显示条件间关系，设置true时为或运算，默认：`false`
 
 * [info](#info) 表单项的提示文字，位于表单项下面
-
-* [title](#title) 表单项的标题，位于表单项左上方
-
-* [class](#class) 单个表单项的自定义样式类名
-
-#### editor 富文本编辑器
-* [label](#label) 标签
-
-* [key](#key) 表单项收集的数据在提交时所在字段
-
-* [defaultVal](#defaultVal) 默认值
-
-* [disabled](#disabled) 禁用该表单项，非响应式，可用updateFormDataT方法更改，默认：`false`
-
-* [show](#show) 显示条件
-
-* [showOr](#showOr) 显示条件间关系，设置true时为或运算，默认：`false`
-
-* [info](#info) 表单项的提示文字，位于表单项下面
-
-* [uploadImgMaxSize](#uploadImgMaxSize) 数字，限制上传图片大小，默认：102400(100k)
-
-* [uploadImgMaxLength](#uploadImgMaxLength) 数字，限制一次最多能传几张图片，默认：10
-
-* [uploadImgShowBase64](#uploadImgShowBase64) 布尔对象，是否使用base64作为本地图片上传保存方式，默认：true
-
-* [uploadImgServe](#uploadImgServe) 对象，具体参考[editor](../editor/README.md)组件的README.md文档
 
 * [title](#title) 表单项的标题，位于表单项左上方
 

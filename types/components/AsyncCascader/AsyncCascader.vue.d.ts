@@ -47,6 +47,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     "onOn-label-change"?: ((...args: any[]) => any) | undefined;
 }, {
     disabled: boolean;
+    filterable: boolean;
     placeholder: string;
     url: string;
     optionVal: string;
@@ -54,7 +55,6 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     separator: string;
     onlyLastVal: boolean;
     onlyLastLabel: boolean;
-    filterable: boolean;
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

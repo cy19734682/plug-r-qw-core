@@ -24,7 +24,12 @@ declare module 'vue' {
 		type?: string
 		model?: Record<string, any>
 		clearable?: boolean
+		filterable?: boolean
 		icon?: string
+		autosize?: Record<string, any>
+		password?: boolean
+		showWordLimit?: boolean
+		placeholder?: string
 	}
 }
 

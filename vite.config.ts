@@ -97,7 +97,8 @@ export default defineConfig({
 		preprocessorOptions: {
 			less: {
 				javascriptEnabled: true,
-				rewriteUrls: 'all'
+				rewriteUrls: 'all',
+				math: 'always'
 			}
 		}
 	},
@@ -120,7 +121,7 @@ export default defineConfig({
 				'deepmerge',
 				'echarts',
 				'js-cookie',
-				'lodash',
+				'lodash-es',
 				'moment',
 				'pinia',
 				'sweetalert',
@@ -142,7 +143,6 @@ export default defineConfig({
 					'view-ui-plus': 'ViewUIPlus',
 					deepmerge: 'deepmerge',
 					'js-cookie': 'Cookies',
-					lodash: '_',
 					sweetalert: 'swal',
 					'vue-amap': 'VueAMap',
 					'vue-i18n': 'VueI18n',

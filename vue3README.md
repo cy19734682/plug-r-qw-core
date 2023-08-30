@@ -10,6 +10,11 @@
 
 ## vue2: [@zhangqingcq/plug-r-qw@1.x.x](https://github.com/RickyHeaven/plug-r-qw.git)
 
+* 你的项目使用`npm`作为包管理器时，plug-r-qw库使用了的依赖不用再次在你的项目安装；使用`pnpm`作为包管理器时，需要执行下面命令安装第三方依赖，如果仍提示缺少依赖，缺什么就安装什么。
+```
+  pnpm add lodash-es ar-cascader @wangeditor/editor @wangeditor/editor-for-vue moment
+```
+
 ### 按需引入
 * 该库支持按需引入，以实现tree-shaking
 ```

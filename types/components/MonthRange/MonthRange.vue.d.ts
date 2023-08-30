@@ -1,6 +1,6 @@
 declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     modelValue?: string[] | undefined;
-    placement?: "top" | "top-start" | "top-end" | "bottom-start" | "right-end" | " bottom" | " bottom-end" | " left " | "left-start " | "left-end " | "right " | "right-start " | undefined;
+    placement?: "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end" | undefined;
     placeholder?: string | undefined;
     options1?: Record<string, any> | undefined;
     options2?: Record<string, any> | undefined;
@@ -11,7 +11,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     disabled: boolean;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("on-change" | "update:modelValue")[], "on-change" | "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     modelValue?: string[] | undefined;
-    placement?: "top" | "top-start" | "top-end" | "bottom-start" | "right-end" | " bottom" | " bottom-end" | " left " | "left-start " | "left-end " | "right " | "right-start " | undefined;
+    placement?: "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end" | undefined;
     placeholder?: string | undefined;
     options1?: Record<string, any> | undefined;
     options2?: Record<string, any> | undefined;
@@ -25,7 +25,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
     disabled: boolean;
-    placement: "top" | "top-start" | "top-end" | "bottom-start" | "right-end" | " bottom" | " bottom-end" | " left " | "left-start " | "left-end " | "right " | "right-start ";
+    placement: "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end";
     modelValue: string[];
 }, {}>;
 export default _default;

@@ -32,8 +32,8 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }, {
     disabled: boolean;
     transfer: boolean;
-    separator: string;
     filterable: boolean;
+    separator: string;
     level: 0 | 1 | 2 | "0" | "1" | "2";
 }, {}>;
 export default _default;
