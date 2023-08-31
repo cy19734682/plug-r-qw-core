@@ -4,12 +4,19 @@
 
 <script lang="ts" setup>
 	import t from '../../locale/i18nSFC'
+	import Proxy from '../../methods/proxy'
 
 	const props = withDefaults(
-		defineProps<{ name: string; icon?: string; size?: number; disabled?: boolean; has?: string }>(),
+		defineProps<{
+			name: string
+			icon?: string
+			size?: number
+			disabled?: boolean
+			has?: string
+		}>(),
 		{
 			icon: 'md-download',
-			size: 17,
+			size: () => Proxy().iconTxtBtnIconSize,
 			disabled: false,
 			has: ''
 		}

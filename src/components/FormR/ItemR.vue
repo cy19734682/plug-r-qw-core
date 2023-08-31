@@ -123,13 +123,13 @@
 			@on-blur="itemChange($event, props.item)"
 			:clearable="props.item.clearable !== false"
 		>
-			<template v-if="props.item.slotPosition && props.item.slotName" :slot="props.item.slotPosition">
+			<template v-if="props.item.slotPosition && props.item.slotName" #[props.item.slotPosition]>
 				<slot :name="props.item.slotName" />
 			</template>
-			<template v-if="props.item.slotPosition !== 'prepend' && props.item.prepend" slot="prepend">
+			<template v-if="props.item.slotPosition !== 'prepend' && props.item.prepend" #prepend>
 				<span>{{ props.item.prepend }}</span>
 			</template>
-			<template v-if="props.item.slotPosition !== 'append' && props.item.append" slot="append">
+			<template v-if="props.item.slotPosition !== 'append' && props.item.append" #append>
 				<span>{{ props.item.append }}</span>
 			</template>
 		</Input>

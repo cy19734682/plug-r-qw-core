@@ -1,5 +1,5 @@
 <!--FormGroup 表单群组件，表单相关用法参考,组件自带确定和取消按钮
-@created 2023.08.18
+@created 2023.08.30
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
@@ -7,6 +7,7 @@
 	import t from '../../locale/i18nSFC'
 	import { setTimeout } from '../../methods/timer'
 	import type { FormItem } from '../../public'
+	import Proxy from '../../methods/proxy'
 
 	const emit = defineEmits(['on-cancel'])
 	const props = withDefaults(
@@ -25,7 +26,7 @@
 		{
 			formData: () => [],
 			with: '100%',
-			labelWidth: 160,
+			labelWidth: () => Proxy().formGroupLabelWidth,
 			contentWidth: '70%',
 			itemWidth: 200,
 			showOkBt: true,
@@ -55,7 +56,7 @@
 	function resetForm() {
 		/*重置表单，会清空表单值并刷新表单dom，异步方法，公开*/
 		return new Promise((resolve) => {
-			formRRef.value.resetForm().then((r: any) => {
+			formRRef.value.resetForm?.().then((r: any) => {
 				resolve(r)
 			})
 		})
@@ -64,7 +65,7 @@
 	function refreshFormDom() {
 		/*刷新表单dom，公开*/
 		return new Promise((resolve) => {
-			formRRef.value.refreshFormDom().then((r: any) => {
+			formRRef.value.refreshFormDom?.().then((r: any) => {
 				resolve(r)
 			})
 		})
@@ -73,40 +74,35 @@
 	function reRenderForm() {
 		/*重新渲染表单，异步方法（公开）*/
 		return new Promise((resolve) => {
-			formRRef.value.reRenderForm().then((r: any) => {
+			formRRef.value.reRenderForm?.().then((r: any) => {
 				resolve(r)
 			})
 		})
 	}
 
-	function clearForm() {
-		/*私有，可用resetForm代替*/
-		formRRef.value.clearForm?.()
-	}
-
-	function setItemToValGroup(data: any, notClearOthers: boolean) {
+	function setItemToValGroup(data: Record<string, any>, notClearOthers: boolean) {
 		/*设置表单项的值（可添加新字段，例如添加隐藏字段，需要提交这个值，但页面不展示），公开*/
-		formRRef.value.setItemToValGroup(data, notClearOthers)
+		formRRef.value.setItemToValGroup?.(data, notClearOthers)
 	}
 
-	function updateValGroup(data: any, notClearOthers: boolean) {
+	function updateValGroup(data: Record<string, any>, notClearOthers: boolean) {
 		/*更新表单项的值（只能更新已有字段），公开*/
-		formRRef.value.updateValGroup(data, notClearOthers)
+		formRRef.value.updateValGroup?.(data, notClearOthers)
 	}
 
-	function updateFormDataT(data: any) {
+	function updateFormDataT(data: Record<string, any> | Record<string, any>[]) {
 		/*更新表单结构，例如设置或取消禁用，公开*/
-		formRRef.value.updateFormDataT(data)
+		formRRef.value.updateFormDataT?.(data)
 	}
 
 	function validate() {
 		/*验证表单，公开*/
-		formRRef.value.validate()
+		formRRef.value.validate?.()
 	}
 
 	function reValidate(prop: any) {
 		/*手动验证表单项（公开）*/
-		formRRef.value.reValidate(prop)
+		formRRef.value.reValidate?.(prop)
 	}
 
 	function changeLoading(val: any) {
@@ -115,12 +111,12 @@
 			return
 		}
 		showLoading.value = Boolean(val)
-		formRRef.value.changeLoading(showLoading.value)
+		formRRef.value.changeLoading?.(showLoading.value)
 	}
 
 	function getValGroup() {
 		/*获取用户已填数据，公开*/
-		return formRRef.value.getValGroup()
+		return formRRef.value.getValGroup?.()
 	}
 
 	function onSubmit() {
@@ -130,7 +126,7 @@
 
 	function submit() {
 		/*触发提交事件，公开*/
-		formRRef.value.submit()
+		formRRef.value.submit?.()
 	}
 
 	function close() {
@@ -138,9 +134,24 @@
 		emit('on-cancel')
 		setTimeout(() => {
 			showLoading.value = false
-			formRRef.value.changeLoading(false)
+			formRRef.value.changeLoading?.(false)
 		}, 1000)
 	}
+
+	defineExpose({
+		resetForm,
+		refreshFormDom,
+		reRenderForm,
+		setItemToValGroup,
+		updateValGroup,
+		updateFormDataT,
+		validate,
+		reValidate,
+		changeLoading,
+		getValGroup,
+		submit,
+		close
+	})
 </script>
 
 <template>

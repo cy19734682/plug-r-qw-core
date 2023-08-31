@@ -21,7 +21,7 @@ import ViewUIPlus from 'view-ui-plus'
 import './global/iViewTheme.less'
 
 /*import plugRQw from '../lib/plugRQw.js'
-import '../lib/plugRQw.min.css'*/
+ import '../lib/plugRQw.min.css'*/
 
 import plugRQw from '../src'
 import '../src/style/index.less'
@@ -39,7 +39,8 @@ const i18n = createI18n({
 	}
 })
 
-createApp(App)
+let app = createApp(App)
+app
 	.use(createPinia())
 	.use(router)
 	.use(i18n)
@@ -50,3 +51,6 @@ createApp(App)
 		i18n
 	})
 	.mount('#app')
+
+//全局UI变量定制示例
+app.config.globalProperties.formGroupLabelWidth = 150

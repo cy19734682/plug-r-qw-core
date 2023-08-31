@@ -117,6 +117,11 @@ const install = function (app: App, options: plugROption = {}) {
 			})
 		})
 	}
+
+	app.config.globalProperties.searchFormLabelWidth = 84
+	app.config.globalProperties.formModalLabelWidth = 140
+	app.config.globalProperties.formGroupLabelWidth = 160
+	app.config.globalProperties.iconTxtBtnIconSize = 17
 }
 
 const locale = localeFile.use

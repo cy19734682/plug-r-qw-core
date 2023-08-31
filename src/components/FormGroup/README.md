@@ -1,8 +1,8 @@
 ## FormGroup 表单群组件
-表单群组件，表单相关用法参考[formR](../FormR/README.md)，组件自带确定和取消按钮，常用于新增、修改页面
+表单群组件，表单相关用法参考[FormR](../FormR/README.md)，组件自带确定和取消按钮，常用于新增、修改页面
 
 ### 属性
-* formData 数组，组件内表单数据结构，参考[formR](../FormR/README.md#属性)
+* formData 数组，组件内表单数据结构，参考[FormR](../FormR/README.md#属性)
 
 * formRules 对象，组件内表单验证规则，参考formR
 
@@ -54,17 +54,17 @@
 
 * close 主动触发取消按钮点击事件，一般用不上
 
-* resetForm 重置表单，该方法会清空表单值并刷新dom，异步方法，表单项默认值不会被清除，详见[formR](../FormR/README.md#方法)，注意并不是重新渲染表单，重新渲染方法为 reRenderForm
+* resetForm 重置表单，该方法会清空表单值并刷新dom，异步方法，表单项默认值不会被清除，详见[FormR](../FormR/README.md#方法)，注意并不是重新渲染表单，重新渲染方法为 reRenderForm
 
-* refreshFormDom 刷新dom，异步方法，详见[formR](../FormR/README.md#方法)
+* refreshFormDom 刷新dom，异步方法，详见[FormR](../FormR/README.md#方法)
 
-* reRenderForm 重新渲染表单，异步方法，详见[formR](../FormR/README.md#方法)
+* reRenderForm 重新渲染表单，异步方法，详见[FormR](../FormR/README.md#方法)
 
-* setItemToValGroup 设置组件内表单项的值，可以添加新字段，valGroup为formR组件私有属性，不可直接操作，故有该方法，详见[formR](../FormR/README.md#方法)
+* setItemToValGroup 设置组件内表单项的值，可以添加新字段，valGroup为formR组件私有属性，不可直接操作，故有该方法，详见[FormR](../FormR/README.md#方法)
 
-* updateValGroup 更新组件内表单项的值，只能更新已有字段，valGroup为formR组件私有属性，不可直接操作，故有该方法，详见[formR](../FormR/README.md#方法)
+* updateValGroup 更新组件内表单项的值，只能更新已有字段，valGroup为formR组件私有属性，不可直接操作，故有该方法，详见[FormR](../FormR/README.md#方法)
 
-* updateFormDataT 更新组件内表单结构，例如设置或取消禁用，formDataT为formR组件私有属性，不可直接操作，故有该方法，详见[formR](../FormR/README.md#方法)
+* updateFormDataT 更新组件内表单结构，例如设置或取消禁用，formDataT为formR组件私有属性，不可直接操作，故有该方法，详见[FormR](../FormR/README.md#方法)
 
 * reValidate 手动验证表单项
 

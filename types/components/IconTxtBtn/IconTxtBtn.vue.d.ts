@@ -6,7 +6,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     has?: string | undefined;
 }>, {
     icon: string;
-    size: number;
+    size: () => any;
     disabled: boolean;
     has: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "click"[], "click", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
@@ -17,7 +17,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     has?: string | undefined;
 }>, {
     icon: string;
-    size: number;
+    size: () => any;
     disabled: boolean;
     has: string;
 }>>> & {

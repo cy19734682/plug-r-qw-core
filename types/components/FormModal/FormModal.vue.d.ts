@@ -10,26 +10,24 @@ declare function reValidate(prop: any): void;
 declare function changeLoading(val: any): void;
 declare function getValGroup(): any;
 declare function submit(): void;
+declare function open(): void;
 declare function close(): void;
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    title?: string | undefined;
     formData?: (FormItem | FormItem[])[] | undefined;
-    with?: string | undefined;
+    width?: string | number | undefined;
     labelWidth?: number | undefined;
-    contentWidth?: string | undefined;
-    itemWidth?: number | undefined;
-    showOkBt?: boolean | undefined;
-    showCancelBt?: boolean | undefined;
     okBtTxt?: string | undefined;
     cancelBtTxt?: string | undefined;
+    hideCancelBt?: boolean | undefined;
+    hideFooter?: boolean | undefined;
     btnLoading?: boolean | undefined;
 }>, {
     formData: () => never[];
-    with: string;
+    width: number;
     labelWidth: () => any;
-    contentWidth: string;
-    itemWidth: number;
-    showOkBt: boolean;
-    showCancelBt: boolean;
+    hideCancelBt: boolean;
+    hideFooter: boolean;
     btnLoading: boolean;
 }>, {
     resetForm: typeof resetForm;
@@ -43,38 +41,35 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     changeLoading: typeof changeLoading;
     getValGroup: typeof getValGroup;
     submit: typeof submit;
+    open: typeof open;
     close: typeof close;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "on-cancel"[], "on-cancel", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("on-open" | "on-close")[], "on-open" | "on-close", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+    title?: string | undefined;
     formData?: (FormItem | FormItem[])[] | undefined;
-    with?: string | undefined;
+    width?: string | number | undefined;
     labelWidth?: number | undefined;
-    contentWidth?: string | undefined;
-    itemWidth?: number | undefined;
-    showOkBt?: boolean | undefined;
-    showCancelBt?: boolean | undefined;
     okBtTxt?: string | undefined;
     cancelBtTxt?: string | undefined;
+    hideCancelBt?: boolean | undefined;
+    hideFooter?: boolean | undefined;
     btnLoading?: boolean | undefined;
 }>, {
     formData: () => never[];
-    with: string;
+    width: number;
     labelWidth: () => any;
-    contentWidth: string;
-    itemWidth: number;
-    showOkBt: boolean;
-    showCancelBt: boolean;
+    hideCancelBt: boolean;
+    hideFooter: boolean;
     btnLoading: boolean;
 }>>> & {
-    "onOn-cancel"?: ((...args: any[]) => any) | undefined;
+    "onOn-open"?: ((...args: any[]) => any) | undefined;
+    "onOn-close"?: ((...args: any[]) => any) | undefined;
 }, {
+    width: string | number;
     labelWidth: number;
-    itemWidth: number;
     formData: (FormItem | FormItem[])[];
-    contentWidth: string;
     btnLoading: boolean;
-    with: string;
-    showOkBt: boolean;
-    showCancelBt: boolean;
+    hideCancelBt: boolean;
+    hideFooter: boolean;
 }, {}>, Partial<Record<any, (_: {
     valGroup: Record<string, any>;
 }) => any>>>;

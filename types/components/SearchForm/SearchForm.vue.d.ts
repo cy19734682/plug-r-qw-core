@@ -10,27 +10,18 @@ declare function reValidate(prop: any): void;
 declare function changeLoading(val: any): void;
 declare function getValGroup(): any;
 declare function submit(): void;
-declare function close(): void;
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     formData?: (FormItem | FormItem[])[] | undefined;
-    with?: string | undefined;
     labelWidth?: number | undefined;
-    contentWidth?: string | undefined;
     itemWidth?: number | undefined;
-    showOkBt?: boolean | undefined;
-    showCancelBt?: boolean | undefined;
-    okBtTxt?: string | undefined;
-    cancelBtTxt?: string | undefined;
-    btnLoading?: boolean | undefined;
+    showInlineOkBt?: boolean | undefined;
+    showInlineClearBt?: boolean | undefined;
 }>, {
     formData: () => never[];
-    with: string;
     labelWidth: () => any;
-    contentWidth: string;
     itemWidth: number;
-    showOkBt: boolean;
-    showCancelBt: boolean;
-    btnLoading: boolean;
+    showInlineOkBt: boolean;
+    showInlineClearBt: boolean;
 }>, {
     resetForm: typeof resetForm;
     refreshFormDom: typeof refreshFormDom;
@@ -43,38 +34,26 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     changeLoading: typeof changeLoading;
     getValGroup: typeof getValGroup;
     submit: typeof submit;
-    close: typeof close;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "on-cancel"[], "on-cancel", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "on-search"[], "on-search", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     formData?: (FormItem | FormItem[])[] | undefined;
-    with?: string | undefined;
     labelWidth?: number | undefined;
-    contentWidth?: string | undefined;
     itemWidth?: number | undefined;
-    showOkBt?: boolean | undefined;
-    showCancelBt?: boolean | undefined;
-    okBtTxt?: string | undefined;
-    cancelBtTxt?: string | undefined;
-    btnLoading?: boolean | undefined;
+    showInlineOkBt?: boolean | undefined;
+    showInlineClearBt?: boolean | undefined;
 }>, {
     formData: () => never[];
-    with: string;
     labelWidth: () => any;
-    contentWidth: string;
     itemWidth: number;
-    showOkBt: boolean;
-    showCancelBt: boolean;
-    btnLoading: boolean;
+    showInlineOkBt: boolean;
+    showInlineClearBt: boolean;
 }>>> & {
-    "onOn-cancel"?: ((...args: any[]) => any) | undefined;
+    "onOn-search"?: ((...args: any[]) => any) | undefined;
 }, {
     labelWidth: number;
     itemWidth: number;
     formData: (FormItem | FormItem[])[];
-    contentWidth: string;
-    btnLoading: boolean;
-    with: string;
-    showOkBt: boolean;
-    showCancelBt: boolean;
+    showInlineOkBt: boolean;
+    showInlineClearBt: boolean;
 }, {}>, Partial<Record<any, (_: {
     valGroup: Record<string, any>;
 }) => any>>>;
