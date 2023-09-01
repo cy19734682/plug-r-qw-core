@@ -425,7 +425,7 @@ export function setValByOption({
 	condition: (item: any) => boolean
 	key: string
 	val: any
-	childKey: string
+	childKey?: string
 }) {
 	if (
 		myTypeof(group) !== 'Array' ||

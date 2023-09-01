@@ -1,4 +1,4 @@
-<!--FormGroup 表单群组件，表单相关用法参考,组件自带确定和取消按钮
+<!--FormGroup 表单群组件，表单相关用法参考FormR,组件自带确定和取消按钮
 @created 2023.08.30
 @author Ricky email:zhangqingcq@foxmail.com-->
 

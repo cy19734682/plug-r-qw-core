@@ -84,7 +84,7 @@ export declare function setValByOption({ group, condition, key, val, childKey }:
     condition: (item: any) => boolean;
     key: string;
     val: any;
-    childKey: string;
+    childKey?: string;
 }): false | undefined;
 /**
  * 是否有该权限，用于权限管理

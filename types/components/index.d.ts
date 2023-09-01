@@ -21,3 +21,4 @@ export { default as FormR } from './FormR/FormR.vue';
 export { default as FormGroup } from './FormGroup/FormGroup.vue';
 export { default as SearchForm } from './SearchForm/SearchForm.vue';
 export { default as FormModal } from './FormModal/FormModal.vue';
+export { default as CheckboxTree } from './CheckboxTree/CheckboxTree.vue';

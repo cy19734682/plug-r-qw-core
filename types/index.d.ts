@@ -93,7 +93,7 @@ declare const _default: {
         condition: (item: any) => boolean;
         key: string;
         val: any;
-        childKey: string;
+        childKey?: string | undefined;
     }): false | undefined;
     hasPermission(value: string): boolean;
     isNaN(v: any): boolean;

@@ -1,5 +1,6 @@
-<!--created 2019.06.25-->
-<!--author ricky email:zhangqingcq@foxmail.com-->
+<!--FormModal 表单和弹框的组合组件，表单相关用法参考FormR，弹框支持调用方法开关，通过属性配置等，常被当作新增、编辑弹框使用
+@created 2023.08.31
+@author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
 	import t from '../../locale/i18nSFC'
