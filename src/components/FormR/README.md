@@ -977,11 +977,11 @@ radioGroup、checkbox、checkboxGroup、textarea、upload、date、time、monthR
 
 * 注意：自定义组件限制非常少，理论上想放什么进来都行，需遵循几点，具名插槽模板放在formR组件标签内，将valGroup（表单组件收集值的对象）传进模板，如：
 ```
-  <form-r>
+  <FormR>
     <template #myFormItem='{valGroup}'>
       <i-switch v-model='valGroup.myKey'/>
     </template>
-  </form-r>
+  </FormR>
   
   其中myFormItem为slotName的值，myKey为key的值
 ```

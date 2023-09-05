@@ -7,9 +7,13 @@
 - modelValue 数字|字符串|数组，组件的值，推荐用*v-model* 绑定，如：
 
   ```
-    <asyncCascader v-model="value"/>
-
-    value: 2
+    //vue3 SFC script setup
+  
+    const code = ref(2)
+  
+    //vue3 SFC template
+  
+    <AsyncCascader v-model="code"/>
   ```
 
 - url 字符串，拉取数据的接口地址，默认值：`window.g.mgrURL + '/web/v1/umc/orgs'`，如果需要使用自己的url，那么该接口返回值需满足以下格式：
@@ -42,7 +46,7 @@
 - optionFilter Function，自定义待选项筛选逻辑，入参是接口请求回来的待选项数据，返回处理后的待选项，如：
 
   ```
-   <asyncCascader
+   <AsyncCascader
      ...
      :optionFilter="d=> d.filter(e => e.id !== 3)"
      ...

@@ -127,11 +127,9 @@ export default defineConfig({
 				'sweetalert',
 				'view-ui-plus',
 				'vue',
-				'vue-amap',
 				'vue-i18n',
 				'vue-json-viewer',
 				'vue-router',
-				'xss',
 				'china-map-data'
 			],
 			output: {

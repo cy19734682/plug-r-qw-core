@@ -44,7 +44,7 @@ const router = createRouter({
 		},
 		{
 			path: '/messageBox',
-			name: 'MessageBox',
+			name: 'messageBox',
 			component: () => import('@/views/MessageBoxEX.vue'),
 			meta: {
 				desc: '对话框'
@@ -56,6 +56,14 @@ const router = createRouter({
 			component: () => import('@/views/Page404EX.vue'),
 			meta: {
 				desc: '404页面'
+			}
+		},
+		{
+			path: '/inputMap',
+			name: 'InputMap',
+			component: () => import('@/views/InputMapEX.vue'),
+			meta: {
+				desc: '地点选择'
 			}
 		},
 		{

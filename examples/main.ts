@@ -28,6 +28,10 @@ import '../src/style/index.less'
 
 import 'github-markdown-css/github-markdown-light.css'
 
+window._AMapSecurityConfig = {
+	securityJsCode: '1e77836c15c172e8cda4249f26d64326'
+}
+
 const i18n = createI18n({
 	allowComposition: true,
 	globalInjection: true,
@@ -48,7 +52,11 @@ app
 	.use(plugRQw, {
 		useStore,
 		router,
-		i18n
+		i18n,
+		amap: {
+			securityJsCode: '1e77836c15c172e8cda4249f26d64326',
+			key: 'd1e34acab7c1eae8614e0a12bfafc99d'
+		}
 	})
 	.mount('#app')
 

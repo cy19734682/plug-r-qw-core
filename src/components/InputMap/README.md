@@ -7,15 +7,19 @@
 - modelValue 对象，组件的值，推荐用*v-model* 绑定，如：
 
   ```
-    <inputMap v-model="value"/>
-
-    let value = {
+    //vue3 SFC script setup
+  
+    const position = ref({
       name: '光电园(地铁站)',
       address: "6号线",
       district: "重庆市渝北区",
       lng: 106.499401,
       lat: 29.616077
-    }
+    })
+  
+    //vue3 SFC template
+  
+    <InputMap v-model="position"/>
   ```
 
 - width 字符串/正整数，组件宽度，默认值：`100%`

@@ -10,11 +10,232 @@
 
 ## vue2: [@zhangqingcq/plug-r-qw@1.x.x](https://github.com/RickyHeaven/plug-r-qw.git)
 
-### vue3 version README file is coming soon
+## vue3 version README file is start from here:
 
 ##### vue3版本目前还在努力开发中，现在已经完成了所有公共方法的开发，还有部分UI组件的开发，已完成的部分可以正常使用了，具体哪些组件可以使用可以查看vue3版本代码仓库
 
-## vue2 version README file is here:
+* [组件](https://github.com/RickyHeaven/plug-r-qw-core/tree/master/src/components)
+  和[方法](https://github.com/RickyHeaven/plug-r-qw-core/tree/master/src/methods)
+  都有各自详细的markdown格式说明文档，可直接在[GitHub](https://github.com/RickyHeaven/plug-r-qw-core.git)
+  查看，也可将项目拉到本地直接查看，或者将示例项目运行起来在示例页面查看。
+
+### 推荐环境
+
+* node: `>= 18.16.0`
+* npm: `>= 9.5.1`
+* pnpm: `>= 8.6.0`
+
+### 用法
+
+1. `npm i @zhangqingcq/plug-r-qw@vue3` or `pnpm add @zhangqingcq/plug-r-qw@vue3`
+
+2. 在main.js中添加：
+    ```js
+     // main.js or main.ts
+   
+     import { createApp } from 'vue'
+     import { createPinia } from 'pinia'
+     import router from './router'
+     import App from './App.vue'
+     import ViewUIPlus from 'view-ui-plus'
+     import 'view-ui-plus/dist/styles/viewuiplus.css'
+     import plugRQw from '@zhangqingcq/plug-r-qw'
+     import '@zhangqingcq/plug-r-qw/lib/plugRQw.min.css'
+     import { useStore } from './stores/main'
+     
+     createApp(App).use(createPinia()).use(router).use(ViewUIPlus).use(plugRQw,{useStore,router}).mount('#app')
+    ```
+   国际化版本：
+    ```js
+     // main.js or main.ts
+   
+     import { createApp } from 'vue'
+     import { createPinia } from 'pinia'
+     import router from './router'
+     import App from './App.vue'
+     import { createI18n } from 'vue-i18n'
+     import en from '@/locale/en'
+     import zh from '@/locale/zh'
+     import ViewUIPlus from 'view-ui-plus'
+     import 'view-ui-plus/dist/styles/viewuiplus.css'
+     import enI from 'view-ui-plus/dist/locale/en-US'
+     import zhI from 'view-ui-plus/dist/locale/zh-CN'
+     import plugRQw from '@zhangqingcq/plug-r-qw'
+     import '@zhangqingcq/plug-r-qw/lib/plugRQw.min.css'
+     import enR from '@zhangqingcq/plug-r-qw/lib/lang/en-US'
+     import zhR from '@zhangqingcq/plug-r-qw/lib/lang/zh-CN'
+     import { useStore } from './stores/main'
+     
+     const i18n = createI18n({
+	     allowComposition: true,
+	     globalInjection: true,
+	     legacy: false,
+	     locale: 'zh',
+	     messages: {
+		     en: { ...en, ...enI, ...enR },
+		     zh: { ...zh, ...zhI, ...zhR }
+       }
+     })
+     
+     createApp(App).use(createPinia()).use(router).use(ViewUIPlus, { i18n }).use(plugRQw,{useStore,router,i18n}).mount('#app')
+    ```
+
+   > 该库支持按需引入，以支持tree-shaking
+   >```
+   > // main.ts or main.js
+   >  
+   >    app.use(plugRQw,{notRegistryGlobal:true,...})
+   >
+   > // xxx.vue setup
+   >  
+   >    import {$fetch,Hello} from '@zhangqingcq/plug-r-qw
+   >  
+   >    $fetch.get(...).then()
+   >
+   > // xxx.vue template
+   >  
+   >    <Hello/>
+   >  
+   >```
+
+   > 该库支持`TypeScript + Vue`的项目（非TypeScript项目依然支持），用法和`JS + Vue`的项目大同小异，除了下面的不同，其他都相同。
+   >
+   >
+   > 如果用了`lodash-es`等自身没有声明文件的第三方库，需要在`env.d.ts`文件中(或其他在`tsconfig.app.json`的`include`
+   中的声明文件)
+   声明相关模块(如果安装对应第三方声明依赖如`@types/lodash-es`，则不用)，如：
+   >```
+   > // env.d.ts or xxx.d.ts include in tsconfig.app.json
+   >
+   > declare module 'lodash-es'
+   > declare module 'js-cookie'
+   > ```
+
+   > 该库推荐使用`Pinia`（Vuex的升级版）作为状态管理库，如果使用Vuex，就用`Vuex`的`store`替换`Pinia`的`useStore`，用法如下：
+   >```js
+   > // main.ts or main.js
+   >
+   > import store from './store'
+   >
+   > app.use(plugRQw,{store,...})
+   >```
+
+3. 挂载在app.config.globalProperties下（按需引入模式除外）的方法的使用：
+   ```
+   // vue3 SFC 选项式 script methods
+
+   this.xxx()
+   ```
+   ```
+   // vue3 SFC template
+   
+   <Button @click='xxx' >ok</Button>
+   ```
+
+4. 库内所有方法都支持的用法:
+   ```
+   // vue3 SFC 组合式 script setup
+   // or in *.js or *.ts file
+   
+   import plugRQw from '@zhangqingcq/plug-r-qw'
+   
+   plugRQw.xxx()
+   ```
+   ```
+   // vue3 SFC 组合式 script setup
+   // or in *.js or *.ts file
+   
+   import {xxx} from '@zhangqingcq/plug-r-qw'
+   
+   xxx()
+   ```
+
+5. 所有UI组件均被库注册为了全局组件（按需引入模式除外），所以在需要的地方直接使用即可，如：
+   ```
+    <iconTxtBtn icon="ios-trash" name="批量删除"/>
+   ```
+
+### 注意
+
+* 要看例子，需要下载[github上项目](https://github.com/RickyHeaven/plug-r-qw-core.git)，然后`npm i`或`pnpm i`
+  ，安装依赖，然后`npm run dev`或`pnpm dev`
+  把项目跑起来，就可以查看各个组件或方法的示例了。
+
+* 推荐使用[pnpm](https://pnpm.io/zh/motivation)作为你项目的包管理器
+
+* 你的项目使用`npm`作为包管理器时，plug-r-qw库使用了的依赖不用再次在你的项目安装
+
+* 使用`pnpm`作为包管理器时，需要执行下面命令安装第三方依赖，如果仍提示缺少依赖，缺什么就安装什么。
+  ```
+    pnpm add lodash-es ar-cascader @wangeditor/editor @wangeditor/editor-for-vue moment
+  ```
+
+* 部分示例有需要请求接口的组件，所以需要在项目目录下新开一个命令窗口运行：`npm run node-serve`或`pnpm node-serve`
+  将该项目配置好的nodeJs服务器启动起来，那些需要请求nodeJs服务器的组件才有数据
+
+* 因为这个库里面包含UI组件，所以需要在`main.js`引用`lab/plugRQw.min.css`
+  才能正常显示样式，如：`import '@zhangqingcq/plug-r-qw/lib/plugRQw.min.css'`，‘按需引入’模式也需要引入这个样式文件
+
+* 如果需要定制化样式（例如主题色），则需要创建一个`less`文件（如`plugRQwTheme.less`，注意：这种情况下不再需要引入
+  `plugRQw.min.css`）,在该文件中顶部引入`src/style/index.less` (
+  如：`@import "~@zhangqingcq/plug-r-qw/src/style/index.less";`)
+  ,然后在后面写上想要覆盖的变量名，并给出想要的值，如：`@primary: #46be87;`[默认颜色列表](/src/style/common/color.less)，[默认尺寸列表](/src/style/common/size.less)
+  > 注意：
+  >1. 请不要随意改变这些变量，除非你很清楚改变后会带来的影响，他们在整个库中被多次使用。
+  >2. 因为该库是基于view-ui-plus封装的，所以很多样式继承于view-ui-plus，要定制那些样式，直接定制view-ui-plus即可。
+
+* 该库有数个用于控制样式的全局变量，挂在app.config.globalProperties下，直接在main.js or main.ts中给对应变量赋值即可定制对应样式：
+  ```js
+    //main.js or main.ts
+  
+    app.config.globalProperties.searchFormLabelWidth = 100
+  
+    //已支持的全局变量有：searchFormLabelWidth, formModalLabelWidth, formGroupLabelWidth, iconTxtBtnIconSize
+  ```
+
+* 该库主要依赖有`vue、vue-router、pinia、view-ui-plus、sweetalert、lodash-es、axios、echarts、moment、@amap/amap-jsapi-loader、@wangeditor/editor、@wangeditor/editor-for-vue、js-cookie、ar-cascader、vue-json-viewer`
+  ，其中`vue、vue-router`在使用vite脚手架搭建项目时安装（选上），如果你的项目是国际化版本,`vue-i18n`  需要手动安装。使用`npm`时，其他依赖在
+  项目安装该库后，可直接在项目中使用，无需再次将它们安装至你的项目；使用`pnpm`时，需执行前面提到过的命令安装部分依赖。不管使用那种包管理器，
+  其中`view-ui-plus、@amap/amap-jsapi-loader`需要在你的项目手动初始化，可以参考对应官网或npm网站页面或本项目examples目录里的初始化方法
+
+* 该库使用了地图的组件依赖于高德地图`@amap/amap-jsapi-loader`，使用方法参考该项目的examples中main.ts或其官网开放平台，值得注意的是，要将你的`securityJsCode`和`key`传
+  给plug-r-qw库:
+  ```
+  // main.ts or main.js
+  
+    app.use(plugRQw,{
+      amap:{
+        securityJsCode: your code,
+			  key: your key
+      },
+      ...
+    })
+  ```
+
+* 该库使用了`less@4.2.x`，如项目有less语法报错，可以在`vite.config.js`or`vite.config.ts` 中加上配置，如:
+  ```
+  export default defineConfig({
+    ...
+    css: {
+		  preprocessorOptions: {
+			  less: {
+				  javascriptEnabled: true,
+				  rewriteUrls: 'all',
+				  math: 'always'
+			  }
+		  }
+	  }
+  })
+  ```
+### 本库自带自定义指令
+
+* has  通过本库内方法hasPermission将传入指令的值进行解析（在sessionStorage中btnPermissions中查找传入的值），如果解析结果为false，则为绑定的元素添加`display:none`
+  的内联样式，以此来实现元素的权限控制。
+
+* loadmore  在容器滚动到底部时调用传入指令的值（回调函数），可通过指令参数传入一个class，来指定滚动的容器（如`v-loadmore:boxN='getData'`
+  ,boxN的意思为指令绑定元素的某个子元素，它有个class为boxN,而该元素被指定为滚动的容器；getData为回调函数，比如在函数内部拉取数据并渲染到容器内），滚动容器默认为指令绑定的元素
+
+## vue2 version README file is start from here:
 
 * [组件](https://github.com/RickyHeaven/plug-r-qw/tree/master/src/components)
   和[方法](https://github.com/RickyHeaven/plug-r-qw/tree/master/src/methods)
@@ -227,15 +448,27 @@
   *plugRQw.min.css*）,在该文件中顶部引入*src/style/index.less* (
   如：`@import "~@zhangqingcq/plug-r-qw/src/style/index.less";`)
   ,然后在后面写上想要覆盖的变量名，并给出想要的值，如：`@primary: #46be87;`[默认颜色列表](/src/style/common/color.less)，[默认尺寸列表](/src/style/common/size.less)
+  > 注意：
+  >1. 请不要随意改变这些变量，除非你很清楚改变后会带来的影响，他们在整个库中被多次使用。
+  >2. 因为该库是基于view-design封装的，所以很多样式继承了view-design，要定制那些样式，直接定制view-design即可。
 
-> 注意：
->1. 请不要随意改变这些变量，除非你很清楚改变后会带来的影响，他们在整个库中被多次使用。
->2. 因为该库是基于view-design封装的，所以很多样式继承了view-design，要定制那些样式，直接定制view-design即可。
+* 自@zhangqingcq/plug-r-qw@1.4.8开始，新增了部分全局变量用于控制样式，挂在Vue.prototype下，直接在main.js or
+  main.ts中给对应变量赋值即可定制对应样式：
+  ```js
+    //main.js or main.ts
+  
+    Vue.prototype.searchFormLabelWidth = 100
+  
+    //已支持的全局变量有：searchFormLabelWidth, formModalLabelWidth, formGroupLabelWidth, iconTxtBtnIconSize
+  ```
+
 
 *
+
 因为有些方法使用频率较低，所以没有挂载在Vue原型或者window上，使用时需要单独引用，如：`improt {fullScreenImgPreview} from '@zhangqingcq/plug-r-qw'`
 
 *
+
 本库主要依赖有`vue、vue-router、pinia、@zhangqingcq/view-design-r、sweetalert、lodash、axios、echarts、moment、wangeditor、xss、js-cookie、ar-cascader、vue-amap、vue-json-viewer`
 ，其中`vue、vue-router、vuex(如果用了)`需要在使用vue-cli脚手架搭建项目时安装（选上），如果你的项目是国际化版本,`vue-i18n`
 需要手动安装，其他依赖在项目安装该库后，可直接在项目中使用，无需再次将它们安装至你的项目，但其中`@zhangqingcq/view-design-r、vue-amap`
@@ -247,37 +480,35 @@
   基于`view-design@4.7.0`
   创建，主要改动是修复了使用中发现的一些view-design的bug和自己的一些定制化。`@zhangqingcq/view-design-r`
   初始化方法和原view-design一样，只需将原项目中`view-design`全部替换成`@zhangqingcq/view-design-r`，如：
-
-```
-  import ViewUI from '@zhangqingcq/view-design-r'
-  import '@zhangqingcq/view-design-r/dist/styles/iview.css'
-  import enI from '@zhangqingcq/view-design-r/dist/locale/en-US'
-  import zhI from '@zhangqingcq/view-design-r/dist/locale/zh-CN'
-
-  样式定制化文件顶部改为：
-  @import "~@zhangqingcq/view-design-r/src/styles/index.less";
-
-  具体可参考本库示例项目examples中的使用方法
-```
+  ```
+    import ViewUI from '@zhangqingcq/view-design-r'
+    import '@zhangqingcq/view-design-r/dist/styles/iview.css'
+    import enI from '@zhangqingcq/view-design-r/dist/locale/en-US'
+    import zhI from '@zhangqingcq/view-design-r/dist/locale/zh-CN'
+  
+    样式定制化文件顶部改为：
+    @import "~@zhangqingcq/view-design-r/src/styles/index.less";
+  
+    具体可参考本库示例项目examples中的使用方法
+  ```
 
 * 该库自`@zhangqingcq/plug-r-qw@1.3.0`版本开始，使用了`less@4.0.0`，如项目有less语法报错，可以在`vue.config.js`
   中加上配置，如:
-
-```
-module.exports = defineConfig({
-  ...
-  css: {
-    loaderOptions: {
-      less: {
-        lessOptions: {
-          javascriptEnabled: true
+  ```
+  module.exports = defineConfig({
+    ...
+    css: {
+      loaderOptions: {
+        less: {
+          lessOptions: {
+            javascriptEnabled: true
+          }
         }
       }
     }
-  }
-})
-
-```
+  })
+  
+  ```
 
 * 该库自`@zhangqingcq/plug-r-qw@1.1.35`版本开始，弃用`iview-area`，改用本人改良的`ar-cascader`
   ，所以升级到该版本及以后，如果你项目中之前有直接使用iview-area，替换成ar-cascader即可。（在没有直接使用iview-area，而是使用库中alCascader及formR相关组件,则无需做任何改变）
@@ -286,29 +517,28 @@ module.exports = defineConfig({
 
 * 本库采用@vue/cli3
   脚手架搭建，用@vue/cli3或者更高版本搭建的项目引用不会有兼容问题，低于@vue/cli3版本或其他脚手架搭建的项目引用可能会有兼容问题，表现就是报错有不认识的语法或功能异常（目前已知$fetch可能会因为兼容问题无响应），解决方法：
-
-```
-  在webpack中添加loader处理库的输出文件，如@vue/cli2搭建的项目中（由于@vue/cli2脚手架过于老旧，建议更换成较新的cli版本搭建的框架，项目只是更换框架工作量其实并不大，获得的收益比较高），找到webpack.base.conf.js,在module-->rules下添加
-  
-  {
-    test: /(index\.js|plugRQw\.umd(\.min){0,1}\.js)$/,
-    use: {
-      loader: 'babel-loader',
-      options: {
-        presets: [
-          'env',
-          "stage-2"
-        ]
-      }
-    },
-    include: [path.resolve(__dirname,'../node_modules/@zhangqingcq/plug-r-qw')]
-  }
-  
-  注意：
-    1. 这个loader会用到'path'、'core-js'、'babel-loader'、'babel-core'、'babel-preset-env'、'babel-preset-stage-2'、'webpack'，如果项目报错没有这些npm依赖，请安装它们
-    2. include的路径是该库相对于webpack.base.conf.js文件的相对路径
-    3. 如果添加了该loader还是有兼容问题，那么将main.js中 import plugRQw from '@zhangqingcq/plug-r-qw' 换成 import plugRQw from '@zhangqingcq/plug-r-qw/lib/plugRQw.umd.js'
-```
+  ```
+    在webpack中添加loader处理库的输出文件，如@vue/cli2搭建的项目中（由于@vue/cli2脚手架过于老旧，建议更换成较新的cli版本搭建的框架，项目只是更换框架工作量其实并不大，获得的收益比较高），找到webpack.base.conf.js,在module-->rules下添加
+    
+    {
+      test: /(index\.js|plugRQw\.umd(\.min){0,1}\.js)$/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: [
+            'env',
+            "stage-2"
+          ]
+        }
+      },
+      include: [path.resolve(__dirname,'../node_modules/@zhangqingcq/plug-r-qw')]
+    }
+    
+    注意：
+      1. 这个loader会用到'path'、'core-js'、'babel-loader'、'babel-core'、'babel-preset-env'、'babel-preset-stage-2'、'webpack'，如果项目报错没有这些npm依赖，请安装它们
+      2. include的路径是该库相对于webpack.base.conf.js文件的相对路径
+      3. 如果添加了该loader还是有兼容问题，那么将main.js中 import plugRQw from '@zhangqingcq/plug-r-qw' 换成 import plugRQw from '@zhangqingcq/plug-r-qw/lib/plugRQw.umd.js'
+  ```
 
 ### 本库自带自定义指令
 

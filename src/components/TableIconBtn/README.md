@@ -6,9 +6,9 @@
 
 - icon 字符串，组件的图标，view-design的icon，如：
 
-```
-<TableIconBtn icon="ios-cart"/>
-```
+  ```
+  <TableIconBtn icon="ios-cart"/>
+  ```
 
 - title 字符串，按钮提示信息
 

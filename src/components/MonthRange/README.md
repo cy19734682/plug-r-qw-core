@@ -4,9 +4,12 @@
 ### 属性
 * modelValue: 数组，组件的值，推荐用*v-model* 绑定，如：
   ```
+    //vue3 SFC script setup
+  
     const value =ref(['2023-03','2024-06'])
     
-    <monthRange v-model="value"/>
+    //vue3 SFC template
+    <MonthRange v-model="value"/>
   ```
 
 * placement: 字符串，选择框位置，默认值：`‘bottom-start’`
