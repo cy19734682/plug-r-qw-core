@@ -138,7 +138,7 @@
 					})
 				}
 				const iEl = mapInputRef.value?.$el?.children
-				if (iEl && Array.isArray(iEl) && iEl.length > 1) {
+				if (iEl && iEl.length > 1) {
 					AutoComplete = new AMap.AutoComplete({
 						input: iEl[1]
 					}).on('select', (val: Record<string, any>) => {
