@@ -23,3 +23,5 @@ export { default as SearchForm } from './SearchForm/SearchForm.vue';
 export { default as FormModal } from './FormModal/FormModal.vue';
 export { default as CheckboxTree } from './CheckboxTree/CheckboxTree.vue';
 export { default as TransferBox } from './TransferBox/TransferBox.vue';
+export { default as CheckboxGroupTwoClass } from './CheckboxGroupTwoClass/CheckboxGroupTwoClass.vue';
+export { default as CheckboxGroupThreeClass } from './CheckboxGroupThreeClass/CheckboxGroupThreeClass.vue';

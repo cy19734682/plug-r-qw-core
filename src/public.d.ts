@@ -49,6 +49,12 @@ export interface PlainObject extends Object {
 
 export type Collection = PlainObject | PlainObject[]
 
+export interface TreeNode {
+	[k: string]: any
+
+	children?: TreeNode[]
+}
+
 export interface Option {
 	label?: string
 

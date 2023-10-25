@@ -1,4 +1,4 @@
-<!--BtTablePage 表格-页签-表顶操作（如：批量XX，导出）集成UI组件，全局组件，直接用
+<!--BtTablePage 表格-页签-表顶操作（如：批量XX，导出）集成UI组件
 @created 2023.08.15
 @author Ricky email:zhangqingcq@foxmail.com-->
 
