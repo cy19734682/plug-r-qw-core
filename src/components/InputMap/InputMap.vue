@@ -241,6 +241,8 @@
 			return
 		}
 		Map.destroy()
+		//@ts-ignore
+		AMapLoader?.reset()
 		Map = null
 		GeoCoder = null
 		AutoComplete = null
