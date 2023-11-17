@@ -47,7 +47,7 @@ export function getFileSrc(file: File) {
 
 /*获取后缀名*/
 export function getFileTypeByName(name: string): string {
-	return name.split('.').pop()!.toLocaleLowerCase()
+	return name?.split('.').pop()!.toLocaleLowerCase() || ''
 }
 
 /*判断是否为图片（type是否包含‘image’）*/

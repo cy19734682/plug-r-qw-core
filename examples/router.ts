@@ -73,6 +73,14 @@ const router = createRouter({
 			meta: {
 				desc: '左侧菜单'
 			}
+		},
+		{
+			path: '/uploadGroup',
+			name: 'UploadGroup',
+			component: () => import('@/views/UploadGroupEX.vue'),
+			meta: {
+				desc: '上传文件'
+			}
 		}
 	]
 })

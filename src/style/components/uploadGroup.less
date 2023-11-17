@@ -3,120 +3,139 @@
  * @author ricky zhangqingcq@foxmail.com
  */
 
-@import '../common/color';
+@import "../common/color";
 
 .ivu-form-item-error {
-	.ivu-upload {
-		.ivu-btn {
-			border-color: @errorColor;
+  .ivu-upload {
+    .ivu-btn {
+      border-color: @errorColor;
 
-			.ivu-icon {
-				color: @errorColor;
-			}
-		}
-	}
+      .ivu-icon {
+        color: @errorColor;
+      }
+    }
+  }
 }
 
 .previewBoxM {
-	margin-top: 10px;
+  margin-top: 10px;
+  height: 100px;
 
-	.previewImg {
-		display: inline-block;
-		position: relative;
-		height: 100px;
-		background: #eee;
-		margin-right: 4px;
+  .previewImg {
+    display: inline-block;
+    position: relative;
+    height: 100%;
+    background: #eee;
+    margin-right: 4px;
 
-		&:hover {
-			.deleteModal {
-				opacity: 1;
-			}
-		}
+    &:hover {
+      .deleteModal {
+        opacity: 1;
+      }
+    }
 
-		> img {
-			height: 100%;
-		}
+    &.previewLoading {
+      min-width: 100px;
+    }
 
-		.deleteModal {
-			position: absolute;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			display: flex;
-			justify-content: space-around;
-			align-items: center;
-			background-color: rgba(255, 255, 255, 0.5);
-			opacity: 0;
+    > img {
+      height: 100%;
+    }
 
-			.previewExpand,
-			.previewDelete {
-				cursor: pointer;
+    .imgLoading {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, .1);
+    }
 
-				&:hover {
-					color: @warningColor;
-				}
-			}
-		}
-	}
+    .deleteModal {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: rgba(255, 255, 255, .5);
+      opacity: 0;
+
+      .previewExpand,
+      .previewDelete {
+        cursor: pointer;
+
+        &:hover {
+          color: @warningColor;
+        }
+      }
+    }
+  }
 }
 
 .customFileListM {
-	margin-top: 10px;
+  margin-top: 10px;
 
-	.customFileListItem {
-		padding: 4px;
-		border-radius: 4px;
-		line-height: 1.4em;
-		position: relative;
-    display: flex;
-    align-items: center;
+  .customFileListItem {
+    padding: 4px;
+    border-radius: 4px;
+    word-break: break-all;
+    line-height: 1.4em;
+    position: relative;
 
-		&:hover {
-			background-color: @listHoverBg;
+    &:hover {
+      background-color: @listHoverBg;
 
-			.btBoxJ {
-				opacity: 1;
-			}
-
-			.upNameT {
-				color: @primary;
-			}
-		}
-
-		.upNameT {
-			cursor: pointer;
-			padding-left: 4px;
-      display: inline-block;
-      width: calc(100% - 30px);
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      overflow: hidden;
-      &.previewName{
-        width: calc(100% - 60px);
+      .btBoxJ {
+        opacity: 1;
       }
-		}
 
-		.btBoxJ {
-			opacity: 0;
-			position: absolute;
-			top: 0;
-			right: 0;
-			display: flex;
-			align-items: center;
-			height: 100%;
-			padding-right: 3px;
+      .upNameT {
+        color: @primary;
+      }
+    }
 
-			.listBtH {
-				cursor: pointer;
-				text-align: center;
-				color: #999;
-				margin-left: 6px;
+    .listLoading {
+      height: 15px;
+      display: flex;
+      align-items: center;
 
-				&:hover {
-					color: @textColor;
-				}
-			}
-		}
-	}
+      [data-loader='circle-side'] {
+        width: 15px;
+        height: 15px;
+      }
+    }
+
+    .upNameT {
+      cursor: pointer;
+      padding-left: 2px;
+    }
+
+    .btBoxJ {
+      opacity: 0;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding-right: 3px;
+
+      .listBtH {
+        cursor: pointer;
+        text-align: center;
+        color: #999;
+        margin-left: 6px;
+
+        &:hover {
+          color: @textColor;
+        }
+      }
+    }
+  }
 }

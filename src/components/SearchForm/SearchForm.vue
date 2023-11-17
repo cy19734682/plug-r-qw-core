@@ -111,6 +111,18 @@
 		formRRef.value.submit?.()
 	}
 
+	onMounted(() => {
+		const el = formRRef.value.$el
+		if (el?.parentNode) {
+			el.parentNode.addEventListener('keyup', (e: any) => {
+				if (e.keyCode === 13) {
+					//回车
+					submit()
+				}
+			})
+		}
+	})
+
 	defineExpose({
 		resetForm,
 		refreshFormDom,
