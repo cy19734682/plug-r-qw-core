@@ -1437,7 +1437,7 @@
 		}
 		if (Array.isArray(formDataT.value[index])) {
 			if (typeof indexB === 'number') {
-				if (key && (val || val !== undefined)) {
+				if (key && d.hasOwnProperty('val')) {
 					formDataT.value[index][indexB][key] = val
 				} else {
 					for (let k of Object.keys(d)) {
@@ -1448,7 +1448,7 @@
 				}
 			}
 		} else {
-			if (key && (val || val !== undefined)) {
+			if (key && d.hasOwnProperty('val')) {
 				formDataT.value[index][key] = val
 			} else {
 				for (let k of Object.keys(d)) {
