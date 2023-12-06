@@ -4,7 +4,7 @@
 <script lang="ts" setup>
 	/**
 	 * @desc 利用table的columns和localstorage对table进行列的显示设置
-	 * @param {array} value - 插件的值（v-model,对应table的columns）必填
+	 * @param {array} modelValue - 插件的值（v-model,对应table的columns）必填
 	 * @param {string} sKey - 插件数据在localstorage的唯一标识，命名规则：插件所在单文件名称_取名时间，如areaNew_202003231639 必填
 	 * @param {string} top - 设置面板定位-上（相对于按钮）
 	 * @param {string} right - 设置面板定位-右（相对于按钮）
@@ -15,7 +15,6 @@
 	 */
 	import { cloneDeep } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
-	import { useI18n } from 'vue-i18n'
 
 	const emit = defineEmits(['update:modelValue'])
 	const props = withDefaults(
@@ -72,14 +71,13 @@
 			emit('update:modelValue', subV)
 		}
 	})
-
-	const { locale } = useI18n()
+	const locale = getCurrentInstance()?.appContext?.config?.globalProperties?.$i18n?.locale
 
 	onMounted(() => {
 		let unknown = t('r.unknown')
 		let localStr: string | null
-		if (locale.value) {
-			localStr = localStorage.getItem(props.sKey + '_' + locale.value)
+		if (locale) {
+			localStr = localStorage.getItem(props.sKey + '_' + locale)
 		} else {
 			localStr = localStorage.getItem(props.sKey)
 		}
@@ -119,8 +117,8 @@
 	}
 
 	function save() {
-		if (locale.value) {
-			localStorage.setItem(props.sKey + '_' + locale.value, encodeURI(JSON.stringify(checkAllGroup.value)))
+		if (locale) {
+			localStorage.setItem(props.sKey + '_' + locale, encodeURI(JSON.stringify(checkAllGroup.value)))
 		} else {
 			localStorage.setItem(props.sKey, encodeURI(JSON.stringify(checkAllGroup.value)))
 		}

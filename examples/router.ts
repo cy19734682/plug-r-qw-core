@@ -81,6 +81,14 @@ const router = createRouter({
 			meta: {
 				desc: '上传文件'
 			}
+		},
+		{
+			path: '/selectScrollMore',
+			name: 'SelectScrollMore',
+			component: () => import('@/views/SelectScrollMoreEX.vue'),
+			meta: {
+				desc: '下拉框-下拉加载更多选项'
+			}
 		}
 	]
 })

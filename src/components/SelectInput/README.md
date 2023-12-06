@@ -4,7 +4,7 @@
 
 ### 属性
 
-- value 对象，组件的值，建议使用v-model绑定，key对应select值，val对应input值，默认：`{key:null,val:null}`
+- modelValue 对象，组件的值，建议使用v-model绑定，key对应select值，val对应input值，默认：`{key:null,val:null}`
 
 - labelWidth 数字，select(label)宽度，默认：`160`
 

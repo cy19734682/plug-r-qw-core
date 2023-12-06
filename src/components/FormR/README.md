@@ -273,7 +273,29 @@ key为fruit，目标表单项（如这里的fruit）待选项和当前表单项�
 `optionLabel:'name'`；如果选项标签需要展示多个字段，则用数组存放他们，第一字段直接展示，后面字段括号内展示，括号紧跟第一字段。
 
 * <a name='optionUrl'>optionUrl</a> 字符串，有待选项的表单项，待选项数据从接口拉取时，接口地址放在该字段下，需配合
-[asyncOption](#asyncOption)、[optionLabel](#optionLabel)、[optionVal](#optionVal)使用，注意：请求方式为get，且不可更改
+[asyncOption](#asyncOption)、[optionLabel](#optionLabel)、[optionVal](#optionVal)使用，注意：请求方式为get，且不可更改;接口返回数据需为指定格式：
+
+```
+ //第一种
+{
+	data: [{name:'Jay',id:2},...],
+	...
+}
+
+//第二种
+{
+	data:{
+	  records: [{name:'Jay',id:2},...]
+	},
+	...
+}
+
+//第三种
+[
+  {name:'',id:2},
+  ...
+]
+```
 
 * <a name='optionVal'>optionVal</a> 字符串，有待选项的表单项，待选项数据从接口拉取时，待选项val对应接口数据的字段名，如：`optionVal:'id'`
 

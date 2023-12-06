@@ -88,10 +88,10 @@
 			<Option
 				v-for="(item, index) in props.selectOption"
 				:value="item.val"
+				:label="item.label"
 				:key="'selectInputOp' + item.value + index"
 				:style="{ textAlign: props.labelTextAlign }"
-				>{{ item.label }}</Option
-			>
+			/>
 		</Select>
 		<Input
 			v-model="inputVal"

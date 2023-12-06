@@ -26,3 +26,4 @@ export { default as TransferBox } from './TransferBox/TransferBox.vue';
 export { default as CheckboxGroupTwoClass } from './CheckboxGroupTwoClass/CheckboxGroupTwoClass.vue';
 export { default as CheckboxGroupThreeClass } from './CheckboxGroupThreeClass/CheckboxGroupThreeClass.vue';
 export { default as WellCard } from './WellCard/WellCard.vue';
+export { default as SelectScrollMore } from './SelectScrollMore/SelectScrollMore.vue';

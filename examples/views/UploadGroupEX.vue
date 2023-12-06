@@ -61,7 +61,6 @@
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
-		align-content: space-between;
 		background-color: #fff;
 
 		.upBox {
