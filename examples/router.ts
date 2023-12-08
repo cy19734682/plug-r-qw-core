@@ -89,6 +89,14 @@ const router = createRouter({
 			meta: {
 				desc: '下拉框-下拉加载更多选项'
 			}
+		},
+		{
+			path: '/formR',
+			name: 'FormR',
+			component: () => import('@/views/FormREX.vue'),
+			meta: {
+				desc: '表单'
+			}
 		}
 	]
 })

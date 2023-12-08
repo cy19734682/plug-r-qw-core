@@ -18,6 +18,7 @@ import $swalConfirm from './methods/swalConfirm'
 import { init, setInterval, setTimeout } from './methods/timer'
 import { set } from './methods/amap'
 import './methods/wangeditor5init'
+import JsonView from 'vue-json-viewer'
 
 export * from './components'
 export * from './methods/globalFunc'
@@ -56,6 +57,8 @@ export interface plugROption {
 
 const install = function (app: App, options: plugROption = {}) {
 	$fetch.init(options.useStore || options.store, app)
+
+	app.use(JsonView)
 
 	if (options.locale) {
 		localeFile.use(options.locale)
