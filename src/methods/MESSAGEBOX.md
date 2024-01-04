@@ -11,7 +11,7 @@
 - onOk Function|Promise 确定按钮被点击时的回调，可不传
 
 - onCancel Function，取消按钮被点击时的回调，可不传
-- 
+
 - onClose Function，关闭按钮（右上角的叉）被点击时的回调，可不传
 
 - height 正整数，弹框高度，默认值：`130`
