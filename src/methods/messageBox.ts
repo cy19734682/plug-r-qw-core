@@ -20,6 +20,7 @@ let loading: boolean = false
  * @param {string|html} options.title 弹框标题内容，默认值“提示”
  * @param {function} options.onOk 确定按钮回调函数
  * @param {function} options.onCancel 取消按钮回调函数
+ * @param {function} options.onClose 关闭（右上角叉叉）按钮回调函数
  * @param {string|html} options.okText 确定按钮文字，默认值“确定”
  * @param {string|html} options.cancelText 取消按钮文字，默认值“取消”
  * @param {boolean} options.noWarnIcon 不展示内容开头的警告图标(非字符串内容默认不展示)，默认值“false”
@@ -38,6 +39,7 @@ export default function messageBox(
 		content,
 		onOk,
 		onCancel,
+		onClose,
 		okText,
 		cancelText,
 		noWarnIcon,
@@ -50,6 +52,7 @@ export default function messageBox(
 		content: string | VNode
 		onOk?: () => void | Promise<any>
 		onCancel?: () => void
+		onClose?: () => void
 		okText?: string | VNode
 		cancelText?: string | VNode
 		noWarnIcon?: boolean
@@ -99,6 +102,9 @@ export default function messageBox(
 													return
 												}
 												Modal.remove()
+												if (onClose && myTypeof(onClose) === 'Function') {
+													onClose()
+												}
 											}
 										},
 										() =>
