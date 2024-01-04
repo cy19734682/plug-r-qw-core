@@ -113,6 +113,7 @@
 			:style="itemStyle"
 			v-else-if="props.item.type === 'input'"
 			v-model="props.tempKeys[props.item.tempKey]"
+			:type="props.item.inputType ?? (props.item.password ? 'password' : 'text')"
 			:maxlength="props.item.maxLength || null"
 			:password="Boolean(props.item.password)"
 			:icon="props.item.icon"
@@ -121,7 +122,7 @@
 			:placeholder="props.item.placeholder || t('r.pInput')"
 			:disabled="Boolean(props.item.disabled) || props.disabled"
 			@on-blur="itemChange($event, props.item)"
-			:clearable="props.item.clearable !== false"
+			:clearable="!props.item.password && props.item.clearable !== false"
 		>
 			<template v-if="props.item.slotPosition && props.item.slotName" #[props.item.slotPosition]>
 				<slot :name="props.item.slotName" />
