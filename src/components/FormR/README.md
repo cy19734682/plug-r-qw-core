@@ -214,7 +214,7 @@ key为fruit，目标表单项（如这里的fruit）待选项和当前表单项�
 
 * <a name='info'>info</a> 字符串，表单项的提示文字，位于表单项下面，一般为蓝色（在没自定义对应主题颜色时）
 
-* <a name='inputType'>inputType</a> 字符串，表单项type=input时，可指定输入框类型(开启password=true时，inputType自动变为password)，可选值为 text、password、url、email、date、tel，默认值：`'text'`
+* <a name='inputType'>inputType</a> 字符串，表单项type=input时，可指定输入框类型(开启password=true时，inputType自动变为password)，可选值同h5原生input的type，以页面实际表现为准，不同值使用可靠性需自己验证，默认值：`'text'`
 
 * <a name='itemBorder'>itemBorder</a> 布尔对象，RadioGroup选项是否带边框，默认：`false`
 
