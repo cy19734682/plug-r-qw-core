@@ -1283,7 +1283,9 @@
 				valGroup.value[k] = Array.isArray(valGroup.value[k]) ? [] : null
 			}
 		}
-		validateFields(getValidateKeys(t))
+		nextTick(function () {
+			validateFields(getValidateKeys(t))
+		})
 	}
 
 	/**
