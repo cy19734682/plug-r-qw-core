@@ -734,7 +734,7 @@
 									<i-switch v-model="valGroup.switchStatus" />
 								</template>
 
-								<template slot="cnu">
+								<template #cnu>
 									<span>阶梯</span>
 									<Table border stripe :columns="columns" :data="tableData" />
 								</template>
