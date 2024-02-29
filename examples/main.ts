@@ -19,6 +19,7 @@ import './assets/main.css'
 
 import ViewUIPlus from 'view-ui-plus'
 import './global/iViewTheme.less'
+import './global/common.less'
 
 /*import plugRQw from '../lib/plugRQw.js'
  import '../lib/plugRQw.min.css'*/

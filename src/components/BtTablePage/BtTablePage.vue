@@ -451,7 +451,7 @@
 </script>
 
 <template>
-	<div class="btTablePage fullHeight" ref="tableBox">
+	<div class="btTablePage fullHeight flexColumnBox" ref="tableBox">
 		<div class="topBtn" v-show="props.showTopRow">
 			<slot name="tableSetting" />
 
@@ -459,7 +459,7 @@
 
 			<slot name="topBtnGroup" />
 		</div>
-		<div class="tableContainer fullHeight" :class="{ noTop: !props.showTopRow, noPage: props.noPage }">
+		<div class="tableContainer growFlexItem">
 			<div class="fullHeight relativeBox">
 				<div ref="tableContainerLOI" class="fullFlowContent">
 					<Table

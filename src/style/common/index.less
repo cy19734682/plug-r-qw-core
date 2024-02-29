@@ -62,10 +62,12 @@ body {
 		height: 32px;
 		border-radius: 4px;
 	}
-  /*修复view-design的inputNumber的icon显示问题*/
-  .ivu-input-number:hover .ivu-input-number-handler-wrap{
-    z-index: 1;
-  }
+
+	/*修复view-design的inputNumber的icon显示问题*/
+
+	.ivu-input-number:hover .ivu-input-number-handler-wrap {
+		z-index: 1;
+	}
 }
 
 button.disabled {
@@ -166,6 +168,12 @@ img {
 
 .noBorder {
 	border: none !important;
+}
+
+.withBtn,
+.withHeader,
+.withPage {
+	height: calc(~'100% - @{headerH}') !important;
 }
 
 /*$swal弹框*/

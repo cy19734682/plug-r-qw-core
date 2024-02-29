@@ -35,6 +35,14 @@ const router = createRouter({
 			}
 		},
 		{
+			path: '/btTablePage',
+			name: 'BtTablePage',
+			component: () => import('@/views/BtTablePageEX.vue'),
+			meta: {
+				desc: '表格页签集成组件'
+			}
+		},
+		{
 			path: '/fullPop',
 			name: 'FullPop',
 			component: () => import('@/views/FullPopEX.vue'),

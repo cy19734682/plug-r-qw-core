@@ -8,11 +8,11 @@
 
   ```
     //vue3 SFC script setup
-  
+
     const code = ref(2)
-  
+
     //vue3 SFC template
-  
+
     <AsyncCascader v-model="code"/>
   ```
 

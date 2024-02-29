@@ -8,7 +8,7 @@
 
   ```
     //vue3 SFC script setup
-  
+
     const position = ref({
       name: '光电园(地铁站)',
       address: "6号线",
@@ -16,9 +16,9 @@
       lng: 106.499401,
       lat: 29.616077
     })
-  
+
     //vue3 SFC template
-  
+
     <InputMap v-model="position"/>
   ```
 

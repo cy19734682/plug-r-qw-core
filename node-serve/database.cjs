@@ -9,8 +9,8 @@ let idCount = {}
 
 /**
  * 增
- * @param table [String] 目标table名字
- * @param data [Array] 要增加的数据
+ * @param {String} table 目标table名字
+ * @param {Array} data 要增加的数据
  * @private
  */
 exports._save = function (table, data) {
@@ -28,8 +28,8 @@ exports._save = function (table, data) {
 
 /**
  * 删
- * @param table [String] 目标table名字
- * @param condition [Function] 条件
+ * @param {String} table 目标table名字
+ * @param {Function} condition 条件
  * @returns {boolean} 是否成功
  * @private
  */
@@ -42,10 +42,10 @@ exports._delete = function (table, condition) {
 }
 /**
  * 查
- * @param table [String] 目标table名字
- * @param current [Number] 当前页
- * @param size [Number] 每页条数
- * @param condition [Function] 条件
+ * @param {String} table 目标table名字
+ * @param {Number} current 当前页
+ * @param {Number} size 每页条数
+ * @param {Function} condition 条件
  * @returns {*}
  * @private
  */
@@ -67,8 +67,8 @@ exports._get = function (table, current, size, condition) {
 }
 /**
  * 改
- * @param table [String] 目标table名字
- * @param data [Object] 要改的单条数据
+ * @param {String} table 目标table名字
+ * @param {Object} data 要改的单条数据
  * @returns {boolean} 是否成功
  * @private
  */

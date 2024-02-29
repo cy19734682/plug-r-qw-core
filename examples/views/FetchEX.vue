@@ -4,7 +4,7 @@
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 
 	function httpA() {
-		$fetch.get('/examples/testData/fetch.json').then((r: any) => {
+		$fetch.get('/testData/fetch.json').then((r: any) => {
 			if (r && r.code === 0) {
 				$swal('请求成功', '名称：' + r.data.name + '；邮箱：' + r.data.email, 'success')
 			}

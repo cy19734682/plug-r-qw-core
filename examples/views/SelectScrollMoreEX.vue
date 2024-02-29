@@ -13,7 +13,7 @@
 	}
 
 	function filterB(d: any) {
-		return d.filter((e:any) => e.name !== '阿上')
+		return d.filter((e: any) => e.name !== '阿上')
 	}
 </script>
 <template>
