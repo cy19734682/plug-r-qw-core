@@ -6,6 +6,7 @@
 import type { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 import { isEmpty } from 'lodash-es'
 import { t } from '../locale'
+import messageBox from './messageBox'
 
 import { counts } from './spin'
 import type { Collection } from '../public'
@@ -67,7 +68,7 @@ function logoutHandle() {
 service.interceptors.response.use(
 	(r) => {
 		if (proxy && (r?.data?.code === 403 || r?.data?.code === 409)) {
-			proxy.messageBox({
+			messageBox({
 				content: T('r.http.' + r.data.code),
 				onOk: logoutHandle
 			})
@@ -76,7 +77,7 @@ service.interceptors.response.use(
 	},
 	(e) => {
 		if (proxy && (e?.response?.status === 403 || e?.response?.status === 409)) {
-			proxy.messageBox({
+			messageBox({
 				content: T('r.http.' + e.response.status),
 				onOk: logoutHandle
 			})
