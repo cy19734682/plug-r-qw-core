@@ -8,6 +8,7 @@ declare function getTableData(order?: string, orderKey?: string, keepSelect?: bo
 declare function getDataAndClickRow(clickCurrentRow?: boolean, order?: string, orderKey?: string): void;
 declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     url?: string | undefined;
+    method?: string | undefined;
     searchData?: Record<string, any> | undefined;
     columns?: {
         type?: "html" | "index" | "selection" | "expand" | undefined;
@@ -71,6 +72,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     noElevator?: boolean | undefined;
 }>, {
     url: string;
+    method: string;
     searchData: () => {};
     columns: () => never[];
     selection: boolean;
@@ -106,6 +108,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     getDataAndClickRow: typeof getDataAndClickRow;
 }, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("on-selection-change" | "on-data-change")[], "on-selection-change" | "on-data-change", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     url?: string | undefined;
+    method?: string | undefined;
     searchData?: Record<string, any> | undefined;
     columns?: {
         type?: "html" | "index" | "selection" | "expand" | undefined;
@@ -169,6 +172,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     noElevator?: boolean | undefined;
 }>, {
     url: string;
+    method: string;
     searchData: () => {};
     columns: () => never[];
     selection: boolean;
@@ -197,6 +201,7 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     "onOn-data-change"?: ((...args: any[]) => any) | undefined;
 }, {
     data: any[];
+    method: string;
     columns: {
         type?: "html" | "index" | "selection" | "expand" | undefined;
         title?: string | undefined;

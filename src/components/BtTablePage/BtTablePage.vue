@@ -25,6 +25,7 @@
 	const props = withDefaults(
 		defineProps<{
 			url?: string /*表格拉取数据的接口地址*/
+			method?: string /*表格拉取数据的接口的请求类型,get、post*/
 			searchData?: Record<string, any> /*表格条件查询数据*/
 			columns?: Array<typeof TableColumnR> /*表格表头结构数据，同view-ui-plus*/
 			dataHandler?: (d: any) => {
@@ -56,6 +57,7 @@
 		}>(),
 		{
 			url: '',
+			method: 'get',
 			searchData: () => ({}),
 			columns: () => [],
 			selection: false,
@@ -202,6 +204,20 @@
 	const tableRef = ref()
 
 	watch(() => props.searchData, search, { deep: true })
+
+	watch(
+		() => props.orderDefault,
+		(after) => {
+			_order = after
+		}
+	)
+
+	watch(
+		() => props.orderKey,
+		(after) => {
+			_key = after
+		}
+	)
 
 	function search() {
 		/*私有*/
@@ -357,8 +373,7 @@
 				_key = orderKey
 			}
 			if (props.url) {
-				$fetch
-					.get(props.url, queryData.value, '', [], { spin: props.getDataLoading })
+				$fetch[props.method](props.url, queryData.value, '', [], { spin: props.getDataLoading })
 					.then((d: any) => {
 						let r: Record<string, any>
 						if (!keepSelect) {
