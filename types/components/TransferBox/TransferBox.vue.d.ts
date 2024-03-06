@@ -46,7 +46,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
 }>, {
     reset: typeof reset;
     search: typeof search;
-}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "transferred"[], "transferred", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
+}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("transferred" | "on-data-change-l" | "on-data-change-r")[], "transferred" | "on-data-change-l" | "on-data-change-r", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     titleLeft?: string | undefined;
     titleRight?: string | undefined;
     formDataLeft?: any[] | undefined;
@@ -91,6 +91,8 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     deleteAllMethod: string;
 }>>> & {
     onTransferred?: ((...args: any[]) => any) | undefined;
+    "onOn-data-change-l"?: ((...args: any[]) => any) | undefined;
+    "onOn-data-change-r"?: ((...args: any[]) => any) | undefined;
 }, {
     formDataLeft: any[];
     formDataRight: any[];

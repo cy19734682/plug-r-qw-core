@@ -10,7 +10,7 @@
 	import SearchForm from '../SearchForm/SearchForm.vue'
 	import BtTablePage from '../BtTablePage/BtTablePage.vue'
 
-	const emit = defineEmits(['transferred'])
+	const emit = defineEmits(['transferred', 'on-data-change-l', 'on-data-change-r'])
 	const props = withDefaults(
 		defineProps<{
 			titleLeft?: string
@@ -111,11 +111,13 @@
 	/*私有*/
 	function dataChangeL(d: Record<string, any>) {
 		leftTotal.value = d?.data?.page?.total || d?.data?.data?.total || d?.data?.total || d?.total || 0
+		emit('on-data-change-l', d)
 	}
 
 	/*私有*/
 	function dataChangeR(d: Record<string, any>) {
 		rightTotal.value = d?.data?.page?.total || d?.data?.data?.total || d?.data?.total || d?.total || 0
+		emit('on-data-change-r', d)
 	}
 
 	/*私有*/
