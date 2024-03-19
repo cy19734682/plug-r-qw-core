@@ -26,6 +26,7 @@
 			width?: string
 			bg?: string
 			defaultCheck?: boolean
+			storage?: 'localStorage' | 'sessionStorage'
 		}>(),
 		{
 			modelValue: () => [],
@@ -33,7 +34,8 @@
 			right: '0',
 			width: '150px',
 			bg: '#ccc',
-			defaultCheck: false
+			defaultCheck: false,
+			storage: 'localStorage'
 		}
 	)
 
@@ -77,9 +79,9 @@
 		let unknown = t('r.unknown')
 		let localStr: string | null
 		if (locale) {
-			localStr = localStorage.getItem(props.sKey + '_' + locale)
+			localStr = window[props.storage].getItem(props.sKey + '_' + locale)
 		} else {
-			localStr = localStorage.getItem(props.sKey)
+			localStr = window[props.storage].getItem(props.sKey)
 		}
 		if (localStr) {
 			checkAllGroup.value = JSON.parse(decodeURI(localStr))
@@ -118,9 +120,9 @@
 
 	function save() {
 		if (locale) {
-			localStorage.setItem(props.sKey + '_' + locale, encodeURI(JSON.stringify(checkAllGroup.value)))
+			window[props.storage].setItem(props.sKey + '_' + locale, encodeURI(JSON.stringify(checkAllGroup.value)))
 		} else {
-			localStorage.setItem(props.sKey, encodeURI(JSON.stringify(checkAllGroup.value)))
+			window[props.storage].setItem(props.sKey, encodeURI(JSON.stringify(checkAllGroup.value)))
 		}
 		show.value = false
 	}

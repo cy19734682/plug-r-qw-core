@@ -6,6 +6,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     width?: string | undefined;
     bg?: string | undefined;
     defaultCheck?: boolean | undefined;
+    storage?: "localStorage" | "sessionStorage" | undefined;
 }>, {
     modelValue: () => never[];
     top: string;
@@ -13,6 +14,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     width: string;
     bg: string;
     defaultCheck: boolean;
+    storage: string;
 }>, {}, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, "update:modelValue"[], "update:modelValue", import("vue").VNodeProps & import("vue").AllowedComponentProps & import("vue").ComponentCustomProps, Readonly<import("vue").ExtractPropTypes<__VLS_WithDefaults<__VLS_TypePropsToRuntimeProps<{
     modelValue?: any[] | undefined;
     sKey: string;
@@ -21,6 +23,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     width?: string | undefined;
     bg?: string | undefined;
     defaultCheck?: boolean | undefined;
+    storage?: "localStorage" | "sessionStorage" | undefined;
 }>, {
     modelValue: () => never[];
     top: string;
@@ -28,6 +31,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     width: string;
     bg: string;
     defaultCheck: boolean;
+    storage: string;
 }>>> & {
     "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
@@ -37,6 +41,7 @@ declare const _default: import("vue").DefineComponent<__VLS_WithDefaults<__VLS_T
     modelValue: any[];
     width: string;
     defaultCheck: boolean;
+    storage: "localStorage" | "sessionStorage";
 }, {}>;
 export default _default;
 type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;

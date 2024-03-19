@@ -67,6 +67,20 @@ declare namespace _default {
         export const notFoundMsg: string;
         export const hideMenu: string;
         export const showMenu: string;
+        export const print: string;
+        export const close: string;
+        export const help: string;
+        export const printGuide: {
+            1: string;
+            2: string;
+            3: string;
+            4: string;
+            5: string;
+            6: string;
+            7: string;
+            8: string;
+            9: string;
+        };
     }
 }
 export default _default;

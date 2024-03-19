@@ -8,7 +8,8 @@
 		BtTablePage,
 		IconTxtBtn,
 		FormModal,
-		TableIconBtn
+		TableIconBtn,
+		tablePrint
 	} from '../../src'
 	import { cloneDeep } from 'lodash-es'
 	import imgK from '../assets/testo.png'
@@ -22,6 +23,7 @@
 	const selectMode = ref('radio')
 	const total = ref(0)
 	const searchData = ref<Record<string, any>>({})
+	let tabData: any = []
 	const columns = [
 		{
 			title: 'ID',
@@ -31,7 +33,7 @@
 		{
 			title: '文件名称',
 			key: 'name',
-			minWidth: 250,
+			minWidth: 550,
 			render: (_h: any, params: Record<string, any>) => {
 				return h(
 					'span',
@@ -47,17 +49,17 @@
 		},
 		{
 			title: '文件类型',
-			minWidth: 250,
+			minWidth: 100,
 			key: 'mimeType'
 		},
 		{
 			title: '文件大小',
-			minWidth: 250,
+			minWidth: 100,
 			key: 'size'
 		},
 		{
 			title: '备注',
-			minWidth: 250,
+			minWidth: 200,
 			key: 'remark'
 		},
 		{
@@ -224,6 +226,11 @@
 
 	function setTotal(d: any) {
 		total.value = d?.total || d?.data?.total || 0
+		tabData = d?.data?.records || d?.data || []
+	}
+
+	function handlePrint() {
+		tablePrint.print(columns, tabData, '表格打印示例', { autoPrint: true })
 	}
 </script>
 
@@ -254,6 +261,7 @@
 					<Checkbox v-model="nodeServer" @on-change="getData">切换为node-serve数据(需开启项目nodeJs服务器)</Checkbox>
 					<IconTxtBtn name="get select" icon="ios-checkbox" @click="getS" />
 					<IconTxtBtn name="新增" icon="md-add" @click="handleNew" />
+					<IconTxtBtn name="打印" icon="md-print" @click="handlePrint" />
 				</div>
 			</template>
 		</BtTablePage>

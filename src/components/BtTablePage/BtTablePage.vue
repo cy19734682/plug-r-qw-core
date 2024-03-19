@@ -25,7 +25,7 @@
 	const props = withDefaults(
 		defineProps<{
 			url?: string /*表格拉取数据的接口地址*/
-			method?: string /*表格拉取数据的接口的请求类型,get、post*/
+			method?: 'get' | 'post' /*表格拉取数据的接口的请求类型,get、post*/
 			searchData?: Record<string, any> /*表格条件查询数据*/
 			columns?: Array<typeof TableColumnR> /*表格表头结构数据，同view-ui-plus*/
 			dataHandler?: (d: any) => {
@@ -418,8 +418,7 @@
 							emit('on-data-change', r)
 						}
 					})
-					.catch((e) => {
-						console.warn(e)
+					.catch((e: any) => {
 						clearSelect()
 						clearTableData()
 						emit('on-data-change', e)

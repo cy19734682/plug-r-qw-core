@@ -14,6 +14,7 @@ export * from './components';
 export * from './methods/globalFunc';
 export * from './methods/needImportFunc';
 export { default as $fetch } from './methods/fetch';
+export { default as tablePrint } from './methods/tablePrint';
 export { default as fullScreenImgByDom } from './methods/fullScreenImgByDom';
 export { default as fullScreenImgPreview } from './methods/fullScreenImgPreview';
 export { default as messageBox } from './methods/messageBox';

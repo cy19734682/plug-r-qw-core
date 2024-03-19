@@ -113,7 +113,7 @@ router.beforeEach((to, from, next) => {
 	const store = useStore()
 	if (from.name === 'Login') {
 		store.fullScreen = false
-	} else if (to.name === 'Login' && !store.fullScreen) {
+	} else if ((to.name === 'Login' || to.name === 'tablePrint') && !store.fullScreen) {
 		store.fullScreen = true
 	}
 	next()

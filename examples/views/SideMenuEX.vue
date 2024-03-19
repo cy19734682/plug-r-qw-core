@@ -1,6 +1,13 @@
-<script setup>
-	import d from '@/testData/sideMenu.json'
+<script lang="ts" setup>
+	import { $fetch } from '../../src'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
+
+	const d = ref([])
+	onMounted(() => {
+		$fetch.get('testData/sideMenu.json').then((r: any) => {
+			d.value = r
+		})
+	})
 </script>
 <template>
 	<ShowReadMe />

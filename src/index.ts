@@ -10,6 +10,7 @@ import * as globalFunc from './methods/globalFunc'
 import * as needImportFunc from './methods/needImportFunc'
 import localeFile from './locale'
 import $fetch from './methods/fetch'
+import tablePrint from './methods/tablePrint'
 import fullScreenImgByDom from './methods/fullScreenImgByDom'
 import fullScreenImgPreview from './methods/fullScreenImgPreview'
 import messageBox from './methods/messageBox'
@@ -24,6 +25,7 @@ export * from './components'
 export * from './methods/globalFunc'
 export * from './methods/needImportFunc'
 export { default as $fetch } from './methods/fetch'
+export { default as tablePrint } from './methods/tablePrint'
 export { default as fullScreenImgByDom } from './methods/fullScreenImgByDom'
 export { default as fullScreenImgPreview } from './methods/fullScreenImgPreview'
 export { default as messageBox } from './methods/messageBox'
@@ -33,6 +35,7 @@ export { setInterval, setTimeout } from './methods/timer'
 
 const methodsR: Record<string, any> = {
 	$fetch,
+	tablePrint,
 	fullScreenImgByDom,
 	fullScreenImgPreview,
 	$swal,
@@ -70,6 +73,7 @@ const install = function (app: App, options: plugROption = {}) {
 
 	if (options.router) {
 		init(options.router)
+		tablePrint.init(options.router)
 	}
 
 	if (options.amap) {
