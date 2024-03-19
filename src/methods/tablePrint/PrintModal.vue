@@ -71,12 +71,13 @@
 				print()
 			}, 100)
 		}
+		document.addEventListener('click', wallClick)
 	})
 	init()
 </script>
 
 <template>
-	<div class="tablePrintModal" :class="[customClass]" @click="wallClick">
+	<div class="tablePrintModal" :class="[customClass]">
 		<div class="msgL notPrint" v-show="disabled">{{ t('r.printGuide.9') }}</div>
 		<div class="a4Line aL notPrint" v-show="!disabled"
 			><p>{{ t('r.printGuide.7') }}</p> <p>{{ t('r.printGuide.5') }}</p></div
