@@ -43,11 +43,11 @@
 			if (Array.isArray(props.formData[0])) {
 				let t: any[] = []
 				for (let f of props.formData) {
-					t = t.concat(f.filter((e: any) => e.type === 'custom'))
+					t = t.concat(f.filter((e: any) => e.type === 'custom' || e.type === 'input' && e.slotName && e.slotPosition))
 				}
 				return t
 			} else {
-				return props.formData.filter((e: any) => e.type === 'custom')
+				return props.formData.filter((e: any) => e.type === 'custom' || e.type === 'input' && e.slotName && e.slotPosition)
 			}
 		}
 		return []
