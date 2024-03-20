@@ -26,7 +26,9 @@ declare const _default: __VLS_WithTemplateSlots<import("vue").DefineComponent<__
     "onSelect-input-change"?: ((...args: any[]) => any) | undefined;
     "onAl-name-change"?: ((...args: any[]) => any) | undefined;
     "onAsync-label-change"?: ((...args: any[]) => any) | undefined;
-}, {}, {}>, Partial<Record<any, (_: {}) => any>> & Partial<Record<any, (_: {
+}, {}, {}>, Partial<Record<any, (_: {
+    valGroup: Record<string, any>;
+}) => any>> & Partial<Record<any, (_: {
     valGroup: Record<string, any>;
 }) => any>>>;
 export default _default;

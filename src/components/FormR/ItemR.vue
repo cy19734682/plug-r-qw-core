@@ -125,7 +125,7 @@
 			:clearable="!props.item.password && props.item.inputType === 'text' && props.item.clearable !== false"
 		>
 			<template v-if="props.item.slotPosition && props.item.slotName" #[props.item.slotPosition]>
-				<slot :name="props.item.slotName" />
+				<slot :name="props.item.slotName" :valGroup="props.valGroup" />
 			</template>
 			<template v-if="props.item.slotPosition !== 'prepend' && props.item.prepend" #prepend>
 				<span>{{ props.item.prepend }}</span>
