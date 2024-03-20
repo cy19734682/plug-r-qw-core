@@ -407,6 +407,8 @@
 
 - [slotName](#slotName) 插槽名字，自定义内容通过插槽接入输入框，如自定义单位等，使用方法参考view-design的input组件slot功能
 
+-[slotPosition](#slotPosition) 插槽位置，指定输入框插槽，如`'prepend','append'`等，相当于view-design的input组件slot名字，使用方法参考view-design的input混合型输入框文档
+
 - [icon](#icon) 字符串，输入框尾部图标
 
 - [prefix](#prefix) 字符串，输入框头部图标
