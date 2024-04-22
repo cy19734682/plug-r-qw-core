@@ -15,6 +15,7 @@
 	 */
 	import { cloneDeep } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
+	import Proxy from '../../methods/proxy'
 
 	const emit = defineEmits(['update:modelValue'])
 	const props = withDefaults(
@@ -33,7 +34,7 @@
 			top: '30px',
 			right: '0',
 			width: '150px',
-			bg: '#ccc',
+			bg: () => Proxy().tableSettingBg,
 			defaultCheck: false,
 			storage: 'localStorage'
 		}

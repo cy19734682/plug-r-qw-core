@@ -105,6 +105,14 @@ const router = createRouter({
 			meta: {
 				desc: '表单'
 			}
+		},
+		{
+			path: '/domPrint',
+			name: 'DomPrint',
+			component: () => import('@/views/DomPrintEX.vue'),
+			meta: {
+				desc: '网页Dom打印'
+			}
 		}
 	]
 })

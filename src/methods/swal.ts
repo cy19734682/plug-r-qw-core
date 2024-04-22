@@ -18,7 +18,7 @@ type ButtonS = { cancel: ButtonC; confirm: ButtonC }
  * @param {string} text 当option为object时不传此变量，当option为string时该变量为'内容'
  * @param {string} icon 当option为object时不传此变量，当option为string时该变量为弹出框类型'success'/'error'/'warning'
  */
-export default function (
+export default function $swal(
 	this: any,
 	option:
 		| string

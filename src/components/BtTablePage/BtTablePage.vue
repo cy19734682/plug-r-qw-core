@@ -3,15 +3,15 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
+	import { h } from 'vue'
+	import { cloneDeep, isBoolean, isNumber } from 'lodash-es'
+	import { TableColumnConfig, Radio } from 'view-ui-plus'
+	import Proxy from '../../methods/proxy'
 	import { toLine, tooltipManual } from '../../methods/globalFunc'
 	import { toHump } from '../../methods/needImportFunc'
 	import $fetch from '../../methods/fetch.js'
-	import { cloneDeep, isBoolean, isNumber } from 'lodash-es'
 	import { setTimeout } from '../../methods/timer'
-	import { TableColumnConfig, Radio } from 'view-ui-plus'
-	import { h } from 'vue'
-
-	const { globalProperties } = getCurrentInstance()!.appContext!.config
+	import PagePro from '../PagePro/PagePro.vue'
 
 	const emit = defineEmits(['on-selection-change', 'on-data-change'])
 
@@ -38,20 +38,21 @@
 			selectionFixed?: 'left' | 'right' | false /*每列开头选择框固定*/
 			rowClickSelect?: boolean /*是否点击行操作开头选择框*/
 			data?: any[] /*表格默认数据，没有url的本地静态表格使用*/
-			pageSize?: number /*每页条数*/
 			sortable?: 'custom' | '' /*排序模式*/
 			initData?: boolean /*初始化数据，即组件创建后自动拉取第一次数据*/
 			highlightRow?: boolean /*高亮当前行*/
 			rowClickNum?: number /*自动拉取第一次数据时点击第几行，默认-1，不点击*/
 			tableEmptyTdHandle?: boolean /*表格内容为空是否显示为‘--’*/
 			noBorderTable?: boolean /*表格无边框*/
-			noPage?: boolean /*表格页签*/
 			orderDefault?: 'asc' | 'desc' /*排序是升是降*/
 			orderKey?: string /*排序的key*/
 			orderKeyFormat?: 'underline' | 'camelcase' /*排序key的格式*/
 			getDataLoading?: boolean /*拉取表格数据时显示遮罩层*/
 			showTopRow?: boolean /*展示顶行（列表设置、批量操作按钮、导出等按钮、统计信息等）,各项子内容通过slot接入*/
 			lightHead?: boolean /*浅色背景表头，避免和headerBar菜单紧邻时页面局部颜色不平衡*/
+			noPage?: boolean /*表格页签*/
+			usePagePro?: boolean /*是否使用pagePro组件作为页签*/
+			pageSize?: number /*每页条数*/
 			pageComponentSize?: 'small' | 'default' /*页签大小*/
 			noElevator?: boolean /*页签不带电梯*/
 		}>(),
@@ -65,26 +66,27 @@
 			selectionFixed: false,
 			rowClickSelect: true,
 			data: () => [],
-			pageSize: 10,
 			sortable: '',
 			initData: true,
 			highlightRow: false,
 			rowClickNum: -1,
 			tableEmptyTdHandle: false,
 			noBorderTable: false,
-			noPage: false,
 			orderDefault: 'desc',
 			orderKey: 'id',
 			orderKeyFormat: 'underline',
 			getDataLoading: false,
 			showTopRow: false,
 			lightHead: false,
+			noPage: false,
+			usePagePro: () => Proxy().btTablePageUsePagePro,
+			pageSize: 10,
 			pageComponentSize: 'default',
 			noElevator: false
 		}
 	)
 
-	const pageSizes = globalProperties.pageSizes || [10, 20, 30, 40]
+	const pageSizes = Proxy().pageSizes || [10, 20, 50, 100]
 	const dataT = ref(props.data)
 	const pageSizeT = ref<number>(
 		(localStorage.getItem('btPageSize') && Number(localStorage.getItem('btPageSize'))) || props.pageSize
@@ -308,9 +310,8 @@
 		return cloneDeep(selected)
 	}
 
-	function changePage(v: number) {
+	function changePage() {
 		/*私有*/
-		current.value = v
 		getDataAndClickRow()
 	}
 
@@ -493,15 +494,26 @@
 			</div>
 		</div>
 		<div class="pageContainer" v-show="!props.noPage">
-			<Page
+			<PagePro
+				v-if="props.usePagePro"
 				v-model="current"
-				:page-size-opts="pageSizes"
 				:total="total"
 				:page-size="pageSizeT"
+				:page-size-opts="pageSizes"
+				:size="props.pageComponentSize"
+				@on-change="changePage"
+				@on-page-size-change="pageSizeChange"
+			/>
+			<Page
+				v-else
+				v-model="current"
+				:total="total"
+				:page-size="pageSizeT"
+				:page-size-opts="pageSizes"
+				:size="props.pageComponentSize"
 				show-sizer
 				show-total
 				:showElevator="!props.noElevator"
-				:size="props.pageComponentSize"
 				@on-change="changePage"
 				@on-page-size-change="pageSizeChange"
 			/>

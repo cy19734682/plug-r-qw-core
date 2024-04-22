@@ -137,14 +137,6 @@
    // vue3 SFC 组合式 script setup
    // or in *.js or *.ts file
    
-   import plugRQw from '@zhangqingcq/plug-r-qw'
-   
-   plugRQw.xxx()
-   ```
-   ```
-   // vue3 SFC 组合式 script setup
-   // or in *.js or *.ts file
-   
    import {xxx} from '@zhangqingcq/plug-r-qw'
    
    xxx()
@@ -183,14 +175,17 @@
   > 注意：
   >1. 请不要随意改变这些变量，除非你很清楚改变后会带来的影响，他们在整个库中被多次使用。
   >2. 因为该库是基于view-ui-plus封装的，所以很多样式继承于view-ui-plus，要定制那些样式，直接定制view-ui-plus即可。
+  >3. 如出现样式异常，请使用less@4.x.x版本，可以和库的less版本保持一致。
 
 * 该库有数个用于控制样式的全局变量，挂在app.config.globalProperties下，直接在main.js or main.ts中给对应变量赋值即可定制对应样式：
   ```js
     //main.js or main.ts
   
+    app.use()
     app.config.globalProperties.searchFormLabelWidth = 100
   
-    //已支持的全局变量有：searchFormLabelWidth, formModalLabelWidth, formGroupLabelWidth, iconTxtBtnIconSize
+    //已支持的全局变量有：pageSizes, searchFormLabelWidth, formModalLabelWidth, formGroupLabelWidth, iconTxtBtnIconSize, btTablePageUsePagePro, tableSettingBg
+    //注意：需要在库安装<app.use(plugRQw,{...})>后指定全局变量，即将赋值的代码写在use代码之后，否则指定的值会在库安装时被库内全局变量默认覆盖。
   ```
 
 * 该库主要依赖有`vue、vue-router、pinia、view-ui-plus、sweetalert、lodash-es、axios、echarts、moment、@amap/amap-jsapi-loader、@wangeditor/editor、@wangeditor/editor-for-vue、js-cookie、ar-cascader、vue-json-viewer`
@@ -303,12 +298,11 @@
 
    > 该库从`@zhangqingcq/plug-r-qw@1.3.12`开始支持`TypeScript + Vue`的项目（非TypeScript项目依然支持，用法没有任何改动），用法和之前
    `JS + Vue`的项目大同小异，除了下面列出的不同，其他都相同。
-   >
-   >
-   为了更好的支持Typescript类型检查，我们需要在Vue接口[模块补充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)
-   > 该库的全局方法，这样可以避免使用`this.xxx`或`proxy.xxx`(proxy为vue@2.7.14的`getCurrentInstance().proxy`)
-   时提示`xxx不存在于this或proxy`，
-   > 而且能在使用这些方法时获得IDE提示或能方便的查看对应方法的声明代码，模块补充方法如下：
+
+   > Ts项目在安装该库时"Vue.use(plugRQw)"可能会提示plugRQw类型错误，这并非库的问题，不影响使用，使用//@ts-ignore 忽略类型错误
+
+   > 为了更好的支持Typescript类型检查，我们需要在Vue接口[模块补充](https://www.typescriptlang.org/docs/handbook/declaration-merging.html#module-augmentation)该库的全局方法，这样可以避免使用`this.xxx`或`proxy.xxx`(proxy为vue@2.7.14的`getCurrentInstance().proxy`)
+   时提示`xxx不存在于this或proxy`， 而且能在使用这些方法时获得IDE提示或能方便的查看对应方法的声明代码，模块补充方法如下：
    > ```
    > // types/xxx.d.ts
    > 
@@ -451,15 +445,18 @@
   > 注意：
   >1. 请不要随意改变这些变量，除非你很清楚改变后会带来的影响，他们在整个库中被多次使用。
   >2. 因为该库是基于view-design封装的，所以很多样式继承了view-design，要定制那些样式，直接定制view-design即可。
+  >3. 如出现样式异常，请使用less@4.x.x版本，可以和库的less版本保持一致。
 
 * 自@zhangqingcq/plug-r-qw@1.4.8开始，新增了部分全局变量用于控制样式，挂在Vue.prototype下，直接在main.js or
   main.ts中给对应变量赋值即可定制对应样式：
   ```js
     //main.js or main.ts
   
+    Vue.use()
     Vue.prototype.searchFormLabelWidth = 100
   
-    //已支持的全局变量有：searchFormLabelWidth, formModalLabelWidth, formGroupLabelWidth, iconTxtBtnIconSize
+    //已支持的全局变量有：pageSizes, searchFormLabelWidth, formModalLabelWidth, formGroupLabelWidth, iconTxtBtnIconSize, btTablePageUsePagePro, tableSettingBg
+    //注意：需要在库安装<Vue.use(plugRQw,{...})>后指定全局变量，即将赋值的代码写在use代码之后，否则指定的值会在库安装时被库内全局变量默认覆盖。
   ```
 
 
@@ -497,7 +494,9 @@
       loaderOptions: {
         less: {
           lessOptions: {
-            javascriptEnabled: true
+            javascriptEnabled: true,
+            rewriteUrls: 'all',
+            math: 'always'
           }
         }
       }

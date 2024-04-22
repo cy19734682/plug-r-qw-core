@@ -1,4 +1,4 @@
-import { SlateDescendant, SlateElement, SlateText } from '@wangeditor/editor'
+import type { SlateDescendant } from '@wangeditor/editor'
 
 declare module '@wangeditor/editor' {
 	// 扩展 Text
@@ -66,6 +66,8 @@ export interface Option {
 
 	[x: string]: any
 }
+
+export type showFunc = (valGroup: Record<string, any>) => boolean
 
 export interface FormItem {
 	activeChange?: boolean

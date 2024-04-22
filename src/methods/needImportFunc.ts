@@ -95,11 +95,12 @@ export function fakeALinkClick(obj: Record<string, any>): void {
 /**
  * 按条件查找一个元素在集合中的位置（路径），返回找到的第一个符合条件的位置
  * 仅适用于[{children:[{...},...],...},...]类似树结构集合（最外层也可以是一个对象）或一维数组
- * @param {Array/Object} group - 集合，被查找的集合，必填
- * @param {Function/String/Number/Boolean} condition - 查找条件，为常量时，将常量和集合元素直接对比，必填
- * @param {String} pathKey - 查找结果（路径）元素在集合中的key，在集合为数组时，可以不填，返回index（索引）
- * @param {String} childKey - 集合子元素的key，默认值 children
- * @param {Array} path - 递归用参数，逻辑内部参数，不用传
+ * @param  {Object} option 参数
+ * @param {Array|Object} option.group - 集合，被查找的集合，必填
+ * @param {Function|String|Number|Boolean} option.condition - 查找条件，为常量时，将常量和集合元素直接对比，必填
+ * @param {String} option.pathKey - 查找结果（路径）元素在集合中的key，在集合为数组时，可以不填，返回index（索引）
+ * @param {String} option.childKey - 集合子元素的key，默认值 children
+ * @param {Array} option.path - 递归用参数，逻辑内部参数，不用传
  * @return {Array} 返回带有路径（层级）信息的数组
  * @example group: {id:1,name:'爸爸',children:[{id:2,name:'大儿子'},{id:3,name:'二儿子'}]}
  *          condition: e=>e.id === 3

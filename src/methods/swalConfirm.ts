@@ -7,7 +7,7 @@
 import $swal from './swal'
 import { t } from '../locale'
 
-export default function (this: any, title: string, text: string, icon: string, onOk: () => void) {
+export default function $swalConfirm(this: any, title: string, text: string, icon: string, onOk: () => void) {
 	const T = (...arg: Parameters<typeof t>) => t.apply(this, arg)
 	$swal.call(this, {
 		title: title || T('r.info.title'),

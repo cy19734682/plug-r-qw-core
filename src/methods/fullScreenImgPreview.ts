@@ -10,7 +10,7 @@ import { t } from '../locale'
 import { h } from 'vue'
 import { setTimeout } from './timer'
 
-export default function (this: any, src: string) {
+export default function fullScreenImgPreview(this: any, src: string) {
 	const T = (...arg: Parameters<typeof t>) => t.apply(this, arg)
 	const close = T('r.closePreview')
 	const fullImg = T('r.fullImg')

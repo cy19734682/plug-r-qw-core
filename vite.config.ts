@@ -4,6 +4,7 @@ import { resolve } from 'path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueJsx from '@vitejs/plugin-vue-jsx'
+import VueDevTools from 'vite-plugin-vue-devtools'
 import AutoImport from 'unplugin-auto-import/vite'
 
 // https://vitejs.dev/config/
@@ -11,6 +12,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		vueJsx(),
+		VueDevTools(),
 		AutoImport({
 			// targets to transform
 			include: [
@@ -64,7 +66,7 @@ export default defineConfig({
 			// Filepath to generate corresponding .d.ts file.
 			// Defaults to './auto-imports.d.ts' when `typescript` is installed locally.
 			// Set `false` to disable.
-			dts: './auto-imports.d.ts',
+			dts: './src/auto-imports.d.ts',
 
 			// Auto import inside Vue template
 			// see https://github.com/unjs/unimport/pull/15 and https://github.com/unjs/unimport/pull/72

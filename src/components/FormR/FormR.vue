@@ -332,7 +332,7 @@
 					}
 					return returnIfVal(root, true)
 				}
-			} else if (myTypeof(root.show) === 'Function') {
+			} else if (typeof root.show === 'function') {
 				return returnIfVal(root, root.show(valGroup.value))
 			}
 		} else if (!root.showing) {
@@ -369,7 +369,7 @@
 	/**
 	 * 将是否展示的结果写入表单结构对象，同时处理默认值相关逻辑（私有）
 	 * @param root 表单项结构数据
-	 * @param {boolean}val 是否展示的结果
+	 * @param {boolean} val 是否展示的结果
 	 */
 	function returnIfVal(root: FormItem, val: boolean) {
 		if (!root.showing && val && root.key) {
@@ -1573,7 +1573,7 @@
 
 	/**
 	 * 批量校验部分表单
-	 * @param {Array}props 需要校验的表单prop集合
+	 * @param {Array} props 需要校验的表单prop集合
 	 */
 	function validateFields(props: any[]) {
 		setTimeout(() => {

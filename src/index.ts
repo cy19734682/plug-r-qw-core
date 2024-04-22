@@ -7,16 +7,10 @@
 import type { App } from 'vue'
 import * as components from './components'
 import * as globalFunc from './methods/globalFunc'
-import * as needImportFunc from './methods/needImportFunc'
+import * as outFunc from './methods/output'
 import localeFile from './locale'
-import $fetch from './methods/fetch'
-import tablePrint from './methods/tablePrint'
-import fullScreenImgByDom from './methods/fullScreenImgByDom'
-import fullScreenImgPreview from './methods/fullScreenImgPreview'
-import messageBox from './methods/messageBox'
-import $swal from './methods/swal'
-import $swalConfirm from './methods/swalConfirm'
-import { init, setInterval, setTimeout } from './methods/timer'
+
+import { init } from './methods/timer'
 import { set } from './methods/amap'
 import './methods/wangeditor5init'
 import JsonView from 'vue-json-viewer'
@@ -24,25 +18,13 @@ import JsonView from 'vue-json-viewer'
 export * from './components'
 export * from './methods/globalFunc'
 export * from './methods/needImportFunc'
-export { default as $fetch } from './methods/fetch'
-export { default as tablePrint } from './methods/tablePrint'
-export { default as fullScreenImgByDom } from './methods/fullScreenImgByDom'
-export { default as fullScreenImgPreview } from './methods/fullScreenImgPreview'
-export { default as messageBox } from './methods/messageBox'
-export { default as $swal } from './methods/swal'
-export { default as $swalConfirm } from './methods/swalConfirm'
-export { setInterval, setTimeout } from './methods/timer'
+export * from './methods/output'
+
+export const locale = localeFile.use
+export const i18n = localeFile.i18n
 
 const methodsR: Record<string, any> = {
-	$fetch,
-	tablePrint,
-	fullScreenImgByDom,
-	fullScreenImgPreview,
-	$swal,
-	$swalConfirm,
-	messageBox,
-	setInterval,
-	setTimeout,
+	...outFunc,
 	...globalFunc
 }
 
@@ -58,8 +40,8 @@ export interface plugROption {
 	[k: keyof any]: any
 }
 
-const install = function (app: App, options: plugROption = {}) {
-	$fetch.init(options.useStore || options.store, app)
+export const install = function (app: App, options: plugROption = {}) {
+	outFunc.$fetch.init(options.useStore || options.store, app)
 
 	app.use(JsonView)
 
@@ -73,7 +55,7 @@ const install = function (app: App, options: plugROption = {}) {
 
 	if (options.router) {
 		init(options.router)
-		tablePrint.init(options.router)
+		outFunc.tablePrint.init(options.router)
 	}
 
 	if (options.amap) {
@@ -127,28 +109,28 @@ const install = function (app: App, options: plugROption = {}) {
 			}
 		})
 	}
-
+	// 页签每页可选条数默认配置
+	app.config.globalProperties.pageSizes = [10, 20, 50, 100]
+	// 搜索表单默认label宽度
 	app.config.globalProperties.searchFormLabelWidth = 84
+	// 搜索表单默认表单项内容宽度
+	app.config.globalProperties.searchFormItemWidth = 202
+	// 弹框表单默认label宽度
 	app.config.globalProperties.formModalLabelWidth = 140
+	// 弹框表单默认宽度
+	app.config.globalProperties.formModalWidth = 520
+	// 页内表单默认label宽度
 	app.config.globalProperties.formGroupLabelWidth = 160
+	// 页内表单默认宽度
+	app.config.globalProperties.formGroupWidth = '100%'
+	// iconTxtBtn默认图标大小
 	app.config.globalProperties.iconTxtBtnIconSize = 17
+	// btTablePage是否使用pagePro组件作为页签
+	app.config.globalProperties.btTablePageUsePagePro = false
+	// tableSetting默认背景色
+	app.config.globalProperties.tableSettingBg = '#fff'
 }
 
-const locale = localeFile.use
+const plugRQw = { install }
 
-const i18n = localeFile.i18n
-export default {
-	locale,
-	i18n,
-	install,
-	...globalFunc,
-	...needImportFunc,
-	$fetch,
-	fullScreenImgByDom,
-	fullScreenImgPreview,
-	$swal,
-	$swalConfirm,
-	messageBox,
-	setInterval,
-	setTimeout
-}
+export default plugRQw

@@ -25,7 +25,7 @@
 		}>(),
 		{
 			formData: () => [],
-			with: '100%',
+			with: () => Proxy().formGroupWidth,
 			labelWidth: () => Proxy().formGroupLabelWidth,
 			contentWidth: '70%',
 			itemWidth: 200,
@@ -43,11 +43,15 @@
 			if (Array.isArray(props.formData[0])) {
 				let t: any[] = []
 				for (let f of props.formData) {
-					t = t.concat(f.filter((e: any) => e.type === 'custom' || e.type === 'input' && e.slotName && e.slotPosition))
+					t = t.concat(
+						f.filter((e: any) => e.type === 'custom' || (e.type === 'input' && e.slotName && e.slotPosition))
+					)
 				}
 				return t
 			} else {
-				return props.formData.filter((e: any) => e.type === 'custom' || e.type === 'input' && e.slotName && e.slotPosition)
+				return props.formData.filter(
+					(e: any) => e.type === 'custom' || (e.type === 'input' && e.slotName && e.slotPosition)
+				)
 			}
 		}
 		return []

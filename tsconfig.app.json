@@ -1,9 +1,10 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
   "include": [
-    "env.d.ts",
-    "auto-imports.d.ts",
+    "./src/env.d.ts",
+    "./src/auto-imports.d.ts",
     "./src/**/*",
+    "./src/**/*.vue",
     "./src/**/*.ts",
     "./examples/**/*.json",
     "./examples/**/*",
@@ -11,11 +12,15 @@
   "exclude": [],
   "compilerOptions": {
     "allowJs": true,
-    "baseUrl": ".",
-    "composite": true,
-    "moduleResolution": "node",
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "useDefineForClassFields": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+
     "noImplicitAny": true,
     "strictNullChecks": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./examples/*"

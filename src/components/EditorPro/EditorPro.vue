@@ -3,6 +3,7 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
+	//@ts-ignore
 	import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 	import t from '../../locale/i18nSFC'
 	import $fetch from '../../methods/fetch'

@@ -70,6 +70,7 @@
 
 			&.fullHeight {
 				padding: 0;
+				background-color: #fff;
 			}
 		}
 	}

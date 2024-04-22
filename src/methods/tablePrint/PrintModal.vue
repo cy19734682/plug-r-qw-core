@@ -12,13 +12,22 @@
 	const route = useRoute()
 	const title = ref()
 	const disabled = ref(false)
+	const domPrint = ref(false)
 	const autoPrint = ref(false)
+	const width = ref(715)
 	const help = ref(false)
 	const isFrom = ref()
 	const sKey = 'tablePrint_' + Date.now().toString()
 	const customClass = ref('')
 	const columns = ref([])
 	const tableData = ref([])
+	const isDrag = ref(false)
+
+	const domContainerStyle = computed(() => {
+		return {
+			width: width.value + 'px'
+		}
+	})
 
 	const close = () => {
 		if (isFrom.value) {
@@ -31,6 +40,20 @@
 	const wallClick = () => {
 		if (help.value) {
 			help.value = false
+		}
+	}
+
+	const dragStart = () => {
+		isDrag.value = true
+	}
+	const handleDrag = (e: any) => {
+		if (isDrag.value) {
+			width.value = e?.layerX - 20
+		}
+	}
+	const dragEnd = () => {
+		if (isDrag.value) {
+			isDrag.value = false
 		}
 	}
 
@@ -56,7 +79,9 @@
 				tableData.value = _d.data
 				title.value = _d.title
 				customClass.value = _d?.config?.customClass || ''
+				domPrint.value = _d?.config?.domPrint || false
 				autoPrint.value = _d?.config?.autoPrint || false
+				width.value = _d?.config?.width || 715
 				document.title = (title.value || t('r.print')) + '_' + new Date().toLocaleString()
 			} else {
 				disabled.value = true
@@ -72,6 +97,8 @@
 			}, 100)
 		}
 		document.addEventListener('click', wallClick)
+		document.addEventListener('mousemove', handleDrag)
+		document.addEventListener('mouseup', dragEnd)
 	})
 	init()
 </script>
@@ -96,16 +123,36 @@
 			<div class="topsLBtn">
 				<IconTxtBtn icon="md-help-circle" :name="t('r.help')" @click.stop="help = !help" />
 				<IconTxtBtn icon="md-print" :name="t('r.preview')" @click="print" />
-				<TableSetting v-model="columns" :s-key="sKey" storage="sessionStorage" />
+				<TableSetting v-if="!domPrint" v-model="columns" :s-key="sKey" storage="sessionStorage" />
 				<TableIconBtn icon="md-close" @click="close" :title="t('r.close')" />
 			</div>
 			<div class="topsLHelp" v-show="help">
-				<p>{{ t('r.printGuide.1') }}</p>
-				<p>{{ t('r.printGuide.2') }}</p>
-				<p>{{ t('r.printGuide.3') }}</p>
-				<p>{{ t('r.printGuide.4') }}</p>
+				<p v-if="!domPrint">
+					<span>1. </span>
+					<span>{{ t('r.printGuide.1') }}</span>
+				</p>
+				<p v-if="!domPrint">
+					<span>2. </span>
+					<span>{{ t('r.printGuide.2') }}</span>
+				</p>
+				<p v-if="domPrint">
+					<span>1. </span>
+					<span>{{ t('r.printGuide.10') }}</span>
+				</p>
+				<p>
+					<span>{{ domPrint ? '2. ' : '3. ' }}</span>
+					<span>{{ t('r.printGuide.3') }}</span>
+				</p>
+				<p>
+					<span>{{ domPrint ? '3. ' : '4. ' }}</span>
+					<span>{{ t('r.printGuide.4') }}</span>
+				</p>
 			</div>
 		</div>
-		<Table class="tablePW" :columns="columns" :data="tableData" border v-show="!disabled" />
+		<div v-if="domPrint" class="domPrintSetting notPrint" :style="domContainerStyle">
+			<div class="settingLine" @mousedown.stop="dragStart"></div>
+		</div>
+		<div v-if="domPrint" class="domPrintContent" v-html="tableData" :style="domContainerStyle"></div>
+		<Table v-if="!domPrint" class="tablePW" :columns="columns" :data="tableData" border v-show="!disabled" />
 	</div>
 </template>

@@ -46,9 +46,8 @@ function clean(cb) {
 	cb()
 }
 
-export function types(cb) {
-	del(['./types/*'])
-	src(['./src/public.d.ts']).pipe(dest('./types'))
+export function clean_temp(cb) {
+	del(['./temp'])
 	cb()
 }
 
