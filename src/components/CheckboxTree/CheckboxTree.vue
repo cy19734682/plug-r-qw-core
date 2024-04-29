@@ -3,7 +3,7 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
-	import { setValByOption } from '../../methods/globalFunc'
+	import { setValByOption } from '../../utils/globalFunc'
 	import { findIndex, find, cloneDeep } from 'lodash-es'
 
 	const emit = defineEmits(['update:modelValue', 'on-change'])

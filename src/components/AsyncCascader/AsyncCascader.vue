@@ -3,9 +3,9 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
-	import { myTypeof } from '../../methods/globalFunc'
-	import { findPath } from '../../methods/needImportFunc'
-	import $fetch from '../../methods/fetch'
+	import { myTypeof } from '../../utils/globalFunc'
+	import { findPath } from '../../utils/needImportFunc'
+	import $fetch from '../../utils/fetch'
 	import t from '../../locale/i18nSFC'
 	import { isEmpty, last, isEqual, isString, isNumber, cloneDeep } from 'lodash-es'
 

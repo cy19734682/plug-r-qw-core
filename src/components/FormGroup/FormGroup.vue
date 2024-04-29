@@ -5,9 +5,9 @@
 <script lang="ts" setup>
 	import FormR from '../FormR/FormR.vue'
 	import t from '../../locale/i18nSFC'
-	import { setTimeout } from '../../methods/timer'
+	import { setTimeout } from '../../utils/timer'
 	import type { FormItem } from '../../public'
-	import Proxy from '../../methods/proxy'
+	import Proxy from '../../utils/proxy'
 
 	const emit = defineEmits(['on-cancel'])
 	const props = withDefaults(

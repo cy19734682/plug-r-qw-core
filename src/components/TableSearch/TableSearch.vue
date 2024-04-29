@@ -14,7 +14,7 @@
 	 */
 
 	import t from '../../locale/i18nSFC'
-	import { setTimeout } from '../../methods/timer'
+	import { setTimeout } from '../../utils/timer'
 
 	const emit = defineEmits(['update:modelValue', 'on-toggle', 'on-search'])
 	const props = withDefaults(

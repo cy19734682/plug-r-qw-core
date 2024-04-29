@@ -15,7 +15,7 @@
 	 */
 	import { cloneDeep } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
-	import Proxy from '../../methods/proxy'
+	import Proxy from '../../utils/proxy'
 
 	const emit = defineEmits(['update:modelValue'])
 	const props = withDefaults(

@@ -4,8 +4,8 @@
 <script lang="ts" setup>
 	import { isEmpty } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
-	import $fetch from '../../methods/fetch'
-	import $swal from '../../methods/swal'
+	import $fetch from '../../utils/fetch'
+	import $swal from '../../utils/swal'
 	import ShowHidePanel from '../ShowHidePanel/ShowHidePanel.vue'
 	import SearchForm from '../SearchForm/SearchForm.vue'
 	import BtTablePage from '../BtTablePage/BtTablePage.vue'

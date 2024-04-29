@@ -5,17 +5,17 @@
 <script lang="ts" setup>
 	import t from '../../locale/i18nSFC'
 	import { first, cloneDeep, indexOf, last, find } from 'lodash-es'
-	import { myTypeof } from '../../methods/globalFunc'
+	import { myTypeof } from '../../utils/globalFunc'
 	import {
 		getFileSrc,
 		getFileTypeByName,
 		isImgByFile,
 		getFileTypeIconByName,
 		downloadFileReaderFile
-	} from '../../methods/needImportFunc'
-	import $fetch from '../../methods/fetch.js'
-	import fullScreenImgByDom from '../../methods/fullScreenImgByDom'
-	import $swal from '../../methods/swal'
+	} from '../../utils/needImportFunc'
+	import $fetch from '../../utils/fetch.js'
+	import fullScreenImgByDom from '../../utils/fullScreenImgByDom'
+	import $swal from '../../utils/swal'
 
 	const emit = defineEmits(['update:modelValue', 'on-change'])
 	const props = withDefaults(

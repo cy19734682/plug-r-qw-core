@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 	import { cloneDeep, isEmpty, isEqual } from 'lodash-es'
-	import { myTypeof } from '../../methods/globalFunc'
+	import { myTypeof } from '../../utils/globalFunc'
 	import t from '../../locale/i18nSFC'
 	import type { TreeNode } from '../../public'
 

@@ -4,8 +4,8 @@
 
 <script lang="ts" setup>
 	import t from '../../locale/i18nSFC'
-	import Proxy from '../../methods/proxy'
-	import { setTimeout } from '../../methods/timer'
+	import Proxy from '../../utils/proxy'
+	import { setTimeout } from '../../utils/timer'
 	import FormR from '../FormR/FormR.vue'
 	import type { FormItem } from '../../public'
 

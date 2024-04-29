@@ -1,4 +1,6 @@
 import type { SlateDescendant } from '@wangeditor/editor'
+import { h } from 'vue'
+import type { VNode } from 'vue'
 
 declare module '@wangeditor/editor' {
 	// 扩展 Text
@@ -54,6 +56,8 @@ export interface TreeNode {
 
 	children?: TreeNode[]
 }
+
+export type RenderFunc = (h: Funtion) => VNode
 
 export interface Option {
 	label?: string

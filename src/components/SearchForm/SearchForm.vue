@@ -5,7 +5,7 @@
 <script lang="ts" setup>
 	import FormR from '../FormR/FormR.vue'
 	import t from '../../locale/i18nSFC'
-	import Proxy from '../../methods/proxy'
+	import Proxy from '../../utils/proxy'
 	import type { FormItem } from '../../public'
 
 	const emit = defineEmits(['on-search'])

@@ -6,19 +6,19 @@
 
 import type { App } from 'vue'
 import * as components from './components'
-import * as globalFunc from './methods/globalFunc'
-import * as outFunc from './methods/output'
+import * as globalFunc from './utils/globalFunc'
+import * as outFunc from './utils/output'
 import localeFile from './locale'
 
-import { init } from './methods/timer'
-import { set } from './methods/amap'
-import './methods/wangeditor5init'
+import { init } from './utils/timer'
+import { set } from './utils/amap'
+import './utils/wangeditor5init'
 import JsonView from 'vue-json-viewer'
 
 export * from './components'
-export * from './methods/globalFunc'
-export * from './methods/needImportFunc'
-export * from './methods/output'
+export * from './utils/globalFunc'
+export * from './utils/needImportFunc'
+export * from './utils/output'
 
 export const locale = localeFile.use
 export const i18n = localeFile.i18n

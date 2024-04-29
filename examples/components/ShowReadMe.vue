@@ -1,6 +1,6 @@
 <script setup lang="ts">
 	import mds_c from '../../src/components/md'
-	import mds_m from '../../src/methods'
+	import mds_m from '../../src/utils'
 	import Md from '@/components/Md.vue'
 
 	const props = withDefaults(defineProps<{ routeNow?: string; color?: string }>(), {

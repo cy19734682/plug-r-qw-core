@@ -6,8 +6,8 @@
 	//@ts-ignore
 	import { Editor, Toolbar } from '@wangeditor/editor-for-vue'
 	import t from '../../locale/i18nSFC'
-	import $fetch from '../../methods/fetch'
-	import $swal from '../../methods/swal'
+	import $fetch from '../../utils/fetch'
+	import $swal from '../../utils/swal'
 
 	const emit = defineEmits(['update:modelValue', 'on-change'])
 	const props = withDefaults(

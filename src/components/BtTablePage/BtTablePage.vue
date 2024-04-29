@@ -6,11 +6,11 @@
 	import { h } from 'vue'
 	import { cloneDeep, isBoolean, isNumber } from 'lodash-es'
 	import { TableColumnConfig, Radio } from 'view-ui-plus'
-	import Proxy from '../../methods/proxy'
-	import { toLine, tooltipManual } from '../../methods/globalFunc'
-	import { toHump } from '../../methods/needImportFunc'
-	import $fetch from '../../methods/fetch.js'
-	import { setTimeout } from '../../methods/timer'
+	import Proxy from '../../utils/proxy'
+	import { toLine, tooltipManual } from '../../utils/globalFunc'
+	import { toHump } from '../../utils/needImportFunc'
+	import $fetch from '../../utils/fetch.js'
+	import { setTimeout } from '../../utils/timer'
 	import PagePro from '../PagePro/PagePro.vue'
 
 	const emit = defineEmits(['on-selection-change', 'on-data-change'])
@@ -241,9 +241,13 @@
 			tableRef.value?.clickCurrentRow?.(0)
 		}, 100)
 	}
-
+	/**
+	 * 更新行数据（公开）
+	 * @param {object} row 新的行数据（只更新旧数据和新数据都有的字段，如想更新的其中一个字段为row.name，那么旧row数据需要有name这个字段）
+	 * @param {number|boolean} setCurrentRow 1.数字，行在表数据中的index；2.布尔值，更新当前行
+	 * @param {boolean} clickCurrentRow 更新完数据点击更新的行
+	 */
 	function setRowData(row: Record<string, any>, setCurrentRow: boolean, clickCurrentRow: boolean) {
-		/*更新行数据（公开）*/
 		let index: number | null = null
 		if (isBoolean(setCurrentRow) && setCurrentRow) {
 			index = currentIndex

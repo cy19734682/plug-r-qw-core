@@ -5,9 +5,9 @@
 <script lang="ts" setup>
 	import { cloneDeep, isNumber } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
-	import { setTimeout } from '../../methods/timer'
+	import { setTimeout } from '../../utils/timer'
 	import AMapLoader from '@amap/amap-jsapi-loader'
-	import { get } from '../../methods/amap'
+	import { get } from '../../utils/amap'
 	import { Input } from 'view-ui-plus'
 
 	const emit = defineEmits(['update:modelValue', 'on-change'])

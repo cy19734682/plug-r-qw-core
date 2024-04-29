@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 	import t from '../../locale/i18nSFC'
-	import Proxy from '../../methods/proxy'
+	import Proxy from '../../utils/proxy'
 
 	const props = withDefaults(
 		defineProps<{

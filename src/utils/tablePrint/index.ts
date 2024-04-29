@@ -1,5 +1,6 @@
 import { cloneDeep } from 'lodash-es'
 import PrintModal from './PrintModal.vue'
+import { myTypeof } from '../globalFunc'
 
 let _router: any = null
 
@@ -36,6 +37,20 @@ function init(router: any) {
 	}
 }
 
+function columnsHandle(item: any) {
+	if (myTypeof(item) === 'Object') {
+		item.width = item.minWidth || 100
+		item.sortable = false
+		delete item.minWidth
+		delete item.__id
+		item.resizable = true
+		if (item.children && myTypeof(item.children) === 'Array') {
+			item.children = item.children.map(columnsHandle)
+		}
+	}
+	return item
+}
+
 /**
  * 供外部使用的打印API
  * @param {Array} columns Table的列设置，同view-design
@@ -51,7 +66,7 @@ function print(columns: any[], data: any[] | string, title?: string, config?: Re
 	if (!config?.domPrint) {
 		let _columns = cloneDeep(
 			columns.filter((e) => {
-				return e.key
+				return e?.key || e?.children
 			})
 		)
 		if (_columns[0].type === 'selection') {
@@ -60,20 +75,13 @@ function print(columns: any[], data: any[] | string, title?: string, config?: Re
 		if (!_columns.length) {
 			columnsB = []
 		} else {
-			columnsB = _columns.map((item) => {
-				item.width = item.minWidth || 100
-				item.sortable = false
-				delete item.minWidth
-				delete item.__id
-				item.resizable = true
-				return item
-			})
+			columnsB = _columns.map(columnsHandle)
 		}
 	}
 
 	let _p = _router?.currentRoute?.value?.fullPath
 	if (_p) {
-		_p = _p.replace(/\//g, '_')
+		_p = _p.replace?.(/\//g, '_')
 	}
 	let _d: Record<string, any> = {
 		data,

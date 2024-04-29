@@ -4,8 +4,8 @@
 
 <script setup lang="ts">
 	import { debounce, isEmpty, cloneDeep, isString } from 'lodash-es'
-	import { isValidValue, myTypeof } from '../../methods/globalFunc'
-	import $fetch from '../../methods/fetch'
+	import { isValidValue, myTypeof } from '../../utils/globalFunc'
+	import $fetch from '../../utils/fetch'
 	import { Message } from 'view-ui-plus'
 	import t from '../../locale/i18nSFC'
 

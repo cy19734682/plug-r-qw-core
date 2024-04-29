@@ -6,9 +6,9 @@
 	import { cloneDeep, remove, isEmpty, findIndex } from 'lodash-es'
 	import moment from 'moment'
 	import t from '../../locale/i18nSFC'
-	import { myTypeof, isValidValue, trimObj, findCollection } from '../../methods/globalFunc'
-	import $fetch from '../../methods/fetch'
-	import { setTimeout } from '../../methods/timer'
+	import { myTypeof, isValidValue, trimObj, findCollection } from '../../utils/globalFunc'
+	import $fetch from '../../utils/fetch'
+	import { setTimeout } from '../../utils/timer'
 	import type { FormItem } from '../../public'
 	import ItemR from './ItemR.vue'
 

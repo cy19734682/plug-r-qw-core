@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-	import { siblingElems } from '../../methods/globalFunc'
+	import { siblingElems } from '../../utils/globalFunc'
 
 	const router = useRouter()
 	const props = withDefaults(defineProps<{ data?: any[]; pathName?: string }>(), {
