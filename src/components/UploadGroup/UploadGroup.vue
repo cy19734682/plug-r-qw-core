@@ -86,7 +86,7 @@
 			if (props.manualUpload) {
 				fileIdList.value = val || []
 			} else {
-				fileIdList.value = val?.map((e) => e.id) || []
+				fileIdList.value = val?.map((e) => e?.id) || []
 			}
 		}
 	})
@@ -167,7 +167,7 @@
 					if (item?.name === undefined) {
 						//根据id获取文件名字
 						if (item.id) {
-							const fileT = find(_fileDefaultList, (e) => e.id === item.id)
+							const fileT = find(_fileDefaultList, (e) => e?.id === item.id)
 							if (fileT) {
 								//本地有名字，在本地拿
 								item.name = fileT.name
@@ -389,7 +389,7 @@
 				<div
 					class="previewImg"
 					:class="{ previewLoading: item.mimeType === 'loading' }"
-					v-if="!props.manualUpload && item?.id !== null"
+					v-if="!props.manualUpload && item && item.id !== null"
 				>
 					<div class="imgLoading" v-show="item.mimeType === 'loading'">
 						<div data-loader="circle-side" class="loader-div" />
@@ -420,7 +420,7 @@
 		</div>
 		<div class="previewBoxM" v-show="previewType === 'localImg' && fileSrcList?.length">
 			<template v-for="(item, index) of fileSrcList" :key="'manualImg' + index">
-				<div class="previewImg" v-if="props.manualUpload && item !== null">
+				<div class="previewImg" v-if="props.manualUpload && item">
 					<img :src="item" :alt="'manualImg' + index" />
 					<div class="deleteModal">
 						<Icon
@@ -443,7 +443,7 @@
 		</div>
 		<div class="customFileListM" v-show="previewType === 'localList' && fileList?.length">
 			<template v-for="(item, index) of fileList" :key="'manualItem' + index">
-				<p class="customFileListItem" v-if="props.manualUpload && item !== null">
+				<p class="customFileListItem" v-if="props.manualUpload && item">
 					<Icon v-if="item.name" :type="getFileTypeIconByName(item.name)" />
 					<span
 						class="upNameT"
@@ -468,7 +468,7 @@
 		</div>
 		<div class="customFileListM" v-show="previewType === 'list' && fileDefaultList?.length">
 			<template v-for="(item, index) of fileDefaultList" :key="'defaultItem' + index">
-				<div class="customFileListItem" v-if="!props.manualUpload && item !== null">
+				<div class="customFileListItem" v-if="!props.manualUpload && item">
 					<div class="listLoading" v-show="item.mimeType === 'loading'">
 						<div data-loader="circle-side" class="loader-div" />
 					</div>

@@ -46,26 +46,26 @@
 	const groupT = ref<any[]>([])
 	const groupX = computed(() => {
 		let unknown = t('r.unknown')
-		if (props.modelValue.length > groupT.value.length) {
+		if (props.modelValue?.length > groupT.value.length) {
 			groupT.value = cloneDeep(props.modelValue)
 		}
 		return groupT.value.map((e: Record<string, any>) => {
-			let temp: Record<string, any> = { label: (e && e.title) || unknown }
-			if (e && e.disableShowSetting) {
+			let temp: Record<string, any> = { label: e?.title || unknown }
+			if (e?.disableShowSetting) {
 				temp.disabled = true
 			}
 			return temp
 		})
 	})
-	const disabledGroup = computed(() => groupX.value.filter((e: Record<string, any>) => e.disabled))
+	const disabledGroup = computed(() => groupX.value.filter((e: Record<string, any>) => e?.disabled))
 	const checkAllGroup = computed({
 		get() {
-			return props.modelValue.map((e: Record<string, any>) => (e && e.title) || t('r.unknown'))
+			return props.modelValue?.map?.((e: Record<string, any>) => e?.title || t('r.unknown'))
 		},
 		set(v: any[]) {
 			let subV = groupT.value.filter((e: Record<string, any>) => {
 				for (let item of v) {
-					if (item === e.title) {
+					if (item === e?.title) {
 						return true
 					}
 				}
@@ -89,8 +89,8 @@
 		} else {
 			if (props.defaultCheck) {
 				checkAllGroup.value = props.modelValue
-					.filter((e: Record<string, any>) => e.showSettingCheck)
-					.map((e) => (e && e.title) || unknown)
+					.filter((e: Record<string, any>) => e?.showSettingCheck)
+					.map((e) => e?.title || unknown)
 			}
 		}
 	})
@@ -137,9 +137,9 @@
 		indeterminate.value = false
 
 		if (checkAll.value) {
-			checkAllGroup.value = groupX.value.map((e: Record<string, any>) => e.label)
+			checkAllGroup.value = groupX.value.map((e: Record<string, any>) => e?.label)
 		} else {
-			checkAllGroup.value = disabledGroup.value.map((e: Record<string, any>) => e.label)
+			checkAllGroup.value = disabledGroup.value.map((e: Record<string, any>) => e?.label)
 		}
 	}
 </script>

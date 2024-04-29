@@ -103,7 +103,7 @@ export function fakeALinkClick(obj: Record<string, any>): void {
  * @param {Array} option.path - 递归用参数，逻辑内部参数，不用传
  * @return {Array} 返回带有路径（层级）信息的数组
  * @example group: {id:1,name:'爸爸',children:[{id:2,name:'大儿子'},{id:3,name:'二儿子'}]}
- *          condition: e=>e.id === 3
+ *          condition: e=>e?.id === 3
  *          pathKey: 'name'
  *          childKey: 'children'
  *
@@ -224,10 +224,10 @@ export function emptyInput(val: any) {
 //阻止冒泡
 export function stopBubbling(e: any): void {
 	e = e || window.Event
-	if (e.stopPropagation) {
+	if (e?.stopPropagation) {
 		//W3C阻止冒泡方法
-		e.stopPropagation()
-	} else {
+		e.stopPropagation?.()
+	} else if (e) {
 		e.cancelBubble = true //IE阻止冒泡方法
 	}
 }

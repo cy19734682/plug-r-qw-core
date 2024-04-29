@@ -211,7 +211,7 @@
 		})
 		marker.on('click', (e: Record<string, any>) => {
 			if (infoWindow) {
-				infoWindow.open(Map, e.target.getPosition())
+				infoWindow.open(Map, e?.target?.getPosition?.())
 			}
 		})
 		Map.setFitView()

@@ -57,7 +57,7 @@ export interface TreeNode {
 	children?: TreeNode[]
 }
 
-export type RenderFunc = (h: Funtion) => VNode
+export type RenderFunc = (h: Function) => VNode
 
 export interface Option {
 	label?: string

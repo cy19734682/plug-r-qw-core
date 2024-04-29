@@ -220,8 +220,8 @@ export function downloadFileByFormSubmit(url: string, data: PlainObject = {}, me
 		 */
 		// @ts-ignore
 		let httpEnv = Object.keys(window.g)
-			.filter((e) => e.indexOf('URL') > -1)
-			.map((e) => e.replace('URL', ''))
+			.filter((e) => e?.indexOf?.('URL') > -1)
+			.map((e) => e.replace?.('URL', ''))
 
 		for (let item of httpEnv) {
 			let regExp = new RegExp('^/' + item + '(?=/.*$)', 'i')
@@ -290,9 +290,9 @@ export function getColumnsKeys(sKey: string, columns: any[], returnArray: boolea
 		let names = localStorage.getItem(sKey)
 		if (names) {
 			let t = JSON.parse(decodeURI(names))
-			temp = columns.filter((e) => e.key && t.indexOf(e.title) !== -1).map((e) => e.key)
+			temp = columns.filter((e) => e?.key && t?.indexOf?.(e.title) !== -1).map((e) => e.key)
 		} else {
-			temp = columns.map((e) => e.key)
+			temp = columns.map((e) => e?.key)
 		}
 	} else {
 		temp = []

@@ -32,12 +32,17 @@
 		if (Array.isArray(props.formData[0])) {
 			let t: any[] = []
 			for (let f of props.formData) {
-				t = t.concat(f.filter((e: any) => e.type === 'custom' || (e.type === 'input' && e.slotName && e.slotPosition)))
+				if (!f) {
+					continue
+				}
+				t = t.concat(
+					f.filter((e: any) => e?.type === 'custom' || (e?.type === 'input' && e.slotName && e.slotPosition))
+				)
 			}
 			return t
 		}
-		return props.formData.filter(
-			(e: any) => e.type === 'custom' || (e.type === 'input' && e.slotName && e.slotPosition)
+		return props.formData?.filter?.(
+			(e: any) => e?.type === 'custom' || (e?.type === 'input' && e.slotName && e.slotPosition)
 		)
 	})
 
@@ -117,7 +122,7 @@
 		const el = formRRef.value.$el
 		if (el?.parentNode) {
 			el.parentNode.addEventListener('keyup', (e: any) => {
-				if (e.keyCode === 13) {
+				if (e?.keyCode === 13) {
 					//回车
 					submit()
 				}

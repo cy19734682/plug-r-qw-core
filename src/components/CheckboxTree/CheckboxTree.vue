@@ -88,7 +88,7 @@
 			/*清空dataT已选*/
 			setValByOption({
 				group: dataT.value,
-				condition: (e: any) => e.checked === true,
+				condition: (e: any) => e?.checked === true,
 				key: 'checked',
 				val: false
 			})
@@ -96,14 +96,14 @@
 			if (type === 'a') {
 				setValByOption({
 					group: dataT.value,
-					condition: (e) => findIndex(after, [key, e[key]]) !== -1,
+					condition: (e) => findIndex(after, [key, e?.[key]]) !== -1,
 					key: 'checked',
 					val: true
 				})
 			} else {
 				setValByOption({
 					group: dataT.value,
-					condition: (e) => after.indexOf(e[key]) !== -1,
+					condition: (e) => after.indexOf(e?.[key]) !== -1,
 					key: 'checked',
 					val: true
 				})
@@ -116,7 +116,7 @@
 		(after: any) => {
 			setValByOption({
 				group: dataT.value,
-				condition: (e) => e.disableCheckbox !== after,
+				condition: (e) => e?.disableCheckbox !== after,
 				key: 'disableCheckbox',
 				val: after
 			})
@@ -137,8 +137,8 @@
 				checked = collectValT.value[0] ? valueT.value.indexOf(item[collectValT.value[0]]) !== -1 : false
 			}
 			let temp: Record<string, any> = {
-				name: item[props.label],
-				expand: Boolean(props.expandAll || item.expand),
+				name: item?.[props.label],
+				expand: Boolean(props.expandAll || item?.expand),
 				checked: checked,
 				disableCheckbox: props.disabled
 			}
@@ -146,7 +146,7 @@
 				temp[keyI] = item[keyI]
 			}
 			root.push(temp)
-			if (item.children && item.children.length > 0) {
+			if (item?.children && item.children.length > 0) {
 				temp.children = []
 				initDataB(item.children, temp.children)
 			}
@@ -163,8 +163,8 @@
 				checked = collectValT.value[0] ? valueT.value.indexOf(item[collectValT.value[0]]) !== -1 : false
 			}
 			let temp: Record<string, any> = {
-				name: item[props.label],
-				expand: Boolean(props.expandAll || item.expand),
+				name: item?.[props.label],
+				expand: Boolean(props.expandAll || item?.expand),
 				checked: checked,
 				disableCheckbox: props.disabled
 			}
@@ -172,7 +172,7 @@
 				temp[keyI] = item[keyI]
 			}
 			root.push(temp)
-			if (item.children && item.children.length > 0) {
+			if (item?.children && item.children.length > 0) {
 				temp.children = []
 				initData(item.children, temp.children)
 			}
@@ -233,7 +233,7 @@
 		let arr = document.querySelectorAll('#' + id + ' .inlineChildXA')
 		if (arr.length > 0) {
 			for (let item of arr) {
-				let parent = item.parentElement
+				let parent = item?.parentElement
 				let tt = parent?.nextElementSibling
 				if (!tt) {
 					return

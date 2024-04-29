@@ -38,7 +38,7 @@
 			/*遍历data添加勾选信息(1级)*/
 			let checkCount = 0
 			let indeterminateCount = 0
-			if (item.children && !isEmpty(item.children)) {
+			if (item?.children && !isEmpty(item.children)) {
 				for (let secItem of item.children) {
 					/*更深一层遍历children（2级）*/
 					let checkCountB = 0
@@ -149,7 +149,7 @@
 	function getLeafChecked(val: TreeNode[], isLeaf?: boolean) {
 		let temp: any[] = []
 		for (let item of val) {
-			if (!isLeaf && !props.leaf && item.checked && item.indeterminate === false) {
+			if (!isLeaf && !props.leaf && item?.checked && item.indeterminate === false) {
 				/*非叶子节点模式且需要获取parent节点时，如果当前parent节点所有子节点都选中，在value中带上parent节点*/
 				if (Array.isArray(props.collectVal)) {
 					let ttO: Record<string, any> = {}
@@ -161,7 +161,7 @@
 					temp.push(item[props.collectVal])
 				}
 			}
-			if (item.children) {
+			if (item?.children) {
 				for (let secItem of item.children) {
 					if (!isLeaf && !props.leaf && secItem.checked && secItem.indeterminate === false) {
 						/*非叶子节点模式且需要获取parent节点时，如果当前parent节点所有子节点都选中，在value中带上parent节点*/

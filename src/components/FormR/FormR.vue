@@ -71,14 +71,14 @@
 		props.inline
 			? {
 					width: props.itemWidth + props.labelWidth + 'px'
-			  }
+				}
 			: {}
 	)
 	const itemStyle = computed<Record<string, any>>(() =>
 		props.inline
 			? {
 					width: '100%'
-			  }
+				}
 			: { width: props.contentWidth }
 	)
 	/*计算表单规则*/
@@ -88,6 +88,9 @@
 			if (tr.hasOwnProperty(k)) {
 				if (Array.isArray(tr[k])) {
 					for (let e of tr[k]) {
+						if (!e) {
+							continue
+						}
 						if (!(e.message || e.validator)) {
 							e.message = t('r.required')
 						}
@@ -127,7 +130,7 @@
 
 	function getSlotFormData(d: any[]) {
 		/*私有，获取插槽数据*/
-		return d.filter((e: Record<string, any>) => e.slotName)
+		return d.filter((e: Record<string, any>) => e?.slotName)
 	}
 
 	/**
@@ -224,7 +227,7 @@
 					} else if (myTypeof(valGroup.value[k]) === 'Boolean') {
 						valGroup.value[k] = false
 					} else {
-						const formItem = findCollection(props.formData, (e) => e.key === k)
+						const formItem = findCollection(props.formData, (e) => e?.key === k)
 						if (formItem && (formItem.type === 'editor' || formItem.type === 'editorPro')) {
 							valGroup.value[k] = ''
 						} else {
@@ -516,23 +519,23 @@
 											lng: root.defaultVal,
 											lat: root.defaultVal2,
 											name: root.defaultVal3 || ''
-									  }
+										}
 									: {
 											lng: null,
 											lat: null,
 											name: null
-									  }
+										}
 						} else {
 							tempKeys.value[tempKeyE] =
 								root.defaultVal !== undefined && root.defaultVal2 !== undefined
 									? {
 											lng: root.defaultVal,
 											lat: root.defaultVal2
-									  }
+										}
 									: {
 											lng: null,
 											lat: null
-									  }
+										}
 						}
 						watchGroup.push(
 							watch(
@@ -670,7 +673,7 @@
 								/*设置changeOption为true时,当待选项地址改变后重新拉取待选项，在使用该表单组件的地方改变传入的formData对应项的optionUrl*/
 								watchGroup.push(
 									watch(
-										() => findCollection(props.formData, (e) => e.key === root.key).optionUrl,
+										() => findCollection(props.formData, (e) => e?.key === root.key).optionUrl,
 										(after) => {
 											let tV = cloneDeep(tempKeys.value[root.tempKey])
 											tempKeys.value[root.tempKey] = null
@@ -699,7 +702,7 @@
 						}
 					} else if (myTypeof(root.borrowOption) === 'String') {
 						/*借用待选项*/
-						root.options = findCollection(formDataT.value, (e) => e.key === root.borrowOption).options
+						root.options = findCollection(formDataT.value, (e) => e?.key === root.borrowOption).options
 					}
 
 					const tempKeyC = 'opEle' + Math.floor(Math.random() * 100000000)
@@ -1025,7 +1028,7 @@
 
 						if (Array.isArray(root.collectLabel)) {
 							for (let l of root.collectLabel) {
-								if (l.key && l.valKey) {
+								if (l?.key && l.valKey) {
 									const collectTempKey = findTempKey(l.key)
 									let t: any = null
 
@@ -1045,7 +1048,7 @@
 										}
 									}
 
-									let sameKeyCom = findCollection(formDataT.value, (e) => e.key === l.key)
+									let sameKeyCom = findCollection(formDataT.value, (e) => e?.key === l.key)
 									if (sameKeyCom && sameKeyCom.tempKey) {
 										tempKeys.value[sameKeyCom.tempKey] = valGroup.value[l.key]
 									}
@@ -1076,7 +1079,8 @@
 								let sameKeyCom = findCollection(
 									formDataT.value,
 									(e) =>
-										(root.collectLabel && !Array.isArray(root.collectLabel) && e.key === root.collectLabel.key) || false
+										(root.collectLabel && !Array.isArray(root.collectLabel) && e?.key === root.collectLabel.key) ||
+										false
 								)
 								if (sameKeyCom && sameKeyCom.tempKey) {
 									tempKeys.value[sameKeyCom.tempKey] = valGroup.value[root.collectLabel.key]
@@ -1151,11 +1155,11 @@
 		if (!root.options) {
 			return
 		}
-		if (root.multiple || root.type === 'checkboxGroup') {
+		if (root?.multiple || root.type === 'checkboxGroup') {
 			if (after) {
 				let t: any[] = []
 				for (let e of root.options) {
-					if (after.indexOf(e.val) !== -1) {
+					if (after.indexOf(e?.val) !== -1) {
 						t.push(e)
 					}
 				}
@@ -1165,7 +1169,7 @@
 		} else {
 			if (after || after === 0 || after === false) {
 				for (let e of root.options) {
-					if (e.val === after) {
+					if (e?.val === after) {
 						return e
 					}
 				}
@@ -1245,7 +1249,7 @@
 				for (let k of Object.keys(d)) {
 					/*需要校验的表单项满足条件：1.在更新队列；2.没有处于隐藏状态；3.不能是手动置空的表单项；*/
 					if (
-						e.key === k &&
+						e?.key === k &&
 						showingKeys.value.indexOf(k) > -1 &&
 						!(d[k] === null || ((Array.isArray(d[k]) || myTypeof(d[k]) === 'Object') && isEmpty(d[k])))
 					) {
@@ -1255,7 +1259,7 @@
 				}
 				return false
 			})
-			.map((e) => e.key)
+			.map((e) => e?.key)
 	}
 
 	/**

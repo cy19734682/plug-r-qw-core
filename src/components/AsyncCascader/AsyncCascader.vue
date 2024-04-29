@@ -48,7 +48,7 @@
 			} else if (isNumber(valProp)) {
 				return findPath({
 					group: dataC.value,
-					condition: (item) => item.value === valProp,
+					condition: (item) => item?.value === valProp,
 					pathKey: 'value'
 				})
 			} else if (isString(valProp)) {
@@ -110,7 +110,7 @@
 				value: item[props.optionVal],
 				label: item[props.optionLabel]
 			}
-			if (item.children && !isEmpty(item.children)) {
+			if (item?.children && !isEmpty(item.children)) {
 				tt.children = dataFilter(item.children)
 			}
 			temp.push(tt)
@@ -130,7 +130,7 @@
 		if (!isEmpty(selectedDetail)) {
 			label = selectedDetail
 				.map((item) => {
-					return item.label
+					return item?.label
 				})
 				.join(props.separator)
 		}

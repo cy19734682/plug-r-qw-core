@@ -35,14 +35,18 @@ import { t } from '../locale'
 			const e = document.getElementById('editor-preview')
 			let _w = localStorage.getItem('editorPreviewW') || 300
 			let _h = localStorage.getItem('editorPreviewH') || 500
-			const contentR = d.getHtml()
+			const contentR = d?.getHtml?.()
 
 			if (e) {
-				let wallE = e.children[0].children[1].children[0] as HTMLElement
-				let outWallE = e.children[0].children[1] as HTMLElement
-				wallE.innerHTML = contentR
-				wallE.style.width = _w + 'px'
-				outWallE.style.height = _h + 'px'
+				let wallE = e.children?.[0]?.children?.[1]?.children?.[0] as HTMLElement
+				let outWallE = e.children?.[0]?.children?.[1] as HTMLElement
+				if (wallE) {
+					wallE.innerHTML = contentR
+					wallE.style.width = _w + 'px'
+				}
+				if (outWallE) {
+					outWallE.style.height = _h + 'px'
+				}
 				e.style.display = 'block'
 			} else {
 				const body = document.body
@@ -59,7 +63,7 @@ import { t } from '../locale'
 				const spaceH = 70
 
 				const wHandler = (e: any) => {
-					if (e && e.type === 'keyup') {
+					if (e?.type === 'keyup') {
 						let notEnter = false
 						if (e.key) {
 							notEnter = e.key !== 'Enter'
@@ -68,7 +72,7 @@ import { t } from '../locale'
 							return
 						}
 					}
-					let val = e.target.value
+					let val = e?.target?.value
 					val = Number(val)
 					if (wallE.style && wallE.style.width === val + 'px') {
 						return
@@ -92,7 +96,7 @@ import { t } from '../locale'
 				let inputH = p.children[0].children[0].children[0].children[3]
 
 				const hHandler = (e: any) => {
-					if (e && e.type === 'keyup') {
+					if (e?.type === 'keyup') {
 						let notEnter = false
 						if (e.key) {
 							notEnter = e.key !== 'Enter'
@@ -101,7 +105,7 @@ import { t } from '../locale'
 							return
 						}
 					}
-					let val = e.target.value
+					let val = e?.target?.value
 					val = Number(val)
 
 					if (outWallE.style && outWallE.style.height === val + 'px') {

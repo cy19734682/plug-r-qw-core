@@ -75,11 +75,11 @@
 					...props.searchData,
 					current: current.value,
 					[props.searchKey]: searchStr.value
-			  }
+				}
 			: {
 					...props.searchData,
 					current: current.value
-			  }
+				}
 	})
 
 	watch(
@@ -130,7 +130,7 @@
 	function isSelect(val: any) {
 		/*私有，不可调用*/
 		for (let item of options.value) {
-			if (item.label === val) {
+			if (item?.label === val) {
 				return true
 			}
 		}
@@ -139,7 +139,7 @@
 
 	const getOption = debounce(function (e: any) {
 		/*私有，不可调用*/
-		const val = e.target.value
+		const val = e?.target?.value
 		if (!isSelect(val)) {
 			if (isValidValue(val)) {
 				if (urlChanged) {
@@ -255,8 +255,8 @@
 						/*去重*/
 						let hash: Record<string, any> = {}
 						options.value = options.value.filter((e) => {
-							if (!hash[e.value]) {
-								hash[e.value] = true
+							if (!hash[e?.value]) {
+								hash[e?.value] = true
 								return true
 							}
 							return false
@@ -294,9 +294,9 @@
 		<Option
 			v-for="(item, index) in options"
 			:key="'op' + index"
-			:value="item.value"
-			:label="item.label"
-			:disabled="item.disabled"
+			:value="item?.value"
+			:label="item?.label"
+			:disabled="item?.disabled"
 		/>
 	</Select>
 </template>

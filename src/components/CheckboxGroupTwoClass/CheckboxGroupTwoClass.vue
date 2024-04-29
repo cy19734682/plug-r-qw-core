@@ -35,16 +35,16 @@
 		for (let item of temp) {
 			/*遍历data添加勾选信息*/
 			let checkCount = 0
-			if (item.children && !isEmpty(item.children)) {
+			if (item?.children && !isEmpty(item.children)) {
 				for (let secItem of item.children) {
 					/*更深一层遍历children*/
-					for (let valIndex = 0, len = valTemp.length; valIndex < len; valIndex++) {
+					for (let valIndex = 0, len = valTemp?.length; valIndex < len; valIndex++) {
 						/*遍历继承的value*/
 						if (Array.isArray(props.collectVal)) {
 							/*收集多个字段的情况*/
 							let equalI = true
 							for (let collectKey of props.collectVal) {
-								if (valTemp[valIndex][collectKey] !== secItem[collectKey]) {
+								if (valTemp[valIndex]?.[collectKey] !== secItem?.[collectKey]) {
 									/*遍历中当前节点和value的当前遍历元素不等（收集字段对应的值有不等的），判断为当前节点没有被选中，不在判断其他收集字段，跳出循环*/
 									equalI = false
 									break

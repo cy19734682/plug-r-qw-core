@@ -71,7 +71,7 @@
 		})
 		mPickerRef.value.querySelector('.aRoot .ivu-input-suffix').addEventListener('click', (e: any) => {
 			if (!props.disabled && (valueA.value || valueB.value)) {
-				e.stopPropagation()
+				e?.stopPropagation?.()
 				clear()
 			}
 		})

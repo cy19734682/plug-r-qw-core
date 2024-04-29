@@ -84,7 +84,7 @@
 				if (Array.isArray(val)) {
 					name = val
 						.map((item) => {
-							return item.name
+							return item?.name
 						})
 						.join(props.separator)
 				}

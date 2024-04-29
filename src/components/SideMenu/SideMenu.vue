@@ -45,8 +45,8 @@
 	function addOpen() {
 		let t = menuRef.value.querySelectorAll('.dropItemRP')
 		for (let e of t) {
-			if (e.querySelector('.active') && !e.classList.contains('open')) {
-				e.classList.add('open')
+			if (e?.querySelector?.('.active') && !e.classList?.contains?.('open')) {
+				e.classList?.add?.('open')
 			}
 		}
 	}

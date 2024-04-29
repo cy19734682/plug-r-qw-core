@@ -229,8 +229,8 @@ function checkRequest(
 				// @ts-ignore
 				const _g = window.g
 				let httpEnv = Object.keys(_g)
-					.filter((e) => e.indexOf('URL') > -1)
-					.map((e) => e.replace('URL', ''))
+					.filter((e) => e?.indexOf?.('URL') > -1)
+					.map((e) => e.replace?.('URL', ''))
 
 				for (let e of httpEnv) {
 					let regExp = new RegExp('^/' + e + '(?=/.*$)', 'i')

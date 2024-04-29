@@ -102,7 +102,7 @@
 
 	const columnsFixed = computed(() => {
 		for (let e of props.columns) {
-			if (e.fixed) {
+			if (e?.fixed) {
 				return true
 			}
 		}
@@ -129,7 +129,7 @@
 
 	const columnsT = computed(() => {
 		let t = props.columns.filter((e) => {
-			return e.type !== 'selection'
+			return e?.type !== 'selection'
 		})
 		if (props.selection || props.radio) {
 			let c: Record<string, any>
@@ -156,6 +156,9 @@
 			t.unshift(c)
 		}
 		t.forEach((e) => {
+			if (!e) {
+				return
+			}
 			if (props.sortable === 'custom') {
 				if (e.key && e.sortable !== true && e.sortable !== false) {
 					e.sortable = 'custom'
@@ -169,7 +172,7 @@
 		})
 		if (props.tableEmptyTdHandle) {
 			t.forEach((e: Record<string, any>) => {
-				if (e.key && e.render === undefined) {
+				if (e?.key && e.render === undefined) {
 					if (e.tooltip) {
 						e.render = tooltipManual(e.key, true)
 					} else {
@@ -199,9 +202,9 @@
 		}
 	})
 
-	const selectedIds = computed(() => selected.map((e: Record<string, any>) => e.id))
+	const selectedIds = computed(() => selected.map((e: Record<string, any>) => e?.id))
 
-	const selectedKeys = computed(() => selected.map((e: Record<string, any>) => e.btKey))
+	const selectedKeys = computed(() => selected.map((e: Record<string, any>) => e?.btKey))
 
 	const tableRef = ref()
 
@@ -241,6 +244,7 @@
 			tableRef.value?.clickCurrentRow?.(0)
 		}, 100)
 	}
+
 	/**
 	 * 更新行数据（公开）
 	 * @param {object} row 新的行数据（只更新旧数据和新数据都有的字段，如想更新的其中一个字段为row.name，那么旧row数据需要有name这个字段）
@@ -300,7 +304,7 @@
 		/*私有*/
 		if (props.radio) {
 			for (let e of dataS.value) {
-				if (e.btKey !== currentKey) {
+				if (e?.btKey && e.btKey !== currentKey) {
 					dataT.value[Number(e.btKey.split('-')[1])].btChecked = false
 				}
 			}

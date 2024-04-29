@@ -78,6 +78,7 @@
 <template>
 	<!--suppress HtmlExtraClosingTag -->
 	<FormItem
+		v-if="props.item"
 		:label="props.item.type !== 'radio' && props.item.type !== 'checkbox' ? props.item.label : ' '"
 		:prop="props.item.key || ''"
 		class="relativeBox"

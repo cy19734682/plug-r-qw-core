@@ -4,9 +4,11 @@
  * @created 2023.05.04
  */
 import { h } from 'vue'
+import type { VNode } from 'vue'
 import { Modal, Button } from 'view-ui-plus'
 import { myTypeof } from './globalFunc'
 import { t } from '../locale'
+import type { RenderFunc } from '../public'
 
 let loading: boolean = false
 
@@ -48,7 +50,7 @@ export default function messageBox(
 		height?: number
 		width?: number
 		title?: string
-		content: string
+		content: string | VNode | RenderFunc
 		onOk?: () => void | Promise<any>
 		onCancel?: () => void
 		onClose?: () => void

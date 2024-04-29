@@ -80,7 +80,7 @@
 									if (r && r.data) {
 										if (Array.isArray(r.data)) {
 											for (let e of r.data) {
-												const url = u + '/' + e.id + '/download'
+												const url = u + '/' + e?.id + '/download'
 												// 上传图片，返回结果，将图片插入到编辑器中
 												insertFn(url, n, url)
 											}
@@ -115,7 +115,7 @@
 									if (r && r.data) {
 										if (Array.isArray(r.data)) {
 											for (let e of r.data) {
-												const url = u + '/' + e.id + '/download'
+												const url = u + '/' + e?.id + '/download'
 												// 最后插入视频
 												insertFn(url)
 											}

@@ -69,7 +69,7 @@
 	const inputStyle = computed(() => ({ width: props.itemWidth + 'px' }))
 
 	function inputChange(e: Record<string, any>) {
-		if (e?.target?.value !== undefined) {
+		if (e?.target && e.target.value !== undefined) {
 			handleChange({
 				key: selectVal.value,
 				val: e.target.value
@@ -87,9 +87,9 @@
 		<Select v-model="selectVal" :style="labelSelectStyle" :disabled="Boolean(props.disabled)" transfer>
 			<Option
 				v-for="(item, index) in props.selectOption"
-				:value="item.val"
-				:label="item.label"
-				:key="'selectInputOp' + item.value + index"
+				:value="item?.val"
+				:label="item?.label"
+				:key="'selectInputOp' + item?.value + index"
 				:style="{ textAlign: props.labelTextAlign }"
 			/>
 		</Select>
