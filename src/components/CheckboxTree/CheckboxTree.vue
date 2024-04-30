@@ -116,7 +116,7 @@
 		(after: any) => {
 			setValByOption({
 				group: dataT.value,
-				condition: (e) => e?.disableCheckbox !== after,
+				condition: (e) => e && e.disableCheckbox !== after,
 				key: 'disableCheckbox',
 				val: after
 			})

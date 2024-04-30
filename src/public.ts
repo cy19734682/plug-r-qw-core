@@ -1,5 +1,4 @@
 import type { SlateDescendant } from '@wangeditor/editor'
-import { h } from 'vue'
 import type { VNode } from 'vue'
 
 declare module '@wangeditor/editor' {
@@ -57,7 +56,9 @@ export interface TreeNode {
 	children?: TreeNode[]
 }
 
-export type RenderFunc = (h: Function) => VNode
+export type PredicateFunc = (d: any) => boolean
+
+export type RenderFunc = (h: any) => VNode
 
 export interface Option {
 	label?: string

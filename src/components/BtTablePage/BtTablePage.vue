@@ -4,8 +4,9 @@
 
 <script lang="ts" setup>
 	import { h } from 'vue'
-	import { cloneDeep, isBoolean, isNumber } from 'lodash-es'
+	import { cloneDeep } from 'lodash-es'
 	import { TableColumnConfig, Radio } from 'view-ui-plus'
+	import type { PredicateFunc } from '../../public'
 	import Proxy from '../../utils/proxy'
 	import { toLine, tooltipManual } from '../../utils/globalFunc'
 	import { toHump } from '../../utils/needImportFunc'
@@ -129,7 +130,7 @@
 
 	const columnsT = computed(() => {
 		let t = props.columns.filter((e) => {
-			return e?.type !== 'selection'
+			return e && e.type !== 'selection'
 		})
 		if (props.selection || props.radio) {
 			let c: Record<string, any>
@@ -139,7 +140,7 @@
 					width: 65,
 					render: (_h: any, params: Record<string, any>) => {
 						return h(Radio, {
-							value: params.row.btChecked
+							modelValue: params.row.btChecked
 						})
 					}
 				}
@@ -253,9 +254,9 @@
 	 */
 	function setRowData(row: Record<string, any>, setCurrentRow: boolean, clickCurrentRow: boolean) {
 		let index: number | null = null
-		if (isBoolean(setCurrentRow) && setCurrentRow) {
+		if (setCurrentRow) {
 			index = currentIndex
-		} else if (isNumber(setCurrentRow)) {
+		} else if (typeof setCurrentRow === 'number') {
 			index = setCurrentRow
 		}
 		if (index !== null) {
@@ -344,6 +345,38 @@
 		}
 		current.value = 1
 		getTableData()
+	}
+
+	/**
+	 * 主动选中行（公开）多选、单选模式皆可用
+	 * @param {Number|Array|Function} predicate 断言,选中的条件：
+	 * 1. Number:根据索引index选中行
+	 * 2. Array:根据索引index数组选中行(仅多选)
+	 * 3. Function:根据断言函数返回true的行选中
+	 */
+	function selectRow(predicate: number | number[] | PredicateFunc) {
+		const _p = predicate
+		if (typeof _p === 'number') {
+			clearSelect()
+			currentIndex = _p
+			currentKey = dataS.value?.[_p]?.btKey
+			tableRef.value?.clickCurrentRow?.(_p)
+		} else if (Array.isArray(_p)) {
+			if (props.radio || !props.selection) {
+				return
+			}
+			clearSelect()
+			for (let i of _p) {
+				tableRef.value?.clickCurrentRow?.(i)
+			}
+		} else if (typeof _p === 'function') {
+			for (let i = 0; i < dataS.value.length; i++) {
+				const e = dataS.value[i]
+				if (_p(e)) {
+					tableRef.value?.clickCurrentRow?.(i)
+				}
+			}
+		}
 	}
 
 	function clearSelect() {
@@ -466,6 +499,7 @@
 		setRowData,
 		deleteRow,
 		getSelected,
+		selectRow,
 		clearSelect,
 		clearTableData,
 		getTableData,

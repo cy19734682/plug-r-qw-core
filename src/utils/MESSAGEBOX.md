@@ -6,7 +6,7 @@
 
 - title 字符串，对话框的title，可不传
 
-- content 字符串|VNode，提示框内容，可不传
+- content 字符串|VNode|Function，提示框内容，必填，传`''`触发默认值，1.string，直接将文字插入对应位置；2.VNode，如：h('div',{style:{color:'red'}},'123')；3.Function,如：(h)=>h('div',{class:'my-class'},'123')
 
 - onOk Function|Promise 确定按钮被点击时的回调，可不传
 

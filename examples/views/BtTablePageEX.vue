@@ -1,4 +1,6 @@
 <script setup lang="ts">
+	import { cloneDeep } from 'lodash-es'
+	import { Radio, RadioGroup, Checkbox, CheckboxGroup } from 'view-ui-plus'
 	import {
 		downloadFileReaderFile,
 		$swal,
@@ -11,7 +13,6 @@
 		TableIconBtn,
 		tablePrint
 	} from '../../src'
-	import { cloneDeep } from 'lodash-es'
 	import imgK from '../assets/testo.png'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 	import NodeServeInfo from '@/components/NodeServeInfo.vue'
@@ -38,7 +39,7 @@
 					key: 'name',
 					minWidth: 550,
 					render: (_h: any, params: Record<string, any>) => {
-						return h(
+						return _h(
 							'span',
 							{
 								class: 'link',
@@ -71,8 +72,8 @@
 			title: '操作',
 			width: 240,
 			render: (_h: any, params: Record<string, any>) => {
-				return h('div', [
-					h(TableIconBtn, {
+				return _h('div', [
+					_h(TableIconBtn, {
 						icon: 'ios-create',
 						title: '编辑',
 						onClick: () => {
@@ -86,7 +87,7 @@
 							}
 						}
 					}),
-					h(TableIconBtn, {
+					_h(TableIconBtn, {
 						icon: 'ios-trash',
 						title: '删除',
 						onClick: () => {
@@ -165,6 +166,9 @@
 		return action.value === 'new' ? 'post' : 'put'
 	})
 
+	let tt = ref<number[]>([])
+	let tr: number | null = null
+
 	function dragDrop(a: any, b: any) {
 		let d = btTab.value.dataS
 		//提出a
@@ -237,6 +241,57 @@
 	function handlePrint() {
 		tablePrint.print(columns, tabData, '表格打印示例', { autoPrint: true })
 	}
+
+	function messageRender(_h: any) {
+		let _c = []
+		const _r = selectMode.value === 'radio'
+		for (let i = 0; i < tabData.length; i++) {
+			_c.push(_h(_r ? Radio : Checkbox, { label: i }, () => tabData[i].id))
+		}
+
+		return _h(
+			_r ? RadioGroup : CheckboxGroup,
+			{
+				modelValue: _r ? tr : tt.value,
+				onOnChange(v: any) {
+					if (_r) {
+						tr = v
+					} else {
+						tt.value = v
+					}
+				}
+			},
+			() => _c
+		)
+	}
+
+	function selectRow() {
+		messageBox({
+			title: '你想选中那些行',
+			content: messageRender,
+			onOk: () => {
+				if (selectMode.value === 'radio') {
+					btTab.value.selectRow(tr)
+				} else {
+					btTab.value.selectRow(tt.value)
+				}
+			}
+		})
+	}
+
+	function selectRowPredicate() {
+		messageBox({
+			title: '按条件主动选择',
+			content: selectMode.value === 'radio' ? '将选中id为80的那一行' : '将选中id大于79的行',
+			onOk: () => {
+				if (selectMode.value === 'radio') {
+					btTab.value.selectRow((row: any) => row.id === 80)
+				} else {
+					btTab.value.selectRow((row: any) => row.id > 79)
+				}
+			}
+		})
+	}
 </script>
 
 <template>
@@ -266,7 +321,9 @@
 						<Radio label="checkbox">多选</Radio>
 					</RadioGroup>
 					<Checkbox v-model="nodeServer" @on-change="getData">切换为node-serve数据(需开启项目nodeJs服务器)</Checkbox>
-					<IconTxtBtn name="get select" icon="ios-checkbox" @click="getS" />
+					<IconTxtBtn name="select row" icon="md-checkbox" @click="selectRow" />
+					<IconTxtBtn name="select function" icon="md-checkbox" @click="selectRowPredicate" />
+					<IconTxtBtn name="get select" icon="md-list" @click="getS" />
 					<IconTxtBtn name="新增" icon="md-add" @click="handleNew" />
 					<IconTxtBtn name="打印" icon="md-print" @click="handlePrint" />
 				</div>
