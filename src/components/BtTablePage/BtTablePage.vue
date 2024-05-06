@@ -53,6 +53,8 @@
 			lightHead?: boolean /*浅色背景表头，避免和headerBar菜单紧邻时页面局部颜色不平衡*/
 			noPage?: boolean /*表格页签*/
 			usePagePro?: boolean /*是否使用pagePro组件作为页签*/
+			showTotal?: boolean /*page是否展示total*/
+			showSizer?: boolean /*page是否展示sizer*/
 			pageSize?: number /*每页条数*/
 			pageComponentSize?: 'small' | 'default' /*页签大小*/
 			noElevator?: boolean /*页签不带电梯*/
@@ -80,7 +82,9 @@
 			showTopRow: false,
 			lightHead: false,
 			noPage: false,
-			usePagePro: () => Proxy().btTablePageUsePagePro,
+			usePagePro: () => Proxy()?.btTablePageUsePagePro,
+			showTotal: () => Proxy()?.pageShowTotal,
+			showSizer: () => Proxy()?.pageShowSizer,
 			pageSize: 10,
 			pageComponentSize: 'default',
 			noElevator: false
@@ -540,8 +544,10 @@
 				v-if="props.usePagePro"
 				v-model="current"
 				:total="total"
-				:page-size="pageSizeT"
-				:page-size-opts="pageSizes"
+				:showTotal="props.showTotal"
+				:pageSize="pageSizeT"
+				:showSizer="props.showSizer"
+				:pageSizeOpts="pageSizes"
 				:size="props.pageComponentSize"
 				@on-change="changePage"
 				@on-page-size-change="pageSizeChange"
@@ -550,11 +556,11 @@
 				v-else
 				v-model="current"
 				:total="total"
-				:page-size="pageSizeT"
-				:page-size-opts="pageSizes"
+				:pageSize="pageSizeT"
+				:pageSizeOpts="pageSizes"
+				:showSizer="props.showSizer"
+				:showTotal="props.showTotal"
 				:size="props.pageComponentSize"
-				show-sizer
-				show-total
 				:showElevator="!props.noElevator"
 				@on-change="changePage"
 				@on-page-size-change="pageSizeChange"

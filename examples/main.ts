@@ -30,7 +30,7 @@ import '../src/style/index.less'
 import 'github-markdown-css/github-markdown-light.css'
 
 window._AMapSecurityConfig = {
-	securityJsCode: '1e77836c15c172e8cda4249f26d64326'
+	securityJsCode: '6784d3fc333089ce3d6d314112609eac'
 }
 
 const i18n = createI18n({
@@ -55,8 +55,8 @@ app
 		router,
 		i18n,
 		amap: {
-			securityJsCode: '1e77836c15c172e8cda4249f26d64326',
-			key: 'd1e34acab7c1eae8614e0a12bfafc99d'
+			securityJsCode: '6784d3fc333089ce3d6d314112609eac',
+			key: '6836a3633a8cdf2bffab565e44242866'
 		}
 	})
 	.mount('#app')

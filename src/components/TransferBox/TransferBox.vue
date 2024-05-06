@@ -9,6 +9,7 @@
 	import ShowHidePanel from '../ShowHidePanel/ShowHidePanel.vue'
 	import SearchForm from '../SearchForm/SearchForm.vue'
 	import BtTablePage from '../BtTablePage/BtTablePage.vue'
+	import Proxy from '../../utils/proxy'
 
 	const emit = defineEmits(['transferred', 'on-data-change-l', 'on-data-change-r'])
 	const props = withDefaults(
@@ -38,6 +39,9 @@
 			deleteMethod?: 'delete' | 'post' | 'put' | 'get'
 			deleteAllMethod?: 'delete' | 'post' | 'put' | 'get'
 			searchFormLabelWith?: number
+			usePagePro?: boolean /*是否使用pagePro组件作为页签*/
+			showTotal?: boolean /*page是否展示total*/
+			showSizer?: boolean /*page是否展示sizer*/
 		}>(),
 		{
 			formDataLeft: () => [],
@@ -55,7 +59,10 @@
 			addMethod: 'post',
 			addAllMethod: 'post',
 			deleteMethod: 'delete',
-			deleteAllMethod: 'delete'
+			deleteAllMethod: 'delete',
+			usePagePro: () => Proxy()?.btTablePageUsePagePro,
+			showTotal: () => Proxy()?.pageShowTotal,
+			showSizer: () => Proxy()?.pageShowSizer
 		}
 	)
 
@@ -246,6 +253,9 @@
 						:init-data="Boolean(isEmpty(props.constSearchDataLeft) && props.leftTableUrl)"
 						get-data-loading
 						selection
+						:usePagePro="props.usePagePro"
+						:showTotal="props.showTotal"
+						:showSizer="props.showSizer"
 					/>
 				</div>
 			</div>
@@ -297,6 +307,9 @@
 						:init-data="Boolean(isEmpty(props.constSearchDataRight) && props.rightTableUrl)"
 						get-data-loading
 						selection
+						:usePagePro="props.usePagePro"
+						:showTotal="props.showTotal"
+						:showSizer="props.showSizer"
 					/>
 				</div>
 			</div>

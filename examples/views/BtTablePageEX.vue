@@ -309,7 +309,7 @@
 			:radio="selectMode === 'radio'"
 			:selection="selectMode === 'checkbox'"
 			:draggable="true"
-			use-page-pro
+			:showTotal="false"
 			border
 			@on-drag-drop="dragDrop"
 		>

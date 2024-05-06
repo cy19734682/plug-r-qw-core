@@ -115,7 +115,7 @@ export default defineConfig({
 		},
 		rollupOptions: {
 			external: [
-				'@jiaminghi/data-view',
+				'@amap/amap-jsapi-loader',
 				'@wangeditor/editor',
 				'@wangeditor/editor-for-vue',
 				'ar-cascader',
@@ -126,6 +126,7 @@ export default defineConfig({
 				'lodash-es',
 				'moment',
 				'pinia',
+				'popper.js',
 				'sweetalert',
 				'view-ui-plus',
 				'vue',
@@ -138,13 +139,18 @@ export default defineConfig({
 				dir: './lib',
 				exports: 'named',
 				globals: {
+					'@amap/amap-jsapi-loader': 'AMapLoader',
+					'@wangeditor/editor': 'wangEditor',
+					'@wangeditor/editor-for-vue': 'WangEditorForVue',
+					'ar-cascader': 'ArCascader',
 					vue: 'Vue',
 					axios: 'axios',
 					'view-ui-plus': 'ViewUIPlus',
 					deepmerge: 'deepmerge',
 					'js-cookie': 'Cookies',
+					'lodash-es': 'lodash',
+					moment: 'moment',
 					sweetalert: 'swal',
-					'vue-amap': 'VueAMap',
 					'vue-i18n': 'VueI18n',
 					'vue-json-viewer': 'JsonView',
 					'vue-router': 'VueRouter'

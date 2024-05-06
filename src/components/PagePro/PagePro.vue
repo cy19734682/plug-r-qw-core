@@ -15,6 +15,8 @@
 			pageSize?: number
 			size?: 'small' | 'default'
 			pageSizeOpts?: number[]
+			showTotal?: boolean /*是否展示total*/
+			showSizer?: boolean /*是否展示sizer*/
 			transfer?: boolean
 			disabled?: boolean
 		}>(),
@@ -24,6 +26,8 @@
 			pageSize: 10,
 			size: 'default',
 			pageSizeOpts: () => Proxy()?.pageSizes || [10, 20, 50, 100],
+			showTotal: () => Proxy()?.pageShowTotal,
+			showSizer: () => Proxy()?.pageShowSizer,
 			transfer: true,
 			disabled: false
 		}
@@ -54,6 +58,7 @@
 
 <template>
 	<div class="pagePro" :class="{ pageProDefault: props.size === 'default' }">
+		<span v-if="props.showTotal">{{ t('r.total') + ' ' }}{{ props.total }}{{ ' ' + t('r.items') }}</span>
 		<Page
 			v-model="current"
 			:page-size="pageSizeT"
@@ -63,7 +68,7 @@
 			:disabled="props.disabled"
 			simple
 		/>
-		<div class="pageProSize">
+		<div class="pageProSize" v-if="props.showSizer">
 			<Select v-model="pageSizeT" :size="props.size" :transfer="props.transfer" :disabled="props.disabled">
 				<Option v-for="item in props.pageSizeOpts" :value="item" :key="item">{{ item }} {{ t('r.page') }}</Option>
 			</Select>

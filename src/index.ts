@@ -125,10 +125,18 @@ export const install = function (app: App, options: plugROption = {}) {
 	app.config.globalProperties.formGroupWidth = '100%'
 	// iconTxtBtn默认图标大小
 	app.config.globalProperties.iconTxtBtnIconSize = 17
-	// btTablePage是否使用pagePro组件作为页签
-	app.config.globalProperties.btTablePageUsePagePro = false
+	// btTablePage是否默认使用pagePro组件作为页签，还会影响transferBox
+	app.config.globalProperties.btTablePageUsePagePro = true
+	// pagePro和page是否默认展示total，还会影响btTablePage、transferBox
+	app.config.globalProperties.pageShowTotal = true
+	// pagePro和page是否默认展示sizer，还会影响btTablePage、transferBox
+	app.config.globalProperties.pageShowSizer = true
 	// tableSetting默认背景色
 	app.config.globalProperties.tableSettingBg = '#fff'
+	// tableSetting默认transfer
+	app.config.globalProperties.tableSettingTransfer = false
+	// tableSetting默认eventsEnabled
+	app.config.globalProperties.tableSettingEventsEnabled = true
 }
 
 const plugRQw = { install }

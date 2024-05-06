@@ -80,6 +80,9 @@ export default {
 			9: 'Copied pages cannot use this printing function.',
 			10: 'The mouse stays on the right border of the head bar at the top of the printed content, and a drag icon appears. Press and drag the mouse to set the width of the printed content.'
 		},
-		page: '/page'
+		page: '/page',
+		total: 'Total',
+		items: 'items',
+		notSave: 'Not save yet, save?'
 	}
 }
