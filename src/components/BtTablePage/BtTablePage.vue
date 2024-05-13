@@ -91,7 +91,7 @@
 		}
 	)
 
-	const pageSizes = Proxy().pageSizes || [10, 20, 50, 100]
+	const pageSizes = Proxy()?.pageSizes || [10, 20, 50, 100]
 	const dataT = ref(props.data)
 	const pageSizeT = ref<number>(
 		(localStorage.getItem('btPageSize') && Number(localStorage.getItem('btPageSize'))) || props.pageSize
@@ -172,7 +172,7 @@
 				e.sortable = false
 			}
 			if (!e.align) {
-				e.align = 'center'
+				e.align = Proxy()?.btTablePageAlign || 'center'
 			}
 		})
 		if (props.tableEmptyTdHandle) {

@@ -1,6 +1,6 @@
 ## swal
 
-提示框，支持不同类型提示，支持确认按钮回调，支持按钮配置，挂在 vue 原型上，组件内使用 this 调用；为了区分 sweetalert 的 swal 全局对象，它在 vue 原型下为$swal，如果单独引用，也推荐使用$swal 来命名它
+提示框，支持不同类型提示，支持确认按钮回调，支持按钮配置，挂在 app.config.globalProperties上，组件内使用 this 调用(选项式)；为了区分 sweetalert 的 swal 全局对象，它在 app.config.globalProperties下为$swal，如果单独引用（推荐），也推荐使用$swal 来命名它
 
 ### 参数
 

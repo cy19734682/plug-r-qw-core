@@ -1,6 +1,6 @@
 ## swalConfirm
 
-对话框，支持不同类型提示，支持确认按钮回调，支持按钮配置，挂在 vue 原型上，组件内使用 this 调用，相对于 swal 达到同样效果时用法更简洁；为了和$swal风格一致，它在vue原型下叫$swalConfirm，单独引用时，也推荐使用$swalConfirm 来命名它
+对话框，支持不同类型提示，支持确认按钮回调，支持按钮配置，挂在 app.config.globalProperties上，组件内使用 this 调用（选项式），相对于 swal 达到同样效果时用法更简洁；为了和$swal风格一致，它在app.config.globalProperties下叫$swalConfirm，单独引用时（推荐），也推荐使用$swalConfirm 来命名它
 
 ### 参数
 

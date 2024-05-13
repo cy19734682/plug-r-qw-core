@@ -1,6 +1,6 @@
 ## fetch
 
-网络请求插件，挂在vue原型上，为$fetch，组件内使用this调用，也可单独引用；vue3的setup中，使用proxy调用，详见[库说明](../../README.md)。
+网络请求插件，挂在app.config.globalProperties上，为$fetch，组件内使用this调用(选项式)，也可单独引用(推荐)；vue3的setup中，可使用proxy调用，详见[库说明](../../README.md)。
 
 ### 实例内方法参数
 

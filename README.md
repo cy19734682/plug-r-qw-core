@@ -462,7 +462,7 @@
   ```
 
 
-* 因为有些方法使用频率较低，所以没有挂载在Vue原型或者window上，使用时需要单独引用，如：`improt {fullScreenImgPreview} from '@zhangqingcq/plug-r-qw'`
+* 因为有些方法使用频率较低，所以没有挂载在app.config.globalProperties或者window上，使用时需要单独引用，如：`improt {fullScreenImgPreview} from '@zhangqingcq/plug-r-qw'`
 
 * 本库主要依赖有`vue、vue-router、pinia、@zhangqingcq/view-design-r、sweetalert、lodash、axios、echarts、moment、wangeditor、xss、js-cookie、ar-cascader、vue-amap、vue-json-viewer`
   ，其中`vue、vue-router、vuex(如果用了)`需要在使用vue-cli脚手架搭建项目时安装（选上），如果你的项目是国际化版本,`vue-i18n`

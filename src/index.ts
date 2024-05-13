@@ -112,8 +112,6 @@ export const install = function (app: App, options: plugROption = {}) {
 
 	//库基础字号，影响范围：iconTxtBtn的txt与icon的尺寸比例、fullPop的headerFontSize默认值、btTablePage的tooltip本体尺寸。
 	app.config.globalProperties.fontSizeBase = 14
-	// 页签每页可选条数默认配置
-	app.config.globalProperties.pageSizes = [10, 20, 50, 100]
 	// 搜索表单默认label宽度
 	app.config.globalProperties.searchFormLabelWidth = 84
 	// 搜索表单默认表单项内容宽度
@@ -128,8 +126,12 @@ export const install = function (app: App, options: plugROption = {}) {
 	app.config.globalProperties.formGroupWidth = '100%'
 	// iconTxtBtn默认图标大小
 	app.config.globalProperties.iconTxtBtnIconSize = 17
+	// 页签每页可选条数默认配置
+	app.config.globalProperties.pageSizes = [10, 20, 50, 100]
 	// btTablePage是否默认使用pagePro组件作为页签，还会影响transferBox
 	app.config.globalProperties.btTablePageUsePagePro = true
+	// btTablePage表格内容默认对齐方式
+	app.config.globalProperties.btTablePageAlign = 'center'
 	// pagePro和page是否默认展示total，还会影响btTablePage、transferBox
 	app.config.globalProperties.pageShowTotal = true
 	// pagePro和page是否默认展示sizer，还会影响btTablePage、transferBox

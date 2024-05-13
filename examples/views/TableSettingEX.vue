@@ -33,7 +33,7 @@
 		},
 		{
 			title: '文件类型',
-			minWidth: 100,
+			minWidth: 120,
 			key: 'mimeType'
 		},
 		{
@@ -65,33 +65,30 @@
 
 <template>
 	<show-read-me />
-	<NodeServeInfo />
-	<div class="tableLK">
-		<BtTablePage
-			ref="btTab"
-			:columns="columns"
-			:url="url"
-			:search-data="searchData"
-			@on-row-click="onRowClick"
-			showTopRow
-			border
-		>
-			<template #topBtnGroup>
-				<div class="topBoxKAQ">
-					<Checkbox v-model="nodeServer" @on-change="getData">切换为node-serve数据(需开启项目nodeJs服务器)</Checkbox>
-					<TableSetting v-model="columns" s-key="table_setting_ex_202405071140" transfer />
-				</div>
-			</template>
-		</BtTablePage>
+	<div class="flexColumnBox">
+		<NodeServeInfo />
+		<div class="growFlexItem">
+			<BtTablePage
+				ref="btTab"
+				:columns="columns"
+				:url="url"
+				:search-data="searchData"
+				@on-row-click="onRowClick"
+				showTopRow
+				border
+			>
+				<template #topBtnGroup>
+					<div class="topBoxKAQ">
+						<Checkbox v-model="nodeServer" @on-change="getData">切换为node-serve数据(需开启项目nodeJs服务器)</Checkbox>
+						<TableSetting v-model="columns" s-key="table_setting_ex_202405071140" transfer />
+					</div>
+				</template>
+			</BtTablePage>
+		</div>
 	</div>
 </template>
 
 <style scoped lang="less">
-	.tableLK {
-		height: calc(100vh - 100px);
-		position: relative;
-	}
-
 	.topBoxKAQ {
 		float: right;
 		overflow: hidden;

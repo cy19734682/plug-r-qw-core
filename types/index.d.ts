@@ -15,8 +15,8 @@ import { spread } from 'axios';
 import type { VNode } from 'vue';
 
 /**
- * @description 基于axios封装的请求插件，引入库时使用this.$fetch时直接调用以下方法，例如：this.$fetch.get("/getData",{id:1})，
- * vue3的setup模式使用：proxy调用
+ * @description 基于axios封装的请求插件，引入库时使用this.$fetch时直接调用以下方法（选项式），例如：this.$fetch.get("/getData",{id:1})，
+ * vue3的setup模式使用：proxy调用（更推荐单独引用：import {$fetch} from '@zhangqingcq/plug-r-qw'）
  * 单独引入时遵循Es Modules规范即可
  * @class
  */

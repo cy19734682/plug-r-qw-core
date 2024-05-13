@@ -50,7 +50,7 @@
 		},
 		{
 			title: '文件类型',
-			minWidth: 100,
+			minWidth: 120,
 			key: 'mimeType'
 		},
 		{
@@ -291,49 +291,46 @@
 
 <template>
 	<show-read-me />
-	<NodeServeInfo />
-	<div class="tableLK">
-		<BtTablePage
-			ref="btTab"
-			:columns="columns"
-			:url="url"
-			:search-data="searchData"
-			@on-row-click="onRowClick"
-			@on-data-change="setTotal"
-			show-top-row
-			:radio="selectMode === 'radio'"
-			:selection="selectMode === 'checkbox'"
-			:draggable="true"
-			:showTotal="false"
-			border
-			@on-drag-drop="dragDrop"
-		>
-			<template #topMsg>共有：{{ total }} 条数据。</template>
-			<template #topBtnGroup>
-				<div class="topBoxKAQ">
-					<RadioGroup v-model="selectMode" style="margin-right: 20px" @on-change="clearSelect">
-						<Radio label="radio">单选</Radio>
-						<Radio label="checkbox">多选</Radio>
-					</RadioGroup>
-					<Checkbox v-model="nodeServer" @on-change="getData">切换为node-serve数据(需开启项目nodeJs服务器)</Checkbox>
-					<IconTxtBtn name="select row" icon="md-checkbox" @click="selectRow" />
-					<IconTxtBtn name="select function" icon="md-checkbox" @click="selectRowPredicate" />
-					<IconTxtBtn name="get select" icon="md-list" @click="getS" />
-					<IconTxtBtn name="新增" icon="md-add" @click="handleNew" />
-					<IconTxtBtn name="打印" icon="md-print" @click="handlePrint" />
-				</div>
-			</template>
-		</BtTablePage>
+	<div class="flexColumnBox">
+		<NodeServeInfo />
+		<div class="growFlexItem">
+			<BtTablePage
+				ref="btTab"
+				:columns="columns"
+				:url="url"
+				:search-data="searchData"
+				@on-row-click="onRowClick"
+				@on-data-change="setTotal"
+				show-top-row
+				:radio="selectMode === 'radio'"
+				:selection="selectMode === 'checkbox'"
+				:draggable="true"
+				:showTotal="false"
+				border
+				@on-drag-drop="dragDrop"
+			>
+				<template #topMsg>共有：{{ total }} 条数据。</template>
+				<template #topBtnGroup>
+					<div class="topBoxKAQ">
+						<RadioGroup v-model="selectMode" style="margin-right: 20px" @on-change="clearSelect">
+							<Radio label="radio">单选</Radio>
+							<Radio label="checkbox">多选</Radio>
+						</RadioGroup>
+						<Checkbox v-model="nodeServer" @on-change="getData">切换为node-serve数据(需开启项目nodeJs服务器)</Checkbox>
+						<IconTxtBtn name="select row" icon="md-checkbox" @click="selectRow" />
+						<IconTxtBtn name="select function" icon="md-checkbox" @click="selectRowPredicate" />
+						<IconTxtBtn name="get select" icon="md-list" @click="getS" />
+						<IconTxtBtn name="新增" icon="md-add" @click="handleNew" />
+						<IconTxtBtn name="打印" icon="md-print" @click="handlePrint" />
+					</div>
+				</template>
+			</BtTablePage>
+		</div>
 	</div>
 	<FormModal :title="title" ref="formModalRef" :form-data="formData" :form-rules="formRules" @on-submit="handleSub" />
 </template>
 
 <style scoped lang="less">
-	.tableLK {
-		height: calc(100vh - 100px);
-		position: relative;
-	}
-
 	.topBoxKAQ {
 		float: right;
 	}

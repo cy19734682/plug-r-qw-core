@@ -1,5 +1,5 @@
 /**
- * @description 全局公共方法集合，挂在app.config.globalProperties下(按需引入模式下除外)
+ * @description 全局公共方法集合，挂在app.config.globalProperties下(按需引入模式下除外)，组合式开发模式下推荐单独引用 import {xxx} from '@zhangqingcq/plug-r-qw'
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.07.14
  */

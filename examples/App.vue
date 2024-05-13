@@ -29,7 +29,7 @@
 	</header>
 	<main class="appMain" :class="{ fullHeight: store.fullScreen }">
 		<SideMenuE class="notShrink" :data="menu" v-show="!store.fullScreen" />
-		<div class="viewR" :class="{ fullHeight: store.fullScreen }">
+		<div class="viewR relative" :class="{ fullHeight: store.fullScreen }">
 			<RouterView />
 		</div>
 	</main>

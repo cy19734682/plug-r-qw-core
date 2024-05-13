@@ -115,6 +115,14 @@ const router = createRouter({
 			}
 		},
 		{
+			path: '/formTeam',
+			name: 'FormTeam',
+			component: () => import('@/views/FormTeamEX.vue'),
+			meta: {
+				desc: '分组表单'
+			}
+		},
+		{
 			path: '/domPrint',
 			name: 'DomPrint',
 			component: () => import('@/views/DomPrintEX.vue'),

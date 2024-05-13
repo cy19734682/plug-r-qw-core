@@ -66,8 +66,6 @@
 
 ### 事件：
 
-注意：view-design 的 Table 组件的所有事件都可监听
-
 - on-row-click: 行被点击，返回当前行数据
 
 - on-data-change: 表格数据改变，返回改变后的数据

@@ -8,13 +8,11 @@
 
 - sKey 字符串，组件数据在 _localstorage_ 的唯一标识，不可与其他sKey重复，命名规则：插件所在单文件名称\_取名时间，如：`tableSettingEx_202007030903` 必填
 
-- top 字符串，设置面板定位-上（相对于按钮），如：`top='40px'`
-
-- right 字符串，设置面板定位-右（相对于按钮）
-
 - width 字符串，设置面板宽度，默认：`'240px'`
 
 - bg 字符串，设置面板背景色（面板有阴影），默认值可通过全局属性tableSettingBg改变，默认：`#fff`
+
+- placement: 字符串设置面板呼出位置，默认：`'bottom-end'`
 
 - defaultCheck 布尔类型，是否设置默认勾选（默认`false`，用于默认展示所有列），如果设为true（用于默认展示部分列）,则在v-model绑定的 *columns*项里设置`showSettingCheck:true`
 
@@ -34,4 +32,4 @@
 
 - sKey命名一定要规范
 
-- modelValue(columns)里一定要有title,设置面板列表的标签是取的这个字段,如选择框' selection ',一定要加上：`title:'选择'`
+- modelValue(columns)里一定要有title,设置面板列表的标签是取的这个字段,如操作列,一定要加上：`title:'操作'`

@@ -721,75 +721,76 @@
 
 <template>
 	<show-read-me />
-	<NodeServeInfo />
-	<div class="wellWall">
-		<wellCard class="wcR" title="基础用法" fitToContent>
-			<div class="inPage">
-				<formR :form-data="data" />
-			</div>
-		</wellCard>
-		<wellCard class="wcR" title="带提交按钮" fitToContent>
-			<div class="inPage">
-				<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" />
-			</div>
-		</wellCard>
-		<wellCard class="wcR" title="带提校验" fitToContent>
-			<div class="inPage">
-				<formR :form-data="data" :form-rules="rules3" :show-long-ok-bt="true" @on-submit="submit" />
-			</div>
-		</wellCard>
-		<wellCard class="wcR" title="禁用表单" fitToContent>
-			<template #bts>
-				<headerBt :icon="disabled4 ? 'md-unlock' : 'md-lock'" @click="disabled4 = !disabled4">
-					{{ disabled4 ? '解禁' : '禁用' }}
-				</headerBt>
-			</template>
-			<div class="inPage">
-				<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" :disabled="disabled4" />
-			</div>
-		</wellCard>
-		<wellCard class="wcR" title="行内表单" fitToContent>
-			<div class="inPage inlineFA">
-				<formR
-					:form-data="data"
-					:inline="true"
-					:show-inline-ok-bt="true"
-					:show-inline-clear-bt="true"
-					@on-submit="submit"
-				/>
-			</div>
-		</wellCard>
-		<wellCard class="wcR" title="详细示例" fitToContent>
-			<div class="inPage detailEx">
-				<formR
-					ref="formRef"
-					:form-data="data5"
-					:form-rules="rules5"
-					:label-width="220"
-					:show-long-ok-bt="true"
-					@on-submit="submitB"
-				>
-					<template #switchLJ="{ valGroup }">
-						<i-switch v-model="valGroup.switchStatus" />
-					</template>
+	<div class="fullFlowContent" style="padding: 20px">
+		<NodeServeInfo />
+		<div class="wellWall">
+			<wellCard class="wcR" title="基础用法" fitToContent>
+				<div class="inPage">
+					<formR :form-data="data" />
+				</div>
+			</wellCard>
+			<wellCard class="wcR" title="带提交按钮" fitToContent>
+				<div class="inPage">
+					<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" />
+				</div>
+			</wellCard>
+			<wellCard class="wcR" title="带提校验" fitToContent>
+				<div class="inPage">
+					<formR :form-data="data" :form-rules="rules3" :show-long-ok-bt="true" @on-submit="submit" />
+				</div>
+			</wellCard>
+			<wellCard class="wcR" title="禁用表单" fitToContent>
+				<template #bts>
+					<headerBt :icon="disabled4 ? 'md-unlock' : 'md-lock'" @click="disabled4 = !disabled4">
+						{{ disabled4 ? '解禁' : '禁用' }}
+					</headerBt>
+				</template>
+				<div class="inPage">
+					<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" :disabled="disabled4" />
+				</div>
+			</wellCard>
+			<wellCard class="wcR" title="行内表单" fitToContent>
+				<div class="inPage inlineFA">
+					<formR
+						:form-data="data"
+						:inline="true"
+						:show-inline-ok-bt="true"
+						:show-inline-clear-bt="true"
+						@on-submit="submit"
+					/>
+				</div>
+			</wellCard>
+			<wellCard class="wcR" title="详细示例" fitToContent>
+				<div class="inPage detailEx">
+					<formR
+						ref="formRef"
+						:form-data="data5"
+						:form-rules="rules5"
+						:label-width="220"
+						:show-long-ok-bt="true"
+						@on-submit="submitB"
+					>
+						<template #switchLJ="{ valGroup }">
+							<i-switch v-model="valGroup.switchStatus" />
+						</template>
 
-					<template #cnu>
-						<span>阶梯</span>
-						<Table border stripe :columns="columns" :data="tableData" />
-					</template>
-				</formR>
-				表单提交的值：
-				<json-viewer :value="valGroup5" theme="my-awesome-json-theme" copyable />
-			</div>
-		</wellCard>
+						<template #cnu>
+							<span>阶梯</span>
+							<Table border stripe :columns="columns" :data="tableData" />
+						</template>
+					</formR>
+					表单提交的值：
+					<json-viewer :value="valGroup5" theme="my-awesome-json-theme" copyable />
+				</div>
+			</wellCard>
+		</div>
 	</div>
 </template>
 
 <style lang="less" scoped>
 	.wellWall {
+		min-width: 1300px;
 		margin-top: 15px;
-		overflow: auto;
-		height: calc(100% - 42px);
 		display: flex;
 		flex-wrap: wrap;
 		background-color: #fff;
