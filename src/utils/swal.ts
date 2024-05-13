@@ -15,8 +15,9 @@ type ButtonS = { cancel: ButtonC; confirm: ButtonC }
  * $swal实例
  * @param {object|string|boolean} option object:{title:'标题',content(or text):'内容，可以为空',type(or icon):'success(or error
  *   or warning)'}---string:'标题'---boolean:关闭$swal窗体
- * @param {string} text 当option为object时不传此变量，当option为string时该变量为'内容'
- * @param {string} icon 当option为object时不传此变量，当option为string时该变量为弹出框类型'success'/'error'/'warning'
+ * @param {string|HTMLElement} [text] 当option为object时不传此变量，当option为string时该变量为'内容'
+ * @param {string} [icon] 当option为object时不传此变量，当option为string时该变量为弹出框类型'success'/'error'/'warning'
+ * @param {boolean} [closeOnClickOutside] 点击外部关闭，默认：true
  */
 export default function $swal(
 	this: any,
@@ -31,10 +32,12 @@ export default function $swal(
 				onOk?: () => void
 				className?: string
 				buttons?: ButtonS | Array<string>
+				closeOnClickOutside?: boolean
 		  }
 		| boolean,
 	text?: string | HTMLElement,
-	icon?: string
+	icon?: string,
+	closeOnClickOutside: boolean = true
 ) {
 	const T = (...arg: Parameters<typeof t>) => t.apply(this, arg)
 
@@ -95,7 +98,8 @@ export default function $swal(
 						visible: cancelVisible,
 						className: cancelClass
 					}
-				}
+				},
+				closeOnClickOutside: option.closeOnClickOutside ?? true
 			})
 				.then((res) => {
 					if (res && typeof option.onOk === 'function') {
@@ -123,6 +127,7 @@ export default function $swal(
 				[t]: text || '',
 				icon: icon || '',
 				className: 'swalBoxX',
+				closeOnClickOutside: closeOnClickOutside,
 				buttons: {
 					confirm: {
 						text: T('r.confirm'),

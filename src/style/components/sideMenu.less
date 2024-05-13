@@ -2,86 +2,110 @@
 @import '../common/size';
 
 .menuBoxRP {
-	position: relative;
-	border-top: 1px solid lighten(@sideMenuColor, 5%);
+  position: relative;
+  border-top: 1px solid lighten(@sideMenuColor, 5%);
+  font-size: 14px;
 
-	.menuListR {
-		width: @sideMenuW;
-		color: #fff;
-		height: 100%;
-		flex: 0 0 @sideMenuW;
-		order: -1;
-		padding: 0;
-		overflow: hidden;
-		background-color: @sideMenuColor;
-		overflow-y: auto;
+  * {
+    /*修改滚动条样式*/
 
-		.groupBoxRP {
-			> li {
-				cursor: pointer;
+    &::-webkit-scrollbar {
+      width: 3px;
+    }
 
-				> .menuTxtR {
-					padding-top: 16px;
-					padding-bottom: 16px;
+    &::-webkit-scrollbar-track {
+      background-color: lighten(@sideMenuColor, 30%);
+      border-radius: 3px;
+    }
 
-					&.active {
-						background-color: rgba(255, 255, 255, 0.1);
-					}
+    &::-webkit-scrollbar-thumb {
+      background-color: lighten(@sideMenuColor, 55%);
+      border-radius: 5px;
+    }
 
-					&:hover {
-						background-color: rgba(255, 255, 255, 0.08);
-					}
-				}
+    &::-webkit-scrollbar-thumb:hover {
+      background-color: lighten(@sideMenuColor, 60%);
+      cursor: pointer;
+    }
+  }
 
-				&.dropItemRP {
-					position: relative;
+  .menuListR {
+    width: @sideMenuW;
+    color: #fff;
+    height: 100%;
+    flex: 0 0 @sideMenuW;
+    order: -1;
+    padding: 0;
+    overflow: hidden;
+    background-color: @sideMenuColor;
+    overflow-y: auto;
 
-					&:before {
-						position: absolute;
-						top: 0.96875rem;
-						right: 1rem;
-						display: block;
-						width: 0.875rem;
-						height: 0.875rem;
-						padding: 0;
-						font-size: 1.875rem;
-						line-height: 0.85625rem;
-						text-align: center;
-						content: '\2039';
-						transition: 0.3s;
-					}
+    .groupBoxRP {
+      > li {
+        cursor: pointer;
 
-					> .groupBoxRP {
-						display: none;
-					}
+        > .menuTxtR {
+          padding-top: 16px;
+          padding-bottom: 16px;
 
-					&.open {
-						&:before {
-							transform: rotate(-90deg);
-						}
+          &.active {
+            background-color: rgba(255, 255, 255, 0.1);
+          }
 
-						> .groupBoxRP {
-							display: block;
-						}
-					}
-				}
-			}
-		}
-	}
+          &:hover {
+            background-color: rgba(255, 255, 255, 0.08);
+          }
+        }
 
-	.menuShowHideIco {
-		position: absolute;
-		top: 50%;
-		right: -5px;
-		opacity: 0.3;
-		cursor: pointer;
+        &.dropItemRP {
+          position: relative;
 
-		&.showIco {
-			right: -18px;
-		}
+          &:before {
+            position: absolute;
+            top: 0.96875rem;
+            right: 1rem;
+            display: block;
+            width: 0.875rem;
+            height: 0.875rem;
+            padding: 0;
+            font-size: 1.875rem;
+            line-height: 0.85625rem;
+            text-align: center;
+            content: '\2039';
+            transition: 0.3s;
+          }
 
-		&:hover {
-			opacity: 1;
-		}
-	}
+          > .groupBoxRP {
+            display: none;
+          }
+
+          &.open {
+            &:before {
+              transform: rotate(-90deg);
+            }
+
+            > .groupBoxRP {
+              display: block;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .menuShowHideIco {
+    position: absolute;
+    top: 50%;
+    right: -5px;
+    opacity: 0.3;
+    cursor: pointer;
+
+    &.showIco {
+      right: -18px;
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 }

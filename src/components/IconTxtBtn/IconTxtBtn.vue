@@ -23,7 +23,7 @@
 	)
 	const emit = defineEmits(['click'])
 
-	const txtSize = computed(() => Math.floor((props.size / 17) * 12) + 'px')
+	const txtSize = computed(() => Math.floor((props.size / 17) * Proxy()?.fontSizeBase) + 'px')
 
 	function click(e: any) {
 		if (props.disabled) {

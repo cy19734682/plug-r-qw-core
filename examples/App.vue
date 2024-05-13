@@ -28,7 +28,7 @@
 		<span class="fr">{{ $t('e.testTxt') }}</span>
 	</header>
 	<main class="appMain" :class="{ fullHeight: store.fullScreen }">
-		<SideMenuE :data="menu" v-show="!store.fullScreen" />
+		<SideMenuE class="notShrink" :data="menu" v-show="!store.fullScreen" />
 		<div class="viewR" :class="{ fullHeight: store.fullScreen }">
 			<RouterView />
 		</div>

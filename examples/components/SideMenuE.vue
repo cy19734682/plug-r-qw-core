@@ -11,12 +11,34 @@
 </template>
 
 <style lang="less" scoped>
+	@bg: #353950;
 	.wallM {
 		width: 200px;
 		height: 100%;
 		border-right: 1px solid #eee;
+		overflow: auto;
+
+		&::-webkit-scrollbar {
+			width: 3px;
+		}
+
+		&::-webkit-scrollbar-track {
+			background-color: lighten(@bg, 65%);
+			border-radius: 3px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: lighten(@bg, 45%);
+			border-radius: 5px;
+		}
+
+		&::-webkit-scrollbar-thumb:hover {
+			background-color: lighten(#575d7e, 15%);
+			cursor: pointer;
+		}
 
 		.liM {
+			position: relative;
 			padding: 5px 15px 5px 35px;
 			display: block;
 
@@ -28,6 +50,7 @@
 
 			&:hover {
 				color: #2d8cf0;
+				background: #f7fcff;
 			}
 
 			&.active {

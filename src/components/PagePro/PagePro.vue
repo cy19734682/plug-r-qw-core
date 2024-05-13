@@ -58,7 +58,9 @@
 
 <template>
 	<div class="pagePro" :class="{ pageProDefault: props.size === 'default' }">
-		<span v-if="props.showTotal">{{ t('r.total') + ' ' }}{{ props.total }}{{ ' ' + t('r.items') }}</span>
+		<span v-if="props.showTotal" class="pageTotal"
+			>{{ t('r.total') + ' ' }}{{ props.total }}{{ ' ' + t('r.items') }}</span
+		>
 		<Page
 			v-model="current"
 			:page-size="pageSizeT"

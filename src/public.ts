@@ -1,5 +1,5 @@
 import type { SlateDescendant } from '@wangeditor/editor'
-import type { VNode } from 'vue'
+import type { VNode, Ref } from 'vue'
 
 declare module '@wangeditor/editor' {
 	// 扩展 Text
@@ -165,7 +165,7 @@ export interface FormItem {
 
 	onlyLastLabel?: boolean
 
-	options?: Option[]
+	options?: Option[] | Ref<Option[]>
 
 	optionFilter?: <T>(d: T) => T
 
@@ -228,8 +228,6 @@ export interface FormItem {
 	uploadImgMaxLength?: number
 
 	uploadImgShowBase64?: boolean
-
-	uploadImgServe?: object
 
 	[x: string]: any
 }

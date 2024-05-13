@@ -3,6 +3,7 @@ export default {
 		locale: 'en-US',
 		testMsg: 'test i18n',
 		confirm: 'OK',
+		save: 'Save',
 		cancel: 'Cancel',
 		clear: 'Clear',
 		info: {

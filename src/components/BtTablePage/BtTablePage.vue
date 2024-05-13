@@ -179,7 +179,7 @@
 			t.forEach((e: Record<string, any>) => {
 				if (e?.key && e.render === undefined) {
 					if (e.tooltip) {
-						e.render = tooltipManual(e.key, true)
+						e.render = tooltipManual(e.key, true, Proxy()?.fontSizeBase)
 					} else {
 						e.render = (h: any, params: Record<string, any>) => {
 							let td = params.row[e.key]

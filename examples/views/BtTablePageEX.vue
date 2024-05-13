@@ -32,36 +32,31 @@
 			width: 80
 		},
 		{
-			title: '文件信息',
-			children: [
-				{
-					title: '文件名称',
-					key: 'name',
-					minWidth: 550,
-					render: (_h: any, params: Record<string, any>) => {
-						return _h(
-							'span',
-							{
-								class: 'link',
-								onClick: () => {
-									downloadFileReaderFile('模拟文件下载', imgK)
-								}
-							},
-							params.row.name
-						)
-					}
-				},
-				{
-					title: '文件类型',
-					minWidth: 100,
-					key: 'mimeType'
-				},
-				{
-					title: '文件大小',
-					minWidth: 100,
-					key: 'size'
-				}
-			]
+			title: '文件名称',
+			key: 'name',
+			minWidth: 550,
+			render: (_h: any, params: Record<string, any>) => {
+				return _h(
+					'span',
+					{
+						class: 'link',
+						onClick: () => {
+							downloadFileReaderFile('模拟文件下载', imgK)
+						}
+					},
+					params.row.name
+				)
+			}
+		},
+		{
+			title: '文件类型',
+			minWidth: 100,
+			key: 'mimeType'
+		},
+		{
+			title: '文件大小',
+			minWidth: 100,
+			key: 'size'
 		},
 		{
 			title: '备注',

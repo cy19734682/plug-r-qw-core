@@ -1,18 +1,5 @@
-@media (prefers-color-scheme: dark) {
-	:root {
-	}
-}
-
-*,
-*::before,
-*::after {
-	box-sizing: border-box;
-	margin: 0;
-	position: relative;
-	font-weight: normal;
-}
-
 body {
+  overflow: hidden;
 	font-family:
 		Inter,
 		-apple-system,

@@ -7,13 +7,21 @@
 import $swal from './swal'
 import { t } from '../locale'
 
-export default function $swalConfirm(this: any, title: string, text: string, icon: string, onOk: () => void) {
+export default function $swalConfirm(
+	this: any,
+	title: string,
+	text: string,
+	icon: string,
+	onOk: () => void,
+	closeOnClickOutside: boolean = false
+) {
 	const T = (...arg: Parameters<typeof t>) => t.apply(this, arg)
 	$swal.call(this, {
 		title: title || T('r.info.title'),
 		text: text || T('r.info.text'),
 		icon: icon || 'warning',
 		onOk: onOk,
-		buttons: [T('r.cancel')]
+		buttons: [T('r.cancel')],
+		closeOnClickOutside: closeOnClickOutside
 	})
 }

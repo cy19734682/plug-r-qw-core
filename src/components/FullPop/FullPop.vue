@@ -5,6 +5,7 @@
 <script setup lang="ts">
 	import t from '../../locale/i18nSFC'
 	import HeaderBt from '../HeaderBt/HeaderBt.vue'
+	import Proxy from '../../utils/proxy'
 
 	const props = withDefaults(
 		defineProps<{
@@ -15,7 +16,7 @@
 			zIndex?: number
 		}>(),
 		{
-			headerFontSize: 12,
+			headerFontSize: () => Proxy()?.fontSizeBase,
 			zIndex: 1000
 		}
 	)

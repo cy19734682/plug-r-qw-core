@@ -4,8 +4,11 @@ import type { AxiosInstance } from 'axios';
 import type { AxiosRequestConfig } from 'axios';
 import { ComponentOptionsMixin } from 'vue';
 import { DefineComponent } from 'vue';
+import type { Placement } from 'popper.js';
+import Popper from 'popper.js';
 import { PropType } from 'vue';
 import { PublicProps } from 'vue';
+import type { Ref } from 'vue';
 import { RendererElement } from 'vue';
 import { RendererNode } from 'vue';
 import { spread } from 'axios';
@@ -115,8 +118,9 @@ export declare const $fetch: {
  * $swal实例
  * @param {object|string|boolean} option object:{title:'标题',content(or text):'内容，可以为空',type(or icon):'success(or error
  *   or warning)'}---string:'标题'---boolean:关闭$swal窗体
- * @param {string} text 当option为object时不传此变量，当option为string时该变量为'内容'
- * @param {string} icon 当option为object时不传此变量，当option为string时该变量为弹出框类型'success'/'error'/'warning'
+ * @param {string|HTMLElement} [text] 当option为object时不传此变量，当option为string时该变量为'内容'
+ * @param {string} [icon] 当option为object时不传此变量，当option为string时该变量为弹出框类型'success'/'error'/'warning'
+ * @param {boolean} [closeOnClickOutside] 点击外部关闭，默认：true
  */
 export declare function $swal(this: any, option: string | {
     title?: string;
@@ -127,14 +131,15 @@ export declare function $swal(this: any, option: string | {
     onOk?: () => void;
     className?: string;
     buttons?: ButtonS | Array<string>;
-} | boolean, text?: string | HTMLElement, icon?: string): Promise<unknown>;
+    closeOnClickOutside?: boolean;
+} | boolean, text?: string | HTMLElement, icon?: string, closeOnClickOutside?: boolean): Promise<unknown>;
 
 /**
  * @description 提示框
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.05.09
  */
-export declare function $swalConfirm(this: any, title: string, text: string, icon: string, onOk: () => void): void;
+export declare function $swalConfirm(this: any, title: string, text: string, icon: string, onOk: () => void, closeOnClickOutside?: boolean): void;
 
 declare type __VLS_NonUndefinedable<T> = T extends undefined ? never : T;
 
@@ -948,6 +953,8 @@ showTopRow?: boolean | undefined;
 lightHead?: boolean | undefined;
 noPage?: boolean | undefined;
 usePagePro?: boolean | undefined;
+showTotal?: boolean | undefined;
+showSizer?: boolean | undefined;
 pageSize?: number | undefined;
 pageComponentSize?: "default" | "small" | undefined;
 noElevator?: boolean | undefined;
@@ -975,6 +982,8 @@ showTopRow: boolean;
 lightHead: boolean;
 noPage: boolean;
 usePagePro: () => any;
+showTotal: () => any;
+showSizer: () => any;
 pageSize: number;
 pageComponentSize: string;
 noElevator: boolean;
@@ -984,6 +993,7 @@ addRow: typeof addRow;
 setRowData: typeof setRowData;
 deleteRow: typeof deleteRow;
 getSelected: typeof getSelected;
+selectRow: typeof selectRow;
 clearSelect: typeof clearSelect;
 clearTableData: typeof clearTableData;
 getTableData: typeof getTableData;
@@ -1053,6 +1063,8 @@ showTopRow?: boolean | undefined;
 lightHead?: boolean | undefined;
 noPage?: boolean | undefined;
 usePagePro?: boolean | undefined;
+showTotal?: boolean | undefined;
+showSizer?: boolean | undefined;
 pageSize?: number | undefined;
 pageComponentSize?: "default" | "small" | undefined;
 noElevator?: boolean | undefined;
@@ -1080,6 +1092,8 @@ showTopRow: boolean;
 lightHead: boolean;
 noPage: boolean;
 usePagePro: () => any;
+showTotal: () => any;
+showSizer: () => any;
 pageSize: number;
 pageComponentSize: string;
 noElevator: boolean;
@@ -1123,6 +1137,8 @@ showSettingCheck?: boolean | undefined;
 disableShowSetting?: boolean | undefined;
 }[];
 pageSize: number;
+showTotal: boolean;
+showSizer: boolean;
 selection: boolean;
 searchData: Record<string, any>;
 radio: boolean;
@@ -1448,12 +1464,11 @@ export declare function fileExport(this: any, url: string, data?: PlainObject, m
 /**
  * 在目标集合中按条件查找或直接查找，返回第一个满足条件的元素或路径
  * 与findPath不同，这里的路径是完整路径（findPath省略了一些标准结构中间路径），找不到返回：false
- * @param {Array|Object} group 被查找的集合
- * @param {Function|String|Number|Boolean} condition 查找的条件或值
- * @param {Boolean} getPath 是否返回路径，默认为：false，返回找到的元素
- * @returns {*}
+ * @param {array|object} group 被查找的集合
+ * @param {Function|string|number|boolean} condition 查找的条件或值
+ * @param {boolean} [getPath] 是否返回路径，默认为：false，返回找到的元素
  */
-export declare function findCollection(group: Collection, condition: (e: any) => boolean, getPath?: boolean): any;
+export declare function findCollection(group: Collection, condition: PredicateFunc | string | number | boolean, getPath?: boolean): any;
 
 /**
  * 按条件查找一个元素在集合中的位置（路径），返回找到的第一个符合条件的位置
@@ -1466,7 +1481,7 @@ export declare function findCollection(group: Collection, condition: (e: any) =>
  * @param {Array} option.path - 递归用参数，逻辑内部参数，不用传
  * @return {Array} 返回带有路径（层级）信息的数组
  * @example group: {id:1,name:'爸爸',children:[{id:2,name:'大儿子'},{id:3,name:'二儿子'}]}
- *          condition: e=>e.id === 3
+ *          condition: e=>e?.id === 3
  *          pathKey: 'name'
  *          childKey: 'children'
  *
@@ -1618,7 +1633,7 @@ declare interface FormItem {
     numberVal?: boolean;
     onlyLasVal?: boolean;
     onlyLastLabel?: boolean;
-    options?: Option_2[];
+    options?: Option_2[] | Ref<Option_2[]>;
     optionFilter?: <T>(d: T) => T;
     optionLabel?: string | string[];
     optionUrl?: string;
@@ -1656,7 +1671,6 @@ declare interface FormItem {
     uploadImgMaxSize?: number;
     uploadImgMaxLength?: number;
     uploadImgShowBase64?: boolean;
-    uploadImgServe?: object;
     [x: string]: any;
 }
 
@@ -1841,7 +1855,7 @@ headerBg?: string | undefined;
 headerFontSize?: string | number | undefined;
 zIndex?: number | undefined;
 }>, {
-headerFontSize: number;
+headerFontSize: () => any;
 zIndex: number;
 }>, {
 open: typeof open_2;
@@ -1856,7 +1870,7 @@ headerBg?: string | undefined;
 headerFontSize?: string | number | undefined;
 zIndex?: number | undefined;
 }>, {
-headerFontSize: number;
+headerFontSize: () => any;
 zIndex: number;
 }>>> & {
 "onOn-open"?: ((...args: any[]) => any) | undefined;
@@ -2052,6 +2066,8 @@ width: string | number;
 
 export declare const install: (app: App, options?: plugROption) => void;
 
+export declare const isClient: boolean;
+
 export declare function isEmptyValue(data: Collection): boolean;
 
 export declare function isImgByFile(type: string): boolean;
@@ -2076,20 +2092,22 @@ export declare function isValidValue(val: any): boolean;
 export declare const locale: (l: Record<string | number | symbol, any>) => void;
 
 /**
- * config为一个对象，支持：
- * @param {Object} options
- * @param {string|VNode} options.content 弹框内容，同iView的content,
- * @param {number} options.height 弹框高度,默认值130,最小值130
- * @param {number} options.width 弹框宽度，默认值416,最小值416
- * @param {string|html} options.title 弹框标题内容，默认值“提示”
- * @param {function} options.onOk 确定按钮回调函数
- * @param {function} options.onCancel 取消按钮回调函数
- * @param {function} options.onClose 关闭（右上角叉叉）按钮回调函数
- * @param {string|html} options.okText 确定按钮文字，默认值“确定”
- * @param {string|html} options.cancelText 取消按钮文字，默认值“取消”
- * @param {boolean} options.noWarnIcon 不展示内容开头的警告图标(非字符串内容默认不展示)，默认值“false”
- * @param {string} options.footerAlign 底部对齐方式，string，默认值“center”
- * @param {boolean} options.cancelBt 展示取消按钮，boolean，默认值“true”
+ * 对话框
+ * @param {object} options 对话框配置
+ * @param {string|VNode|Function} options.content 提示框内容，必填，传`''`触发默认值，1.string，直接将文字插入对应位置；
+ * 2.VNode，如：h('div',{style:{color:'red'}},'123')；注意此处h是vue的渲染函数，需要引入：import {h} from 'vue'
+ * 3.Function,如：(_h)=>_h('div',{class:'my-class'},'123')；此处_h作为参数，不需要单独引入
+ * @param {number} [options.height] 弹框高度,默认值130,最小值130
+ * @param {number} [options.width] 弹框宽度，默认值416,最小值416
+ * @param {string} [options.title] 弹框标题内容，默认值“提示”
+ * @param {Function} [options.onOk] 确定按钮回调函数
+ * @param {Function} [options.onCancel] 取消按钮回调函数
+ * @param {Function} [options.onClose] 关闭（右上角叉叉）按钮回调函数
+ * @param {string} [options.okText] 确定按钮文字，默认值“确定”
+ * @param {string} [options.cancelText] 取消按钮文字，默认值“取消”
+ * @param {boolean} [options.noWarnIcon] 不展示内容开头的警告图标(非字符串内容默认不展示)，默认值“false”
+ * @param {string} [options.footerAlign] 底部对齐方式，string，默认值“center”
+ * @param {boolean} [options.cancelBt] 展示取消按钮，boolean，默认值“true”
  * 组件中调用示例：this.messageBox({
  *                      content:'确定执行操作？'
  *                    })
@@ -2097,13 +2115,13 @@ export declare const locale: (l: Record<string | number | symbol, any>) => void;
 export declare function messageBox(this: any, { height, width, title, content, onOk, onCancel, onClose, okText, cancelText, noWarnIcon, footerAlign, cancelBt }: {
     height?: number;
     width?: number;
-    title?: string | VNode;
-    content: string | VNode;
+    title?: string;
+    content: string | VNode | RenderFunc;
     onOk?: () => void | Promise<any>;
     onCancel?: () => void;
     onClose?: () => void;
-    okText?: string | VNode;
-    cancelText?: string | VNode;
+    okText?: string;
+    cancelText?: string;
     noWarnIcon?: boolean;
     footerAlign?: string;
     cancelBt?: boolean;
@@ -2167,6 +2185,8 @@ total?: number | undefined;
 pageSize?: number | undefined;
 size?: "default" | "small" | undefined;
 pageSizeOpts?: number[] | undefined;
+showTotal?: boolean | undefined;
+showSizer?: boolean | undefined;
 transfer?: boolean | undefined;
 disabled?: boolean | undefined;
 }>, {
@@ -2175,6 +2195,8 @@ total: number;
 pageSize: number;
 size: string;
 pageSizeOpts: () => number[];
+showTotal: () => any;
+showSizer: () => any;
 transfer: boolean;
 disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
@@ -2187,6 +2209,8 @@ total?: number | undefined;
 pageSize?: number | undefined;
 size?: "default" | "small" | undefined;
 pageSizeOpts?: number[] | undefined;
+showTotal?: boolean | undefined;
+showSizer?: boolean | undefined;
 transfer?: boolean | undefined;
 disabled?: boolean | undefined;
 }>, {
@@ -2195,6 +2219,8 @@ total: number;
 pageSize: number;
 size: string;
 pageSizeOpts: () => number[];
+showTotal: () => any;
+showSizer: () => any;
 transfer: boolean;
 disabled: boolean;
 }>>> & {
@@ -2209,6 +2235,8 @@ modelValue: number;
 total: number;
 pageSize: number;
 pageSizeOpts: number[];
+showTotal: boolean;
+showSizer: boolean;
 }, {}>;
 
 declare interface PlainObject extends Object {
@@ -2234,6 +2262,8 @@ declare const plugRQw: {
 };
 export default plugRQw;
 
+declare type PredicateFunc = (d: any) => boolean;
+
 /**
  * 供外部使用的打印API
  * @param {Array} columns Table的列设置，同view-design
@@ -2252,6 +2282,8 @@ declare function refreshFormDom_3(): Promise<unknown>;
 declare function refreshFormDom_4(): Promise<unknown>;
 
 export declare function removeEmptyValue(data: Collection): Collection;
+
+declare type RenderFunc = (h: any) => VNode;
 
 declare interface RequestConfigR extends AxiosRequestConfig {
     spin?: boolean;
@@ -2396,6 +2428,15 @@ itemWidth: number;
 selectOption: any[];
 }, {}>;
 
+/**
+ * 主动选中行（公开）多选、单选模式皆可用
+ * @param {Number|Array|Function} predicate 断言,选中的条件：
+ * 1. Number:根据索引index选中行
+ * 2. Array:根据索引index数组选中行(仅多选)
+ * 3. Function:根据断言函数返回true的行选中
+ */
+declare function selectRow(predicate: number | number[] | PredicateFunc): void;
+
 export declare const SelectScrollMore: DefineComponent<__VLS_WithDefaults_27<__VLS_TypePropsToOption_28<{
 modelValue?: string | number | any[] | undefined;
 url: string;
@@ -2478,6 +2519,12 @@ declare function setItemToValGroup_3(data: Record<string, any>, notClearOthers: 
 
 declare function setItemToValGroup_4(data: Record<string, any>, notClearOthers: boolean): void;
 
+/**
+ * 更新行数据（公开）
+ * @param {object} row 新的行数据（只更新旧数据和新数据都有的字段，如想更新的其中一个字段为row.name，那么旧row数据需要有name这个字段）
+ * @param {number|boolean} setCurrentRow 1.数字，行在表数据中的index；2.布尔值，更新当前行
+ * @param {boolean} clickCurrentRow 更新完数据点击更新的行
+ */
 declare function setRowData(row: Record<string, any>, setCurrentRow: boolean, clickCurrentRow: boolean): void;
 
 declare const setTimeout_2: (fn: () => void, time: number) => number;
@@ -2499,6 +2546,8 @@ export declare function setValByOption({ group, condition, key, val, childKey }:
     val: any;
     childKey?: string;
 }): false | undefined;
+
+export declare function setValue(target: any, value: any): void;
 
 declare type showFunc = (valGroup: Record<string, any>) => boolean;
 
@@ -2676,49 +2725,54 @@ btnColor: string;
 export declare const TableSetting: DefineComponent<__VLS_WithDefaults_8<__VLS_TypePropsToOption_9<{
 modelValue?: any[] | undefined;
 sKey: string;
-top?: string | undefined;
-right?: string | undefined;
 width?: string | undefined;
 bg?: string | undefined;
+placement?: Popper.Placement | undefined;
 defaultCheck?: boolean | undefined;
 storage?: "localStorage" | "sessionStorage" | undefined;
+transfer?: boolean | undefined;
+eventsEnabled?: boolean | undefined;
 }>, {
 modelValue: () => never[];
-top: string;
-right: string;
 width: string;
 bg: () => any;
+placement: string;
 defaultCheck: boolean;
 storage: string;
+transfer: () => any;
+eventsEnabled: () => any;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "update:modelValue": (...args: any[]) => void;
 }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_8<__VLS_TypePropsToOption_9<{
 modelValue?: any[] | undefined;
 sKey: string;
-top?: string | undefined;
-right?: string | undefined;
 width?: string | undefined;
 bg?: string | undefined;
+placement?: Popper.Placement | undefined;
 defaultCheck?: boolean | undefined;
 storage?: "localStorage" | "sessionStorage" | undefined;
+transfer?: boolean | undefined;
+eventsEnabled?: boolean | undefined;
 }>, {
 modelValue: () => never[];
-top: string;
-right: string;
 width: string;
 bg: () => any;
+placement: string;
 defaultCheck: boolean;
 storage: string;
+transfer: () => any;
+eventsEnabled: () => any;
 }>>> & {
 "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
 }, {
-top: string;
-right: string;
+transfer: boolean;
+placement: Placement;
 bg: string;
 modelValue: any[];
 width: string;
 defaultCheck: boolean;
 storage: 'localStorage' | 'sessionStorage';
+eventsEnabled: boolean;
 }, {}>;
 
 export declare function toFormData(data: Record<string, any>): FormData;
@@ -2733,9 +2787,10 @@ export declare function toLine(name: string): string;
  * 或获取值的自定义逻辑（Function回调，会传入params）
  * @param {boolean} dash 在内容为空时是否以'--'代替显示
  * @param {String} jointMark 在内容为多个字段拼接时，各字段间连接符，默认没有
+ * @param {number} fontSize 内容文字字号
  * @returns {function(...[*]=)}
  */
-export declare function tooltipManual(contentKey: string | string[] | ((params: any) => string), dash?: boolean, jointMark?: string): (_h: any, params: any) => globalThis.VNode<RendererNode, RendererElement, {
+export declare function tooltipManual(contentKey: string | string[] | ((params: any) => string), dash?: boolean, jointMark?: string, fontSize?: number): (_h: any, params: any) => globalThis.VNode<RendererNode, RendererElement, {
     [key: string]: any;
 }>;
 
@@ -2765,6 +2820,9 @@ addAllMethod?: "get" | "post" | "put" | undefined;
 deleteMethod?: "get" | "delete" | "post" | "put" | undefined;
 deleteAllMethod?: "get" | "delete" | "post" | "put" | undefined;
 searchFormLabelWith?: number | undefined;
+usePagePro?: boolean | undefined;
+showTotal?: boolean | undefined;
+showSizer?: boolean | undefined;
 }>, {
 formDataLeft: () => never[];
 formDataRight: () => never[];
@@ -2782,6 +2840,9 @@ addMethod: string;
 addAllMethod: string;
 deleteMethod: string;
 deleteAllMethod: string;
+usePagePro: () => any;
+showTotal: () => any;
+showSizer: () => any;
 }>, {
 reset: typeof reset;
 search: typeof search;
@@ -2815,6 +2876,9 @@ addAllMethod?: "get" | "post" | "put" | undefined;
 deleteMethod?: "get" | "delete" | "post" | "put" | undefined;
 deleteAllMethod?: "get" | "delete" | "post" | "put" | undefined;
 searchFormLabelWith?: number | undefined;
+usePagePro?: boolean | undefined;
+showTotal?: boolean | undefined;
+showSizer?: boolean | undefined;
 }>, {
 formDataLeft: () => never[];
 formDataRight: () => never[];
@@ -2832,11 +2896,17 @@ addMethod: string;
 addAllMethod: string;
 deleteMethod: string;
 deleteAllMethod: string;
+usePagePro: () => any;
+showTotal: () => any;
+showSizer: () => any;
 }>>> & {
 onTransferred?: ((...args: any[]) => any) | undefined;
 "onOn-data-change-l"?: ((...args: any[]) => any) | undefined;
 "onOn-data-change-r"?: ((...args: any[]) => any) | undefined;
 }, {
+showTotal: boolean;
+showSizer: boolean;
+usePagePro: boolean;
 formDataLeft: any[];
 formDataRight: any[];
 formRulesLeft: Record<string, any>;
@@ -2983,19 +3053,23 @@ declare function validate_4(): void;
 
 export declare const WellCard: __VLS_WithTemplateSlots_11<DefineComponent<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
 title?: string | undefined;
+fitToContent?: boolean | undefined;
 width?: string | number | undefined;
 height?: string | number | undefined;
 inline?: boolean | undefined;
 }>, {
+fitToContent: boolean;
 width: string;
 height: string;
 inline: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
 title?: string | undefined;
+fitToContent?: boolean | undefined;
 width?: string | number | undefined;
 height?: string | number | undefined;
 inline?: boolean | undefined;
 }>, {
+fitToContent: boolean;
 width: string;
 height: string;
 inline: boolean;
@@ -3003,6 +3077,7 @@ inline: boolean;
 height: string | number;
 width: string | number;
 inline: boolean;
+fitToContent: boolean;
 }, {}>, {
     bts?(_: {}): any;
     default?(_: {}): any;

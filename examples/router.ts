@@ -43,6 +43,14 @@ const router = createRouter({
 			}
 		},
 		{
+			path: '/tableSetting',
+			name: 'TableSetting',
+			component: () => import('@/views/TableSettingEX.vue'),
+			meta: {
+				desc: '表格列设置'
+			}
+		},
+		{
 			path: '/fullPop',
 			name: 'FullPop',
 			component: () => import('@/views/FullPopEX.vue'),

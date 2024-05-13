@@ -6,7 +6,7 @@
 	import { cloneDeep, remove, isEmpty, findIndex } from 'lodash-es'
 	import moment from 'moment'
 	import t from '../../locale/i18nSFC'
-	import { myTypeof, isValidValue, trimObj, findCollection } from '../../utils/globalFunc'
+	import { setValue, myTypeof, isValidValue, trimObj, findCollection } from '../../utils/globalFunc'
 	import $fetch from '../../utils/fetch'
 	import { setTimeout } from '../../utils/timer'
 	import type { FormItem } from '../../public'
@@ -91,7 +91,7 @@
 						if (!e) {
 							continue
 						}
-						if (!(e.message || e.validator)) {
+						if (e && !(e.message || e.validator)) {
 							e.message = t('r.required')
 						}
 					}
@@ -572,6 +572,10 @@
 					if (!root.options) {
 						root.options = []
 					}
+					/*为checkboxGroup和radioGroup的options做响应式，因为它们和select不同，选项一开始就是展示出来的，大多数时候不会有机会主动重新渲染*/
+					if (root.type === 'checkboxGroup' || root.type === 'radioGroup') {
+						root.options = ref(cloneDeep(root.options))
+					}
 					if (root.asyncOption) {
 						/*远程待选项*/
 						if (root.changeOption) {
@@ -612,9 +616,10 @@
 													let urlT = root.optionUrl.indexOf('?') !== -1 ? root.optionUrl : root.optionUrl + '?'
 													initOption((urlT + after).replace(/\?&/, '?'), root, tV)
 												} else {
-													root.options = []
 													if (root.localOption) {
-														root.options = [...root.localOption]
+														setValue(root.options, [...root.localOption])
+													} else {
+														setValue(root.options, [])
 													}
 
 													if (isValidValue(tV)) {
@@ -628,9 +633,10 @@
 										)
 									)
 								} else {
-									root.options = []
 									if (root.localOption) {
-										root.options = [...root.localOption]
+										setValue(root.options, [...root.localOption])
+									} else {
+										setValue(root.options, [])
 									}
 								}
 							} else if (typeof root.changeOption === 'object') {
@@ -656,9 +662,10 @@
 													let urlT = root.optionUrl.indexOf('?') !== -1 ? root.optionUrl : root.optionUrl + '?'
 													initOption((urlT + '&' + root.changeOption.key + '=' + after).replace(/\?&/, '?'), root, tV)
 												} else {
-													root.options = []
 													if (root.localOption) {
-														root.options = [...root.localOption]
+														setValue(root.options, [...root.localOption])
+													} else {
+														setValue(root.options, [])
 													}
 													if (isValidValue(tV)) {
 														recoverVal(tV, root)
@@ -673,7 +680,11 @@
 								/*设置changeOption为true时,当待选项地址改变后重新拉取待选项，在使用该表单组件的地方改变传入的formData对应项的optionUrl*/
 								watchGroup.push(
 									watch(
-										() => findCollection(props.formData, (e) => e?.key === root.key).optionUrl,
+										() => {
+											const t = findCollection(props.formData, (e) => e?.key === root.key)
+											t.optionUrl = toRef(t.optionUrl)
+											return t.optionUrl.value
+										},
 										(after) => {
 											let tV = cloneDeep(tempKeys.value[root.tempKey])
 											tempKeys.value[root.tempKey] = null
@@ -681,9 +692,10 @@
 											if (after) {
 												initOption(after, root, tV)
 											} else {
-												root.options = []
 												if (root.localOption) {
-													root.options = [...root.localOption]
+													setValue(root.options, [...root.localOption])
+												} else {
+													setValue(root.options, [])
 												}
 
 												if (isValidValue(tV)) {
@@ -702,7 +714,9 @@
 						}
 					} else if (myTypeof(root.borrowOption) === 'String') {
 						/*借用待选项*/
-						root.options = findCollection(formDataT.value, (e) => e?.key === root.borrowOption).options
+						nextTick(function () {
+							root.options = findCollection(formDataT.value, (e) => e?.key === root.borrowOption).options
+						})
 					}
 
 					const tempKeyC = 'opEle' + Math.floor(Math.random() * 100000000)
@@ -774,7 +788,13 @@
 		$fetch
 			.get(url)
 			.then((r: any) => {
-				if (!root.options) {
+				let o
+				if (isRef(root.options)) {
+					o = root.options.value
+				} else {
+					o = root.options
+				}
+				if (!o) {
 					return
 				}
 				let tOption = r?.data?.records || r?.data || r || []
@@ -784,8 +804,8 @@
 					}
 					if (root.optionLabel && root.optionVal) {
 						/*label由多个字段组合成*/
-						root.options.length = 0
-						root.options.push(
+						o.length = 0
+						o.push(
 							...tOption.map((eP: Record<string, any>) => {
 								let rP: Record<string, any>
 								if (Array.isArray(root.optionLabel)) {
@@ -832,14 +852,14 @@
 							})
 						)
 					} else {
-						root.options.length = 0
-						root.options.push(...tOption)
+						o.length = 0
+						o.push(...tOption)
 					}
 				} else {
-					root.options.length = 0
+					o.length = 0
 				}
 				if (root.localOption) {
-					root.options.unshift(...root.localOption)
+					o.unshift(...root.localOption)
 				}
 				if (isValidValue(itemVal)) {
 					recoverVal(itemVal, root)
@@ -853,16 +873,16 @@
 								() => valGroup.value[root.disableOptionByOthers],
 								(after) => {
 									clearTempKeyItem(root.tempKey)
-									if (!root.options) {
+									if (!o) {
 										return
 									}
-									for (let iP of root.options) {
+									for (let iP of o) {
 										if (iP.disabled) {
 											iP.disabled = false
 										}
 									}
 									if (after || after === 0 || after === false) {
-										for (let iP of root.options) {
+										for (let iP of o) {
 											if (iP.val === after) {
 												iP.disabled = true
 											}
@@ -882,16 +902,16 @@
 								},
 								(after) => {
 									clearTempKeyItem(root.tempKey)
-									if (!root.options) {
+									if (!o) {
 										return
 									}
-									for (let iP of root.options) {
+									for (let iP of o) {
 										if (iP.disabled) {
 											iP.disabled = false
 										}
 									}
 									if (after) {
-										for (let iP of root.options) {
+										for (let iP of o) {
 											for (let i = 0; i < after.length; i++) {
 												if (iP.val === after[i]) {
 													iP.disabled = true
@@ -921,8 +941,8 @@
 	 * @param root 表单项结构数据对象
 	 */
 	function recoverVal(itemVal: any, root: FormItem) {
-		if (Array.isArray(root.options)) {
-			if (findIndex(root.options, { val: itemVal }) !== -1) {
+		if (Array.isArray(toValue(root.options))) {
+			if (findIndex(toValue(root.options), { val: itemVal }) !== -1) {
 				tempKeys.value[root.tempKey] = itemVal
 			}
 		}
@@ -1152,13 +1172,14 @@
 
 	/*collectLabel时找出选中的选项（私有）*/
 	function findOptions(root: FormItem, after: any) {
-		if (!root.options) {
+		const o = toValue(root.options)
+		if (!o) {
 			return
 		}
 		if (root?.multiple || root.type === 'checkboxGroup') {
 			if (after) {
 				let t: any[] = []
-				for (let e of root.options) {
+				for (let e of o) {
 					if (after.indexOf(e?.val) !== -1) {
 						t.push(e)
 					}
@@ -1168,7 +1189,7 @@
 			return false
 		} else {
 			if (after || after === 0 || after === false) {
-				for (let e of root.options) {
+				for (let e of o) {
 					if (e?.val === after) {
 						return e
 					}

@@ -3,12 +3,22 @@
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.07.14
  */
-import { h } from 'vue'
-import type { Collection, PlainObject } from '../public'
+import { h, isRef } from 'vue'
+import type { Collection, PlainObject, PredicateFunc } from '../public'
 import { isPlainObject } from 'lodash-es'
 import $swal from './swal'
 import { getStringWidth } from './needImportFunc'
 import { Tooltip } from 'view-ui-plus'
+
+export const isClient = typeof window !== 'undefined'
+
+export function setValue(target: any, value: any) {
+	if (isRef(target)) {
+		target.value = value
+	} else {
+		target = value
+	}
+}
 
 export function myTypeof(v: any): string {
 	let str = Object.prototype.toString.call(v)
@@ -117,12 +127,15 @@ export function toFormData(data: Record<string, any>): FormData {
 /**
  * 在目标集合中按条件查找或直接查找，返回第一个满足条件的元素或路径
  * 与findPath不同，这里的路径是完整路径（findPath省略了一些标准结构中间路径），找不到返回：false
- * @param {Array|Object} group 被查找的集合
- * @param {Function|String|Number|Boolean} condition 查找的条件或值
- * @param {Boolean} getPath 是否返回路径，默认为：false，返回找到的元素
- * @returns {*}
+ * @param {array|object} group 被查找的集合
+ * @param {Function|string|number|boolean} condition 查找的条件或值
+ * @param {boolean} [getPath] 是否返回路径，默认为：false，返回找到的元素
  */
-export function findCollection(group: Collection, condition: (e: any) => boolean, getPath = false) {
+export function findCollection(
+	group: Collection,
+	condition: PredicateFunc | string | number | boolean,
+	getPath: boolean = false
+) {
 	if (!group || !condition) {
 		return false
 	}
@@ -323,9 +336,15 @@ export function isNumberValue(val: any): boolean {
  * 或获取值的自定义逻辑（Function回调，会传入params）
  * @param {boolean} dash 在内容为空时是否以'--'代替显示
  * @param {String} jointMark 在内容为多个字段拼接时，各字段间连接符，默认没有
+ * @param {number} fontSize 内容文字字号
  * @returns {function(...[*]=)}
  */
-export function tooltipManual(contentKey: string | string[] | ((params: any) => string), dash = false, jointMark = '') {
+export function tooltipManual(
+	contentKey: string | string[] | ((params: any) => string),
+	dash: boolean = false,
+	jointMark: string = '',
+	fontSize: number = 12
+) {
 	return function (_h: any, params: any) {
 		let content: string
 		if (Array.isArray(contentKey)) {
@@ -341,7 +360,7 @@ export function tooltipManual(contentKey: string | string[] | ((params: any) => 
 		} else {
 			content = params.row?.[contentKey]
 		}
-		let contentWidth = getStringWidth(content)
+		let contentWidth = getStringWidth(content, fontSize)
 		let tdWidth = params.column._width
 		if (content && contentWidth > tdWidth) {
 			return h(

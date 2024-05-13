@@ -5,8 +5,15 @@
 	import t from '../../locale/i18nSFC'
 
 	const props = withDefaults(
-		defineProps<{ title?: string; width?: number | string; height?: number | string; inline?: boolean }>(),
+		defineProps<{
+			title?: string
+			fitToContent?: boolean
+			width?: number | string
+			height?: number | string
+			inline?: boolean
+		}>(),
 		{
+			fitToContent: false,
 			width: '100%',
 			height: '100%',
 			inline: false
@@ -15,8 +22,8 @@
 
 	const wellStyle = computed(() => {
 		let temp: Record<string, any> = {
-			width: props.width,
-			height: props.height
+			width: props.fitToContent ? 'fit-content' : props.width,
+			height: props.fitToContent ? 'fit-content' : props.height
 		}
 		if (props.inline) {
 			temp.display = 'inline-block'
@@ -32,14 +39,17 @@
 
 <template>
 	<div :style="wellStyle">
-		<div class="flexColumnBox wellCardR">
-			<div class="panelHeader notGrow">
+		<div :class="['wellCardR', { flexColumnBox: !props.fitToContent }]">
+			<div :class="['panelHeader', { notGrow: !props.fitToContent }]">
 				<div class="fl" style="font-weight: bold">{{ props.title || t('r.title') }}</div>
 				<div class="btsF">
 					<slot name="bts" />
 				</div>
 			</div>
-			<div class="growFlexItem relativeBox">
+			<div v-if="props.fitToContent">
+				<slot />
+			</div>
+			<div v-else class="growFlexItem relativeBox">
 				<div class="fullFlowContent">
 					<slot />
 				</div>

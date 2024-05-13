@@ -52,25 +52,29 @@
 			slotName: 'switchLJ',
 			label: '开关',
 			key: 'switchStatus',
-			defaultVal: false
+			defaultVal: false,
+			info: 'custom 1'
 		},
 		{
 			type: 'custom',
 			slotName: 'cnu',
-			label: '定价类型'
+			label: '定价类型',
+			info: 'custom 2'
 		},
 		{
 			type: 'input',
 			label: '名称',
 			key: 'name',
-			title: '个人信息'
+			title: '个人信息',
+			info: 'input'
 		},
 		{
 			type: 'input',
 			label: '禁用示例',
 			disabled: true,
 			key: 'nameDisabled',
-			defaultVal: '我是默认姓名'
+			defaultVal: '我是默认姓名',
+			info: 'input disabled'
 		},
 		{
 			type: 'radioGroup',
@@ -85,7 +89,8 @@
 					label: '女',
 					val: 0
 				}
-			]
+			],
+			info: 'radioGroup'
 		},
 		{
 			type: 'radioGroup',
@@ -105,7 +110,8 @@
 					label: '上海',
 					val: 'shanghai'
 				}
-			]
+			],
+			info: 'radioGroup buttonType'
 		},
 		{
 			type: 'radioGroup',
@@ -121,7 +127,8 @@
 					label: '否',
 					val: 0
 				}
-			]
+			],
+			info: 'radioGroup booleanVal'
 		},
 		{
 			type: 'radioGroup',
@@ -134,28 +141,32 @@
 			show: {
 				key: 'recommend',
 				val: [true]
-			}
+			},
+			info: 'radioGroup asyncOption, 内部推荐为“是”时展示该项'
 		},
 		{
 			type: 'inputNumber' /*数字输入框，输出值是数字*/,
 			label: '年龄',
 			key: 'age',
 			min: 1,
-			max: 150
+			max: 150,
+			info: 'inputNumber, min 1, max 150'
 		},
 		{
 			type: 'alCascader' /*行政区域级联*/,
 			label: '住址',
 			key: 'addressCode',
 			key2: 'addressName',
-			level: 2
+			level: 2,
+			info: 'alCascader, 返回行政区域code'
 		},
 		{
 			type: 'asyncCascader',
 			label: '机构',
 			key: 'orgId',
 			key2: 'orgName',
-			url: 'testData/asyncCascader.json'
+			url: 'testData/asyncCascader.json',
+			info: 'asyncCascader, 普通级联，数据来源于url对应接口返回的数据'
 		},
 		{
 			type: 'upload' /*上传组件*/,
@@ -165,7 +176,8 @@
 			format: ['jpg', 'png'],
 			maxSize: 500,
 			showImg: true,
-			length: 1
+			length: 1,
+			info: 'upload, 上传组件，该示例设置了的参数：上传地址，格式jpg、png，最大500kb，1张，展示上传的图片'
 		},
 		{
 			type: 'upload' /*上传组件*/,
@@ -173,7 +185,8 @@
 			key: 'attachment',
 			manualUpload: true,
 			maxSize: 2000,
-			length: 5
+			length: 5,
+			info: 'upload manualUpload, 文件会以File对象返回，该示例设置了的参数：单个文件最大2000kb，最多5件'
 		},
 		{
 			type: 'select',
@@ -207,7 +220,7 @@
 					disabled: true
 				}
 			],
-			info: '注意：必须是教育部认证学历' /*下方提示文字*/
+			info: 'select, 该示例展示功能：collectLabel--收集选中项的val以外另一个字段（此处为label），本地选项，指定选项禁用'
 		},
 		{
 			type: 'input',
@@ -217,7 +230,8 @@
 				/*单一条件决定是否展示*/
 				key: 'education',
 				val: [2, 3, 4, 5]
-			}
+			},
+			info: 'input, 该示例展示功能：“最高学历”有值且不为“高中”时展示该项'
 		},
 		{
 			type: 'input',
@@ -234,7 +248,8 @@
 					key: 'school',
 					val: ['.']
 				}
-			]
+			],
+			info: 'input, 该示例展示功能：默认值，“最高学历”有值且不为“高中”且“学校”有值时展示该项'
 		},
 		{
 			type: 'input',
@@ -251,7 +266,8 @@
 					key: 'education',
 					val: [2, 3, 4, 5]
 				}
-			]
+			],
+			info: 'input, 该示例展示功能：“最高学历”有值且不为“高中”或“内部推荐”为“是”时展示该项'
 		},
 		{
 			type: 'input',
@@ -259,16 +275,17 @@
 			key: 'major3',
 			show: {
 				/*条件为正则表达式*/
-				key: 'education' /*除了2以外所有的*/,
-				reg: /^(?!2$).*$/
-			}
+				key: 'education',
+				reg: /^(?!2$).*$/ /*除了2以外所有的*/
+			},
+			info: 'input, 该示例展示功能：最高学历为"专科"时隐藏该项'
 		},
 		{
 			type: 'input',
 			label: '回调函数',
 			key: 'major4',
-			defaultVal: 'abc' /*条件为回调函数*/,
-			show: (valGroup: any) => valGroup.education > 3
+			show: (valGroup: any) => valGroup.education > 3 /*条件为回调函数*/,
+			info: 'input, 该示例展示功能：按回调函数判断是否展示-最高学历值大于3时展示'
 		},
 		{
 			type: 'select',
@@ -277,7 +294,8 @@
 			asyncOption: true /*远程待选项*/,
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
-			optionVal: 'tel'
+			optionVal: 'tel',
+			info: 'select asyncOption, 该示例展示功能：远程待选项--从接口拉取数据'
 		},
 		{
 			type: 'select',
@@ -287,7 +305,8 @@
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
-			multiple: true
+			multiple: true,
+			info: 'select multiple, 该示例展示功能：多选'
 		},
 		{
 			type: 'select',
@@ -299,7 +318,8 @@
 			optionVal: 'tel',
 			optionFilter(d: any) {
 				return d.filter((e: any) => e && e.birth !== '1991')
-			}
+			},
+			info: 'select optionFilter, 该示例展示功能：筛选接口数据--不要“生日”为1991的'
 		},
 		{
 			type: 'select',
@@ -309,7 +329,8 @@
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
-			disableOptionByOthers: 'friend' /*待选项禁用，‘联系人’已选的，联系人D将不能选*/
+			disableOptionByOthers: 'friend' /*待选项禁用，‘联系人’已选的，联系人D将不能选*/,
+			info: 'select disableOptionByOthers, 该示例展示功能：待选项禁用，‘联系人’已选的，该下拉框将不能选'
 		},
 		{
 			type: 'select',
@@ -319,13 +340,15 @@
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
-			disableOptionByOthers: ['friend', 'friendD'] /*待选项禁用，‘联系人’和‘联系人D’已选的，联系人G将不能选*/
+			disableOptionByOthers: ['friend', 'friendD'] /*待选项禁用，‘联系人’和‘联系人D’已选的，联系人G将不能选*/,
+			info: 'select disableOptionByOthers, 该示例展示功能：待选项禁用，‘联系人’和‘联系人D’已选的，该下拉框将不能选'
 		},
 		{
 			type: 'select',
 			label: '联系人E(借用待选项)',
 			key: 'friendE',
-			borrowOption: 'friend' /*借用另外一个组件的待选项*/
+			borrowOption: 'friend' /*借用另外一个组件的待选项*/,
+			info: 'select borrowOption, 该示例展示功能：借用另外一个组件“联系人”的待选项'
 		},
 		{
 			type: 'select',
@@ -344,7 +367,15 @@
 			asyncOption: true,
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
-			optionVal: 'tel'
+			optionVal: 'tel',
+			info: 'select collectLabel, 该示例展示功能：收集选中选项的多个字段--val(tel)、label(name)、birth'
+		},
+		{
+			type: 'txt',
+			label: '联系人F出生年份',
+			valKey: 'friendFBirth',
+			likeInput: true,
+			info: 'txt likeInput, 该示例展示功能：表单指定字段的值展示（该项展示的“联系人F”下拉collectLabel收集的birth）'
 		},
 		{
 			type: 'select',
@@ -364,7 +395,8 @@
 					valKey: 'birth' /*字段在接口返回结果中名字*/,
 					key: 'friendMBirth' /*该字段需要提交的名字*/
 				}
-			]
+			],
+			info: 'select collectLabel multiple, 该示例展示功能：多选时收集选中选项的多个字段--val(tel)、label(name)、birth'
 		},
 		{
 			type: 'date',
@@ -377,21 +409,24 @@
 				disabledDate(date: any) {
 					return date && date.valueOf() < Date.now() - 86400000
 				}
-			}
+			},
+			info: 'date daterange, 该示例展示功能：日期区间选择'
 		},
 		{
 			type: 'time',
 			dateType: 'timerange',
 			label: '理想上班时间',
 			key: 'onDuty',
-			key2: 'offDuty'
+			key2: 'offDuty',
+			info: 'time timerange, 该示例展示功能：时间区间选择'
 		},
 		{
 			type: 'date',
 			dateType: 'year',
 			label: '年份A',
 			key: 'yearA',
-			defaultVal: '2022'
+			defaultVal: '2022',
+			info: 'date year, 该示例展示功能：年份选择'
 		},
 		{
 			type: 'monthRange',
@@ -399,13 +434,8 @@
 			key: 'monthRangeA',
 			key2: 'monthRangeB',
 			defaultVal: '2022-03',
-			defaultVal2: '2023-04'
-		},
-		{
-			type: 'txt',
-			label: '原语代码',
-			valKey: 'protocolAtomicActionCode',
-			likeInput: true
+			defaultVal2: '2023-04',
+			info: 'monthRange, 该示例展示功能：月份区间选择'
 		},
 		{
 			type: 'select',
@@ -414,7 +444,8 @@
 			asyncOption: true,
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: ['name', 'tel'] /*多字段待选项名*/,
-			optionVal: 'tel'
+			optionVal: 'tel',
+			info: 'select, 该示例展示功能：待选项label由多个字段组成--name、tel'
 		},
 		{
 			type: 'select',
@@ -430,12 +461,14 @@
 			],
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
-			optionVal: 'tel'
+			optionVal: 'tel',
+			info: 'select, 该示例展示功能：待选项由本地数据和接口数据共同组成'
 		},
 		{
 			type: 'checkbox',
 			label: '需要住宿',
-			key: 'room'
+			key: 'room',
+			info: 'checkbox'
 		},
 		{
 			type: 'checkboxGroup',
@@ -453,7 +486,8 @@
 					val: '驾照',
 					icon: 'md-car'
 				}
-			]
+			],
+			info: 'checkboxGroup'
 		},
 		{
 			type: 'checkboxGroup',
@@ -462,7 +496,8 @@
 			asyncOption: true /*远程待选项*/,
 			optionUrl: 'testData/formR/people.json',
 			optionLabel: 'name',
-			optionVal: 'tel'
+			optionVal: 'tel',
+			info: 'checkboxGroup asyncOption'
 		},
 		{
 			type: 'checkboxGroup',
@@ -475,17 +510,20 @@
 			collectLabel: {
 				valKey: 'label',
 				key: 'friendLName'
-			}
+			},
+			info: 'checkboxGroup collectLabel, 该示例展示功能：收集选中项的val以外另一个字段，此处为label(name)'
 		},
 		{
 			type: 'radio',
 			label: '同步资料到云服务器',
-			key: 'upload'
+			key: 'upload',
+			info: 'radio'
 		},
 		{
 			type: 'textarea',
 			label: '备注',
-			key: 'ps'
+			key: 'ps',
+			info: 'textarea'
 		},
 		{
 			type: 'select' /*级联（待选项级联）下拉框演示*/,
@@ -494,7 +532,8 @@
 			asyncOption: true,
 			optionUrl: 'testData/formR/department.json',
 			optionLabel: 'name',
-			optionVal: 'code'
+			optionVal: 'code',
+			info: 'select, 该示例展示功能：多表单项组成复杂级联，该项为后面表单项是否展示的条件之一'
 		},
 		{
 			type: 'select' /*级联（待选项级联）下拉框演示*/,
@@ -509,7 +548,8 @@
 					label: '女',
 					val: 0
 				}
-			]
+			],
+			info: 'select, 该示例展示功能：多表单项组成复杂级联，该项为后面表单项是否展示的条件之一'
 		},
 		{
 			type: 'select' /*级联（待选项级联）下拉框演示*/,
@@ -534,19 +574,19 @@
 			],
 			optionUrl: '/node-serve/people',
 			optionLabel: 'name',
-			optionVal: 'tel'
+			optionVal: 'tel',
+			info: 'select, 该示例展示功能：此下拉框选项会根据“部门”和“性别”的值改变'
 		},
 		{
 			type: 'select' /*待选项地址会改变(直接改变formData对应项<即本下拉框>的optionUrl)的下拉框演示*/,
-			label: '选项地址改变N',
+			label: '选项地址改变',
 			key: 'friendN',
 			asyncOption: true,
-			changeOption: true /*地址直接改变（通过监听下面的optionUrl）*/,
-			optionUrl:
-				null /*此处如没有初始地址，需把optionUrl设置为null(必须在这声明这个字段，否则监听不到)，需要改变时直接改变此处的值（见下方mounted示例，不要使用updateFormDataT方法，它在该场景下不适用）*/,
+			changeOption: true /*地址直接改变（通过监听该表单项的optionUrl变化）*/,
 			optionLabel: 'name',
 			optionVal: 'tel',
-			placeholder: '页面加载10秒后下拉框会有可选项，没看到变化？刷新页面再来一次~'
+			placeholder: '页面加载10秒后下拉框会有可选项，没看到？F5再来一次~',
+			info: 'select changeOption, 该示例展示功能：此下拉框选项会在optionUrl得到新的值后重新拉取'
 		},
 		{
 			type: 'inputMap',
@@ -554,13 +594,15 @@
 			key: 'lng',
 			key2: 'lat',
 			defaultVal: 106.585836,
-			defaultVal2: 29.564123
+			defaultVal2: 29.564123,
+			info: 'inputMap, 该示例展示功能：地图，收集地点经纬度，详细说明见InputMap组件的文档'
 		},
 		{
 			type: 'editorPro',
 			label: '文章',
 			key: 'articleA',
-			defaultVal: '<p>你好！</p>'
+			defaultVal: '<p>你好！</p>',
+			info: 'editorPro, 该示例展示功能：富文本编辑器，收集富文本，详细说明见EditorPro组件的文档'
 		}
 	]
 	const rules5 = {
@@ -665,119 +707,109 @@
 		setTimeout(() => {
 			formRef.value.updateFormDataT({
 				index: 1,
-				val: '我现在变了，没看到？刷新页面再给你变一次~'
+				val: '我现在变了，没看到？F5刷新页面再给你变一次~'
 			})
 		}, 5000)
 		setTimeout(() => {
-			findCollection(data5, (e) => e.key === 'friendN').optionUrl = 'testData/formR/people.json'
+			const t = findCollection(data5, (e) => e?.key === 'friendN')
+			if (t?.optionUrl) {
+				t.optionUrl.value = 'testData/formR/people.json'
+			}
 		}, 10000)
 	})
 </script>
 
 <template>
 	<show-read-me />
-	<div class="fullHeight">
-		<div class="fullFlowContent">
-			<NodeServeInfo />
-			<div class="wellWall">
-				<div class="eBoxA baseUA">
-					<wellCard title="基础用法">
-						<div class="inPage">
-							<formR :form-data="data" />
-						</div>
-					</wellCard>
-				</div>
-				<div class="eBoxA baseUA">
-					<wellCard title="带提交按钮">
-						<div class="inPage">
-							<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" />
-						</div>
-					</wellCard>
-				</div>
-				<div class="eBoxA baseUA">
-					<wellCard title="带提校验">
-						<div class="inPage">
-							<formR :form-data="data" :form-rules="rules3" :show-long-ok-bt="true" @on-submit="submit" />
-						</div>
-					</wellCard>
-				</div>
-				<div class="eBoxA baseUA">
-					<wellCard title="禁用表单">
-						<template #bts>
-							<headerBt :icon="disabled4 ? 'md-unlock' : 'md-lock'" @click="disabled4 = !disabled4">
-								{{ disabled4 ? '解禁' : '禁用' }}
-							</headerBt>
-						</template>
-						<div class="inPage">
-							<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" :disabled="disabled4" />
-						</div>
-					</wellCard>
-				</div>
-				<div class="eBoxA baseUA inlineFA">
-					<wellCard title="行内表单">
-						<div class="inPage">
-							<formR
-								:form-data="data"
-								:inline="true"
-								:show-inline-ok-bt="true"
-								:show-inline-clear-bt="true"
-								@on-submit="submit"
-							/>
-						</div>
-					</wellCard>
-				</div>
-				<div class="eBoxA detailUA">
-					<wellCard title="详细示例">
-						<div class="inPage">
-							<formR ref="formRef" :form-data="data5" :form-rules="rules5" :show-long-ok-bt="true" @on-submit="submitB">
-								<template #switchLJ="{ valGroup }">
-									<i-switch v-model="valGroup.switchStatus" />
-								</template>
-
-								<template #cnu>
-									<span>阶梯</span>
-									<Table border stripe :columns="columns" :data="tableData" />
-								</template>
-							</formR>
-							表单提交的值：
-							<json-viewer :value="valGroup5" theme="my-awesome-json-theme" copyable />
-						</div>
-					</wellCard>
-				</div>
+	<NodeServeInfo />
+	<div class="wellWall">
+		<wellCard class="wcR" title="基础用法" fitToContent>
+			<div class="inPage">
+				<formR :form-data="data" />
 			</div>
-		</div>
+		</wellCard>
+		<wellCard class="wcR" title="带提交按钮" fitToContent>
+			<div class="inPage">
+				<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" />
+			</div>
+		</wellCard>
+		<wellCard class="wcR" title="带提校验" fitToContent>
+			<div class="inPage">
+				<formR :form-data="data" :form-rules="rules3" :show-long-ok-bt="true" @on-submit="submit" />
+			</div>
+		</wellCard>
+		<wellCard class="wcR" title="禁用表单" fitToContent>
+			<template #bts>
+				<headerBt :icon="disabled4 ? 'md-unlock' : 'md-lock'" @click="disabled4 = !disabled4">
+					{{ disabled4 ? '解禁' : '禁用' }}
+				</headerBt>
+			</template>
+			<div class="inPage">
+				<formR :form-data="data" :show-long-ok-bt="true" @on-submit="submit" :disabled="disabled4" />
+			</div>
+		</wellCard>
+		<wellCard class="wcR" title="行内表单" fitToContent>
+			<div class="inPage inlineFA">
+				<formR
+					:form-data="data"
+					:inline="true"
+					:show-inline-ok-bt="true"
+					:show-inline-clear-bt="true"
+					@on-submit="submit"
+				/>
+			</div>
+		</wellCard>
+		<wellCard class="wcR" title="详细示例" fitToContent>
+			<div class="inPage detailEx">
+				<formR
+					ref="formRef"
+					:form-data="data5"
+					:form-rules="rules5"
+					:label-width="220"
+					:show-long-ok-bt="true"
+					@on-submit="submitB"
+				>
+					<template #switchLJ="{ valGroup }">
+						<i-switch v-model="valGroup.switchStatus" />
+					</template>
+
+					<template #cnu>
+						<span>阶梯</span>
+						<Table border stripe :columns="columns" :data="tableData" />
+					</template>
+				</formR>
+				表单提交的值：
+				<json-viewer :value="valGroup5" theme="my-awesome-json-theme" copyable />
+			</div>
+		</wellCard>
 	</div>
 </template>
 
 <style lang="less" scoped>
 	.wellWall {
 		margin-top: 15px;
-		padding: 30px 20px 10px 20px;
+		overflow: auto;
+		height: calc(100% - 42px);
 		display: flex;
 		flex-wrap: wrap;
 		background-color: #fff;
+
+		.wcR {
+			margin: 50px 0 0 50px;
+		}
 	}
 
-	.eBoxA {
+	.inPage {
+		padding: 10px;
 		width: 600px;
-		margin: 0 60px 50px 0;
-
-		.inPage {
-			padding: 10px;
-		}
-
-		&.baseUA {
-			height: 260px;
-		}
 
 		&.inlineFA {
 			width: 1210px;
-			height: 160px;
+			padding-bottom: 40px;
 		}
 
-		&.detailUA {
-			min-height: 1000px;
-			width: 800px;
+		&.detailEx {
+			width: 1000px;
 		}
 	}
 </style>

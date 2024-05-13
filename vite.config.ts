@@ -12,7 +12,7 @@ export default defineConfig({
 	plugins: [
 		vue(),
 		vueJsx(),
-		VueDevTools(),
+		// VueDevTools(),
 		AutoImport({
 			// targets to transform
 			include: [

@@ -32,7 +32,9 @@ let service: ServiceR = axios.create({
 })
 
 function notInitYet() {
-	console.info('store为空，请在安装插件时传入store实例：Vue.use(plugRQw,{store:store})，Pinia传{store:useStore}')
+	console.info(
+		'store为空，请在安装插件时传入store实例，vuex：app.use(plugRQw,{store})，Pinia：app.use(plugRQw,{useStore})'
+	)
 }
 
 /**
