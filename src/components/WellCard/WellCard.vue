@@ -7,7 +7,7 @@
 	const props = withDefaults(
 		defineProps<{
 			title?: string
-			fitToContent?: boolean
+			fitToContent?: boolean /*卡片组件尺寸会根据内容改变，该模式下`width`和`height`不再生效，无需再传*/
 			width?: number | string
 			height?: number | string
 			inline?: boolean

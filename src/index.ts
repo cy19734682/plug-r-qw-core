@@ -110,7 +110,7 @@ export const install = function (app: App, options: plugROption = {}) {
 		})
 	}
 
-	//库基础字号，影响范围：iconTxtBtn的txt与icon的尺寸比例、fullPop的headerFontSize默认值、btTablePage的tooltip本体尺寸。
+	//库基础字号(应跟你项目设置的view-design基础字号一样)，影响范围：iconTxtBtn的txt与icon的尺寸比例、fullPop的headerFontSize默认值、btTablePage的tooltip本体尺寸。
 	app.config.globalProperties.fontSizeBase = 14
 	// 搜索表单默认label宽度
 	app.config.globalProperties.searchFormLabelWidth = 84

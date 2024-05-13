@@ -10,7 +10,7 @@
 
 - headerBg 字符串，header背景颜色，默认：`@titleBg`
 
-- headerFontSize 数字/字符串，header字体大小，可通过全局变量fontSizeBase改变默认值，默认：`12`
+- headerFontSize 数字/字符串，header字体大小，可通过全局变量fontSizeBase改变默认值，默认：`14`
 
 - zIndex 数字，弹框主体的`z-index`，默认：`1000`
 
