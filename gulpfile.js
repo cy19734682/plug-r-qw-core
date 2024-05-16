@@ -51,4 +51,4 @@ export function clean_temp(cb) {
 	cb()
 }
 
-export const lib = gulp.series(clean, build, lang)
+export const lib = gulp.series(clean, build, lang, fonts)
