@@ -27,11 +27,11 @@ function build(cb) {
 // 拷贝字体文件
 function fonts(cb) {
 	src([
-		'./src/style/iconfont/*.svg',
-		'./src/style/iconfont/*.ttf',
-		'./src/style/iconfont/*.woff',
-		'./src/style/iconfont/*.woff2'
-	]).pipe(dest('./lib/iconfont'))
+		'./src/style/fonts/*.svg',
+		'./src/style/fonts/*.ttf',
+		'./src/style/fonts/*.woff',
+		'./src/style/fonts/*.woff2'
+	]).pipe(dest('./lib/fonts'))
 	cb()
 }
 
@@ -42,7 +42,7 @@ function lang(cb) {
 }
 
 function clean(cb) {
-	del(['plugRQw.min.css', './lab/iconfont/'])
+	del(['plugRQw.min.css', './lab/fonts/'])
 	cb()
 }
 
