@@ -535,12 +535,12 @@
   `@zhangqingcq/view-design-r`初始化方法和原view-design一样，
   只需将原项目中`view-design`全部替换成`@zhangqingcq/view-design-r`，如：
   > ```javascript
-  >// main.js or main.ts
-  >import ViewUI from '@zhangqingcq/view-design-r'
-  >import '@zhangqingcq/view-design-r/dist/styles/iview.css' //使用less变量覆盖默认值定制化UI时无需此行代码
-  >import '@/global/iViewTheme.less' //不使用less变量覆盖默认值定制化UI时无需此行代码
-  >import enI from '@zhangqingcq/view-design-r/dist/locale/en-US'
-  >import zhI from '@zhangqingcq/view-design-r/dist/locale/zh-CN'
+  > // main.js or main.ts
+  > import ViewUI from '@zhangqingcq/view-design-r'
+  > import '@zhangqingcq/view-design-r/dist/styles/iview.css' //使用less变量覆盖默认值定制化UI时无需此行代码
+  > import '@/global/iViewTheme.less' //不使用less变量覆盖默认值定制化UI时无需此行代码
+  > import enI from '@zhangqingcq/view-design-r/dist/locale/en-US'
+  > import zhI from '@zhangqingcq/view-design-r/dist/locale/zh-CN'
   >```
   >  样式定制化文件顶部改为：
   > ```
