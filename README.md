@@ -180,6 +180,48 @@
   > - 因为该库是基于view-ui-plus封装的，所以很多样式继承于view-ui-plus，要定制那些样式，直接定制view-ui-plus即可。
   > - 如出现样式异常，请使用less@4.x.x版本，可以和库的less版本保持一致。
 
+* 该库使用了`less@4.2.x`，如项目有less语法报错，可以在`vite.config.js`or`vite.config.ts` 中加上配置，如:
+  ```typescript
+  export default defineConfig({
+    ...,
+    css: {
+      preprocessorOptions: {
+        less: {
+          javascriptEnabled: true,
+          math: 'always'
+        }
+      }
+    }
+  })
+  ```
+* 如果你的项目view-ui-plus库字体图标无法正常显示，可能是view-ui-plus的iconfont字体文件url不正确，尝试下面的解决方案：
+  > 首先关闭项目配置中less的rewriteUrls功能：
+  >```typescript
+  >//vite.config.ts
+  >
+  >export default defineConfig({
+  >   ...,
+  >   css: {
+	>       preprocessorOptions: {
+	>           less: {
+	>             javascriptEnabled: true,
+	>             math: 'always',
+  >            rewriteUrls: 'off' //或者删除改行代码
+	>           }
+	>       }
+	>     }
+  >})
+  >```
+  > 然后在定制view-ui-plus的less文件(如本库examples/global/iViewTheme.less)中改写它iconfont字体文件的url:
+  >```
+  > //iViewTheme.less
+  >
+  > @import 'view-ui-plus/src/styles/index.less';
+  >
+  > //改写view-ui-plus中iconfont字体文件地址
+  > @ionicons-font-path: "view-ui-plus/src/styles/common/iconfont/fonts";
+  >``` 
+
 * 该库有数个用于控制样式的全局变量，挂在app.config.globalProperties下，直接在main.js or main.ts中给对应变量赋值即可定制对应样式：
   ```javascript
     //main.js or main.ts
@@ -217,48 +259,6 @@
     ...
 	  })
   ```
-
-* 该库使用了`less@4.2.x`，如项目有less语法报错，可以在`vite.config.js`or`vite.config.ts` 中加上配置，如:
-  ```typescript
-  export default defineConfig({
-    ...,
-    css: {
-      preprocessorOptions: {
-        less: {
-          javascriptEnabled: true,
-          math: 'always'
-        }
-      }
-    }
-  })
-  ```
-* 如果你的项目view-ui-plus库字体图标无法正常显示，可能是view-ui-plus的iconfont字体文件url不正确，尝试下面的解决方案：
-  > 首先关闭项目配置中less的rewriteUrls功能：
-  >```typescript
-  >//vite.config.ts
-  >
-  >export default defineConfig({
-  >   ...,
-  >   css: {
-	>       preprocessorOptions: {
-	>           less: {
-	>             javascriptEnabled: true,
-	>             math: 'always',
-  >            rewriteUrls: 'off' //或者删除改行代码
-	>           }
-	>       }
-	>     }
-  >})
-  >```
-  > 然后在定制view-ui-plus的less文件(如本库examples/global/iViewTheme.less)中改写它iconfont字体文件的url:
-  >```less
-  >//iViewTheme.less
-  >
-  >@import 'view-ui-plus/src/styles/index.less';
-  >
-  >//改写view-ui-plus中iconfont字体文件地址
-  >@ionicons-font-path: "view-ui-plus/src/styles/common/iconfont/fonts";
-  >``` 
 
 ### 本库自带自定义指令
 
