@@ -147,7 +147,7 @@
 
 5. 所有UI组件均被库注册为了全局组件（按需引入模式除外），所以在需要的地方直接使用即可，如：
    ```html
-    <iconTxtBtn icon='ios-trash' name='批量删除'/>
+    <IconTxtBtn icon='ios-trash' name='批量删除'/>
    ```
 
 ### 注意
