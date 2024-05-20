@@ -99,7 +99,6 @@ export default defineConfig({
 		preprocessorOptions: {
 			less: {
 				javascriptEnabled: true,
-				rewriteUrls: 'all',
 				math: 'always'
 			}
 		}
