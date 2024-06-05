@@ -25,6 +25,10 @@ export function myTypeof(v: any): string {
 	return str.replace(/\[object |]/g, '')
 }
 
+export function has(v: string) {
+	return { style: { display: hasPermission(v) ? 'unset' : 'none' } }
+}
+
 // 驼峰转换下划线
 export function toLine(name: string): string {
 	return name.replace(/([A-Z])/g, '_$1').toLowerCase()

@@ -1936,6 +1936,12 @@ declare function getValGroup_3(): any;
 
 declare function getValGroup_4(): any;
 
+export declare function has(v: string): {
+    style: {
+        display: string;
+    };
+};
+
 /**
  * 是否有该权限，用于权限管理
  * @param {String} value 权限代码

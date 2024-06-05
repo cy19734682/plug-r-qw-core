@@ -12,7 +12,8 @@
 		FormModal,
 		TableIconBtn,
 		tablePrint,
-		tooltipManual
+		tooltipManual,
+		has
 	} from '../../src'
 	import imgK from '../assets/testImg.png'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
@@ -70,6 +71,8 @@
 			width: 240,
 			render: (_h: any, params: Record<string, any>) => {
 				return _h('div', [
+					//view-ui-plus render函数实现 v-has 同等效果示例
+					_h('span', { ...has('abc') }, '123'),
 					_h(TableIconBtn, {
 						icon: 'ios-create',
 						title: '编辑',
