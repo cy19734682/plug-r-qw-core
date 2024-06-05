@@ -175,20 +175,26 @@
 				e.align = Proxy()?.btTablePageAlign || 'center'
 			}
 		})
-		if (props.tableEmptyTdHandle) {
-			t.forEach((e: Record<string, any>) => {
-				if (e?.key && e.render === undefined) {
-					if (e.tooltip) {
-						e.render = tooltipManual(e.key, true, '', Proxy()?.fontSizeBase)
-					} else {
-						e.render = (h: any, params: Record<string, any>) => {
-							let td = params.row[e.key]
-							return h('span', td === '' || td === null || td === undefined ? '--' : td)
+
+		t.forEach((e) => {
+			if (e?.key && e.render === undefined) {
+				if (e.tooltip) {
+					e.render = tooltipManual(e.key, props.tableEmptyTdHandle)
+				} else {
+					e.render = (_h: any, params: any) => {
+						let td = ''
+						if (e?.key) {
+							td = params.row[e.key]
 						}
+						if (props.tableEmptyTdHandle) {
+							return h('span', td === '' ? '--' : td ?? '--')
+						}
+						return h('span', td)
 					}
 				}
-			})
-		}
+			}
+		})
+
 		return t
 	})
 
@@ -498,6 +504,7 @@
 	onMounted(initTable)
 
 	defineExpose({
+		dataS,
 		selectedIds,
 		addRow,
 		setRowData,

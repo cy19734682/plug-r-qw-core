@@ -16,7 +16,7 @@ export default function fullScreenImgPreview(this: any, src: string) {
 	const fullImg = T('r.fullImg')
 
 	let id = 'previewImg' + Math.floor(Math.random() * 10000000)
-	Modal.info({
+	Modal?.info?.({
 		closable: false,
 		'transition-names': ['linear', 'fade'],
 		render: (_h: any) => {
@@ -39,11 +39,10 @@ export default function fullScreenImgPreview(this: any, src: string) {
 							}),
 							h(Icon, {
 								type: 'md-close',
-								size: 20,
 								title: close,
 								class: 'previewModalDelete',
 								onClick() {
-									Modal.remove()
+									Modal?.remove?.()
 								}
 							})
 						]

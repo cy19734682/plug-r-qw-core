@@ -988,6 +988,7 @@ pageSize: number;
 pageComponentSize: string;
 noElevator: boolean;
 }>, {
+dataS: globalThis.WritableComputedRef<any>;
 selectedIds: globalThis.ComputedRef<any[]>;
 addRow: typeof addRow;
 setRowData: typeof setRowData;
@@ -1887,7 +1888,12 @@ zIndex: number;
  * @author ricky zhangqingcq@foxmail.com
  * @created 2023.08.23
  */
-export declare function fullScreenImgByDom(this: any, src: string): void;
+/**
+ * 全屏图片预览，支持单张图片预览，或多张图片轮播
+ * @param {string|Array<string>|Array<Record<string,any>>} src 图片地址，或者地址组成的数组，或包含地址src和名字name的对象组成的数组
+ * @param {number} index src为数组时默认展示图的索引值，默认：0
+ */
+export declare function fullScreenImgByDom(this: any, src: any, index?: number): void;
 
 /**
  * @description 全屏预览
@@ -2376,7 +2382,7 @@ export declare const SelectInput: DefineComponent<__VLS_WithDefaults_11<__VLS_Ty
 modelValue?: Record<string, any> | undefined;
 labelWidth?: number | undefined;
 labelTextAlign?: "left" | "right" | "center" | undefined;
-itemWidth?: number | undefined;
+itemWidth?: string | number | undefined;
 selectOption?: any[] | undefined;
 placeholder?: string | undefined;
 clearable?: boolean | undefined;
@@ -2399,7 +2405,7 @@ disabled: boolean;
 modelValue?: Record<string, any> | undefined;
 labelWidth?: number | undefined;
 labelTextAlign?: "left" | "right" | "center" | undefined;
-itemWidth?: number | undefined;
+itemWidth?: string | number | undefined;
 selectOption?: any[] | undefined;
 placeholder?: string | undefined;
 clearable?: boolean | undefined;
@@ -2424,7 +2430,7 @@ clearable: boolean;
 modelValue: Record<string, any>;
 labelWidth: number;
 labelTextAlign: 'left' | 'center' | 'right';
-itemWidth: number;
+itemWidth: number | string;
 selectOption: any[];
 }, {}>;
 
@@ -2767,11 +2773,11 @@ eventsEnabled: () => any;
 }, {
 transfer: boolean;
 placement: Placement;
+storage: 'localStorage' | 'sessionStorage';
 bg: string;
 modelValue: any[];
 width: string;
 defaultCheck: boolean;
-storage: 'localStorage' | 'sessionStorage';
 eventsEnabled: boolean;
 }, {}>;
 
@@ -2782,305 +2788,304 @@ export declare function toHump(name: string): string;
 export declare function toLine(name: string): string;
 
 /**
- * 手动tooltip(table 的 column 的tooltip失效的情况下用)
- * @param {String|Array|Function} contentKey 要设置tooltip的column的key或者key组成的数组（内容按数组中key对应的内容先后拼接），
- * 或获取值的自定义逻辑（Function回调，会传入params）
- * @param {boolean} dash 在内容为空时是否以'--'代替显示
- * @param {String} jointMark 在内容为多个字段拼接时，各字段间连接符，默认没有
- * @param {number} fontSize 内容文字字号
- * @returns {function(...[*]=)}
- */
-export declare function tooltipManual(contentKey: string | string[] | ((params: any) => string), dash?: boolean, jointMark?: string, fontSize?: number): (_h: any, params: any) => globalThis.VNode<RendererNode, RendererElement, {
-    [key: string]: any;
-}>;
+ * 手动tooltip(基于tableTooltip的高级表格内容展示，展示内容和形式更多样和合理)
+ * tableTooltip: 替换view-design的Table的tooltip功能，只在内容会导致换行或显示不完整时渲染tooltip
+ * @param {String/Array/Function} contentKey 要设置tooltip的column的key或者key组成的数组（内容按数组中key对应的内容先后拼接），
+     * 或获取值的自定义逻辑（Function回调，会传入params）
+     * @param {boolean} dash 在内容为空(null、undefined、'')时是否以'--'代替显示
+     * @param {String} jointMark 在内容为多个字段拼接时，各字段间连接符，默认没有
+     */
+ export declare function tooltipManual(contentKey: string | string[] | ((params: any) => string), dash?: boolean, jointMark?: string): (_h: any, params: any) => globalThis.VNode<RendererNode, RendererElement, {
+     [key: string]: any;
+ }>;
 
-export declare const TransferBox: DefineComponent<__VLS_WithDefaults_23<__VLS_TypePropsToOption_24<{
-titleLeft?: string | undefined;
-titleRight?: string | undefined;
-formDataLeft?: any[] | undefined;
-formDataRight?: any[] | undefined;
-formRulesLeft?: Record<string, any> | undefined;
-formRulesRight?: Record<string, any> | undefined;
-constSearchDataLeft?: Record<string, any> | undefined;
-constSearchDataRight?: Record<string, any> | undefined;
-leftTableColumns?: any[] | undefined;
-rightTableColumns?: any[] | undefined;
-leftTableUrl?: string | undefined;
-rightTableUrl?: string | undefined;
-addUrl?: string | undefined;
-deleteUrl?: string | undefined;
-addAllUrl?: string | undefined;
-deleteAllUrl?: string | undefined;
-addParamsHandle?: ((d: any) => any) | undefined;
-deleteParamsHandle?: ((d: any) => any) | undefined;
-addAllParamsHandle?: ((d: any) => any) | undefined;
-deleteAllParamsHandle?: ((d: any) => any) | undefined;
-addMethod?: "get" | "post" | "put" | undefined;
-addAllMethod?: "get" | "post" | "put" | undefined;
-deleteMethod?: "get" | "delete" | "post" | "put" | undefined;
-deleteAllMethod?: "get" | "delete" | "post" | "put" | undefined;
-searchFormLabelWith?: number | undefined;
-usePagePro?: boolean | undefined;
-showTotal?: boolean | undefined;
-showSizer?: boolean | undefined;
-}>, {
-formDataLeft: () => never[];
-formDataRight: () => never[];
-formRulesLeft: () => {};
-formRulesRight: () => {};
-constSearchDataLeft: () => {};
-constSearchDataRight: () => {};
-leftTableColumns: () => never[];
-rightTableColumns: () => never[];
-addParamsHandle: (selection: any[]) => any[];
-deleteParamsHandle: (selection: any[]) => any[];
-addAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
-deleteAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
-addMethod: string;
-addAllMethod: string;
-deleteMethod: string;
-deleteAllMethod: string;
-usePagePro: () => any;
-showTotal: () => any;
-showSizer: () => any;
-}>, {
-reset: typeof reset;
-search: typeof search;
-}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
-transferred: (...args: any[]) => void;
-"on-data-change-l": (...args: any[]) => void;
-"on-data-change-r": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_23<__VLS_TypePropsToOption_24<{
-titleLeft?: string | undefined;
-titleRight?: string | undefined;
-formDataLeft?: any[] | undefined;
-formDataRight?: any[] | undefined;
-formRulesLeft?: Record<string, any> | undefined;
-formRulesRight?: Record<string, any> | undefined;
-constSearchDataLeft?: Record<string, any> | undefined;
-constSearchDataRight?: Record<string, any> | undefined;
-leftTableColumns?: any[] | undefined;
-rightTableColumns?: any[] | undefined;
-leftTableUrl?: string | undefined;
-rightTableUrl?: string | undefined;
-addUrl?: string | undefined;
-deleteUrl?: string | undefined;
-addAllUrl?: string | undefined;
-deleteAllUrl?: string | undefined;
-addParamsHandle?: ((d: any) => any) | undefined;
-deleteParamsHandle?: ((d: any) => any) | undefined;
-addAllParamsHandle?: ((d: any) => any) | undefined;
-deleteAllParamsHandle?: ((d: any) => any) | undefined;
-addMethod?: "get" | "post" | "put" | undefined;
-addAllMethod?: "get" | "post" | "put" | undefined;
-deleteMethod?: "get" | "delete" | "post" | "put" | undefined;
-deleteAllMethod?: "get" | "delete" | "post" | "put" | undefined;
-searchFormLabelWith?: number | undefined;
-usePagePro?: boolean | undefined;
-showTotal?: boolean | undefined;
-showSizer?: boolean | undefined;
-}>, {
-formDataLeft: () => never[];
-formDataRight: () => never[];
-formRulesLeft: () => {};
-formRulesRight: () => {};
-constSearchDataLeft: () => {};
-constSearchDataRight: () => {};
-leftTableColumns: () => never[];
-rightTableColumns: () => never[];
-addParamsHandle: (selection: any[]) => any[];
-deleteParamsHandle: (selection: any[]) => any[];
-addAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
-deleteAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
-addMethod: string;
-addAllMethod: string;
-deleteMethod: string;
-deleteAllMethod: string;
-usePagePro: () => any;
-showTotal: () => any;
-showSizer: () => any;
-}>>> & {
-onTransferred?: ((...args: any[]) => any) | undefined;
-"onOn-data-change-l"?: ((...args: any[]) => any) | undefined;
-"onOn-data-change-r"?: ((...args: any[]) => any) | undefined;
-}, {
-showTotal: boolean;
-showSizer: boolean;
-usePagePro: boolean;
-formDataLeft: any[];
-formDataRight: any[];
-formRulesLeft: Record<string, any>;
-formRulesRight: Record<string, any>;
-constSearchDataLeft: Record<string, any>;
-constSearchDataRight: Record<string, any>;
-leftTableColumns: any[];
-rightTableColumns: any[];
-addParamsHandle: (d: any) => any;
-deleteParamsHandle: (d: any) => any;
-addAllParamsHandle: (d: any) => any;
-deleteAllParamsHandle: (d: any) => any;
-addMethod: 'post' | 'put' | 'get';
-addAllMethod: 'post' | 'put' | 'get';
-deleteMethod: 'delete' | 'post' | 'put' | 'get';
-deleteAllMethod: 'delete' | 'post' | 'put' | 'get';
-}, {}>;
+ export declare const TransferBox: DefineComponent<__VLS_WithDefaults_23<__VLS_TypePropsToOption_24<{
+ titleLeft?: string | undefined;
+ titleRight?: string | undefined;
+ formDataLeft?: any[] | undefined;
+ formDataRight?: any[] | undefined;
+ formRulesLeft?: Record<string, any> | undefined;
+ formRulesRight?: Record<string, any> | undefined;
+ constSearchDataLeft?: Record<string, any> | undefined;
+ constSearchDataRight?: Record<string, any> | undefined;
+ leftTableColumns?: any[] | undefined;
+ rightTableColumns?: any[] | undefined;
+ leftTableUrl?: string | undefined;
+ rightTableUrl?: string | undefined;
+ addUrl?: string | undefined;
+ deleteUrl?: string | undefined;
+ addAllUrl?: string | undefined;
+ deleteAllUrl?: string | undefined;
+ addParamsHandle?: ((d: any) => any) | undefined;
+ deleteParamsHandle?: ((d: any) => any) | undefined;
+ addAllParamsHandle?: ((d: any) => any) | undefined;
+ deleteAllParamsHandle?: ((d: any) => any) | undefined;
+ addMethod?: "get" | "post" | "put" | undefined;
+ addAllMethod?: "get" | "post" | "put" | undefined;
+ deleteMethod?: "get" | "delete" | "post" | "put" | undefined;
+ deleteAllMethod?: "get" | "delete" | "post" | "put" | undefined;
+ searchFormLabelWith?: number | undefined;
+ usePagePro?: boolean | undefined;
+ showTotal?: boolean | undefined;
+ showSizer?: boolean | undefined;
+ }>, {
+ formDataLeft: () => never[];
+ formDataRight: () => never[];
+ formRulesLeft: () => {};
+ formRulesRight: () => {};
+ constSearchDataLeft: () => {};
+ constSearchDataRight: () => {};
+ leftTableColumns: () => never[];
+ rightTableColumns: () => never[];
+ addParamsHandle: (selection: any[]) => any[];
+ deleteParamsHandle: (selection: any[]) => any[];
+ addAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
+ deleteAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
+ addMethod: string;
+ addAllMethod: string;
+ deleteMethod: string;
+ deleteAllMethod: string;
+ usePagePro: () => any;
+ showTotal: () => any;
+ showSizer: () => any;
+ }>, {
+ reset: typeof reset;
+ search: typeof search;
+ }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
+ transferred: (...args: any[]) => void;
+ "on-data-change-l": (...args: any[]) => void;
+ "on-data-change-r": (...args: any[]) => void;
+ }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_23<__VLS_TypePropsToOption_24<{
+ titleLeft?: string | undefined;
+ titleRight?: string | undefined;
+ formDataLeft?: any[] | undefined;
+ formDataRight?: any[] | undefined;
+ formRulesLeft?: Record<string, any> | undefined;
+ formRulesRight?: Record<string, any> | undefined;
+ constSearchDataLeft?: Record<string, any> | undefined;
+ constSearchDataRight?: Record<string, any> | undefined;
+ leftTableColumns?: any[] | undefined;
+ rightTableColumns?: any[] | undefined;
+ leftTableUrl?: string | undefined;
+ rightTableUrl?: string | undefined;
+ addUrl?: string | undefined;
+ deleteUrl?: string | undefined;
+ addAllUrl?: string | undefined;
+ deleteAllUrl?: string | undefined;
+ addParamsHandle?: ((d: any) => any) | undefined;
+ deleteParamsHandle?: ((d: any) => any) | undefined;
+ addAllParamsHandle?: ((d: any) => any) | undefined;
+ deleteAllParamsHandle?: ((d: any) => any) | undefined;
+ addMethod?: "get" | "post" | "put" | undefined;
+ addAllMethod?: "get" | "post" | "put" | undefined;
+ deleteMethod?: "get" | "delete" | "post" | "put" | undefined;
+ deleteAllMethod?: "get" | "delete" | "post" | "put" | undefined;
+ searchFormLabelWith?: number | undefined;
+ usePagePro?: boolean | undefined;
+ showTotal?: boolean | undefined;
+ showSizer?: boolean | undefined;
+ }>, {
+ formDataLeft: () => never[];
+ formDataRight: () => never[];
+ formRulesLeft: () => {};
+ formRulesRight: () => {};
+ constSearchDataLeft: () => {};
+ constSearchDataRight: () => {};
+ leftTableColumns: () => never[];
+ rightTableColumns: () => never[];
+ addParamsHandle: (selection: any[]) => any[];
+ deleteParamsHandle: (selection: any[]) => any[];
+ addAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
+ deleteAllParamsHandle: (searchData: Record<string, any>) => Record<string, any>;
+ addMethod: string;
+ addAllMethod: string;
+ deleteMethod: string;
+ deleteAllMethod: string;
+ usePagePro: () => any;
+ showTotal: () => any;
+ showSizer: () => any;
+ }>>> & {
+ onTransferred?: ((...args: any[]) => any) | undefined;
+ "onOn-data-change-l"?: ((...args: any[]) => any) | undefined;
+ "onOn-data-change-r"?: ((...args: any[]) => any) | undefined;
+ }, {
+ showTotal: boolean;
+ showSizer: boolean;
+ usePagePro: boolean;
+ formDataLeft: any[];
+ formDataRight: any[];
+ formRulesLeft: Record<string, any>;
+ formRulesRight: Record<string, any>;
+ constSearchDataLeft: Record<string, any>;
+ constSearchDataRight: Record<string, any>;
+ leftTableColumns: any[];
+ rightTableColumns: any[];
+ addParamsHandle: (d: any) => any;
+ deleteParamsHandle: (d: any) => any;
+ addAllParamsHandle: (d: any) => any;
+ deleteAllParamsHandle: (d: any) => any;
+ addMethod: 'post' | 'put' | 'get';
+ addAllMethod: 'post' | 'put' | 'get';
+ deleteMethod: 'delete' | 'post' | 'put' | 'get';
+ deleteAllMethod: 'delete' | 'post' | 'put' | 'get';
+ }, {}>;
 
-declare interface TreeNode {
-    [k: string]: any;
-    children?: TreeNode[];
-}
+ declare interface TreeNode {
+     [k: string]: any;
+     children?: TreeNode[];
+ }
 
-/**
- * 去掉对象属性前后空格
- */
-export declare function trimObj(obj: Collection): Collection;
+ /**
+  * 去掉对象属性前后空格
+  */
+ export declare function trimObj(obj: Collection): Collection;
 
-/**
- * 更新表单结构，例如设置或取消禁用,或者给type为txt的表单项（没有key）赋值（公开）；
- * @param {Object|Array} d 为对象（改变单个）或数组（改变多个），支持的属性：index（必填）-需要改变的formData项的索引值、
- * indexB-当表单为`分组表单`时必填（表示表单项的二位数组索引第二位）、需要改变的属性，如要改变第二个表单组件的label和title,
- * 则为:{index:1,label:XXX,title:XXX}
- */
-declare function updateFormDataT(d: Record<string, any> | Record<string, any>[]): void;
+ /**
+  * 更新表单结构，例如设置或取消禁用,或者给type为txt的表单项（没有key）赋值（公开）；
+  * @param {Object|Array} d 为对象（改变单个）或数组（改变多个），支持的属性：index（必填）-需要改变的formData项的索引值、
+  * indexB-当表单为`分组表单`时必填（表示表单项的二位数组索引第二位）、需要改变的属性，如要改变第二个表单组件的label和title,
+  * 则为:{index:1,label:XXX,title:XXX}
+  */
+ declare function updateFormDataT(d: Record<string, any> | Record<string, any>[]): void;
 
-declare function updateFormDataT_2(data: Record<string, any> | Record<string, any>[]): void;
+ declare function updateFormDataT_2(data: Record<string, any> | Record<string, any>[]): void;
 
-declare function updateFormDataT_3(data: Record<string, any> | Record<string, any>[]): void;
+ declare function updateFormDataT_3(data: Record<string, any> | Record<string, any>[]): void;
 
-declare function updateFormDataT_4(data: Record<string, any> | Record<string, any>[]): void;
+ declare function updateFormDataT_4(data: Record<string, any> | Record<string, any>[]): void;
 
-/**
- * 更新表单项的值（只能更新已有字段，公开）
- * @param data 新数据
- * @param notClearOthers 是否清空其他表单项，默认清空
- */
-declare function updateValGroup(data: Record<string, any>, notClearOthers?: boolean): void;
+ /**
+  * 更新表单项的值（只能更新已有字段，公开）
+  * @param data 新数据
+  * @param notClearOthers 是否清空其他表单项，默认清空
+  */
+ declare function updateValGroup(data: Record<string, any>, notClearOthers?: boolean): void;
 
-declare function updateValGroup_2(data: Record<string, any>, notClearOthers: boolean): void;
+ declare function updateValGroup_2(data: Record<string, any>, notClearOthers: boolean): void;
 
-declare function updateValGroup_3(data: Record<string, any>, notClearOthers: boolean): void;
+ declare function updateValGroup_3(data: Record<string, any>, notClearOthers: boolean): void;
 
-declare function updateValGroup_4(data: Record<string, any>, notClearOthers: boolean): void;
+ declare function updateValGroup_4(data: Record<string, any>, notClearOthers: boolean): void;
 
-export declare const UploadGroup: DefineComponent<__VLS_WithDefaults_15<__VLS_TypePropsToOption_16<{
-modelValue?: string | number | any[] | File | undefined;
-url?: string | undefined;
-data?: Record<string, any> | undefined;
-manualUpload?: boolean | undefined;
-maxSize?: number | undefined;
-length?: number | undefined;
-showUploadList?: boolean | undefined;
-withCredentials?: boolean | undefined;
-multiple?: boolean | undefined;
-format?: string[] | undefined;
-showImg?: boolean | undefined;
-disabled?: boolean | undefined;
-}>, {
-modelValue: () => never[];
-url: string;
-data: () => {
-appId: number;
-moduleId: number;
-typeId: number;
-};
-manualUpload: boolean;
-maxSize: number;
-length: number;
-showUploadList: boolean;
-withCredentials: boolean;
-multiple: boolean;
-format: () => never[];
-showImg: boolean;
-disabled: boolean;
-}>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
-"on-change": (...args: any[]) => void;
-"update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_15<__VLS_TypePropsToOption_16<{
-modelValue?: string | number | any[] | File | undefined;
-url?: string | undefined;
-data?: Record<string, any> | undefined;
-manualUpload?: boolean | undefined;
-maxSize?: number | undefined;
-length?: number | undefined;
-showUploadList?: boolean | undefined;
-withCredentials?: boolean | undefined;
-multiple?: boolean | undefined;
-format?: string[] | undefined;
-showImg?: boolean | undefined;
-disabled?: boolean | undefined;
-}>, {
-modelValue: () => never[];
-url: string;
-data: () => {
-appId: number;
-moduleId: number;
-typeId: number;
-};
-manualUpload: boolean;
-maxSize: number;
-length: number;
-showUploadList: boolean;
-withCredentials: boolean;
-multiple: boolean;
-format: () => never[];
-showImg: boolean;
-disabled: boolean;
-}>>> & {
-"onOn-change"?: ((...args: any[]) => any) | undefined;
-"onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
-}, {
-length: number;
-disabled: boolean;
-data: Record<string, any>;
-format: string[];
-manualUpload: boolean;
-maxSize: number;
-multiple: boolean;
-showImg: boolean;
-url: string;
-withCredentials: boolean;
-modelValue: number | string | File | any[];
-showUploadList: boolean;
-}, {}>;
+ export declare const UploadGroup: DefineComponent<__VLS_WithDefaults_15<__VLS_TypePropsToOption_16<{
+ modelValue?: string | number | any[] | File | undefined;
+ url?: string | undefined;
+ data?: Record<string, any> | undefined;
+ manualUpload?: boolean | undefined;
+ maxSize?: number | undefined;
+ length?: number | undefined;
+ showUploadList?: boolean | undefined;
+ withCredentials?: boolean | undefined;
+ multiple?: boolean | undefined;
+ format?: string[] | undefined;
+ showImg?: boolean | undefined;
+ disabled?: boolean | undefined;
+ }>, {
+ modelValue: () => never[];
+ url: string;
+ data: () => {
+ appId: number;
+ moduleId: number;
+ typeId: number;
+ };
+ manualUpload: boolean;
+ maxSize: number;
+ length: number;
+ showUploadList: boolean;
+ withCredentials: boolean;
+ multiple: boolean;
+ format: () => never[];
+ showImg: boolean;
+ disabled: boolean;
+ }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
+ "on-change": (...args: any[]) => void;
+ "update:modelValue": (...args: any[]) => void;
+ }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_15<__VLS_TypePropsToOption_16<{
+ modelValue?: string | number | any[] | File | undefined;
+ url?: string | undefined;
+ data?: Record<string, any> | undefined;
+ manualUpload?: boolean | undefined;
+ maxSize?: number | undefined;
+ length?: number | undefined;
+ showUploadList?: boolean | undefined;
+ withCredentials?: boolean | undefined;
+ multiple?: boolean | undefined;
+ format?: string[] | undefined;
+ showImg?: boolean | undefined;
+ disabled?: boolean | undefined;
+ }>, {
+ modelValue: () => never[];
+ url: string;
+ data: () => {
+ appId: number;
+ moduleId: number;
+ typeId: number;
+ };
+ manualUpload: boolean;
+ maxSize: number;
+ length: number;
+ showUploadList: boolean;
+ withCredentials: boolean;
+ multiple: boolean;
+ format: () => never[];
+ showImg: boolean;
+ disabled: boolean;
+ }>>> & {
+ "onOn-change"?: ((...args: any[]) => any) | undefined;
+ "onUpdate:modelValue"?: ((...args: any[]) => any) | undefined;
+ }, {
+ length: number;
+ disabled: boolean;
+ data: Record<string, any>;
+ format: string[];
+ manualUpload: boolean;
+ maxSize: number;
+ multiple: boolean;
+ showImg: boolean;
+ url: string;
+ withCredentials: boolean;
+ modelValue: number | string | File | any[];
+ showUploadList: boolean;
+ }, {}>;
 
-declare function validate(): void;
+ declare function validate(): void;
 
-declare function validate_2(): void;
+ declare function validate_2(): void;
 
-declare function validate_3(): void;
+ declare function validate_3(): void;
 
-declare function validate_4(): void;
+ declare function validate_4(): void;
 
-export declare const WellCard: __VLS_WithTemplateSlots_11<DefineComponent<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
-title?: string | undefined;
-fitToContent?: boolean | undefined;
-width?: string | number | undefined;
-height?: string | number | undefined;
-inline?: boolean | undefined;
-}>, {
-fitToContent: boolean;
-width: string;
-height: string;
-inline: boolean;
-}>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
-title?: string | undefined;
-fitToContent?: boolean | undefined;
-width?: string | number | undefined;
-height?: string | number | undefined;
-inline?: boolean | undefined;
-}>, {
-fitToContent: boolean;
-width: string;
-height: string;
-inline: boolean;
-}>>>, {
-height: string | number;
-width: string | number;
-inline: boolean;
-fitToContent: boolean;
-}, {}>, {
-    bts?(_: {}): any;
-    default?(_: {}): any;
-}>;
+ export declare const WellCard: __VLS_WithTemplateSlots_11<DefineComponent<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
+ title?: string | undefined;
+ fitToContent?: boolean | undefined;
+ width?: string | number | undefined;
+ height?: string | number | undefined;
+ inline?: boolean | undefined;
+ }>, {
+ fitToContent: boolean;
+ width: string;
+ height: string;
+ inline: boolean;
+ }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
+ title?: string | undefined;
+ fitToContent?: boolean | undefined;
+ width?: string | number | undefined;
+ height?: string | number | undefined;
+ inline?: boolean | undefined;
+ }>, {
+ fitToContent: boolean;
+ width: string;
+ height: string;
+ inline: boolean;
+ }>>>, {
+ height: string | number;
+ width: string | number;
+ inline: boolean;
+ fitToContent: boolean;
+ }, {}>, {
+     bts?(_: {}): any;
+     default?(_: {}): any;
+ }>;
 
-export { }
+ export { }

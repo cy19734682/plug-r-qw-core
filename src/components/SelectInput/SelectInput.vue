@@ -12,7 +12,7 @@
 			modelValue?: Record<string, any> /*组件的值，建议使用v-model绑定，key对应select值，val对应input值*/
 			labelWidth?: number /*表单项标签宽度*/
 			labelTextAlign?: 'left' | 'center' | 'right' /*select内容对齐方式*/
-			itemWidth?: number /*表单项内容宽度,用于行内表单*/
+			itemWidth?: number | string /*表单项内容宽度,用于行内表单*/
 			selectOption?: any[] /*选择框待选项*/
 			placeholder?: string
 			clearable?: boolean
@@ -34,13 +34,14 @@
 
 	const selectVal = computed({
 		get() {
-			return (props.modelValue && props.modelValue.key) || null
+			return props.modelValue?.key
 		},
 		set(v: any) {
 			let temp: Record<string, any> = {
 				key: v,
 				val: null
 			}
+			console.log(selectVal.value, v)
 			if (selectVal.value && selectVal.value !== v) {
 				temp.beforeKey = selectVal.value
 			}
@@ -66,7 +67,9 @@
 		textAlign: props.labelTextAlign
 	}))
 
-	const inputStyle = computed(() => ({ width: props.itemWidth + 'px' }))
+	const inputStyle = computed(() => ({
+		width: typeof props.itemWidth === 'number' ? props.itemWidth + 'px' : props.itemWidth
+	}))
 
 	function inputChange(e: Record<string, any>) {
 		if (e?.target && e.target.value !== undefined) {

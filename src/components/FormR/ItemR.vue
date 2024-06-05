@@ -31,6 +31,27 @@
 		uploadUrl: string
 	}>()
 
+	const selectContentWidth = computed(() => {
+		if (props.inline) {
+			return props.itemWidth
+		} else {
+			const t = props.itemStyle?.width
+			if (t) {
+				if (t.indexOf('%') > -1) {
+					const p = Number(t.replace('%', ''))
+					if (window.isNaN(p)) {
+						return `calc(100% - ${props.labelWidth}px)`
+					}
+					return `calc((100% - ${props.labelWidth}px)*${p / 100})`
+				} else if (t.indexOf('px') > -1) {
+					return t
+				}
+				return `calc(100% - ${props.labelWidth}px)`
+			}
+			return `calc(100% - ${props.labelWidth}px)`
+		}
+	})
+
 	function itemClass(root: any) {
 		return {
 			withInfo: Boolean(root.info),
@@ -161,7 +182,7 @@
 			v-else-if="props.item.type === 'selectInput'"
 			v-model="tempKeys[props.item.tempKey]"
 			:label-width="labelWidth"
-			:item-width="itemWidth"
+			:item-width="selectContentWidth"
 			:select-option="props.item.options || []"
 			:placeholder="props.item.placeholder || t('r.pInput')"
 			:clearable="props.item.clearable !== false"

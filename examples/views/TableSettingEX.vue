@@ -1,7 +1,7 @@
 <script setup lang="ts">
 	import { Checkbox } from 'view-ui-plus'
 	import { downloadFileReaderFile, BtTablePage, TableSetting } from '../../src'
-	import imgK from '../assets/testo.png'
+	import imgK from '../assets/testImg.png'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 	import NodeServeInfo from '@/components/NodeServeInfo.vue'
 

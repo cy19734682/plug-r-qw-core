@@ -123,11 +123,27 @@ const router = createRouter({
 			}
 		},
 		{
+			path: '/selectInput',
+			name: 'SelectInput',
+			component: () => import('@/views/SelectInputEX.vue'),
+			meta: {
+				desc: '可换label输入框'
+			}
+		},
+		{
 			path: '/domPrint',
 			name: 'DomPrint',
 			component: () => import('@/views/DomPrintEX.vue'),
 			meta: {
 				desc: '网页Dom打印'
+			}
+		},
+		{
+			path: '/fullScreenImgByDom',
+			name: 'FullScreenImgByDom',
+			component: () => import('@/views/FullScreenImgByDomEX.vue'),
+			meta: {
+				desc: '全屏图片预览'
 			}
 		}
 	]

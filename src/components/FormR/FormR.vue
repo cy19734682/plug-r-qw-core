@@ -494,10 +494,10 @@
 				case 'selectInput':
 					const tempKeyF = 'selectInput' + Math.floor(Math.random() * 100000000)
 					root.tempKey = tempKeyF
-					tempKeys.value[tempKeyF] = {
+					tempKeys.value[tempKeyF] = ref<Record<string, any>>({
 						key: root.key || null,
 						val: root.defaultVal || null
-					}
+					})
 					watchGroup.push(
 						watch(
 							() => tempKeys.value[tempKeyF],

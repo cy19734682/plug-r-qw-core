@@ -360,14 +360,18 @@ img {
 
     .previewModalDelete {
       position: absolute;
+      width: @closeTimesW;
+      height: @closeTimesW;
       right: -@closeTimesW;
       top: 0;
       cursor: pointer;
+      font-size: @closeTimesW;
       color: #fff;
       background-color: @closeTimesBg;
 
       &:hover {
         color: @warningColor;
+        background-color: fade(@closeTimesBg, 15%);
       }
     }
   }
@@ -393,20 +397,71 @@ img {
     > img {
       max-width: 95vw;
       max-height: 95vh;
+      min-width: 200px;
+      min-height: 150px;
+      background-color: rgba(255,255,255,0.35);
     }
 
-    .ivu-icon-md-close {
+    .ivu-icon-md-close,
+    .pageFBt {
       cursor: pointer;
       position: absolute;
-      right: -@closeTimesW;
-      top: 0;
+      z-index: 1000;
       color: #fff;
       font-size: @closeTimesW;
       background-color: @closeTimesBg;
+      display: flex;
+      align-items: center;
 
       &:hover {
         color: @warningColor;
+        background-color: fade(@closeTimesBg, 15%);
+        i{
+          font-weight: bold;
+        }
       }
     }
+
+    .ivu-icon-md-close {
+      right: -@closeTimesW;
+      top: 0;
+
+    }
+
+    .pageFBt {
+      top: calc(50% - 30px);
+      width: @closeTimesW;
+      height: 60px;
+      justify-content: center;
+
+      &.left {
+        left: -@closeTimesW;
+      }
+
+      &.right {
+        right: -@closeTimesW;
+      }
+    }
+  }
+  .pNotice,.pName{
+    color: #fff;
+    background-color: rgba(0,0,0,0.7);
+    padding: 4px 15px;
+    border-radius: 2px;
+    position: absolute;
+    opacity: 0.3;
+    cursor: default;
+    &:hover{
+      opacity: 1;
+    }
+  }
+
+  .pNotice{
+    font-size: 16px;
+    bottom: 0;
+  }
+
+  .pName{
+    top: 0;
   }
 }

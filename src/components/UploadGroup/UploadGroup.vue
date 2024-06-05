@@ -377,7 +377,7 @@
 		>
 			<!--暂时屏蔽multiple选项-->
 			<Button
-				icon="ios-cloud-upload-outline"
+				icon="md-cloud-upload"
 				:class="{
 					disabledR: (props.length && fileList?.length && fileList?.length >= props.length) || Boolean(props.disabled)
 				}"

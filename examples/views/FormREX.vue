@@ -93,6 +93,20 @@
 			info: 'radioGroup'
 		},
 		{
+			type: 'selectInput',
+			key: 'tel',
+			options: [
+				{
+					label: '手机号',
+					val: 'tel'
+				},
+				{
+					label: '身份证号',
+					val: 'IdNo'
+				}
+			]
+		},
+		{
 			type: 'radioGroup',
 			label: '总部所在地',
 			key: 'base',

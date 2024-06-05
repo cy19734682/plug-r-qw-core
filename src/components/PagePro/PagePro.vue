@@ -5,8 +5,10 @@
 <script setup lang="ts">
 	import t from '../../locale/i18nSFC'
 	import Proxy from '../../utils/proxy'
+	import { getStringWidth } from '../../utils/needImportFunc'
 
 	const emit = defineEmits(['update:modelValue', 'on-change', 'on-page-size-change'])
+	const pageRef = ref()
 
 	const props = withDefaults(
 		defineProps<{
@@ -33,6 +35,9 @@
 		}
 	)
 
+	const _fontSizeBase = Proxy?.()?.fontSizeBase || 14
+	const currentPadding = ref(16)
+
 	const current = computed({
 		get() {
 			return props.modelValue
@@ -54,6 +59,46 @@
 			}
 		}
 	})
+
+	const currentSize = computed(() => {
+		const t = getStringWidth(String(props.total || 0), _fontSizeBase) + currentPadding.value + 2
+		return t < 32 ? 32 : t
+	})
+
+	watch(
+		currentSize,
+		(v) => {
+			nextTick(function () {
+				changeCurrentSize(v)
+			})
+		},
+		{ immediate: true }
+	)
+
+	function getPadding() {
+		const $inputEl = pageRef.value?.$el?.querySelector?.('input')
+		if (!$inputEl) {
+			return 16
+		}
+		const inputStyle = window.getComputedStyle($inputEl)
+		const paddingL = inputStyle?.paddingLeft
+		const paddingR = inputStyle?.paddingRight
+		if (!paddingL || !paddingR) {
+			return 16
+		}
+		return Number(paddingL.replace('px', '')) + Number(paddingR.replace('px', ''))
+	}
+
+	function changeCurrentSize(val: any) {
+		const $inputEl = pageRef.value?.$el?.querySelector?.('input')
+		if ($inputEl?.style) {
+			$inputEl.style.width = `${val}px`
+		}
+	}
+
+	onMounted(() => {
+		currentPadding.value = getPadding()
+	})
 </script>
 
 <template>
@@ -62,6 +107,7 @@
 			>{{ t('r.total') + ' ' }}{{ props.total }}{{ ' ' + t('r.items') }}</span
 		>
 		<Page
+			ref="pageRef"
 			v-model="current"
 			:page-size="pageSizeT"
 			:total="props.total"

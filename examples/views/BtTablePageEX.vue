@@ -11,9 +11,10 @@
 		IconTxtBtn,
 		FormModal,
 		TableIconBtn,
-		tablePrint
+		tablePrint,
+		tooltipManual
 	} from '../../src'
-	import imgK from '../assets/testo.png'
+	import imgK from '../assets/testImg.png'
 	import ShowReadMe from '@/components/ShowReadMe.vue'
 	import NodeServeInfo from '@/components/NodeServeInfo.vue'
 
@@ -34,7 +35,8 @@
 		{
 			title: '文件名称',
 			key: 'name',
-			minWidth: 550,
+			minWidth: 250,
+			tooltip: true,
 			render: (_h: any, params: Record<string, any>) => {
 				return _h(
 					'span',
@@ -44,7 +46,7 @@
 							downloadFileReaderFile('模拟文件下载', imgK)
 						}
 					},
-					params.row.name
+					tooltipManual('name', true)(_h, params)
 				)
 			}
 		},
@@ -299,14 +301,15 @@
 				:columns="columns"
 				:url="url"
 				:search-data="searchData"
-				@on-row-click="onRowClick"
-				@on-data-change="setTotal"
 				show-top-row
 				:radio="selectMode === 'radio'"
 				:selection="selectMode === 'checkbox'"
-				:draggable="true"
 				:showTotal="false"
+				:draggable="true"
+				table-empty-td-handle
 				border
+				@on-row-click="onRowClick"
+				@on-data-change="setTotal"
 				@on-drag-drop="dragDrop"
 			>
 				<template #topMsg>共有：{{ total }} 条数据。</template>
