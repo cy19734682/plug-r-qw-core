@@ -4,7 +4,7 @@
 
 <script lang="ts" setup>
 	import t from '../../locale/i18nSFC'
-	import { first, cloneDeep, indexOf, last, find } from 'lodash-es'
+	import { first, cloneDeep, indexOf, last, find, findIndex } from 'lodash-es'
 	import { myTypeof } from '../../utils/globalFunc'
 	import {
 		getFileSrc,
@@ -52,16 +52,22 @@
 			disabled: false
 		}
 	)
-	const fileSrcList = shallowRef<any[]>([])
-	const fileDefaultList = shallowRef<any[]>([])
+	const fileSrcList = shallowRef<any[]>([]) //本地图片模式图片文件地址集合
+	const fileDefaultList = shallowRef<any[]>([]) //从服务器返回的数据整理完成的文件集合
+	const localImgSrcList = shallowRef<any[]>([])
+	let tempStorage: Record<string, any> = {}
 	const previewType = computed(() => {
 		if (!props.manualUpload && props.showImg && fileListItemIsIMG.value) {
+			//上传到服务器，图片模式
 			return 'img'
 		} else if (props.manualUpload && props.showImg && fileListItemIsIMG.value) {
+			//上传到本地，图片模式
 			return 'localImg'
 		} else if (props.manualUpload && props.showUploadList && (!props.showImg || !fileListItemIsIMG.value)) {
+			//上传到本地
 			return 'localList'
 		} else if (!props.manualUpload && props.showUploadList && (!props.showImg || !fileListItemIsIMG.value)) {
+			//上传到服务器
 			return 'list'
 		} else {
 			return ''
@@ -75,6 +81,7 @@
 		}
 	})
 	const fileList = computed({
+		//文件集合
 		get() {
 			if (props.manualUpload) {
 				return fileIdList.value
@@ -91,6 +98,7 @@
 		}
 	})
 	const fileIdList = computed({
+		//文件ID集合
 		get() {
 			switch (typeof props.modelValue) {
 				case 'number':
@@ -128,6 +136,7 @@
 		}
 	})
 	const fileListItemIsIMG = computed(() => {
+		//文件集合是否全为图片
 		let temp
 		if (props.manualUpload) {
 			temp = fileList.value
@@ -151,6 +160,28 @@
 		return true
 	})
 
+	const fileDefaultImgList = computed(() => {
+		//图片文件集合
+		return fileDefaultList.value.filter((e) => isImgByFile(e?.mimeType))
+	})
+
+	const fileImgSrcList = computed(() => {
+		//图片地址、名字集合
+		return fileDefaultImgList.value.map((e: any) => ({
+			src: props.url + '/' + e?.id + '/download?preview=true',
+			name: e?.name
+		}))
+	})
+
+	const localImgList = computed(() => {
+		// 本地图片集合
+		return fileList.value.filter((e: any) => isImgByFile(e?.type))
+	})
+
+	watch(localImgList, async (after) => {
+		localImgSrcList.value = await getFileSrcList(after)
+	})
+
 	watch(
 		() => fileList.value,
 		async (after) => {
@@ -172,6 +203,10 @@
 								//本地有名字，在本地拿
 								item.name = fileT.name
 								item.mimeType = fileT.mimeType
+							} else if (tempStorage.hasOwnProperty(item.id)) {
+								//缓存有信息，在缓存拿取
+								item.name = tempStorage[item.id].name
+								item.mimeType = tempStorage[item.id].mimeType
 							} else {
 								//本地没有，去服务器拿
 								item.mimeType = 'loading'
@@ -213,6 +248,7 @@
 	async function getFileSrcList(data: any[]) {
 		let temp: any[] = []
 		for (let item of data) {
+			//图片的 base64 格式, 可以直接当成 img 的 src 属性值
 			let src = await getFileSrc(item)
 			temp.push(src)
 		}
@@ -241,18 +277,35 @@
 		return file?.id && file.mimeType && isImgByFile(file.mimeType)
 	}
 
-	function listExpand(file: any) {
+	async function listExpand(file: any) {
 		//列表图片预览
 		if (props.manualUpload) {
-			if (!file) {
+			//本地上传
+			let index
+			let tt
+			if (typeof file === 'number') {
+				//直接传的index预览，本地图片模式
+				index = file
+				tt = fileSrcList.value
+			} else if (file) {
+				//传的file对象预览，本地列表
+				index = findIndex(localImgList.value, (e: any) => e.size === file.size && e.lastModified === file.lastModified)
+				tt = localImgSrcList.value
+			}
+			if (!tt) {
 				return
 			}
-			getFileSrc(file).then((r: any) => {
-				//图片的 base64 格式, 可以直接当成 img 的 src 属性值
-				fullScreenImgByDom(r)
-			})
+			fullScreenImgByDom(
+				tt.map((e: any, i: number) => ({
+					src: e,
+					name: localImgList.value[i]?.name
+				})),
+				index
+			)
 		} else if (file?.id) {
-			fullScreenImgByDom(props.url + '/' + file.id + '/download?preview=true')
+			//上传到服务器，远程列表模式
+			const index = findIndex(fileDefaultImgList.value, (e) => e.id === file.id)
+			fullScreenImgByDom(fileImgSrcList.value, index)
 		}
 	}
 
@@ -304,7 +357,8 @@
 			let _f = fileList.value
 			file.id = response.data?.[0]?.id
 			file.name = response.data?.[0]?.name
-			file.mimeType = response.data?.[0]?.mimeType
+			file.mimeType = response.data?.[0]?.mimeType //将文件信息存起来，不用再去服务器拉取了
+			tempStorage[file.id] = { name: file.name, mimeType: file.mimeType }
 			_f?.push(file)
 			fileList.value = _f
 		} else {
@@ -373,23 +427,22 @@
 			:with-credentials="props.withCredentials"
 			:format="props.format"
 			:multiple="props.multiple || false"
-			:disabled="(props.length && fileList?.length && fileList?.length >= props.length) || Boolean(props.disabled)"
+			:disabled="(props.length > 0 && fileList?.length >= props.length) || Boolean(props.disabled)"
 		>
-			<!--暂时屏蔽multiple选项-->
 			<Button
 				icon="md-cloud-upload"
 				:class="{
-					disabledR: (props.length && fileList?.length && fileList?.length >= props.length) || Boolean(props.disabled)
+					disabledR: (props.length > 0 && fileList?.length >= props.length) || Boolean(props.disabled)
 				}"
 				>{{ t('r.selectFile') }}
 			</Button>
 		</Upload>
-		<div class="previewBoxM" v-show="previewType === 'img' && fileDefaultList?.length">
-			<template v-for="item of fileDefaultList" :key="item?.id">
+		<div class="previewBoxM" v-show="previewType === 'img' && fileDefaultList?.length > 0">
+			<template v-for="(item, index) of fileDefaultList" :key="item?.id">
 				<div
 					class="previewImg"
 					:class="{ previewLoading: item.mimeType === 'loading' }"
-					v-if="!props.manualUpload && item && item.id !== null"
+					v-if="!props.manualUpload && item?.id !== null"
 				>
 					<div class="imgLoading" v-show="item.mimeType === 'loading'">
 						<div data-loader="circle-side" class="loader-div" />
@@ -405,7 +458,7 @@
 							size="40"
 							class="previewExpand"
 							:title="t('r.fView')"
-							@click="fullScreenImgByDom(props.url + '/' + item.id + '/download?preview=true')"
+							@click="fullScreenImgByDom(fileImgSrcList, index)"
 						/>
 						<Icon
 							type="ios-trash-outline"
@@ -418,18 +471,12 @@
 				</div>
 			</template>
 		</div>
-		<div class="previewBoxM" v-show="previewType === 'localImg' && fileSrcList?.length">
+		<div class="previewBoxM" v-show="previewType === 'localImg' && fileSrcList?.length > 0">
 			<template v-for="(item, index) of fileSrcList" :key="'manualImg' + index">
-				<div class="previewImg" v-if="props.manualUpload && item">
+				<div class="previewImg" v-if="props.manualUpload && item !== null">
 					<img :src="item" :alt="'manualImg' + index" />
 					<div class="deleteModal">
-						<Icon
-							type="ios-expand"
-							size="40"
-							class="previewExpand"
-							@click="fullScreenImgByDom(item)"
-							:title="t('r.fView')"
-						/>
+						<Icon type="ios-expand" size="40" class="previewExpand" @click="listExpand(index)" :title="t('r.fView')" />
 						<Icon
 							type="ios-trash-outline"
 							size="40"
@@ -441,10 +488,10 @@
 				</div>
 			</template>
 		</div>
-		<div class="customFileListM" v-show="previewType === 'localList' && fileList?.length">
+		<div class="customFileListM" v-show="previewType === 'localList' && fileList?.length > 0">
 			<template v-for="(item, index) of fileList" :key="'manualItem' + index">
-				<p class="customFileListItem" v-if="props.manualUpload && item">
-					<Icon v-if="item.name" :type="getFileTypeIconByName(item.name)" />
+				<p class="customFileListItem" v-if="props.manualUpload && item !== null">
+					<Icon v-if="item.name" class="fileTypeIco" :type="getFileTypeIconByName(item.name)" size="20" />
 					<span
 						class="upNameT"
 						:class="{ previewName: showPreview(item) }"
@@ -456,26 +503,30 @@
 						<Icon
 							v-if="showPreview(item)"
 							type="md-qr-scanner"
-							size="14"
+							size="22"
 							class="listBtH"
 							@click="listExpand(item)"
 							:title="t('r.fView')"
 						/>
-						<Icon type="ios-close" size="22" class="listBtH" @click="clearManualItem(index)" :title="t('r.delete')" />
+						<Icon type="md-close" size="22" class="listBtH" @click="clearManualItem(index)" :title="t('r.delete')" />
 					</span>
 				</p>
 			</template>
 		</div>
-		<div class="customFileListM" v-show="previewType === 'list' && fileDefaultList?.length">
+		<div class="customFileListM" v-show="previewType === 'list' && fileDefaultList?.length > 0">
 			<template v-for="(item, index) of fileDefaultList" :key="'defaultItem' + index">
 				<div class="customFileListItem" v-if="!props.manualUpload && item">
 					<div class="listLoading" v-show="item.mimeType === 'loading'">
 						<div data-loader="circle-side" class="loader-div" />
 					</div>
-					<Icon :type="getFileTypeIconByName(item.name)" v-show="item.mimeType !== 'loading'" />
+					<Icon
+						:type="getFileTypeIconByName(item.name)"
+						class="fileTypeIco"
+						v-show="item.mimeType !== 'loading'"
+						size="20"
+					/>
 					<span
 						class="upNameT"
-						:class="{ previewName: showPreview(item) }"
 						@click="downloadDefaultFile(item)"
 						:title="t('r.download')"
 						v-show="item.mimeType !== 'loading'"
@@ -485,12 +536,12 @@
 						<Icon
 							v-if="showPreview(item)"
 							type="md-qr-scanner"
-							size="14"
+							size="22"
 							class="listBtH"
 							@click="listExpand(item)"
 							:title="t('r.fView')"
 						/>
-						<Icon type="ios-close" size="22" class="listBtH" @click="clearManualItem(index)" :title="t('r.delete')" />
+						<Icon type="md-close" size="22" class="listBtH" @click="clearManualItem(index)" :title="t('r.delete')" />
 					</span>
 				</div>
 			</template>

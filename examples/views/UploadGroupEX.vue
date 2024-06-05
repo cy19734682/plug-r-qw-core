@@ -7,9 +7,11 @@
 	const fileId3 = ref([])
 	const fileId4 = ref([])
 	const url = '/node-serve/file'
+	const multiple = ref(false)
+	const multipleB = ref(false)
 
 	function printFile(data: any) {
-		console.log(data)
+		console.log('取到文件对象了：', data)
 	}
 </script>
 
@@ -26,11 +28,18 @@
 			</div>
 		</well-card>
 		<well-card class="upBox" fit-to-content title="本地上传-图片模式">
+			<template #bts> 多选 <i-switch v-model="multipleB" style="margin-right: 6px" /> </template>
 			<div class="innerK">
 				<p style="margin-bottom: 10px">
 					说明：上传格式限制为图片时，该模式可预览上传的图片，如果文件列表中有非图片文件，则自动转换为列表模式，file对象不能直接在页面展示，请查看控制台</p
 				>
-				<UploadGroup v-model="fileId2" :manual-upload="true" :show-img="true" @on-file-id-change="printFile(fileId2)" />
+				<UploadGroup
+					v-model="fileId2"
+					:manual-upload="true"
+					:show-img="true"
+					:multiple="multipleB"
+					@on-file-id-change="printFile(fileId2)"
+				/>
 			</div>
 		</well-card>
 		<well-card class="upBox" fit-to-content title="上传到服务器">
@@ -43,12 +52,13 @@
 			</div>
 		</well-card>
 		<well-card class="upBox" fit-to-content title="上传到服务器-图片模式">
+			<template #bts> 多选 <i-switch v-model="multiple" style="margin-right: 6px" /> </template>
 			<div class="innerK">
 				<p style="margin-bottom: 10px">
 					说明：上传格式限制为图片时，该模式可预览上传的图片，如果文件列表中有非图片文件，则自动转换为列表模式</p
 				>
 				<p>组件值：{{ fileId4 }}</p>
-				<UploadGroup v-model="fileId4" :url="url" :show-img="true" multiple />
+				<UploadGroup v-model="fileId4" :url="url" :show-img="true" :multiple="multiple" />
 			</div>
 		</well-card>
 	</div>
