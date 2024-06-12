@@ -41,7 +41,6 @@
 				key: v,
 				val: null
 			}
-			console.log(selectVal.value, v)
 			if (selectVal.value && selectVal.value !== v) {
 				temp.beforeKey = selectVal.value
 			}

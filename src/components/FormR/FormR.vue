@@ -1564,7 +1564,7 @@
 				d[root.collectLabel.key] = valGroup.value[root.collectLabel.key]
 			}
 			emit('on-item-change', d)
-		}, 500)
+		}, 300)
 	}
 
 	/**

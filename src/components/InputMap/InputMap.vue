@@ -155,7 +155,7 @@
 									lat: val.poi.location.lat
 								}
 							} else {
-								Map.setCity(val.poi.name, () => {
+								Map?.setCity(val.poi.name, () => {
 									let center = Map.getCenter()
 									createMarker({
 										name: val.poi.name,
@@ -174,7 +174,7 @@
 					})
 				}
 
-				Map.on('hotspotclick', (d: Record<string, any>) => {
+				Map?.on('hotspotclick', (d: Record<string, any>) => {
 					createMarker({
 						name: d.name,
 						lng: d.lnglat.lng,
@@ -191,14 +191,14 @@
 	}
 
 	function createMarker({ lng, lat, name }: { lng: number; lat: number; name: string }) {
-		Map.clearMap()
+		Map?.clearMap()
 		let point = new AMap.LngLat(lng, lat)
 		let marker = new AMap.Marker({
 			map: Map,
 			position: point,
 			draggable: true
 		})
-		Map.add(marker)
+		Map?.add(marker)
 		getAddress(lng, lat)
 		marker.on('dragend', () => {
 			let dragPoint = marker.getPosition()
@@ -214,11 +214,11 @@
 				infoWindow.open(Map, e?.target?.getPosition?.())
 			}
 		})
-		Map.setFitView()
+		Map?.setFitView()
 	}
 
 	function getAddress(lng: number, lat: number) {
-		GeoCoder.getAddress([lng, lat], (status: string, result: Record<string, any>) => {
+		GeoCoder?.getAddress([lng, lat], (status: string, result: Record<string, any>) => {
 			if (status === 'complete' && result.info === 'OK' && result.regeocode && result.regeocode.formattedAddress) {
 				infoWindow = new AMap.InfoWindow({
 					//创建信息窗体
