@@ -14,6 +14,7 @@ import { init } from './utils/timer'
 import { set } from './utils/amap'
 import './utils/wangeditor5init'
 import JsonView from 'vue-json-viewer'
+import clickOutside from './directives/clickOutside'
 
 export * from './components'
 export * from './utils/globalFunc'
@@ -108,6 +109,9 @@ export const install = function (app: App, options: plugROption = {}) {
 				})
 			}
 		})
+	}
+	if (!app.directive('clickOutside')) {
+		app.directive('clickOutside', clickOutside)
 	}
 
 	//库基础字号(应跟你项目设置的view-design基础字号一样)，影响范围：iconTxtBtn的txt与icon的尺寸比例、fullPop的headerFontSize默认值、pagePro的current输入框尺寸。
