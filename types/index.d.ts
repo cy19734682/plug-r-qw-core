@@ -181,8 +181,6 @@ declare type __VLS_NonUndefinedable_26<T> = T extends undefined ? never : T;
 
 declare type __VLS_NonUndefinedable_27<T> = T extends undefined ? never : T;
 
-declare type __VLS_NonUndefinedable_28<T> = T extends undefined ? never : T;
-
 declare type __VLS_NonUndefinedable_3<T> = T extends undefined ? never : T;
 
 declare type __VLS_NonUndefinedable_4<T> = T extends undefined ? never : T;
@@ -485,15 +483,6 @@ declare type __VLS_TypePropsToOption_27<T> = {
     };
 };
 
-declare type __VLS_TypePropsToOption_28<T> = {
-    [K in keyof T]-?: {} extends Pick<T, K> ? {
-        type: PropType<__VLS_NonUndefinedable_28<T[K]>>;
-    } : {
-        type: PropType<T[K]>;
-        required: true;
-    };
-};
-
 declare type __VLS_TypePropsToOption_3<T> = {
     [K in keyof T]-?: {} extends Pick<T, K> ? {
         type: PropType<__VLS_NonUndefinedable_3<T[K]>>;
@@ -787,7 +776,7 @@ declare type __VLS_WithTemplateSlots_9<T, S> = T & {
 
 declare function addRow(row: Record<string, any>): void;
 
-export declare const AlCascaderMC: DefineComponent<__VLS_WithDefaults_14<__VLS_TypePropsToOption_15<{
+export declare const AlCascaderMC: DefineComponent<__VLS_WithDefaults_14<__VLS_TypePropsToOption_14<{
 modelValue?: string | number | any[] | null | undefined;
 level?: 0 | 1 | 2 | "0" | "1" | "2" | undefined;
 disabled?: boolean | undefined;
@@ -804,7 +793,7 @@ separator: string;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "update:modelValue": (...args: any[]) => void;
 "on-name-change": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_14<__VLS_TypePropsToOption_15<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_14<__VLS_TypePropsToOption_14<{
 modelValue?: string | number | any[] | null | undefined;
 level?: 0 | 1 | 2 | "0" | "1" | "2" | undefined;
 disabled?: boolean | undefined;
@@ -829,7 +818,7 @@ level: 0 | 1 | 2 | '0' | '1' | '2';
 separator: string;
 }, {}>;
 
-export declare const AsyncCascader: DefineComponent<__VLS_WithDefaults_13<__VLS_TypePropsToOption_14<{
+export declare const AsyncCascader: DefineComponent<__VLS_WithDefaults_13<__VLS_TypePropsToOption_13<{
 modelValue?: string | number | any[] | undefined;
 url?: string | undefined;
 optionVal?: string | undefined;
@@ -854,7 +843,7 @@ disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "update:modelValue": (...args: any[]) => void;
 "on-label-change": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_13<__VLS_TypePropsToOption_14<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_13<__VLS_TypePropsToOption_13<{
 modelValue?: string | number | any[] | undefined;
 url?: string | undefined;
 optionVal?: string | undefined;
@@ -891,7 +880,7 @@ url: string;
 onlyLastVal: boolean;
 }, {}>;
 
-export declare const BtTablePage: __VLS_WithTemplateSlots_6<DefineComponent<__VLS_WithDefaults_9<__VLS_TypePropsToOption_10<{
+export declare const BtTablePage: __VLS_WithTemplateSlots_6<DefineComponent<__VLS_WithDefaults_9<__VLS_TypePropsToOption_9<{
 url?: string | undefined;
 method?: "get" | "post" | undefined;
 searchData?: Record<string, any> | undefined;
@@ -1002,7 +991,7 @@ getDataAndClickRow: typeof getDataAndClickRow;
 }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-selection-change": (...args: any[]) => void;
 "on-data-change": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_9<__VLS_TypePropsToOption_10<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_9<__VLS_TypePropsToOption_9<{
 url?: string | undefined;
 method?: "get" | "post" | undefined;
 searchData?: Record<string, any> | undefined;
@@ -1192,7 +1181,7 @@ declare function changeLoading_3(val: any): void;
 
 declare function changeLoading_4(val: any): void;
 
-export declare const CheckboxGroupThreeClass: DefineComponent<__VLS_WithDefaults_25<__VLS_TypePropsToOption_26<{
+export declare const CheckboxGroupThreeClass: DefineComponent<__VLS_WithDefaults_25<__VLS_TypePropsToOption_25<{
 modelValue?: any[] | undefined;
 data?: TreeNode[] | undefined;
 firstTitle?: string | undefined;
@@ -1212,7 +1201,7 @@ disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_25<__VLS_TypePropsToOption_26<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_25<__VLS_TypePropsToOption_25<{
 modelValue?: any[] | undefined;
 data?: TreeNode[] | undefined;
 firstTitle?: string | undefined;
@@ -1241,7 +1230,7 @@ collectVal: string | string[];
 leaf: boolean;
 }, {}>;
 
-export declare const CheckboxGroupTwoClass: DefineComponent<__VLS_WithDefaults_24<__VLS_TypePropsToOption_25<{
+export declare const CheckboxGroupTwoClass: DefineComponent<__VLS_WithDefaults_24<__VLS_TypePropsToOption_24<{
 modelValue?: any[] | undefined;
 data?: TreeNode[] | undefined;
 firstTitle?: string | undefined;
@@ -1259,7 +1248,7 @@ leaf: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_24<__VLS_TypePropsToOption_25<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_24<__VLS_TypePropsToOption_24<{
 modelValue?: any[] | undefined;
 data?: TreeNode[] | undefined;
 firstTitle?: string | undefined;
@@ -1285,7 +1274,7 @@ collectVal: string | string[];
 leaf: boolean;
 }, {}>;
 
-export declare const CheckboxTree: DefineComponent<__VLS_WithDefaults_22<__VLS_TypePropsToOption_23<{
+export declare const CheckboxTree: DefineComponent<__VLS_WithDefaults_22<__VLS_TypePropsToOption_22<{
 modelValue?: any[] | undefined;
 data?: any[] | undefined;
 expandAll?: boolean | undefined;
@@ -1306,7 +1295,7 @@ disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_22<__VLS_TypePropsToOption_23<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_22<__VLS_TypePropsToOption_22<{
 modelValue?: any[] | undefined;
 data?: any[] | undefined;
 expandAll?: boolean | undefined;
@@ -1393,7 +1382,7 @@ export declare function downloadFileByFormSubmit(url: string, data?: PlainObject
 
 export declare function downloadFileReaderFile(name: string, href: string): void;
 
-export declare const EditorPro: DefineComponent<__VLS_WithDefaults_17<__VLS_TypePropsToOption_18<{
+export declare const EditorPro: DefineComponent<__VLS_WithDefaults_17<__VLS_TypePropsToOption_17<{
 modelValue?: string | undefined;
 toolbarConfig?: Record<string, any> | undefined;
 editorConfig?: Record<string, any> | undefined;
@@ -1414,7 +1403,7 @@ disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_17<__VLS_TypePropsToOption_18<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_17<__VLS_TypePropsToOption_17<{
 modelValue?: string | undefined;
 toolbarConfig?: Record<string, any> | undefined;
 editorConfig?: Record<string, any> | undefined;
@@ -1502,7 +1491,7 @@ export declare const formDataHeadConfig: {
     };
 };
 
-export declare const FormGroup: __VLS_WithTemplateSlots_8<DefineComponent<__VLS_WithDefaults_19<__VLS_TypePropsToOption_20<{
+export declare const FormGroup: __VLS_WithTemplateSlots_8<DefineComponent<__VLS_WithDefaults_19<__VLS_TypePropsToOption_19<{
 formData?: (FormItem | FormItem[])[] | undefined;
 with?: string | undefined;
 labelWidth?: number | undefined;
@@ -1537,7 +1526,7 @@ submit: typeof submit_2;
 close: typeof close_3;
 }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-cancel": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_19<__VLS_TypePropsToOption_20<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_19<__VLS_TypePropsToOption_19<{
 formData?: (FormItem | FormItem[])[] | undefined;
 with?: string | undefined;
 labelWidth?: number | undefined;
@@ -1675,7 +1664,7 @@ declare interface FormItem {
     [x: string]: any;
 }
 
-export declare const FormModal: __VLS_WithTemplateSlots_10<DefineComponent<__VLS_WithDefaults_21<__VLS_TypePropsToOption_22<{
+export declare const FormModal: __VLS_WithTemplateSlots_10<DefineComponent<__VLS_WithDefaults_21<__VLS_TypePropsToOption_21<{
 title?: string | undefined;
 formData?: (FormItem | FormItem[])[] | undefined;
 width?: string | number | undefined;
@@ -1709,7 +1698,7 @@ close: typeof close_4;
 }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-open": (...args: any[]) => void;
 "on-close": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_21<__VLS_TypePropsToOption_22<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_21<__VLS_TypePropsToOption_21<{
 title?: string | undefined;
 formData?: (FormItem | FormItem[])[] | undefined;
 width?: string | number | undefined;
@@ -1740,7 +1729,7 @@ hideFooter: boolean;
     valGroup: Record<string, any>;
 }) => any>>>;
 
-export declare const FormR: __VLS_WithTemplateSlots_7<DefineComponent<__VLS_WithDefaults_18<__VLS_TypePropsToOption_19<{
+export declare const FormR: __VLS_WithTemplateSlots_7<DefineComponent<__VLS_WithDefaults_18<__VLS_TypePropsToOption_18<{
 formData?: (FormItem | FormItem[])[] | undefined;
 formRules?: Record<string, any> | undefined;
 showMessage?: boolean | undefined;
@@ -1790,7 +1779,7 @@ submit: typeof submit;
 "on-reset": (...args: any[]) => void;
 "on-re-render": (...args: any[]) => void;
 "on-submit": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_18<__VLS_TypePropsToOption_19<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_18<__VLS_TypePropsToOption_18<{
 formData?: (FormItem | FormItem[])[] | undefined;
 formRules?: Record<string, any> | undefined;
 showMessage?: boolean | undefined;
@@ -2039,7 +2028,7 @@ has: string;
 
 declare function init(router: any): void;
 
-export declare const InputMap: DefineComponent<__VLS_WithDefaults_12<__VLS_TypePropsToOption_13<{
+export declare const InputMap: DefineComponent<__VLS_WithDefaults_12<__VLS_TypePropsToOption_12<{
 modelValue?: Record<string, any> | undefined;
 width?: string | number | undefined;
 height?: string | number | undefined;
@@ -2054,7 +2043,7 @@ showMap: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_12<__VLS_TypePropsToOption_13<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_12<__VLS_TypePropsToOption_12<{
 modelValue?: Record<string, any> | undefined;
 width?: string | number | undefined;
 height?: string | number | undefined;
@@ -2139,7 +2128,7 @@ export declare function messageBox(this: any, { height, width, title, content, o
     cancelBt?: boolean;
 }): void;
 
-export declare const MonthRange: DefineComponent<__VLS_WithDefaults_16<__VLS_TypePropsToOption_17<{
+export declare const MonthRange: DefineComponent<__VLS_WithDefaults_16<__VLS_TypePropsToOption_16<{
 modelValue?: string[] | undefined;
 placement?: "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end" | undefined;
 placeholder?: string | undefined;
@@ -2153,7 +2142,7 @@ disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_16<__VLS_TypePropsToOption_17<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_16<__VLS_TypePropsToOption_16<{
 modelValue?: string[] | undefined;
 placement?: "top" | "top-start" | "top-end" | "bottom" | "bottom-start" | "bottom-end" | "left" | "left-start" | "left-end" | "right" | "right-start" | "right-end" | undefined;
 placeholder?: string | undefined;
@@ -2191,7 +2180,7 @@ declare interface Option_2 {
 
 export declare const Page404: DefineComponent<    {}, {}, {}, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<{}>>, {}, {}>;
 
-export declare const PagePro: DefineComponent<__VLS_WithDefaults_10<__VLS_TypePropsToOption_11<{
+export declare const PagePro: DefineComponent<__VLS_WithDefaults_10<__VLS_TypePropsToOption_10<{
 modelValue?: number | undefined;
 total?: number | undefined;
 pageSize?: number | undefined;
@@ -2215,7 +2204,7 @@ disabled: boolean;
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
 "on-page-size-change": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_10<__VLS_TypePropsToOption_11<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_10<__VLS_TypePropsToOption_10<{
 modelValue?: number | undefined;
 total?: number | undefined;
 pageSize?: number | undefined;
@@ -2334,7 +2323,7 @@ declare function reValidate_4(prop: any): void;
 
 declare function search(): void;
 
-export declare const SearchForm: __VLS_WithTemplateSlots_9<DefineComponent<__VLS_WithDefaults_20<__VLS_TypePropsToOption_21<{
+export declare const SearchForm: __VLS_WithTemplateSlots_9<DefineComponent<__VLS_WithDefaults_20<__VLS_TypePropsToOption_20<{
 formData?: (FormItem | FormItem[])[] | undefined;
 labelWidth?: number | undefined;
 itemWidth?: number | undefined;
@@ -2360,7 +2349,7 @@ getValGroup: typeof getValGroup_3;
 submit: typeof submit_3;
 }, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-search": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_20<__VLS_TypePropsToOption_21<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_20<__VLS_TypePropsToOption_20<{
 formData?: (FormItem | FormItem[])[] | undefined;
 labelWidth?: number | undefined;
 itemWidth?: number | undefined;
@@ -2384,7 +2373,7 @@ showInlineClearBt: boolean;
     valGroup: Record<string, any>;
 }) => any>>>;
 
-export declare const SelectInput: DefineComponent<__VLS_WithDefaults_11<__VLS_TypePropsToOption_12<{
+export declare const SelectInput: DefineComponent<__VLS_WithDefaults_11<__VLS_TypePropsToOption_11<{
 modelValue?: Record<string, any> | undefined;
 labelWidth?: number | undefined;
 labelTextAlign?: "left" | "right" | "center" | undefined;
@@ -2407,7 +2396,7 @@ disabled: boolean;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_11<__VLS_TypePropsToOption_12<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_11<__VLS_TypePropsToOption_11<{
 modelValue?: Record<string, any> | undefined;
 labelWidth?: number | undefined;
 labelTextAlign?: "left" | "right" | "center" | undefined;
@@ -2449,7 +2438,7 @@ selectOption: any[];
  */
 declare function selectRow(predicate: number | number[] | PredicateFunc): void;
 
-export declare const SelectScrollMore: DefineComponent<__VLS_WithDefaults_27<__VLS_TypePropsToOption_28<{
+export declare const SelectScrollMore: DefineComponent<__VLS_WithDefaults_27<__VLS_TypePropsToOption_27<{
 modelValue?: string | number | any[] | undefined;
 url: string;
 searchData?: Record<string, any> | undefined;
@@ -2477,7 +2466,7 @@ disabled: boolean;
 "on-change": (...args: any[]) => void;
 "update:modelValue": (...args: any[]) => void;
 "update-option-finish": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_27<__VLS_TypePropsToOption_28<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_27<__VLS_TypePropsToOption_27<{
 modelValue?: string | number | any[] | undefined;
 url: string;
 searchData?: Record<string, any> | undefined;
@@ -2563,15 +2552,25 @@ export declare function setValue(target: any, value: any): void;
 
 declare type showFunc = (valGroup: Record<string, any>) => boolean;
 
-export declare const ShowHidePanel: __VLS_WithTemplateSlots_3<DefineComponent<__VLS_TypePropsToOption_6<{
-bg?: string | undefined;
-}>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_TypePropsToOption_6<{
-bg?: string | undefined;
-}>>>, {}, {}>, {
+export declare const ShowHidePanel: __VLS_WithTemplateSlots_3<DefineComponent<    {
+modelValue: globalThis.PropType<boolean>;
+bg: {
+type: globalThis.PropType<string>;
+};
+}, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
+"update:modelValue": (modelValue: boolean) => void;
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<{
+modelValue: globalThis.PropType<boolean>;
+bg: {
+type: globalThis.PropType<string>;
+};
+}>> & {
+"onUpdate:modelValue"?: ((modelValue: boolean) => any) | undefined;
+}, {}, {}>, {
     default?(_: {}): any;
 }>;
 
-export declare const ShowHidePanelB: __VLS_WithTemplateSlots_4<DefineComponent<__VLS_WithDefaults_6<__VLS_TypePropsToOption_7<{
+export declare const ShowHidePanelB: __VLS_WithTemplateSlots_4<DefineComponent<__VLS_WithDefaults_6<__VLS_TypePropsToOption_6<{
 modelValue?: boolean | undefined;
 bg?: string | undefined;
 }>, {
@@ -2579,7 +2578,7 @@ modelValue: boolean;
 bg: string;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_6<__VLS_TypePropsToOption_7<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_6<__VLS_TypePropsToOption_6<{
 modelValue?: boolean | undefined;
 bg?: string | undefined;
 }>, {
@@ -2678,7 +2677,7 @@ export declare const tablePrint: {
     init: typeof init;
 };
 
-export declare const TableSearch: __VLS_WithTemplateSlots_5<DefineComponent<__VLS_WithDefaults_7<__VLS_TypePropsToOption_8<{
+export declare const TableSearch: __VLS_WithTemplateSlots_5<DefineComponent<__VLS_WithDefaults_7<__VLS_TypePropsToOption_7<{
 modelValue: string;
 open: boolean;
 placeholder?: string | undefined;
@@ -2700,7 +2699,7 @@ btnColor: string;
 "update:modelValue": (...args: any[]) => void;
 "on-toggle": (...args: any[]) => void;
 "on-search": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_7<__VLS_TypePropsToOption_8<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_7<__VLS_TypePropsToOption_7<{
 modelValue: string;
 open: boolean;
 placeholder?: string | undefined;
@@ -2734,7 +2733,7 @@ btnColor: string;
     default?(_: {}): any;
 }>;
 
-export declare const TableSetting: DefineComponent<__VLS_WithDefaults_8<__VLS_TypePropsToOption_9<{
+export declare const TableSetting: DefineComponent<__VLS_WithDefaults_8<__VLS_TypePropsToOption_8<{
 modelValue?: any[] | undefined;
 sKey: string;
 width?: string | undefined;
@@ -2755,7 +2754,7 @@ transfer: () => any;
 eventsEnabled: () => any;
 }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
 "update:modelValue": (...args: any[]) => void;
-}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_8<__VLS_TypePropsToOption_9<{
+}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_8<__VLS_TypePropsToOption_8<{
 modelValue?: any[] | undefined;
 sKey: string;
 width?: string | undefined;
@@ -2805,7 +2804,7 @@ export declare function toLine(name: string): string;
      [key: string]: any;
  }>;
 
- export declare const TransferBox: DefineComponent<__VLS_WithDefaults_23<__VLS_TypePropsToOption_24<{
+ export declare const TransferBox: DefineComponent<__VLS_WithDefaults_23<__VLS_TypePropsToOption_23<{
  titleLeft?: string | undefined;
  titleRight?: string | undefined;
  formDataLeft?: any[] | undefined;
@@ -2861,7 +2860,7 @@ export declare function toLine(name: string): string;
  transferred: (...args: any[]) => void;
  "on-data-change-l": (...args: any[]) => void;
  "on-data-change-r": (...args: any[]) => void;
- }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_23<__VLS_TypePropsToOption_24<{
+ }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_23<__VLS_TypePropsToOption_23<{
  titleLeft?: string | undefined;
  titleRight?: string | undefined;
  formDataLeft?: any[] | undefined;
@@ -2973,7 +2972,7 @@ export declare function toLine(name: string): string;
 
  declare function updateValGroup_4(data: Record<string, any>, notClearOthers: boolean): void;
 
- export declare const UploadGroup: DefineComponent<__VLS_WithDefaults_15<__VLS_TypePropsToOption_16<{
+ export declare const UploadGroup: DefineComponent<__VLS_WithDefaults_15<__VLS_TypePropsToOption_15<{
  modelValue?: string | number | any[] | File | undefined;
  url?: string | undefined;
  data?: Record<string, any> | undefined;
@@ -3006,7 +3005,7 @@ export declare function toLine(name: string): string;
  }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {
  "on-change": (...args: any[]) => void;
  "update:modelValue": (...args: any[]) => void;
- }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_15<__VLS_TypePropsToOption_16<{
+ }, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_15<__VLS_TypePropsToOption_15<{
  modelValue?: string | number | any[] | File | undefined;
  url?: string | undefined;
  data?: Record<string, any> | undefined;
@@ -3062,7 +3061,7 @@ export declare function toLine(name: string): string;
 
  declare function validate_4(): void;
 
- export declare const WellCard: __VLS_WithTemplateSlots_11<DefineComponent<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
+ export declare const WellCard: __VLS_WithTemplateSlots_11<DefineComponent<__VLS_WithDefaults_26<__VLS_TypePropsToOption_26<{
  title?: string | undefined;
  fitToContent?: boolean | undefined;
  width?: string | number | undefined;
@@ -3073,7 +3072,7 @@ export declare function toLine(name: string): string;
  width: string;
  height: string;
  inline: boolean;
- }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_26<__VLS_TypePropsToOption_27<{
+ }>, {}, unknown, {}, {}, ComponentOptionsMixin, ComponentOptionsMixin, {}, string, PublicProps, Readonly<globalThis.ExtractPropTypes<__VLS_WithDefaults_26<__VLS_TypePropsToOption_26<{
  title?: string | undefined;
  fitToContent?: boolean | undefined;
  width?: string | number | undefined;

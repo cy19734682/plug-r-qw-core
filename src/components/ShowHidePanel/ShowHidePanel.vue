@@ -3,9 +3,9 @@
 @author Ricky email:zhangqingcq@foxmail.com
 @params bg 例如：bg = '#fff' 或 bg = 'white' 不传为透明背景 (bg为自定义属性，控制该组件背景色) <show-hide-panel bg="#fff">需要包装的代码</show-hide-panel> -->
 <script lang="ts" setup>
+	const show = defineModel<boolean>({ default: true })
 	const props = defineProps<{ bg?: string }>()
 
-	const show = ref(true)
 	const getBg = computed(() => (show ? 'background:' + props.bg || 'transparent' : ''))
 </script>
 
