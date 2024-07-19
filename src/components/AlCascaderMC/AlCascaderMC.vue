@@ -3,7 +3,7 @@
 @author Ricky email:zhangqingcq@foxmail.com-->
 
 <script lang="ts" setup>
-	import { isNumber, cloneDeep, isEmpty, isString, last } from 'lodash-es'
+	import { cloneDeep, isEmpty, last } from 'lodash-es'
 	import t from '../../locale/i18nSFC'
 	import ArCascader from 'ar-cascader'
 
@@ -26,26 +26,16 @@
 			separator: '/'
 		}
 	)
-	const alCRef = ref()
 	const valueT = computed({
 		get() {
-			if (props.modelValue && (isNumber(props.modelValue) || isString(props.modelValue))) {
+			if (props.modelValue && (typeof props.modelValue === 'string' || typeof props.modelValue === 'number')) {
 				let temp = String(props.modelValue).trim()
 
-				let regP = /^\d*$/
+				let regP = /^\d+$/
 				if (regP.test(temp)) {
-					let lv1 = temp.substring(0, 2) + '0000'
-					let lv2
-					let lv3 = getLastCode(temp)
-					if (lv3.length < 7) {
-						lv2 = temp.substring(0, 4) + '00'
-					} else {
-						lv2 = temp.substring(0, 6)
-					}
-					if (/^8\d+$/.test(temp)) {
-						return [lv1, lv3]
-					}
-					return [lv1, lv2, lv3]
+					let lv1 = temp.substring(0, 2) + '0000000000'
+					let lv2 = temp.substring(0, 4) + '00000000'
+					return [lv1, lv2, temp]
 				}
 
 				if (temp.indexOf(props.separator) !== -1) {
@@ -57,9 +47,6 @@
 			} else if (Array.isArray(props.modelValue)) {
 				return cloneDeep(props.modelValue)
 			} else {
-				if (alCRef.value) {
-					alCRef.value.select = []
-				}
 				return []
 			}
 		},
@@ -100,21 +87,12 @@
 			}
 		}
 	})
-
-	function getLastCode(d: string) {
-		let t = [...d]
-		while (t[t.length - 1] === '0') {
-			t.pop()
-		}
-		return t.join('')
-	}
 </script>
 
 <template>
 	<ar-cascader
 		v-bind="$attrs"
 		class="alCascaderMC"
-		ref="alCRef"
 		v-model="valueT"
 		:level="props.level"
 		:disabled="props.disabled"

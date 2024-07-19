@@ -70,7 +70,7 @@
     "@types/lodash-es": "^4.17.8",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^5.1.12",
-    "ar-cascader": "^2.0.0",
+    "ar-cascader": "^2.1.0",
     "axios": "1.6.8",
     "deepmerge": "^4.3.1",
     "js-cookie": "3.0.5",
