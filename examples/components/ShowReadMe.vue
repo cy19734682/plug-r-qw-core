@@ -44,7 +44,7 @@
 		position: absolute;
 		z-index: 10;
 		top: -30px;
-		right: 250px;
+		right: 300px;
 		text-align: left;
 
 		&.fullKA {

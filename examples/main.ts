@@ -8,12 +8,16 @@ import router from './router'
 import { createI18n } from 'vue-i18n'
 import en from '@/lang/en-US'
 import zh from '@/lang/zh-CN'
+import ru from '@/lang/ru-RU'
 // @ts-ignore
 import enI from 'view-ui-plus/dist/locale/en-US'
 // @ts-ignore
 import zhI from 'view-ui-plus/dist/locale/zh-CN'
+// @ts-ignore
+import ruI from 'view-ui-plus/dist/locale/ru-RU'
 import enR from '../src/locale/lang/en-US'
 import zhR from '../src/locale/lang/zh-CN'
+import ruR from '../src/locale/lang/ru-RU'
 
 import './assets/main.css'
 
@@ -40,7 +44,8 @@ const i18n = createI18n({
 	locale: localStorage.getItem('locale') || 'zh',
 	messages: {
 		en: { ...en, ...enI, ...enR },
-		zh: { ...zh, ...zhI, ...zhR }
+		zh: { ...zh, ...zhI, ...zhR },
+		ru: { ...ru, ...ruI, ...ruR }
 	}
 })
 

@@ -13,6 +13,7 @@
 		<main class="setLangBox">
 			<div class="lanLi" @click="setLan('zh')">中文</div>
 			<div class="lanLi" @click="setLan('en')">English</div>
+			<div class="lanLi" @click="setLan('ru')">Pусский</div>
 		</main>
 	</div>
 </template>
