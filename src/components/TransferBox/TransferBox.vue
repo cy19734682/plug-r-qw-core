@@ -42,6 +42,8 @@
 			usePagePro?: boolean /*是否使用pagePro组件作为页签*/
 			showTotal?: boolean /*page是否展示total*/
 			showSizer?: boolean /*page是否展示sizer*/
+			leftSearchDataFilter?: (d: any) => any
+			rightSearchDataFilter?: (d: any) => any
 		}>(),
 		{
 			formDataLeft: () => [],
@@ -129,12 +131,20 @@
 
 	/*私有*/
 	function searchLeft(d: any) {
-		searchDataLeft.value = d
+		if (typeof props.leftSearchDataFilter === 'function') {
+			searchDataLeft.value = props.leftSearchDataFilter(d)
+		} else {
+			searchDataLeft.value = d
+		}
 	}
 
 	/*私有*/
 	function searchRight(d: any) {
-		searchDataRight.value = d
+		if (typeof props.rightSearchDataFilter === 'function') {
+			searchDataRight.value = props.rightSearchDataFilter(d)
+		} else {
+			searchDataRight.value = d
+		}
 	}
 
 	/*私有*/

@@ -2841,6 +2841,8 @@ export declare function toLine(name: string): string;
  usePagePro?: boolean | undefined;
  showTotal?: boolean | undefined;
  showSizer?: boolean | undefined;
+ leftSearchDataFilter?: ((d: any) => any) | undefined;
+ rightSearchDataFilter?: ((d: any) => any) | undefined;
  }>, {
  formDataLeft: () => never[];
  formDataRight: () => never[];
@@ -2897,6 +2899,8 @@ export declare function toLine(name: string): string;
  usePagePro?: boolean | undefined;
  showTotal?: boolean | undefined;
  showSizer?: boolean | undefined;
+ leftSearchDataFilter?: ((d: any) => any) | undefined;
+ rightSearchDataFilter?: ((d: any) => any) | undefined;
  }>, {
  formDataLeft: () => never[];
  formDataRight: () => never[];
