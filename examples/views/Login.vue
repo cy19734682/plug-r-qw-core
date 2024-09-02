@@ -2,6 +2,7 @@
 	import { useStore } from '@/stores/main'
 
 	const store = useStore()
+	const { t } = useI18n()
 	const router = useRouter()
 
 	function login() {
@@ -13,13 +14,13 @@
 <template>
 	<div class="wall">
 		<div class="modal">
-			<p>{{ $t('e.login') }}</p>
-			<div class="info">{{ $t('e.loginInfo') }}</div>
-			<span>{{ $t('e.name') }}</span>
+			<p>{{ t('e.login') }}</p>
+			<div class="info">{{ t('e.loginInfo') }}</div>
+			<span>{{ t('e.name') }}</span>
 			<div class="formItem"></div>
-			<span>{{ $t('e.password') }}</span>
+			<span>{{ t('e.password') }}</span>
 			<div class="formItem"></div>
-			<Button @click="login" type="primary" class="loginBt">{{ $t('e.login') }}</Button>
+			<Button @click="login" type="primary" class="loginBt">{{ t('e.login') }}</Button>
 		</div>
 	</div>
 </template>

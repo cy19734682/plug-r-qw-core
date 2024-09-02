@@ -4,6 +4,7 @@
 	import { useRouter } from 'vue-router'
 	import { useStore } from '@/stores/main'
 
+	const { t } = useI18n()
 	const store = useStore()
 	const router = useRouter()
 	const routes = router.getRoutes()
@@ -25,7 +26,7 @@
 		<Hello />
 
 		<SetLang class="fr" />
-		<span class="fr">{{ $t('e.testTxt') }}</span>
+		<span class="fr">{{ t('e.testTxt') }}</span>
 	</header>
 	<main class="appMain" :class="{ fullHeight: store.fullScreen }">
 		<SideMenuE class="notShrink" :data="menu" v-show="!store.fullScreen" />
