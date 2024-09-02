@@ -1,12 +1,9 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import { useStore } from '@/stores/main'
 import Swal from '@/views/SwalEX.vue'
 
-// @ts-ignore
-const bl = import.meta.env.BASE_URL
-
 const router = createRouter({
-	history: createWebHistory(bl),
+	history: createWebHashHistory(),
 	linkActiveClass: 'active',
 	routes: [
 		{

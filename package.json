@@ -25,7 +25,9 @@
   },
   "scripts": {
     "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
+    "build-only": "vite build --mode pro",
     "type-check": "vue-tsc --build --force",
     "types": "vue-tsc -p tsconfig.app.declaration.json",
     "build-types": "api-extractor run --local --verbose && gulp clean_temp",
