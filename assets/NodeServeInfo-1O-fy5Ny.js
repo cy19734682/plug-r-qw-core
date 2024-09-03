@@ -1,2 +1,0 @@
-import{_ as t,o as a,c as n,g as o,p as r,h as p,b as s}from"./index-CcVt6gmT.js";const _={},c=e=>(r("data-v-77fe2627"),e=e(),p(),e),d={class:"info"},f=c(()=>s("span",null," your path\\plug-r-qw-core> ",-1)),l=c(()=>s("span",null," npm run node-serve ",-1));function h(e,i){return a(),n("p",d,[o("请注意：本示例需要开启该项目内的nodeJS服务器方可正常演示，开启方法为新开一个命令窗口，在项目根目录("),f,o(")运行："),l])}const m=t(_,[["render",h],["__scopeId","data-v-77fe2627"]]);export{m as N};
-//# sourceMappingURL=NodeServeInfo-1O-fy5Ny.js.map

@@ -1,2 +1,0 @@
-import{d as p,j as r,r as t,o as u,c as _,f as e,S as d,w as n,g as f,F as i,b as a}from"./index-CcVt6gmT.js";const m=a("div",{style:{padding:"12px"}},[a("div",null,"我是内容巴拉巴拉巴拉~")],-1),h=p({__name:"FullPopEX",setup(F){const o=r();function l(){o.value.open()}return(x,B)=>{const s=t("Button"),c=t("FullPop");return u(),_(i,null,[e(d),e(s,{onClick:l},{default:n(()=>[f("全屏弹框")]),_:1}),e(c,{title:"全屏弹框",ref_key:"fullPop",ref:o},{default:n(()=>[m]),_:1},512)],64)}}});export{h as default};
-//# sourceMappingURL=FullPopEX-COB1YfC6.js.map

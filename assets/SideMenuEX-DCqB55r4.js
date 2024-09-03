@@ -1,2 +1,0 @@
-import{d as s,j as o,K as d,$ as c,r,o as l,c as u,f as t,S as _,b as i,e as p,F as f}from"./index-CcVt6gmT.js";const m={style:{height:"100%",display:"flex"}},g=s({__name:"SideMenuEX",setup(h){const e=o([]);return d(()=>{c.get("testData/sideMenu.json").then(a=>{e.value=a})}),(a,M)=>{const n=r("SideMenu");return l(),u(f,null,[t(_),i("div",m,[t(n,{data:p(e)},null,8,["data"])])],64)}}});export{g as default};
-//# sourceMappingURL=SideMenuEX-DCqB55r4.js.map
