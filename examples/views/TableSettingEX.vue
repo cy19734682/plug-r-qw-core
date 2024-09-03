@@ -49,7 +49,7 @@
 	])
 
 	const url = computed(() => {
-		return nodeServer.value ? '/node-serve/bt-table-page' : '/testData/btTablePage.json'
+		return nodeServer.value ? '/node-serve/bt-table-page' : location.pathname + 'testData/btTablePage.json'
 	})
 
 	function getData() {

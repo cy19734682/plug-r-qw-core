@@ -157,7 +157,7 @@
 	}
 
 	const url = computed(() => {
-		return nodeServer.value ? '/node-serve/bt-table-page' : '/testData/btTablePage.json'
+		return nodeServer.value ? '/node-serve/bt-table-page' : location.pathname + 'testData/btTablePage.json'
 	})
 	const title = computed(() => {
 		return action.value === 'new' ? '新增' : '编辑'

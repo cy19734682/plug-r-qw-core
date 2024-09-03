@@ -10,7 +10,7 @@
 	}
 
 	onMounted(() => {
-		$fetch.get('/testData/checkboxGroupTwoClass.json').then((r: any) => {
+		$fetch.get(location.pathname + 'testData/checkboxGroupTwoClass.json').then((r: any) => {
 			data.value = r
 		})
 	})

@@ -149,7 +149,7 @@
 			label: '推荐人',
 			key: 'referrer',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			show: {
@@ -179,7 +179,7 @@
 			label: '机构',
 			key: 'orgId',
 			key2: 'orgName',
-			url: 'testData/asyncCascader.json',
+			url: location.pathname + 'testData/asyncCascader.json',
 			info: 'asyncCascader, 普通级联，数据来源于url对应接口返回的数据'
 		},
 		{
@@ -306,7 +306,7 @@
 			label: '联系人',
 			key: 'friend',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			info: 'select asyncOption, 该示例展示功能：远程待选项--从接口拉取数据'
@@ -316,7 +316,7 @@
 			label: '联系人B(多选)',
 			key: 'friendB',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			multiple: true,
@@ -327,7 +327,7 @@
 			label: '联系人C(带选项筛选)',
 			key: 'friendC',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			optionFilter(d: any) {
@@ -340,7 +340,7 @@
 			label: '联系人D（待选项禁用）',
 			key: 'friendD',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			disableOptionByOthers: 'friend' /*待选项禁用，‘联系人’已选的，联系人D将不能选*/,
@@ -351,7 +351,7 @@
 			label: '联系人G（多字段禁用）',
 			key: 'friendG',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			disableOptionByOthers: ['friend', 'friendD'] /*待选项禁用，‘联系人’和‘联系人D’已选的，联系人G将不能选*/,
@@ -379,7 +379,7 @@
 				}
 			],
 			asyncOption: true,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			info: 'select collectLabel, 该示例展示功能：收集选中选项的多个字段--val(tel)、label(name)、birth'
@@ -396,7 +396,7 @@
 			label: '多选M(收集多个字段)',
 			key: 'friendM',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			multiple: true,
@@ -456,7 +456,7 @@
 			label: '待选项名字拼接示例',
 			key: 'friendG',
 			asyncOption: true,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: ['name', 'tel'] /*多字段待选项名*/,
 			optionVal: 'tel',
 			info: 'select, 该示例展示功能：待选项label由多个字段组成--name、tel'
@@ -473,7 +473,7 @@
 					label: '这是本地选项A'
 				}
 			],
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			info: 'select, 该示例展示功能：待选项由本地数据和接口数据共同组成'
@@ -508,7 +508,7 @@
 			label: '联系人K(远程选项)',
 			key: 'friendK',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			info: 'checkboxGroup asyncOption'
@@ -518,7 +518,7 @@
 			label: '联系人L(收集其他字段)',
 			key: 'friendL',
 			asyncOption: true /*远程待选项*/,
-			optionUrl: 'testData/formR/people.json',
+			optionUrl: location.pathname + 'testData/formR/people.json',
 			optionLabel: 'name',
 			optionVal: 'tel',
 			collectLabel: {
@@ -544,7 +544,7 @@
 			label: '部门(条件1)',
 			key: 'dep',
 			asyncOption: true,
-			optionUrl: 'testData/formR/department.json',
+			optionUrl: location.pathname + 'testData/formR/department.json',
 			optionLabel: 'name',
 			optionVal: 'code',
 			info: 'select, 该示例展示功能：多表单项组成复杂级联，该项为后面表单项是否展示的条件之一'
@@ -727,7 +727,7 @@
 		setTimeout(() => {
 			const t = findCollection(data5, (e) => e?.key === 'friendN')
 			if (t?.optionUrl) {
-				t.optionUrl.value = 'testData/formR/people.json'
+				t.optionUrl.value = location.pathname + 'testData/formR/people.json'
 			}
 		}, 10000)
 	})

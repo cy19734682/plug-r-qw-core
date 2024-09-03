@@ -157,7 +157,7 @@ export default ({command, mode}: ConfigEnv):UserConfig => {
 				external: externalOption,
 				output: outputOptions
 			},
-			copyPublicDir: true
+			copyPublicDir: !isLib
 		}
 	}
 }
